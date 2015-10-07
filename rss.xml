@@ -6,6 +6,13 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>install to folder, webprefix</title>
+        <link>/weprefix.html</link>
+        <pubDate>Wed, 07 Oct 2015 16:28:42 EDT</pubDate>
+        <description>File ticket with [nullism](https://github.com/nullism/pykwiki/issues/13issuecomment-146304421) about installing pykwiki in folders, rather than root. He writes: Oh! I should also ask what the web_prefix setting is. In this case, it should be set to /dry-run-pykwiki (no trailing slash). The base_url should not need to include a web_prefix (if it only works with...</description>
+    </item>    
+    
+    <item>
         <title>Installing and using Pykwiki on a windows machine.</title>
         <link>/installing-pykwiki-on-windows.html</link>
         <pubDate>Wed, 07 Oct 2015 16:13:29 EDT</pubDate>
