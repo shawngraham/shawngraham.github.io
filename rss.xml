@@ -6,9 +6,16 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>Welcome</title>
+        <link>/index.html</link>
+        <pubDate>Wed, 07 Oct 2015 15:34:34 EDT</pubDate>
+        <description>Shawn Graham's Open DH Lab Notebook.</description>
+    </item>    
+    
+    <item>
         <title>Installing and using Pykwiki on a Mac machine.</title>
         <link>/installing-pykwiki-on-mac.html</link>
-        <pubDate>Wed, 07 Oct 2015 15:20:50 EDT</pubDate>
+        <pubDate>Wed, 07 Oct 2015 15:23:40 EDT</pubDate>
         <description> Installing Pykwiki Getting set up on a mac is very easy: follow the instructions at [PykWiki](http://pykwiki.nullism.com/getting-started.html)  Publish online To get this site live on the internet, open your github desktop client. Click on the + button to `Add` a repository. Select the path to your docroot folder. Commit...</description>
     </item>    
     
@@ -17,13 +24,6 @@
         <link>/installing-pykwiki-on-windows.html</link>
         <pubDate>Wed, 07 Oct 2015 14:58:42 EDT</pubDate>
         <description>It's easy to use once it's installed; installing can take a little bit of time.  Install Python + download and install [python 2.7.10](https://www.python.org/downloads/) + download ez_setup.py script (by right-clicking and selecting 'save as' [https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) + open the command line prompt, and navigate to where you downloaded (alternatively, use windows...</description>
-    </item>    
-    
-    <item>
-        <title>Welcome</title>
-        <link>/index.html</link>
-        <pubDate>Wed, 07 Oct 2015 13:38:13 EDT</pubDate>
-        <description>The default PyKwiki startup page.</description>
     </item>    
     
 </channel>
