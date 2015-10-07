@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+    <title>Example Site</title>
+    <link>/</link>
+    <description>Example Site Description</description>
+    
+    <item>
+        <title>Welcome</title>
+        <link>/index.html</link>
+        <pubDate>Wed, 07 Oct 2015 13:38:13 EDT</pubDate>
+        <description>The default PyKwiki startup page.</description>
+    </item>    
+    
+</channel>
+</rss>
