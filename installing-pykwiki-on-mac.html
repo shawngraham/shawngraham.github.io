@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<meta name="description" content="Example Site Description">
+<meta name="keywords" content="mac,setup">
+
+    <title>Installing and using Pykwiki on a windows machine. | Example Site</title>
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/static/codehilite/manni.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+    html, body { height: 100%; }
+
+    h1:target, h2:target, h3:target { 
+        background-color: #dfd;
+    }
+
+    #wrap {
+        min-height: 100%;
+        height: auto;
+        /* Negative indent footer by its height */
+        margin: 0 auto -60px;
+        /* Pad bottom by footer height */
+        padding: 0 0 60px;
+    }
+
+    #footer {
+        height: 60px;
+        padding-top: 20px;
+        background: #eee;
+    }
+    #footer .social-div { 
+        float: left;
+        margin-left: 10px;
+    }
+
+    .link_section {
+        padding: 3px;
+        margin: 0px; 
+        font-weight: bold;
+    }
+
+    .toc { 
+        float: right;
+        border: 2px solid #efefef;
+        background: #f5f5f5;
+        padding: 5px;
+        border-radius: 3px;
+        color: #999;
+    }
+    .toc ul, .toc li, .toc ul li { 
+        margin-left: 10px;
+        padding-left: 0px;
+    }
+
+    .htmltruncate-lg, .htmltruncate-md, .htmltruncate-sm { 
+        overflow: hidden;
+        position: relative;
+        border-bottom: 2px dashed #eee;
+        margin-bottom: 5px;
+        min-height: 60px;
+    }
+    .htmltruncate-bottom { 
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background: none;
+        background-image: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, #fff 100%);
+        z-index: 100;
+        height: 60px;
+    }
+    .htmltruncate-lg {
+        max-height: 500px;
+    }
+    .htmltruncate-md { 
+        max-height: 300px;
+    }
+    .htmltruncate-sm { 
+        max-height: 150px;
+    }
+    </style> 
+    <script>
+    // Globals
+    var has_gaq = false;
+    </script>
+</head>
+<body>
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" 
+                data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <div class="navbar-collapse collapse" style="max-height: none;">
+    <ul class="nav navbar-nav">
+    
+        
+            <li>
+            
+                <a href="/index.html" target="_self">Welcome</a>
+            
+            </li>
+        
+    
+        
+            <li>
+            
+                <a href="/posts.html" target="_self">Posts</a>
+            
+            </li>
+        
+    
+        
+            <li>
+            
+                <a href="/search.html" target="_self">Search</a>
+            
+            </li>
+        
+    
+    </ul>
+
+    <form class="navbar-form navbar-right" role="search" 
+        method="get"
+        action="/search.html">
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-primary" style="display: none;"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+    </div>
+    </div>
+</div>
+<div id="wrap">
+<div class="container" style="padding-top: 60px;">
+
+<p>
+
+    <a class="label label-default"
+        href="/search.html?t=mac">mac <b class="glyphicon glyphicon-tag"></b></a>
+
+    <a class="label label-default"
+        href="/search.html?t=setup">setup <b class="glyphicon glyphicon-tag"></b></a>
+
+</p>
+<h3 id="installing-pykwiki">Installing Pykwiki</h3>
+<p>Getting set up on a mac is very easy: follow the instructions at <a href="http://pykwiki.nullism.com/getting-started.html">PykWiki</a></p>
+<h3 id="publish-online">Publish online</h3>
+<p>To get this site live on the internet, open your github desktop client. Click on the + button to <code>Add</code> a repository. Select the path to your docroot folder. Commit all changes (remember to make a commit message), then <code>publish</code> (the next time you want to put your changes online, it'll be 'sync'). Github will ask you what you want to call this repository online. </p>
+<blockquote>
+<p>IMPORTANT: The repository has to be 'yourusername.github.io'. </p>
+</blockquote>
+<p>So, just to be clear: you are creating a repository in your github account, that has the name of your associated github.io page:</p>
+<p><code>http://github.com/shawngraham/shawngraham.github.io</code> is my repository, and it serves its pages online at <code>shawngraham.github.io</code></p>
+<p>Congratulations! Anytime you rebuild your suite with the cache command,
+commit and sync to github, and make sure you merge your changes onto the
+gh-pages branch too.</p>
+<blockquote>
+<p>If you have your own server, create a subdomain via your cpanel, and use FTP to copy everything from docroot to that subdomain. At the current moment, it doesn't work when you try to serve it from a folder, ie http://example.com/notebook. So you want: http://notebook.example.com
+</p>
+</blockquote>
+
+</div>
+</div><!-- End #wrap -->
+<div id="footer">
+    <div class="container">
+    
+        <div class="social-div">
+        <p class="text-muted credit">&copy; 2013, Example Site
+        &mdash; powered by <a href="http://pykwiki.nullism.com">PyKwiki</a>
+        </p>
+        </div>
+
+        
+
+        
+
+        
+
+
+        <div class="clearfix"></div>
+    </div>
+
+    
+
+</div>
+
+<script src="/static/bootstrap3/js/bootstrap.min.js"></script>
+<script src="/static/mustachejs/mustache.js"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="/static/respond.min.js"></script>
+<![endif]-->   
+
+</body>
+</html>

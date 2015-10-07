@@ -5,9 +5,46 @@
         <a href="#" onclick="load_postlist(1); return false;">1</a>
     </li>
   
+    <li >
+        <a href="#" onclick="load_postlist(2); return false;">2</a>
+    </li>
+  
+  
+  <li><a href="#" onclick="load_postlist(2); return false;">&raquo;</a></li>
   
 </ul>
 
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="/installing-pykwiki-on-mac.html">Installing and using Pykwiki on a windows machine.</a> 
+        <span class="pull-right text-muted">2015-10-07</span>
+    </div>
+    <div class="panel-body">
+        
+            <div class="htmltruncate-md">
+                <h3 id="installing-pykwiki">Installing Pykwiki</h3>
+<p>Getting set up on a mac is very easy: follow the instructions at <a href="http://pykwiki.nullism.com/getting-started.html">PykWiki</a></p>
+<h3 id="publish-online">Publish online</h3>
+<p>To get this site live on the internet, open your github desktop client. Click on the + button to <code>Add</code> a repository. Select the path to your docroot folder. Commit all changes (remember to make a commit message), then <code>publish</code> (the next time you want to put your changes online, it'll be 'sync'). Github will ask you what you want to call this repository online. </p>
+<blockquote>
+<p>IMPORTANT: The repository has to be 'yourusername.github.io'. </p>
+</blockquote>
+<p>So, just to be clear: you are creating a repository in your github account, that has the name of your associated github.io page:</p>
+<p><code>http://github.com/shawngraham/shawngraham.github.io</code> is my repository, and it serves its pages online at <code>shawngraham.github.io</code></p>
+<p>Congratulations! Anytime you rebuild your suite with the cache command,
+commit and sync to github, and make sure you merge your changes onto the
+gh-pages branch too.</p>
+<blockquote>
+<p>If you have your own server, create a subdomain via your cpanel, and use FTP to copy everything from docroot to that subdomain. At the current moment, it doesn't work when you try to serve it from a folder, ie http://example.com/notebook. So you want: http://notebook.example.com
+</p>
+</blockquote>
+                <div class="htmltruncate-bottom"></div>
+            </div>
+            <a href="/installing-pykwiki-on-mac.html" class="btn btn-default">...</a>
+        
+    </div>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -130,32 +167,6 @@ gh-pages branch too.</p>
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/index.html">Welcome</a> 
-        <span class="pull-right text-muted">2015-10-07</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <h1 id="welcome">Welcome!</h1>
-<p>Thanks for installing PyKwiki!</p>
-<p>This page can be found in <code>source/index.md</code>.</p>
-<p>Where to go from here:</p>
-<ul>
-<li><a href="http://pykwiki.nullism.com/">Official Documentation</a></li>
-<li><a href="http://pykwiki.nullism.com/authoring.html">PyKwiki - Authoring</a></li>
-<li><a href="http://pykwiki.nullism.com/config.yaml.html">PyKwiki - config.yaml</a></li>
-<li><a href="http://pykwiki.nullism.com/links.yaml.html">PyKwiki - links.yaml</a></li>
-</ul>
-<p>Report issues at <a href="https://github.com/webgovernor/pykwiki">GitHub - PyKwiki</a></p>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/index.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
-
 
 <ul class="pagination">
   
@@ -164,6 +175,12 @@ gh-pages branch too.</p>
         <a href="#" onclick="load_postlist(1); return false;">1</a>
     </li>
   
+    <li >
+        <a href="#" onclick="load_postlist(2); return false;">2</a>
+    </li>
+  
+  
+  <li><a href="#" onclick="load_postlist(2); return false;">&raquo;</a></li>
   
 </ul>
 
