@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<meta name="description" content="Example Site Description">
+<meta name="keywords" content="example, pykwiki">
+
+    <title><p>download and install python 2.7.10 | Example Site</title>
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/static/codehilite/manni.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+    html, body { height: 100%; }
+
+    h1:target, h2:target, h3:target { 
+        background-color: #dfd;
+    }
+
+    #wrap {
+        min-height: 100%;
+        height: auto;
+        /* Negative indent footer by its height */
+        margin: 0 auto -60px;
+        /* Pad bottom by footer height */
+        padding: 0 0 60px;
+    }
+
+    #footer {
+        height: 60px;
+        padding-top: 20px;
+        background: #eee;
+    }
+    #footer .social-div { 
+        float: left;
+        margin-left: 10px;
+    }
+
+    .link_section {
+        padding: 3px;
+        margin: 0px; 
+        font-weight: bold;
+    }
+
+    .toc { 
+        float: right;
+        border: 2px solid #efefef;
+        background: #f5f5f5;
+        padding: 5px;
+        border-radius: 3px;
+        color: #999;
+    }
+    .toc ul, .toc li, .toc ul li { 
+        margin-left: 10px;
+        padding-left: 0px;
+    }
+
+    .htmltruncate-lg, .htmltruncate-md, .htmltruncate-sm { 
+        overflow: hidden;
+        position: relative;
+        border-bottom: 2px dashed #eee;
+        margin-bottom: 5px;
+        min-height: 60px;
+    }
+    .htmltruncate-bottom { 
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background: none;
+        background-image: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, #fff 100%);
+        z-index: 100;
+        height: 60px;
+    }
+    .htmltruncate-lg {
+        max-height: 500px;
+    }
+    .htmltruncate-md { 
+        max-height: 300px;
+    }
+    .htmltruncate-sm { 
+        max-height: 150px;
+    }
+    </style> 
+    <script>
+    // Globals
+    var has_gaq = false;
+    </script>
+</head>
+<body>
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" 
+                data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <div class="navbar-collapse collapse" style="max-height: none;">
+    <ul class="nav navbar-nav">
+    
+        
+            <li>
+            
+                <a href="/index.html" target="_self">Welcome</a>
+            
+            </li>
+        
+    
+        
+            <li>
+            
+                <a href="/posts.html" target="_self">Posts</a>
+            
+            </li>
+        
+    
+        
+            <li>
+            
+                <a href="/search.html" target="_self">Search</a>
+            
+            </li>
+        
+    
+    </ul>
+
+    <form class="navbar-form navbar-right" role="search" 
+        method="get"
+        action="/search.html">
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-primary" style="display: none;"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+    </div>
+    </div>
+</div>
+<div id="wrap">
+<div class="container" style="padding-top: 60px;">
+
+<p>
+
+</p>
+<p>download and install python 2.7.10
+download ez_setup.py script (by right-clicking and selecting 'save as' https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+open the command line prompt, and navigate to where you downloaded (alternatively, use windows explorer to find that folder, then shift-rightclick on the folder and select 'open command prompt here'.</p>
+
+<p>type:
+python ez_setup.py</p>
+
+<p>When the smoke clear, download the get-pip.py script: https://raw.github.com/pypa/pip/master/contrib/get-pip.py</p>
+
+<p>back at the command prompt, type:
+python get-pip.py</p>
+
+<p>When the smoke clears go to your python scripts directory using the CD command at the command prompt c:\python27\tools\scripts</p>
+
+<p>type:
+win_add2path.py</p>
+
+<p>This command tells your machine where to look for the commands when you type them.</p>
+
+<p>Now, go back to your user director, ie c:\users\yourname and let's install pywkiki!</p>
+
+<p>type:</p>
+
+<p>pip install pykwiki</p>
+
+<p>When the smoke clears, let's make a new directory to hold everything (and every site) we generate: Navigate to your c:\ folder. In what we're going to do next, having spaces in for instance your username ie \users\Shawn Graham\ is going to break things. So we have to go up a level above users (unless your username has no spaces, in which case you're fine)</p>
+
+<p>type:
+mkdir pykwikiprojects
+cd pykwikiprojects</p>
+
+<p>Now, open a new command window and go back to C:\Python27\Scripts . You're going to run the site generation commands from this location, but apply them to the folder you made above. Type:</p>
+
+<p>python pykwiki -b c:\pykwikiprojects\ new website1</p>
+
+<p>the -b flag tells pykwiki where to do all the work, and you feed it the path to where you're working. So, it could be easily point like so:
+-b c:\users\myusernamewithoutspaces\pykwikiprojects\  , 'new' says build a new site, and call it 'website1'</p>
+
+<p>In your other command window, you now have a website1 subdirectory inside the pykwikiprojects folder. Inside 'website1' there is a folder called 'source'. That's where you save all your markdown documents. You have another folder called 'docroot'. That's where your generated website will live. Go make a couple of markdown documents (remember, in a text editor, save as with .md file extension at the end). In your command window at c:\python27\scripts, let's get the site updated:</p>
+
+<p>type:
+python pykwiki -b c:\pykwikiprojects\website1\ cache</p>
+
+<p>The screen will fill with data as it does its work. Let's go see what it did. Navigate to c:\pykwikiprojects\website1\docroot using the cd command. Then, we're going to tell the computer to serve up all these files as if it were a webserver. Type:</p>
+
+<p>python -m SimpleHTTPServer 5000</p>
+
+<p>Now, in your browser, put this in the address bar: localhost:5000</p>
+
+<p>(When you want to quit running the simplehttpserver command, go back to that command window and hit ctrl+c for 'cancel'.)</p>
+
+<p>And your site is running! After this, anytime you want to update your site, you need to make sure of a couple of things:
+1. no spaces in filenames.
+2. run the pykwiki command from the command line at the c:\python27\scripts folder
+3. use the -b flag to always be pointing to your project files (otherwise it will build everything in the python27\scripts folder.
+4. Once the site is first built, you only need to use the cache command to rebuild the site.</p>
+
+<h2 id="publish-online">publish online</h2>
+
+<p>To get this site live on the internet, right-click in the docroot folder in windows explorer, and select 'git init here'. Then, open your github desktop client. Click on the + button to 'Add' a repository. Select the path to your docroot folder. Commit all changes (remember to make a commit message), then 'publish' (the next time you want to put your changes online, it'll be 'sync'). Github will ask you what you want to call this repository online. </p>
+
+<p>Go to your github repository you just published to. Under the 'branch' button, type in gh-pages. This will copy everything onto the gh-pages branch. Hit the 'settings' button to find the live url for your site. Congratulations! Anytime you rebuild your suite with the cache command, commit and sync to github, and make sure you merge your changes onto the gh-pages branch too.</p>
+
+</div>
+</div><!-- End #wrap -->
+<div id="footer">
+    <div class="container">
+    
+        <div class="social-div">
+        <p class="text-muted credit">&copy; 2013, Example Site
+        &mdash; powered by <a href="http://pykwiki.nullism.com">PyKwiki</a>
+        </p>
+        </div>
+
+        
+
+        
+
+        
+
+
+        <div class="clearfix"></div>
+    </div>
+
+    
+
+</div>
+
+<script src="/static/bootstrap3/js/bootstrap.min.js"></script>
+<script src="/static/mustachejs/mustache.js"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="/static/respond.min.js"></script>
+<![endif]-->   
+
+</body>
+</html>

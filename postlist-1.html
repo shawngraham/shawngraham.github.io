@@ -5,32 +5,200 @@
         <a href="#" onclick="load_postlist(1); return false;">1</a>
     </li>
   
+    <li >
+        <a href="#" onclick="load_postlist(2); return false;">2</a>
+    </li>
+  
+  
+  <li><a href="#" onclick="load_postlist(2); return false;">&raquo;</a></li>
   
 </ul>
 
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="/index.html">Welcome</a> 
+        <a href="/installing-pykwiki-on-windows.html">Installing and using Pykwiki on a windows machine.</a> 
         <span class="pull-right text-muted">2015-10-07</span>
     </div>
     <div class="panel-body">
         
             <div class="htmltruncate-md">
-                <h1 id="welcome">Welcome!</h1>
-<p>Thanks for installing PyKwiki!</p>
-<p>This page can be found in <code>source/index.md</code>.</p>
-<p>Where to go from here:</p>
+                <p>It's easy to use once it's installed; installing can take a little bit of time.</p>
+<h2 id="install-python">Install Python</h2>
 <ul>
-<li><a href="http://pykwiki.nullism.com/">Official Documentation</a></li>
-<li><a href="http://pykwiki.nullism.com/authoring.html">PyKwiki - Authoring</a></li>
-<li><a href="http://pykwiki.nullism.com/config.yaml.html">PyKwiki - config.yaml</a></li>
-<li><a href="http://pykwiki.nullism.com/links.yaml.html">PyKwiki - links.yaml</a></li>
+<li>download and install python 2.7.10 </li>
+<li>download ez_setup.py script (by
+right-clicking and selecting 'save as'
+https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py </li>
+<li>
+<p>open the command line prompt, and navigate to where you downloaded
+(alternatively, use windows explorer to find that folder, then
+shift-rightclick on the folder and select 'open command prompt here'.</p>
+</li>
+<li>
+<p>type: <code>python ez_setup.py</code></p>
+</li>
 </ul>
-<p>Report issues at <a href="https://github.com/webgovernor/pykwiki">GitHub - PyKwiki</a></p>
+<p>When the smokes clears, download the get-pip.py script:
+https://raw.github.com/pypa/pip/master/contrib/get-pip.py</p>
+<ul>
+<li>Back at the command prompt, type: <code>python get-pip.py</code></li>
+</ul>
+<p>Once that's finished go to your python scripts directory using the CD
+command at the command prompt <code>c:\python27\tools\scripts</code> is where you need to be.</p>
+<ul>
+<li>type: <code>win_add2path.py</code></li>
+</ul>
+<p>This command tells your machine where to look for the commands when you
+type them.</p>
+<h2 id="installing-pykwiki">Installing Pykwiki</h2>
+<p>Now, go back to your user directory, ie <code>c:\users\yourname</code> and let's
+install pykwiki!</p>
+<p>+type: <code>pip install pykwiki</code></p>
+<h2 id="building-a-site">Building a site</h2>
+<p>When that's finished, let's make a new directory to hold everything
+(and every site) we generate. Navigate to your <code>c:\</code> folder. In what
+we're going to do next, having spaces in for instance your username ie
+<code>\users\Shawn Graham\</code> is going to break things. So we have to go up a
+level above users (unless your username has no spaces, in which case
+you're fine)</p>
+<ul>
+<li>type: 
+<code>mkdir pykwikiprojects 
+cd pykwikiprojects</code></li>
+</ul>
+<p>Now, open a new command window and go back to <code>C:\Python27\Scripts</code> .
+You're going to run the site generation commands from this location, but
+apply them to the folder you made above. Type:</p>
+<p><code>python pykwiki -b c:\pykwikiprojects\ new website1</code></p>
+<blockquote>
+<p>(if you have no spaces in your username, and wanted to work from that folder, the <code>-b</code> flag would look like this: <code>-b c:\users\myusernamewithoutspaces\pykwikiprojects\</code> )</p>
+</blockquote>
+<p>The <code>-b</code> flag tells pykwiki where to do all the work, and you feed it the
+path to where you're working. 'new' says build a new site, and call it 'website1'</p>
+<p>In your other command window, you now have a website1 subdirectory
+inside the pykwikiprojects folder. Inside <code>website1</code> there is a folder
+called <code>source</code>. That's where you save all your markdown documents. You
+have another folder called <code>docroot</code>. That's where your generated
+website will live. Go make a couple of markdown documents (remember, in
+a text editor, save as with .md file extension at the end). In your
+command window at <code>c:\python27\scripts</code>, let's get the site updated:</p>
+<p>type: <code>python pykwiki -b c:\pykwikiprojects\website1\ cache</code></p>
+<p><code>Cache</code> is the command that tells pykwiki to update the site at that location.The screen will fill with data as it does its work. Let's go see what it
+did. Navigate to <code>c:\pykwikiprojects\website1\docroot</code> using the cd
+command. Then, we're going to tell the computer to serve up all these
+files as if it were a webserver. Type:</p>
+<p><code>python -m SimpleHTTPServer 5000</code></p>
+<p>Now, in your browser, put this in the address bar: <code>localhost:5000</code></p>
+<p>(When you want to quit running the simplehttpserver command, go back to
+that command window and hit <code>ctrl+c</code> for 'cancel'.)</p>
+<p>And your site is running! After this, anytime you want to update your
+site, you need to make sure of a couple of things: 
+1. no spaces in filenames. 
+2. run the pykwiki command from the command line at the <code>c:\python27\scripts</code> folder 
+3. use the -b flag to always be pointing to your project files (otherwise it will build everything in the <code>python27\scripts</code> folder.
+4. Once the site is first built, you only need to use the cache command to rebuild the site.</p>
+<h3 id="publish-online">Publish online</h3>
+<hr />
+<p>To get this site live on the internet, right-click in the docroot folder
+in windows explorer, and select <code>git init here</code>. Then, open your github
+desktop client. Click on the + button to <code>Add</code> a repository. Select the
+path to your docroot folder. Commit all changes (remember to make a
+commit message), then <code>publish</code> (the next time you want to put your
+changes online, it'll be 'sync'). Github will ask you what you want to
+call this repository online. </p>
+<blockquote>
+<p>IMPORTANT: The repository has to be '<yourusername>.github.io'. </p>
+</blockquote>
+<p>So, just to be clear: you are creating a repository in your github account, that has the name of your associated github.io page:</p>
+<p><code>http://github.com/shawngraham/shawngraham.github.io</code> is my repository, and it serves its pages online at <code>shawngraham.github.io</code></p>
+<p>Congratulations! Anytime you rebuild your suite with the cache command,
+commit and sync to github, and make sure you merge your changes onto the
+gh-pages branch too.</p>
+<blockquote>
+<p>If you have your own server, create a subdomain via your cpanel, and use FTP to copy everything from docroot to that subdomain. At the current moment, it doesn't work when you try to serve it from a folder, ie http://example.com/notebook. So you want: http://notebook.example.com
+</p>
+</blockquote>
                 <div class="htmltruncate-bottom"></div>
             </div>
-            <a href="/index.html" class="btn btn-default">...</a>
+            <a href="/installing-pykwiki-on-windows.html" class="btn btn-default">...</a>
+        
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="/<p>download and install python 2.7.10.html"><p>download and install python 2.7.10</a> 
+        <span class="pull-right text-muted">2015-10-07</span>
+    </div>
+    <div class="panel-body">
+        
+            <div class="htmltruncate-md">
+                <p>download and install python 2.7.10
+download ez_setup.py script (by right-clicking and selecting 'save as' https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+open the command line prompt, and navigate to where you downloaded (alternatively, use windows explorer to find that folder, then shift-rightclick on the folder and select 'open command prompt here'.</p>
+
+<p>type:
+python ez_setup.py</p>
+
+<p>When the smoke clear, download the get-pip.py script: https://raw.github.com/pypa/pip/master/contrib/get-pip.py</p>
+
+<p>back at the command prompt, type:
+python get-pip.py</p>
+
+<p>When the smoke clears go to your python scripts directory using the CD command at the command prompt c:\python27\tools\scripts</p>
+
+<p>type:
+win_add2path.py</p>
+
+<p>This command tells your machine where to look for the commands when you type them.</p>
+
+<p>Now, go back to your user director, ie c:\users\yourname and let's install pywkiki!</p>
+
+<p>type:</p>
+
+<p>pip install pykwiki</p>
+
+<p>When the smoke clears, let's make a new directory to hold everything (and every site) we generate: Navigate to your c:\ folder. In what we're going to do next, having spaces in for instance your username ie \users\Shawn Graham\ is going to break things. So we have to go up a level above users (unless your username has no spaces, in which case you're fine)</p>
+
+<p>type:
+mkdir pykwikiprojects
+cd pykwikiprojects</p>
+
+<p>Now, open a new command window and go back to C:\Python27\Scripts . You're going to run the site generation commands from this location, but apply them to the folder you made above. Type:</p>
+
+<p>python pykwiki -b c:\pykwikiprojects\ new website1</p>
+
+<p>the -b flag tells pykwiki where to do all the work, and you feed it the path to where you're working. So, it could be easily point like so:
+-b c:\users\myusernamewithoutspaces\pykwikiprojects\  , 'new' says build a new site, and call it 'website1'</p>
+
+<p>In your other command window, you now have a website1 subdirectory inside the pykwikiprojects folder. Inside 'website1' there is a folder called 'source'. That's where you save all your markdown documents. You have another folder called 'docroot'. That's where your generated website will live. Go make a couple of markdown documents (remember, in a text editor, save as with .md file extension at the end). In your command window at c:\python27\scripts, let's get the site updated:</p>
+
+<p>type:
+python pykwiki -b c:\pykwikiprojects\website1\ cache</p>
+
+<p>The screen will fill with data as it does its work. Let's go see what it did. Navigate to c:\pykwikiprojects\website1\docroot using the cd command. Then, we're going to tell the computer to serve up all these files as if it were a webserver. Type:</p>
+
+<p>python -m SimpleHTTPServer 5000</p>
+
+<p>Now, in your browser, put this in the address bar: localhost:5000</p>
+
+<p>(When you want to quit running the simplehttpserver command, go back to that command window and hit ctrl+c for 'cancel'.)</p>
+
+<p>And your site is running! After this, anytime you want to update your site, you need to make sure of a couple of things:
+1. no spaces in filenames.
+2. run the pykwiki command from the command line at the c:\python27\scripts folder
+3. use the -b flag to always be pointing to your project files (otherwise it will build everything in the python27\scripts folder.
+4. Once the site is first built, you only need to use the cache command to rebuild the site.</p>
+
+<h2 id="publish-online">publish online</h2>
+
+<p>To get this site live on the internet, right-click in the docroot folder in windows explorer, and select 'git init here'. Then, open your github desktop client. Click on the + button to 'Add' a repository. Select the path to your docroot folder. Commit all changes (remember to make a commit message), then 'publish' (the next time you want to put your changes online, it'll be 'sync'). Github will ask you what you want to call this repository online. </p>
+
+<p>Go to your github repository you just published to. Under the 'branch' button, type in gh-pages. This will copy everything onto the gh-pages branch. Hit the 'settings' button to find the live url for your site. Congratulations! Anytime you rebuild your suite with the cache command, commit and sync to github, and make sure you merge your changes onto the gh-pages branch too.</p>
+                <div class="htmltruncate-bottom"></div>
+            </div>
+            <a href="/<p>download and install python 2.7.10.html" class="btn btn-default">...</a>
         
     </div>
 </div>
@@ -43,6 +211,12 @@
         <a href="#" onclick="load_postlist(1); return false;">1</a>
     </li>
   
+    <li >
+        <a href="#" onclick="load_postlist(2); return false;">2</a>
+    </li>
+  
+  
+  <li><a href="#" onclick="load_postlist(2); return false;">&raquo;</a></li>
   
 </ul>
 
