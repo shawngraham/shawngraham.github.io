@@ -17,7 +17,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="/testpost.html">A test post</a> 
+        <a href="/installing-pykwiki-on-mac.html">Installing and using Pykwiki on a Mac machine.</a> 
         <span class="pull-right text-muted">2015-10-07</span>
     </div>
     <div class="panel-body">
@@ -25,27 +25,29 @@
             <div class="htmltruncate-md">
                 <div class="toc">
 <ul>
-<li><a href="#this-is-header-1">This is header 1</a><ul>
-<li><a href="#header-2">header 2</a><ul>
-<li><a href="#header-3">header 3</a></li>
-</ul>
-</li>
-<li><a href="#another-header-2">another header 2</a></li>
-</ul>
-</li>
+<li><a href="#installing-pykwiki">Installing Pykwiki</a></li>
+<li><a href="#publish-online">Publish online</a></li>
 </ul>
 </div>
-<h1 id="this-is-header-1">This is header 1</h1>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
-<h2 id="header-2">header 2</h2>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
-<h3 id="header-3">header 3</h3>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
-<h2 id="another-header-2">another header 2</h2>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
+<h3 id="installing-pykwiki">Installing Pykwiki</h3>
+<p>Getting set up on a mac is very easy: follow the instructions at <a href="http://pykwiki.nullism.com/getting-started.html">PykWiki</a></p>
+<h3 id="publish-online">Publish online</h3>
+<p>To get this site live on the internet, open your github desktop client. Click on the + button to <code>Add</code> a repository. Select the path to your docroot folder. Commit all changes (remember to make a commit message), then <code>publish</code> (the next time you want to put your changes online, it'll be 'sync'). Github will ask you what you want to call this repository online. </p>
+<blockquote>
+<p>IMPORTANT: The repository has to be 'yourusername.github.io'. </p>
+</blockquote>
+<p>So, just to be clear: you are creating a repository in your github account, that has the name of your associated github.io page:</p>
+<p><code>http://github.com/shawngraham/shawngraham.github.io</code> is my repository, and it serves its pages online at <code>shawngraham.github.io</code></p>
+<p>Congratulations! Anytime you rebuild your suite with the cache command,
+commit and sync to github, and make sure you merge your changes onto the
+gh-pages branch too.</p>
+<blockquote>
+<p>If you have your own server, create a subdomain via your cpanel, and use FTP to copy everything from docroot to that subdomain. At the current moment, it doesn't work when you try to serve it from a folder, ie http://example.com/notebook. So you want: http://notebook.example.com
+</p>
+</blockquote>
                 <div class="htmltruncate-bottom"></div>
             </div>
-            <a href="/testpost.html" class="btn btn-default">...</a>
+            <a href="/installing-pykwiki-on-mac.html" class="btn btn-default">...</a>
         
     </div>
 </div>
