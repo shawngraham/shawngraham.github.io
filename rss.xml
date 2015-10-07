@@ -13,13 +13,6 @@
     </item>    
     
     <item>
-        <title><p>download and install python 2.7.10</title>
-        <link>/<p>download and install python 2.7.10.html</link>
-        <pubDate>Wed, 07 Oct 2015 14:26:53 EDT</pubDate>
-        <description>pdownload and install python 2.7.10 download ez_setup.py script (by right-clicking and selecting 'save as' https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py open the command line prompt, and navigate to where you downloaded (alternatively, use windows explorer to find that folder, then shift-rightclick on the folder and select 'open command prompt here'./p ptype: python ez_setup.py/p pWhen the...</description>
-    </item>    
-    
-    <item>
         <title>Welcome</title>
         <link>/index.html</link>
         <pubDate>Wed, 07 Oct 2015 13:38:13 EDT</pubDate>
