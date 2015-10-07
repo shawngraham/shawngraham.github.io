@@ -8,8 +8,8 @@
     <item>
         <title>Installing and using Pykwiki on a windows machine.</title>
         <link>/installing-pykwiki-on-windows.html</link>
-        <pubDate>Wed, 07 Oct 2015 14:47:05 EDT</pubDate>
-        <description>It's easy to use once it's installed; installing can take a little bit of time.  Install Python + download and install python 2.7.10 + download ez_setup.py script (by right-clicking and selecting 'save as' https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py + open the command line prompt, and navigate to where you downloaded (alternatively, use windows...</description>
+        <pubDate>Wed, 07 Oct 2015 14:50:45 EDT</pubDate>
+        <description>It's easy to use once it's installed; installing can take a little bit of time.  Install Python + download and install python 2.7.10 + download ez_setup.py script (by right-clicking and selecting 'save as' [https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) + open the command line prompt, and navigate to where you downloaded (alternatively, use windows...</description>
     </item>    
     
     <item>
