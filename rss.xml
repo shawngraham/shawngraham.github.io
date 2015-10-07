@@ -6,9 +6,9 @@
     <description>Example Site Description</description>
     
     <item>
-        <title>Installing and using Pykwiki on a windows machine.</title>
+        <title>Installing and using Pykwiki on a Mac machine.</title>
         <link>/installing-pykwiki-on-mac.html</link>
-        <pubDate>Wed, 07 Oct 2015 15:18:43 EDT</pubDate>
+        <pubDate>Wed, 07 Oct 2015 15:20:50 EDT</pubDate>
         <description> Installing Pykwiki Getting set up on a mac is very easy: follow the instructions at [PykWiki](http://pykwiki.nullism.com/getting-started.html)  Publish online To get this site live on the internet, open your github desktop client. Click on the + button to `Add` a repository. Select the path to your docroot folder. Commit...</description>
     </item>    
     
