@@ -6,45 +6,143 @@
     <description>Example Site Description</description>
     
     <item>
-        <title>Lodha Muse A musical data sonification toolkit</title>
-        <link>/notes-on-lodha.html</link>
-        <pubDate>Wed, 07 Oct 2015 16:54:07 EDT</pubDate>
-        <description>"However, most sonification systems currently use pre-recorded patterns or simple synthesized sounds" [Page 1](sk://lodha1997muse1) designing MUSE was to create a general purpose sonification tool, - where is this? [Page 2](sk://lodha1997muse2) Harmony [Page 3](sk://lodha1997muse3) In conjunction with visualization of uncertainty, differences in values of isosurfaces and volumetric data have been mapped...</description>
-    </item>    
-    
-    <item>
-        <title>install to folder, webprefix</title>
-        <link>/weprefix.html</link>
-        <pubDate>Wed, 07 Oct 2015 16:30:50 EDT</pubDate>
-        <description>File ticket with [nullism](https://github.com/nullism/pykwiki/issues/13issuecomment-146304421) about installing pykwiki in folders, rather than root. He writes: Oh! I should also ask what the web_prefix setting is. In this case, it should be set to /dry-run-pykwiki (no trailing slash). The base_url should not need to include a web_prefix (if it only works with...</description>
-    </item>    
-    
-    <item>
-        <title>Installing and using Pykwiki on a windows machine.</title>
-        <link>/installing-pykwiki-on-windows.html</link>
-        <pubDate>Wed, 07 Oct 2015 16:13:29 EDT</pubDate>
-        <description>[TOC] It's easy to use once it's installed; installing can take a little bit of time.  Install Python + download and install [python 2.7.10](https://www.python.org/downloads/) + download ez_setup.py script (by right-clicking and selecting 'save as' [https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) + open the command line prompt, and navigate to where you downloaded (alternatively, use...</description>
-    </item>    
-    
-    <item>
         <title>A test post</title>
         <link>/testpost.html</link>
-        <pubDate>Wed, 07 Oct 2015 16:12:23 EDT</pubDate>
+        <pubDate>Wed, 07 Oct 2015 22:17:46 EDT</pubDate>
         <description>[TOC]  This is header 1 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed...</description>
-    </item>    
-    
-    <item>
-        <title>Installing and using Pykwiki on a Mac machine.</title>
-        <link>/installing-pykwiki-on-mac.html</link>
-        <pubDate>Wed, 07 Oct 2015 16:12:21 EDT</pubDate>
-        <description>[TOC]  Installing Pykwiki Getting set up on a mac is very easy: follow the instructions at [PykWiki](http://pykwiki.nullism.com/getting-started.html)  Publish online To get this site live on the internet, open your github desktop client. Click on the + button to `Add` a repository. Select the path to your docroot folder....</description>
     </item>    
     
     <item>
         <title>Welcome</title>
         <link>/index.html</link>
-        <pubDate>Wed, 07 Oct 2015 15:39:39 EDT</pubDate>
+        <pubDate>Wed, 07 Oct 2015 22:17:41 EDT</pubDate>
         <description>Shawn Graham's Open DH Lab Notebook.</description>
+    </item>    
+    
+    <item>
+        <title>Installing and using Pykwiki on a windows machine.</title>
+        <link>/installing-pykwiki-on-windows.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:17:37 EDT</pubDate>
+        <description>[TOC] It's easy to use once it's installed; installing can take a little bit of time.  Install Python + download and install [python 2.7.10](https://www.python.org/downloads/) + download ez_setup.py script (by right-clicking and selecting 'save as' [https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) + open the command line prompt, and navigate to where you downloaded (alternatively, use...</description>
+    </item>    
+    
+    <item>
+        <title>Installing and using Pykwiki on a Mac machine.</title>
+        <link>/installing-pykwiki-on-mac.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:17:32 EDT</pubDate>
+        <description>[TOC]  Installing Pykwiki Getting set up on a mac is very easy: follow the instructions at [PykWiki](http://pykwiki.nullism.com/getting-started.html)  Publish online To get this site live on the internet, open your github desktop client. Click on the + button to `Add` a repository. Select the path to your docroot folder....</description>
+    </item>    
+    
+    <item>
+        <title>Lodha Muse A musical data sonification toolkit</title>
+        <link>/notes-on-lodha.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:17:27 EDT</pubDate>
+        <description>"However, most sonification systems currently use pre-recorded patterns or simple synthesized sounds" [Page 1](sk://lodha1997muse1) designing MUSE was to create a general purpose sonification tool, - where is this? [Page 2](sk://lodha1997muse2) Harmony [Page 3](sk://lodha1997muse3) In conjunction with visualization of uncertainty, differences in values of isosurfaces and volumetric data have been mapped...</description>
+    </item>    
+    
+    <item>
+        <title>procedures-and-games</title>
+        <link>/procedures-and-games.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:17:21 EDT</pubDate>
+        <description>Author: Shawn Graham Abstract: What do games teach? What do games represent? What can games _do_ ? Nothing, except interpret the rules of the game. In that mindlessness lies their power for our research and outreach. In this contribution, I outline some of the theoretical dimensions of (in particular) video...</description>
+    </item>    
+    
+    <item>
+        <title>install to folder webprefix</title>
+        <link>/weprefix.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:16:20 EDT</pubDate>
+        <description>File ticket with [nullism](https://github.com/nullism/pykwiki/issues/13issuecomment-146304421) about installing pykwiki in folders, rather than root. He writes: Oh! I should also ask what the web_prefix setting is. In this case, it should be set to /dry-run-pykwiki (no trailing slash). The base_url should not need to include a web_prefix (if it only works with...</description>
+    </item>    
+    
+    <item>
+        <title>01_Main_Info_Card_-3-.md</title>
+        <link>/01_Main_Info_Card_-3-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:37 EDT</pubDate>
+        <description>\ Project: Audio & Haptic based AR for History \\ Start Date: September 16 2014 \\ Milestones \+ Niagara Conference, Early November \\ Outcomes \+ Joint chapter with Stu? \+ Codebase \\ Related things to sort out \+ Repo \+ Platform \+ ?...</description>
+    </item>    
+    
+    <item>
+        <title>01_original-workflow-test-cards_-13-.md</title>
+        <link>/01_original-workflow-test-cards_-13-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:36 EDT</pubDate>
+        <description>...</description>
+    </item>    
+    
+    <item>
+        <title>02-current-notes_-29-.md</title>
+        <link>/02-current-notes_-29-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:36 EDT</pubDate>
+        <description>[Audiogames](/documents/audiogames.md) notes-from-csapo-werseny-overview-of-audiotry-rep * [adding-emotional-content-to-non-speach-sounds](05 adding-emotional-content-to-non-speach-sounds -15-.md) * [speech-not-optima[[ [[ title: [[ ]] (06 speech-not-optimal -16-.md) * [audiogames-screensho[[ [[ title: [[ ]] (07 audiogames-screenshot -17-.md) * [classical-auditory-representations](08 classical-auditory-representations -18-.md) * [earcons ] * [failings-of-earcons-icons-in-real-world ] * [spearcons ] * [spindices ] * [auditory-emoticons ] * [sonification ] * [paradigms-for-displaying-non-speech-sounds ] *...</description>
+    </item>    
+    
+    <item>
+        <title>02_audiogames_-14-.md</title>
+        <link>/02_audiogames_-14-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:35 EDT</pubDate>
+        <description>\[Audiogames\]\(http://www.audiogames.arsgames.net/?page_id=29\) + Creates 3d objects that have audio characteristics; thus as player moves around in space, they might collide with 'objects', hearing the collision, 3d sound decay as the object bounces away + This is an 'installation' piece, requiring movement tracking and other ancillary hardware. + Game play is based...</description>
+    </item>    
+    
+    <item>
+        <title>03_audiogames_-14-.md</title>
+        <link>/03_audiogames_-14-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:35 EDT</pubDate>
+        <description>+ \[Audiogames\]\(http://www.audiogames.arsgames.net/?page_id=29\) + Creates 3d objects that have audio characteristics; thus as player moves around in space, they might collide with 'objects', hearing the collision, 3d sound decay as the object bounces away + This is an 'installation' piece, requiring movement tracking and other ancillary hardware. + Game play is...</description>
+    </item>    
+    
+    <item>
+        <title>03_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.md</title>
+        <link>/03_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:34 EDT</pubDate>
+        <description>~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations in Human-machine Interfaces\}, journal = \{ACM Comput. Surv.\}, issue\_date = \{November 2013\}, volume = \{46\}, number = \{2\}, month = dec, year = \{2013\}, issn = \{0360-0300\}, pages = \{19:1--19:23\}, articleno = \{19\}, numpages =...</description>
+    </item>    
+    
+    <item>
+        <title>04_adding-emotional-content-to-non-speach-sounds_-15-.md</title>
+        <link>/04_adding-emotional-content-to-non-speach-sounds_-15-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:34 EDT</pubDate>
+        <description>P19:2 -User interface design using auditory representations rather than visual ones -Generated noises, altered human speech, snippets of environmental sound, snippets of music -Authors argue for two competing design philosophies they call 'conceptual' and 'interactive' ~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations...</description>
+    </item>    
+    
+    <item>
+        <title>04_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.md</title>
+        <link>/04_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:33 EDT</pubDate>
+        <description>~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations in Human-machine Interfaces\}, journal = \{ACM Comput. Surv.\}, issue\_date = \{November 2013\}, volume = \{46\}, number = \{2\}, month = dec, year = \{2013\}, issn = \{0360-0300\}, pages = \{19:1--19:23\}, articleno = \{19\}, numpages =...</description>
+    </item>    
+    
+    <item>
+        <title>05_#Graham_2006_p94_-11-.md</title>
+        <link>/05_#Graham_2006_p94_-11-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:32 EDT</pubDate>
+        <description>\\\\\\\\\Ref: Graham 2006 Ex Figlinis p94 \+ Graham says wonderful things \+ This suggests to me that the way we understand stamped bricks will never be the same again. \\\\\\\\\Tags \\+ Bricks \\+ Tiber Valley...</description>
+    </item>    
+    
+    <item>
+        <title>05_adding-emotional-content-to-non-speach-sounds_-15-.md</title>
+        <link>/05_adding-emotional-content-to-non-speach-sounds_-15-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:32 EDT</pubDate>
+        <description>P19:2 -User interface design using auditory representations rather than visual ones -Generated noises, altered human speech, snippets of environmental sound, snippets of music -Authors argue for two competing design philosophies they call 'conceptual' and 'interactive' ~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations...</description>
+    </item>    
+    
+    <item>
+        <title>05_speech-not-optimal_-16-.md</title>
+        <link>/05_speech-not-optimal_-16-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:31 EDT</pubDate>
+        <description>P19:2 + Authors report that while speech as a design element is useful in certain circumstances \(and typically is used in a sped-up fashion, by folks with low vision, etc\) it fails in 'orientation, navigation, and manipulation tasks'; difficult to modify without loss of information + Makes me think of...</description>
+    </item>    
+    
+    <item>
+        <title>06_audiogames-screenshot_-17-.md</title>
+        <link>/06_audiogames-screenshot_-17-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:31 EDT</pubDate>
+        <description>\[\!\[Screencap September 25 2014 audiogames\]\(uploads/images/audiogames.png\ )\]\(http://audiogames.arsgames.net\)...</description>
+    </item>    
+    
+    <item>
+        <title>06_speech-not-optimal_-16-.md</title>
+        <link>/06_speech-not-optimal_-16-.html</link>
+        <pubDate>Wed, 07 Oct 2015 22:14:30 EDT</pubDate>
+        <description>P19:2 + Authors report that while speech as a design element is useful in certain circumstances \(and typically is used in a sped-up fashion, by folks with low vision, etc\) it fails in 'orientation, navigation, and manipulation tasks'; difficult to modify without loss of information + Makes me think of...</description>
     </item>    
     
 </channel>
