@@ -6,143 +6,143 @@
     <description>Example Site Description</description>
     
     <item>
-        <title>A test post</title>
-        <link>/testpost.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:17:46 EDT</pubDate>
-        <description>[TOC]  This is header 1 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed...</description>
-    </item>    
-    
-    <item>
-        <title>Welcome</title>
-        <link>/index.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:17:41 EDT</pubDate>
-        <description>Shawn Graham's Open DH Lab Notebook.</description>
-    </item>    
-    
-    <item>
-        <title>Installing and using Pykwiki on a windows machine.</title>
-        <link>/installing-pykwiki-on-windows.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:17:37 EDT</pubDate>
-        <description>[TOC] It's easy to use once it's installed; installing can take a little bit of time.  Install Python + download and install [python 2.7.10](https://www.python.org/downloads/) + download ez_setup.py script (by right-clicking and selecting 'save as' [https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py) + open the command line prompt, and navigate to where you downloaded (alternatively, use...</description>
-    </item>    
-    
-    <item>
-        <title>Installing and using Pykwiki on a Mac machine.</title>
-        <link>/installing-pykwiki-on-mac.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:17:32 EDT</pubDate>
-        <description>[TOC]  Installing Pykwiki Getting set up on a mac is very easy: follow the instructions at [PykWiki](http://pykwiki.nullism.com/getting-started.html)  Publish online To get this site live on the internet, open your github desktop client. Click on the + button to `Add` a repository. Select the path to your docroot folder....</description>
-    </item>    
-    
-    <item>
-        <title>Lodha Muse A musical data sonification toolkit</title>
-        <link>/notes-on-lodha.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:17:27 EDT</pubDate>
-        <description>"However, most sonification systems currently use pre-recorded patterns or simple synthesized sounds" [Page 1](sk://lodha1997muse1) designing MUSE was to create a general purpose sonification tool, - where is this? [Page 2](sk://lodha1997muse2) Harmony [Page 3](sk://lodha1997muse3) In conjunction with visualization of uncertainty, differences in values of isosurfaces and volumetric data have been mapped...</description>
-    </item>    
-    
-    <item>
-        <title>procedures-and-games</title>
-        <link>/procedures-and-games.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:17:21 EDT</pubDate>
-        <description>Author: Shawn Graham Abstract: What do games teach? What do games represent? What can games _do_ ? Nothing, except interpret the rules of the game. In that mindlessness lies their power for our research and outreach. In this contribution, I outline some of the theoretical dimensions of (in particular) video...</description>
-    </item>    
-    
-    <item>
-        <title>install to folder webprefix</title>
-        <link>/weprefix.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:16:20 EDT</pubDate>
-        <description>File ticket with [nullism](https://github.com/nullism/pykwiki/issues/13issuecomment-146304421) about installing pykwiki in folders, rather than root. He writes: Oh! I should also ask what the web_prefix setting is. In this case, it should be set to /dry-run-pykwiki (no trailing slash). The base_url should not need to include a web_prefix (if it only works with...</description>
-    </item>    
-    
-    <item>
-        <title>01_Main_Info_Card_-3-.md</title>
-        <link>/01_Main_Info_Card_-3-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:37 EDT</pubDate>
-        <description>\ Project: Audio & Haptic based AR for History \\ Start Date: September 16 2014 \\ Milestones \+ Niagara Conference, Early November \\ Outcomes \+ Joint chapter with Stu? \+ Codebase \\ Related things to sort out \+ Repo \+ Platform \+ ?...</description>
-    </item>    
-    
-    <item>
-        <title>01_original-workflow-test-cards_-13-.md</title>
-        <link>/01_original-workflow-test-cards_-13-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:36 EDT</pubDate>
-        <description>...</description>
-    </item>    
-    
-    <item>
-        <title>02-current-notes_-29-.md</title>
-        <link>/02-current-notes_-29-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:36 EDT</pubDate>
-        <description>[Audiogames](/documents/audiogames.md) notes-from-csapo-werseny-overview-of-audiotry-rep * [adding-emotional-content-to-non-speach-sounds](05 adding-emotional-content-to-non-speach-sounds -15-.md) * [speech-not-optima[[ [[ title: [[ ]] (06 speech-not-optimal -16-.md) * [audiogames-screensho[[ [[ title: [[ ]] (07 audiogames-screenshot -17-.md) * [classical-auditory-representations](08 classical-auditory-representations -18-.md) * [earcons ] * [failings-of-earcons-icons-in-real-world ] * [spearcons ] * [spindices ] * [auditory-emoticons ] * [sonification ] * [paradigms-for-displaying-non-speech-sounds ] *...</description>
-    </item>    
-    
-    <item>
         <title>02_audiogames_-14-.md</title>
-        <link>/02_audiogames_-14-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:35 EDT</pubDate>
-        <description>\[Audiogames\]\(http://www.audiogames.arsgames.net/?page_id=29\) + Creates 3d objects that have audio characteristics; thus as player moves around in space, they might collide with 'objects', hearing the collision, 3d sound decay as the object bounces away + This is an 'installation' piece, requiring movement tracking and other ancillary hardware. + Game play is based...</description>
+        <link>/audiogames_-14-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:45:43 EDT</pubDate>
+        <description>[Audiogames ](http://www.audiogames.arsgames.net/?page_id=29) + Creates 3d objects that have audio characteristics; thus as player moves around in space, they might collide with 'objects', hearing the collision, 3d sound decay as the object bounces away + This is an 'installation' piece, requiring movement tracking and other ancillary hardware. + Game play is...</description>
     </item>    
     
     <item>
-        <title>03_audiogames_-14-.md</title>
-        <link>/03_audiogames_-14-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:35 EDT</pubDate>
-        <description>+ \[Audiogames\]\(http://www.audiogames.arsgames.net/?page_id=29\) + Creates 3d objects that have audio characteristics; thus as player moves around in space, they might collide with 'objects', hearing the collision, 3d sound decay as the object bounces away + This is an 'installation' piece, requiring movement tracking and other ancillary hardware. + Game play is...</description>
+        <title>Audio & Hapitc Based AR for History</title>
+        <link>/Main_Info_Card_-3-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:45:26 EDT</pubDate>
+        <description> Project: Audio & Haptic based AR for History  Start Date: September 16 2014  Milestones + Niagara Conference, Early November 2014  Outcomes + Joint chapter with Stu? + Codebase  Related things to sort out + Repo + Platform + ?  Update: Draft written, submitted, copyedited,...</description>
     </item>    
     
     <item>
-        <title>03_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.md</title>
-        <link>/03_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:34 EDT</pubDate>
-        <description>~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations in Human-machine Interfaces\}, journal = \{ACM Comput. Surv.\}, issue\_date = \{November 2013\}, volume = \{46\}, number = \{2\}, month = dec, year = \{2013\}, issn = \{0360-0300\}, pages = \{19:1--19:23\}, articleno = \{19\}, numpages =...</description>
+        <title>105_ethnomusicology_-119-.md</title>
+        <link>/ethnomusicology_-119-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:44:43 EDT</pubDate>
+        <description>[[gosden_on_ethnomusicology_-123-]] gosden p 166 - even if you could replicate 12th century plainsong, our habituation to 20th century western sonic environment \(ambient traffic, heavy plant, HVAC, etc\) means that we can't experience that music: our sonic environment has conditioned us to be attenuated to certain aspects of the sound rather...</description>
     </item>    
     
     <item>
-        <title>04_adding-emotional-content-to-non-speach-sounds_-15-.md</title>
-        <link>/04_adding-emotional-content-to-non-speach-sounds_-15-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:34 EDT</pubDate>
-        <description>P19:2 -User interface design using auditory representations rather than visual ones -Generated noises, altered human speech, snippets of environmental sound, snippets of music -Authors argue for two competing design philosophies they call 'conceptual' and 'interactive' ~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations...</description>
+        <title>079_bibx-_art_and_agency_-93-.md</title>
+        <link>/bibx-_art_and_agency_-93-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:43:29 EDT</pubDate>
+        <description>Gell, A. 1998. Art and Agency: Towards a New Anthropological Theory. Oxford: Clarendon Press....</description>
     </item>    
     
     <item>
-        <title>04_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.md</title>
-        <link>/04_notes-from-csapo-werseny-overview-of-audiotry-rep_-28-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:33 EDT</pubDate>
-        <description>~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations in Human-machine Interfaces\}, journal = \{ACM Comput. Surv.\}, issue\_date = \{November 2013\}, volume = \{46\}, number = \{2\}, month = dec, year = \{2013\}, issn = \{0360-0300\}, pages = \{19:1--19:23\}, articleno = \{19\}, numpages =...</description>
+        <title>080_bibx-_augmented_visual_auditory_haptic_and_multimodal_feedback_in_motor_learning;_a_review_-94-.md</title>
+        <link>/bibx-_augmented_visual_auditory_haptic_and_multimodal_feedback_in_motor_learning;_a_review_-94-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:43:23 EDT</pubDate>
+        <description>nb in here the discussion of auditory feedback & sonification for motor memory %0 Journal Article %D 2013 %@ 1069-9384 %J Psychonomic Bulletin & Review %V 20 %N 1 %R 10.3758/s13423-012-0333-8 %T Augmented visual, auditory, haptic, and multimodal feedback in motor learning: A review %U http://dx.doi.org/10.3758/s13423-012-0333-8 %I Springer-Verlag %8 2013-02-01...</description>
     </item>    
     
     <item>
-        <title>05_#Graham_2006_p94_-11-.md</title>
-        <link>/05_#Graham_2006_p94_-11-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:32 EDT</pubDate>
-        <description>\\\\\\\\\Ref: Graham 2006 Ex Figlinis p94 \+ Graham says wonderful things \+ This suggests to me that the way we understand stamped bricks will never be the same again. \\\\\\\\\Tags \\+ Bricks \\+ Tiber Valley...</description>
+        <title>081_bibx-_background_music_and_context-dependent_memory_-95-.md</title>
+        <link>/bibx-_background_music_and_context-dependent_memory_-95-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:43:07 EDT</pubDate>
+        <description>**Background Music and Context-Dependent Memory** Steven M. Smith _The American Journal of Psychology_, Vol. 98, No. 4 \(Winter, 1985\), pp. 591-603 Published by: University of Illinois Press Article DOI: 10.2307/1422512 Article Stable URL: http://www.jstor.org/stable/1422512...</description>
     </item>    
     
     <item>
-        <title>05_adding-emotional-content-to-non-speach-sounds_-15-.md</title>
-        <link>/05_adding-emotional-content-to-non-speach-sounds_-15-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:32 EDT</pubDate>
-        <description>P19:2 -User interface design using auditory representations rather than visual ones -Generated noises, altered human speech, snippets of environmental sound, snippets of music -Authors argue for two competing design philosophies they call 'conceptual' and 'interactive' ~~~~~\{.bib\} @article\{Csapo:2013:OAR:2543581.2543586, author = \{Csap\'\{o\}, \'\{A\}d\'\{a\}m and Wers\{\'e\}nyi, Gy\"\{o\}rgy\}, title = \{Overview of Auditory Representations...</description>
+        <title>083_bibx-_Death_in_Motion-_Funeral_Processions_in_the_Roman_Forum_-97-.md</title>
+        <link>/bibx-_Death_in_Motion-_Funeral_Processions_in_the_Roman_Forum_-97-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:42:58 EDT</pubDate>
+        <description>**Death in Motion: Funeral Processions in the Roman Forum** Diane Favro and Christopher Johanson _Journal of the Society of Architectural Historians_, Vol. 69, No. 1 \(March 2010\), pp. 12-37 Published by: University of California Press on behalf of the Society of Architectural Historians Article DOI: 10.1525/jsah.2010.69.1.12 Article Stable URL: http://www.jstor.org/stable/10.1525/jsah.2010.69.1.12...</description>
     </item>    
     
     <item>
-        <title>05_speech-not-optimal_-16-.md</title>
-        <link>/05_speech-not-optimal_-16-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:31 EDT</pubDate>
-        <description>P19:2 + Authors report that while speech as a design element is useful in certain circumstances \(and typically is used in a sped-up fashion, by folks with low vision, etc\) it fails in 'orientation, navigation, and manipulation tasks'; difficult to modify without loss of information + Makes me think of...</description>
+        <title>084_bibx-_Emotionally_evoked_changes_in_cerebral_hemodynamics_measured_by_transcranial_Doppler_sonography_-98-.md</title>
+        <link>/bibx-_Emotionally_evoked_changes_in_cerebral_hemodynamics_measured_by_transcranial_Doppler_sonography_-98-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:42:47 EDT</pubDate>
+        <description>M. Stoll, G. F. Hamann, R. Mangold, O. Huf, P. Winterhoff-Spurk. Emotionally evoked changes in cerebral hemodynamics measured by transcranial Doppler sonography. Journal of Neurology 1999 246: 127-133...</description>
     </item>    
     
     <item>
-        <title>06_audiogames-screenshot_-17-.md</title>
-        <link>/06_audiogames-screenshot_-17-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:31 EDT</pubDate>
-        <description>\[\!\[Screencap September 25 2014 audiogames\]\(uploads/images/audiogames.png\ )\]\(http://audiogames.arsgames.net\)...</description>
+        <title>085_bibx-_haptics_in_education_exploring_an_untapped_sensory_modality_-99-.md</title>
+        <link>/bibx-_haptics_in_education_exploring_an_untapped_sensory_modality_-99-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:42:35 EDT</pubDate>
+        <description>**Haptics in Education: Exploring an Untapped Sensory Modality** James Minogue and M. Gail Jones _Review of Educational Research_, Vol. 76, No. 3 \(Autumn, 2006\), pp. 317-348 Published by: American Educational Research Association Article Stable URL: http://www.jstor.org/stable/4124421...</description>
     </item>    
     
     <item>
-        <title>06_speech-not-optimal_-16-.md</title>
-        <link>/06_speech-not-optimal_-16-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:14:30 EDT</pubDate>
-        <description>P19:2 + Authors report that while speech as a design element is useful in certain circumstances \(and typically is used in a sped-up fashion, by folks with low vision, etc\) it fails in 'orientation, navigation, and manipulation tasks'; difficult to modify without loss of information + Makes me think of...</description>
+        <title>45_bibx-_influences_of_emotion_on_context_memory_while_viewing_film_clips_-59-.md</title>
+        <link>/bibx-_influences_of_emotion_on_context_memory_while_viewing_film_clips_-59-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:42:25 EDT</pubDate>
+        <description>**Influences of Emotion on Context Memory while Viewing Film Clips** Lisa Anderson and Arthur P. Shimamura _The American Journal of Psychology_, Vol. 118, No. 3 \(Fall, 2005\), pp. 323-337 Published by: University of Illinois Press Article Stable URL: http://www.jstor.org/stable/30039069...</description>
+    </item>    
+    
+    <item>
+        <title>089_bibx-_Making_sense-_archaeology_and_aesthetics_-103-.md</title>
+        <link>/bibx-_Making_sense-_archaeology_and_aesthetics_-103-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:42:11 EDT</pubDate>
+        <description>**Making Sense: Archaeology and Aesthetics** Chris Gosden _World Archaeology_, Vol. 33, No. 2, Archaeology and Aesthetics \(Oct., 2001\), pp. 163-167 Published by: Taylor & Francis, Ltd. Article Stable URL: http://www.jstor.org/stable/827896...</description>
+    </item>    
+    
+    <item>
+        <title>47_bibx-_manipulating_memory_-61-.md</title>
+        <link>/bibx-_manipulating_memory_-61-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:42:01 EDT</pubDate>
+        <description>Emily Singer, 'Manipulating Memory', April 21 2009 http://www.technologyreview.com/featuredstory/413109/manipulating-memory/...</description>
+    </item>    
+    
+    <item>
+        <title>48_bibx-_on_deep_history_and_the_brain_-62-.md</title>
+        <link>/bibx-_on_deep_history_and_the_brain_-62-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:41:50 EDT</pubDate>
+        <description>**Author** Smail, Daniel Lord. **Title** **On deep history and the brain / Daniel Lord Smail.** **Publisher** Berkeley : University of California Press, c2008....</description>
+    </item>    
+    
+    <item>
+        <title>49_bibx-_repairing_bad_memories_-63-.md</title>
+        <link>/bibx-_repairing_bad_memories_-63-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:41:36 EDT</pubDate>
+        <description>Stephen S. Hall 'Repairing Bad Memories' MIT Technology Review http://www.technologyreview.com/featuredstory/515981/repairing-bad-memories/...</description>
+    </item>    
+    
+    <item>
+        <title>093_bibx-_REVEL-_Tactile_Feedback_Technology_for_Augmented_Reality_-107-.md</title>
+        <link>/bibx-_REVEL-_Tactile_Feedback_Technology_for_Augmented_Reality_-107-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:41:25 EDT</pubDate>
+        <description>http://www.disneyresearch.com/wp-content/uploads/revel_siggraph_paper.pdf O. Bau and I. Poupyrev. REVEL: Tactile Feedback Technology for Augmented Reality. ACM Transaction on Graphics – Proc. of SIGGRAPH’12. 2012. ACM. \[PDF, 12MB\]...</description>
+    </item>    
+    
+    <item>
+        <title>094_bibx-_Sensuous_Geographies-_Bodies,_Sense_and_Place_-108-.md</title>
+        <link>/bibx-_Sensuous_Geographis-_Bodies,_Sense_and_Place_-108-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:41:09 EDT</pubDate>
+        <description>Rodaway, P. 1994. Sensuous Geographies: Bodies, Sense and Place. London: Routledge...</description>
+    </item>    
+    
+    <item>
+        <title>095_bibx-_split_brain_human_computer_user_interface_-109-.md</title>
+        <link>/bibx-_split_brain_human_computer_user_interface_-109-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:40:45 EDT</pubDate>
+        <description>**The Split-Brain Human Computer User Interface** Gregory P. Garvey _Leonardo_, Vol. 35, No. 3 \(2002\), pp. 319-325 Published by: The MIT Press Article Stable URL: http://www.jstor.org/stable/1577125...</description>
+    </item>    
+    
+    <item>
+        <title>51_bibx-_the_force_of_noise,_or_touching_music-_the_tele-haptics_of_stockhausen's_'helicopter_string_quartet'_-65-.md</title>
+        <link>/bibx-_the_force_of_noise,_or_touching_music-_the_tele-haptics_of_stockhausen's_'helicopter_string_quartet'_-65-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:40:31 EDT</pubDate>
+        <description>**The Force of Noise, or Touching Music: The Tele-Haptics of Stockhausen's "Helicopter String Quartet"** Ryan Bishop _SubStance_, Vol. 40, No. 3, Issue 126: Plus d'un toucher: Touching Worlds \(2011\), pp. 25-40 Published by: University of Wisconsin Press Article Stable URL: http://www.jstor.org/stable/41300213...</description>
+    </item>    
+    
+    <item>
+        <title>099_bibx-_using_wrist_vibrations_to_guide_map_exploration_and_whole_body_navigation_-113-.md</title>
+        <link>/bibx-_using_wrist_vibrations_to_guide_map_exploration_and_whole_body_navigation_-113-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:39:49 EDT</pubDate>
+        <description>http://www.irit.fr/page-perso/Marc.Mace/pdfs/brock_a_14_xx.pdf...</description>
+    </item>    
+    
+    <item>
+        <title>100_bibx-_walk_this_way-_musically_guided_walking_experiences_-114-.md</title>
+        <link>/bibx-_walk_this_way-_musically_guided_walking_experiences_-114-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:39:43 EDT</pubDate>
+        <description>@inproceedings\{Hazzard:2014:WTW:2556288.2557250, author = \{Hazzard, Adrian and Benford, Steve and Burnett, Gary\}, title = \{Walk This Way: Musically Guided Walking Experiences\}, booktitle = \{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems\}, series = \{CHI '14\}, year = \{2014\}, isbn = \{978-1-4503-2473-1\}, location = \{Toronto, Ontario, Canada\}, pages =...</description>
     </item>    
     
 </channel>
