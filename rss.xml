@@ -6,6 +6,48 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>thoughts on a coin</title>
+        <link>/thoughts on a coin.html</link>
+        <pubDate>Fri, 09 Oct 2015 14:33:37 EDT</pubDate>
+        <description>http://opencontext.dainst.org/subjects/766ED8AA-3147-4CA2-6ECA-BD96BE0433BE http://nomisma.org/ontologyhasMint http://pleiades.stoa.org/places/658381 This is a simple note I wrote in nvAlt to fit into my open notebook flow using pykwiki. I have no deep knowledge of linked open data, but I wondered how an open notebook could participate in this ecosystem. The key is probably in the 'title' field...</description>
+    </item>    
+    
+    <item>
+        <title>Welcome</title>
+        <link>/index.html</link>
+        <pubDate>Fri, 09 Oct 2015 08:40:26 EDT</pubDate>
+        <description>Shawn Graham's Open DH Lab Notebook.</description>
+    </item>    
+    
+    <item>
+        <title>080_bibx-_augmented_visual_auditory_haptic_and_multimodal_feedback_in_motor_learning;_a_review_-94-.md</title>
+        <link>/bibx-_augmented_visual_auditory_haptic_and_multimodal_feedback_in_motor_learning;_a_review_-94-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:48:37 EDT</pubDate>
+        <description>nb in here the discussion of auditory feedback & sonification for motor memory %0 Journal Article %D 2013 %@ 1069-9384 %J Psychonomic Bulletin & Review %V 20 %N 1 %R 10.3758/s13423-012-0333-8 %T Augmented visual, auditory, haptic, and multimodal feedback in motor learning: A review %U http://dx.doi.org/10.3758/s13423-012-0333-8 %I Springer-Verlag %8 2013-02-01...</description>
+    </item>    
+    
+    <item>
+        <title>098_bibx-_the_use_of_sound_for_data_exploration_-112-.md</title>
+        <link>/bibx-_the_use_of_sound_for_data_exploration_-112-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:48:29 EDT</pubDate>
+        <description>TY + JOUR AU + Gluck, Myke TI + The Use of Sound for Data Exploration JO + Bulletin of the American Society for Information Science and Technology JA + Bul. Am. Soc. Info. Sci. Tech. VL + 26 IS + 5 PB + Wiley Subscription Services, Inc., A Wiley...</description>
+    </item>    
+    
+    <item>
+        <title>079_bibx-_art_and_agency_-93-.md</title>
+        <link>/bibx-_art_and_agency_-93-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:48:04 EDT</pubDate>
+        <description>Gell, A. 1998. Art and Agency: Towards a New Anthropological Theory. Oxford: Clarendon Press....</description>
+    </item>    
+    
+    <item>
+        <title>45_bibx-_influences_of_emotion_on_context_memory_while_viewing_film_clips_-59-.md</title>
+        <link>/bibx-_influences_of_emotion_on_context_memory_while_viewing_film_clips_-59-.html</link>
+        <pubDate>Thu, 08 Oct 2015 13:47:58 EDT</pubDate>
+        <description>**Influences of Emotion on Context Memory while Viewing Film Clips** Lisa Anderson and Arthur P. Shimamura _The American Journal of Psychology_, Vol. 118, No. 3 \(Fall, 2005\), pp. 323-337 Published by: University of Illinois Press Article Stable URL: http://www.jstor.org/stable/30039069...</description>
+    </item>    
+    
+    <item>
         <title>02_audiogames_-14-.md</title>
         <link>/audiogames_-14-.html</link>
         <pubDate>Thu, 08 Oct 2015 13:45:43 EDT</pubDate>
@@ -24,20 +66,6 @@
         <link>/ethnomusicology_-119-.html</link>
         <pubDate>Thu, 08 Oct 2015 13:44:43 EDT</pubDate>
         <description>[[gosden_on_ethnomusicology_-123-]] gosden p 166 - even if you could replicate 12th century plainsong, our habituation to 20th century western sonic environment \(ambient traffic, heavy plant, HVAC, etc\) means that we can't experience that music: our sonic environment has conditioned us to be attenuated to certain aspects of the sound rather...</description>
-    </item>    
-    
-    <item>
-        <title>079_bibx-_art_and_agency_-93-.md</title>
-        <link>/bibx-_art_and_agency_-93-.html</link>
-        <pubDate>Thu, 08 Oct 2015 13:43:29 EDT</pubDate>
-        <description>Gell, A. 1998. Art and Agency: Towards a New Anthropological Theory. Oxford: Clarendon Press....</description>
-    </item>    
-    
-    <item>
-        <title>080_bibx-_augmented_visual_auditory_haptic_and_multimodal_feedback_in_motor_learning;_a_review_-94-.md</title>
-        <link>/bibx-_augmented_visual_auditory_haptic_and_multimodal_feedback_in_motor_learning;_a_review_-94-.html</link>
-        <pubDate>Thu, 08 Oct 2015 13:43:23 EDT</pubDate>
-        <description>nb in here the discussion of auditory feedback & sonification for motor memory %0 Journal Article %D 2013 %@ 1069-9384 %J Psychonomic Bulletin & Review %V 20 %N 1 %R 10.3758/s13423-012-0333-8 %T Augmented visual, auditory, haptic, and multimodal feedback in motor learning: A review %U http://dx.doi.org/10.3758/s13423-012-0333-8 %I Springer-Verlag %8 2013-02-01...</description>
     </item>    
     
     <item>
@@ -66,13 +94,6 @@
         <link>/bibx-_haptics_in_education_exploring_an_untapped_sensory_modality_-99-.html</link>
         <pubDate>Thu, 08 Oct 2015 13:42:35 EDT</pubDate>
         <description>**Haptics in Education: Exploring an Untapped Sensory Modality** James Minogue and M. Gail Jones _Review of Educational Research_, Vol. 76, No. 3 \(Autumn, 2006\), pp. 317-348 Published by: American Educational Research Association Article Stable URL: http://www.jstor.org/stable/4124421...</description>
-    </item>    
-    
-    <item>
-        <title>45_bibx-_influences_of_emotion_on_context_memory_while_viewing_film_clips_-59-.md</title>
-        <link>/bibx-_influences_of_emotion_on_context_memory_while_viewing_film_clips_-59-.html</link>
-        <pubDate>Thu, 08 Oct 2015 13:42:25 EDT</pubDate>
-        <description>**Influences of Emotion on Context Memory while Viewing Film Clips** Lisa Anderson and Arthur P. Shimamura _The American Journal of Psychology_, Vol. 118, No. 3 \(Fall, 2005\), pp. 323-337 Published by: University of Illinois Press Article Stable URL: http://www.jstor.org/stable/30039069...</description>
     </item>    
     
     <item>
@@ -122,27 +143,6 @@
         <link>/bibx-_split_brain_human_computer_user_interface_-109-.html</link>
         <pubDate>Thu, 08 Oct 2015 13:40:45 EDT</pubDate>
         <description>**The Split-Brain Human Computer User Interface** Gregory P. Garvey _Leonardo_, Vol. 35, No. 3 \(2002\), pp. 319-325 Published by: The MIT Press Article Stable URL: http://www.jstor.org/stable/1577125...</description>
-    </item>    
-    
-    <item>
-        <title>51_bibx-_the_force_of_noise,_or_touching_music-_the_tele-haptics_of_stockhausen's_'helicopter_string_quartet'_-65-.md</title>
-        <link>/bibx-_the_force_of_noise,_or_touching_music-_the_tele-haptics_of_stockhausen's_'helicopter_string_quartet'_-65-.html</link>
-        <pubDate>Thu, 08 Oct 2015 13:40:31 EDT</pubDate>
-        <description>**The Force of Noise, or Touching Music: The Tele-Haptics of Stockhausen's "Helicopter String Quartet"** Ryan Bishop _SubStance_, Vol. 40, No. 3, Issue 126: Plus d'un toucher: Touching Worlds \(2011\), pp. 25-40 Published by: University of Wisconsin Press Article Stable URL: http://www.jstor.org/stable/41300213...</description>
-    </item>    
-    
-    <item>
-        <title>099_bibx-_using_wrist_vibrations_to_guide_map_exploration_and_whole_body_navigation_-113-.md</title>
-        <link>/bibx-_using_wrist_vibrations_to_guide_map_exploration_and_whole_body_navigation_-113-.html</link>
-        <pubDate>Thu, 08 Oct 2015 13:39:49 EDT</pubDate>
-        <description>http://www.irit.fr/page-perso/Marc.Mace/pdfs/brock_a_14_xx.pdf...</description>
-    </item>    
-    
-    <item>
-        <title>100_bibx-_walk_this_way-_musically_guided_walking_experiences_-114-.md</title>
-        <link>/bibx-_walk_this_way-_musically_guided_walking_experiences_-114-.html</link>
-        <pubDate>Thu, 08 Oct 2015 13:39:43 EDT</pubDate>
-        <description>@inproceedings\{Hazzard:2014:WTW:2556288.2557250, author = \{Hazzard, Adrian and Benford, Steve and Burnett, Gary\}, title = \{Walk This Way: Musically Guided Walking Experiences\}, booktitle = \{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems\}, series = \{CHI '14\}, year = \{2014\}, isbn = \{978-1-4503-2473-1\}, location = \{Toronto, Ontario, Canada\}, pages =...</description>
     </item>    
     
 </channel>
