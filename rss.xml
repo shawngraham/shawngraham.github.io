@@ -6,6 +6,13 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>testing out scrivener integration</title>
+        <link>/scrivener.html</link>
+        <pubDate>Sat, 10 Oct 2015 10:42:57 EDT</pubDate>
+        <description>So I have scrivener. In the 'research' folder part of its finder, I added my open notebook source folder. I wonder if when I make a new note, it updates in Scrivener. That's the point of this note - to see what happens when I add it....</description>
+    </item>    
+    
+    <item>
         <title>thoughts on a coin</title>
         <link>/thoughts on a coin.html</link>
         <pubDate>Fri, 09 Oct 2015 14:44:28 EDT</pubDate>
@@ -136,13 +143,6 @@
         <link>/bibx-_Sensuous_Geographis-_Bodies,_Sense_and_Place_-108-.html</link>
         <pubDate>Thu, 08 Oct 2015 13:41:09 EDT</pubDate>
         <description>Rodaway, P. 1994. Sensuous Geographies: Bodies, Sense and Place. London: Routledge...</description>
-    </item>    
-    
-    <item>
-        <title>095_bibx-_split_brain_human_computer_user_interface_-109-.md</title>
-        <link>/bibx-_split_brain_human_computer_user_interface_-109-.html</link>
-        <pubDate>Thu, 08 Oct 2015 13:40:45 EDT</pubDate>
-        <description>**The Split-Brain Human Computer User Interface** Gregory P. Garvey _Leonardo_, Vol. 35, No. 3 \(2002\), pp. 319-325 Published by: The MIT Press Article Stable URL: http://www.jstor.org/stable/1577125...</description>
     </item>    
     
 </channel>
