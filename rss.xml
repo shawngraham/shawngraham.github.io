@@ -6,6 +6,27 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>Tan - "Virtual heritage Reality and criticism"</title>
+        <link>/tan- virtual heritage reality and criticism.html</link>
+        <pubDate>Wed, 14 Oct 2015 12:49:04 EDT</pubDate>
+        <description>"To virtualize heritage means to actualize the heritage content digitally and to simulate it using computer graphics technology." + that's the thing right there, that word 'actualize'. Need to unpack that. p144 [Page 3](sk://tan_virtual_20093)  "According to Addison (2000) there are three major domains in virtual heritage: - 3D Documentation:...</description>
+    </item>    
+    
+    <item>
+        <title>bibliography from the Tan article on virtual heritage</title>
+        <link>/tan- bibliography.html</link>
+        <pubDate>Wed, 14 Oct 2015 12:48:15 EDT</pubDate>
+        <description>[[tan- virtual heritage reality and criticism]] [[ocular centrism of virtual heritage]] Addison, A.C., 2000, Emerging Trends in Virtual Heritage, IEEE Multimedia, 7: 22-25. Affleck, J. and Kvan, T., 2006, Reconstructing Virtual Heritage: Participatory Interpretation of Cultural Heritage through New Media, in T. Kvan and Y. Kalay (eds), New Heritage Conference:...</description>
+    </item>    
+    
+    <item>
+        <title>ocular centrism of virtual heritage</title>
+        <link>/ocular centrism of virtual heritage.html</link>
+        <pubDate>Wed, 14 Oct 2015 11:39:33 EDT</pubDate>
+        <description>Tan, B.-K., and H. Rahaman. “Virtual Heritage: Reality and Criticism,” 2009. http://scholarbank.nus.edu.sg/handle/10635/45499.  p144 + authors contend that most v.heritage focuses on the product being made, but not the users themselves. by focussing on the process of producing (the costs, the maintenance), user perception is necessarily ignored; the result is...</description>
+    </item>    
+    
+    <item>
         <title>thoughts on a coin</title>
         <link>/thoughts on a coin.html</link>
         <pubDate>Mon, 12 Oct 2015 21:23:51 EDT</pubDate>
@@ -682,20 +703,6 @@
         <link>/sounds_only_devices_can_hear_-84-.html</link>
         <pubDate>Wed, 07 Oct 2015 22:13:25 EDT</pubDate>
         <description>http://www.wired.com/2012/02/sonic-notify/ + company called SonicNotify + build their sdk into your app, then high-frequency sound can be used to trigger actions on your device...</description>
-    </item>    
-    
-    <item>
-        <title>73_use_case_of_REVEL_system_-87-.md</title>
-        <link>/use_case_of_REVEL_system_-87-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:23 EDT</pubDate>
-        <description>+ bau and poupyrev p 89:8 + wall or surface with graphic image of an object projected on it; Revel system allows user to feel the object, manipulate it; kinect tracks users finger, computer alternates the current to change the tactile sensation accordingly. "With REVEL technology it is relatively easy...</description>
-    </item>    
-    
-    <item>
-        <title>tuning of the world</title>
-        <link>/schaffer.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:09:27 EDT</pubDate>
-        <description>schaffer 1977 p 7 - advances a theory that music is a sign, a symptom, of deeper society; thus a well-run society has highly structured music; one in transition has angry, excited music; a society on the way out is sentimental, backwards  For some time I have also blieved...</description>
     </item>    
     
 </channel>
