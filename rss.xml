@@ -6,17 +6,38 @@
     <description>Example Site Description</description>
     
     <item>
-        <title>bibliography from the Tan article on virtual heritage</title>
-        <link>/tan- bibliography.html</link>
-        <pubDate>Wed, 14 Oct 2015 12:52:04 EDT</pubDate>
-        <description>[[tan- virtual heritage reality and criticism]] [[ocular centrism of virtual heritage]] Addison, A.C., 2000, Emerging Trends in Virtual Heritage, IEEE Multimedia, 7: 22-25. Affleck, J. and Kvan, T., 2006, Reconstructing Virtual Heritage: Participatory Interpretation of Cultural Heritage through New Media, in T. Kvan and Y. Kalay (eds), New Heritage Conference:...</description>
+        <title>Tan - "Virtual heritage Reality and criticism"</title>
+        <link>/tan - fixing virtual heritage.html</link>
+        <pubDate>Wed, 14 Oct 2015 13:02:30 EDT</pubDate>
+        <description>[[tan- virtual heritage reality and criticism]][[tan - domains of virtual heritage]][[tan - how the user is lost]] p 152- Tan's suggestions, under 'approaching the problem' - 'in virtual heritage projects, digitalized artifacts somehow need to trigger the user’s cognitive process while he is exploring the virtual environment, [Page 11](sk://tan_virtual_200911) pg...</description>
     </item>    
     
     <item>
         <title>Tan - "Virtual heritage Reality and criticism"</title>
         <link>/tan- virtual heritage reality and criticism.html</link>
-        <pubDate>Wed, 14 Oct 2015 12:49:04 EDT</pubDate>
-        <description>"To virtualize heritage means to actualize the heritage content digitally and to simulate it using computer graphics technology." + that's the thing right there, that word 'actualize'. Need to unpack that. p144 [Page 3](sk://tan_virtual_20093)  "According to Addison (2000) there are three major domains in virtual heritage: - 3D Documentation:...</description>
+        <pubDate>Wed, 14 Oct 2015 13:01:51 EDT</pubDate>
+        <description>[TOC]  Tan, B.-K., and H. Rahaman. “Virtual Heritage: Reality and Criticism,” 2009. http://scholarbank.nus.edu.sg/handle/10635/45499  Problems with virtual heritage:  lack of meaningful and cultural content p 146 - Tan identifies a series of short-comings. under the header 'lack of meaningful and cultural content' he writes  "Some authors have...</description>
+    </item>    
+    
+    <item>
+        <title>Tan - "How the user is lost"</title>
+        <link>/tan - how the user is lost.html</link>
+        <pubDate>Wed, 14 Oct 2015 12:58:51 EDT</pubDate>
+        <description>Tan, B.-K., and H. Rahaman. “Virtual Heritage: Reality and Criticism,” 2009. http://scholarbank.nus.edu.sg/handle/10635/45499 p151 authors develop a 3 step model where step 1 'documentation' involves the tangible & intangible, but as we move to step 2 'representation' constraints and distortion lead to data loss, and then as we move to stage...</description>
+    </item>    
+    
+    <item>
+        <title>Tan - "Virtual heritage Reality and criticism"</title>
+        <link>/tan - domains of virtual heritage.html</link>
+        <pubDate>Wed, 14 Oct 2015 12:57:23 EDT</pubDate>
+        <description>[[tan- virtual heritage reality and criticism]] Tan, B.-K., and H. Rahaman. “Virtual Heritage: Reality and Criticism,” 2009. http://scholarbank.nus.edu.sg/handle/10635/45499 "To virtualize heritage means to actualize the heritage content digitally and to simulate it using computer graphics technology." + that's the thing right there, that word 'actualize'. Need to unpack that. p144...</description>
+    </item>    
+    
+    <item>
+        <title>bibliography from the Tan article on virtual heritage</title>
+        <link>/tan- bibliography.html</link>
+        <pubDate>Wed, 14 Oct 2015 12:52:04 EDT</pubDate>
+        <description>[[tan- virtual heritage reality and criticism]] [[ocular centrism of virtual heritage]] Addison, A.C., 2000, Emerging Trends in Virtual Heritage, IEEE Multimedia, 7: 22-25. Affleck, J. and Kvan, T., 2006, Reconstructing Virtual Heritage: Participatory Interpretation of Cultural Heritage through New Media, in T. Kvan and Y. Kalay (eds), New Heritage Conference:...</description>
     </item>    
     
     <item>
@@ -682,27 +703,6 @@
         <link>/psychotropy_comes_in_many_forms_-77-.html</link>
         <pubDate>Wed, 07 Oct 2015 22:13:29 EDT</pubDate>
         <description>smail pg 164 "Psychotropy comes in different froms: things we do that shape the moods of others; things we do to ourselves; things we ingest."...</description>
-    </item>    
-    
-    <item>
-        <title>64_REVEL_system_-78-.md</title>
-        <link>/REVEL_system_-78-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:28 EDT</pubDate>
-        <description>Bau and Poupyrev + 89: 6-7 + use a kinect to track the user's finger; mapped tactile sensations: "a registered texture maps variations in the tactile signal to spatial variations of the visual texture. Unregistered tactile textures, on the other hand, \_qualitatively\_ reflect the visual texture without establishing precise spatial...</description>
-    </item>    
-    
-    <item>
-        <title>65_reverse_electrovibration_-79-.md</title>
-        <link>/reverse_electrovibration_-79-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:28 EDT</pubDate>
-        <description>+ Bau and Poupyrev introduction; also p 89:3 + technique being used by Bau and Poupyrev to generate sensation through a week oscillating electric field generated on user's body; mapped to visuals to create sense of 'dynamic and unobtrusive feedback'...</description>
-    </item>    
-    
-    <item>
-        <title>70_sounds_only_devices_can_hear_-84-.md</title>
-        <link>/sounds_only_devices_can_hear_-84-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:25 EDT</pubDate>
-        <description>http://www.wired.com/2012/02/sonic-notify/ + company called SonicNotify + build their sdk into your app, then high-frequency sound can be used to trigger actions on your device...</description>
     </item>    
     
 </channel>
