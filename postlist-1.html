@@ -85,11 +85,109 @@
         <a href="#" onclick="load_postlist(21); return false;">21</a>
     </li>
   
+    <li >
+        <a href="#" onclick="load_postlist(22); return false;">22</a>
+    </li>
+  
   
   <li><a href="#" onclick="load_postlist(2); return false;">&raquo;</a></li>
   
 </ul>
 
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="/cygwin and python development environment.html">cygwin and python development environment</a> 
+        <span class="pull-right text-muted">2015-10-16</span>
+    </div>
+    <div class="panel-body">
+        
+            <div class="htmltruncate-md">
+                <p>This might be a good one for windows hist3907 folks:</p>
+<p>http://www.davidbaumgold.com/tutorials/set-up-python-windows/</p>
+<p>(but I'd re-write to use python 2.7)</p>
+<p>Indeed, keeping a notebook about working through this process would be a good exercise.</p>
+                <div class="htmltruncate-bottom"></div>
+            </div>
+            <a href="/cygwin and python development environment.html" class="btn btn-default">...</a>
+        
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="/sonification of john adams.html">Sonification of John Adams' diaries</a> 
+        <span class="pull-right text-muted">2015-10-15</span>
+    </div>
+    <div class="panel-body">
+        
+            <div class="htmltruncate-md">
+                <p>`from miditime.MIDITime import MIDITime
+from datetime import datetime</p>
+<h1 id="topic-local">topic: local</h1>
+<p>mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1)
+my_data = [
+    {'event_date': datetime(1753,6,8), 'magnitude': 1.8},
+    {'event_date': datetime(1753,6,9), 'magnitude': 0.3},
+    {'event_date': datetime(1753,6,10), 'magnitude': 3.1},
+    {'event_date': datetime(1753,6,11), 'magnitude': 6.6},
+    {'event_date': datetime(1753,6,12), 'magnitude': 0.4},
+    {'event_date': datetime(1753,6,13), 'magnitude': 0.5},
+    {'event_date': datetime(1753,6,14), 'magnitude': 5.3},
+    {'event_date': datetime(1753,6,17), 'magnitude': 0.3},
+    {'event_date': datetime(1753,6,18), 'magnitude': 1.8},
+    {'event_date': datetime(1753,6,19), 'magnitude': 0},
+    {'event_date': datetime(1753,6,20), 'magnitude': 0.46},
+    {'event_date': datetime(1753,6,21), 'magnitude': 4},
+    {'event_date': datetime(1753,6,22), 'magnitude': 2},
+    {'event_date': datetime(1753,6,23), 'magnitude': 0},
+    {'event_date': datetime(1753,6,24), 'magnitude': 1.3}
+]</p>
+<p>my_data_epoched = [{'days_since_epoch': mymidi.days_since_epoch(d['event_date']), 'magnitude': d['magnitude']} for d in my_data]</p>
+<p>my_data_timed = [{'beat': mymidi.beat(d['days_since_epoch']), 'magnitude': d['magnitude']} for d in my_data_epoched]</p>
+<p>start_time = my_data_timed[0]['beat']</p>
+<p>def mag_to_pitch_tuned(magnitude):
+    # Where does this data point sit in the domain of your data? (I.E. the min magnitude is 3, the max in 5.6). In this case the optional 'True' means the scale is reversed, so the highest value will return the lowest percentage.
+    scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude)</p>
+<pre class="codehilite"><code># Another option: Linear scale, reverse order
+# scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude, True)
+
+# Another option: Logarithmic scale, reverse order
+# scale_pct = mymidi.log_scale_pct(3, 5.7, magnitude, True)
+
+# Pick a range of notes. This allows you to play in a key.
+c_major = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+
+#Find the note that matches your data point
+note = mymidi.scale_to_note(scale_pct, c_major)
+
+#Translate that note to a MIDI pitch
+midi_pitch = mymidi.note_to_midi_pitch(note)
+
+return midi_pitch</code></pre>
+
+
+<p>note_list = []</p>
+<p>for d in my_data_timed:
+    note_list.append([
+        d['beat'] - start_time,
+        mag_to_pitch_tuned(d['magnitude']),
+        100,  # attack
+        1  # duration, in beats
+    ])</p>
+<pre class="codehilite"><code># Add a track with those notes</code></pre>
+
+
+<p>mymidi.add_track(note_list)</p>
+<h1 id="output-the-mid-file">Output the .mid file</h1>
+<p>mymidi.save_midi()
+`</p>
+                <div class="htmltruncate-bottom"></div>
+            </div>
+            <a href="/sonification of john adams.html" class="btn btn-default">...</a>
+        
+    </div>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -187,51 +285,6 @@ Invalid action: 0002-63-.md</p>
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/senseshed_and_vr_-43-.html">29_senseshed_and_vr_-43-.md</a> 
-        <span class="pull-right text-muted">2015-10-14</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <p>eve augmented phenomenology 586</p>
-<blockquote>
-<p>"We need a way to marry the advantages of computer-based analysis (simulation, prediction, etc.) with embodiment (being able to travel through and experience the landscape rom a situated perspective). Emerging technologies using mixed reality can go some way to bridging this divide."</p>
-</blockquote>
-<ul>
-<li>SG: roll HGIS into this mix?</li>
-</ul>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/senseshed_and_vr_-43-.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/polyphonic_multi_tasking_-129-.html">115_polyphonic_multi_tasking_-129-.md</a> 
-        <span class="pull-right text-muted">2015-10-14</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <p>Garvey p319</p>
-<p>-author describes his piece, 'Anita ind Clarence in der Holle (&lt;-umalut on o): An Opera for Split-Brains in Modular Parts</p>
-<p>-plays anita hill, clarence thomas sexual harassment testimony at his senate hearings. Since they sit in almost exactly the same seat, video angle, the author can play their testimony simultaneously, using a system that feeds each video to a single eye, at the same time</p>
-<p>-article mostly discusses the visual phenomena that ensue (including a quasi 3d effect)</p>
-<p>-"With the simultaneous playback of the opening statements by Anita Hill and Clarence Thomas, the listener literally hears two voices at the same time... [an effect that] can be likened to musical polyphony... as each word is spoken, it overlaps or alternates in an antiphonal manner with the words of the other speaker... at other moments spoken words changing in pitch, rhythm, tempo and intonation are delivered in a singsong manner, not unlike the operative device of recitative. Sometimes the simultaneous testimony is more like a duet. There are contrapuntal effects resulting from the repetition of words and phrases, sometimes shifted in time or changed in word order."</p>
-<ul>
-<li>SG -&gt; relevant to 'listening to wailing street'? <a href="http://www.heritagejam.org/2015exhibitionentries/2015/9/18/listening-to-watling-street-dr-shawn-graham">http://www.heritagejam.org/2015exhibitionentries/2015/9/18/listening-to-watling-street-dr-shawn-graham</a></li>
-</ul>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/polyphonic_multi_tasking_-129-.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
-
 
 <ul class="pagination">
   
@@ -318,6 +371,10 @@ Invalid action: 0002-63-.md</p>
   
     <li >
         <a href="#" onclick="load_postlist(21); return false;">21</a>
+    </li>
+  
+    <li >
+        <a href="#" onclick="load_postlist(22); return false;">22</a>
     </li>
   
   

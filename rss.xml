@@ -6,23 +6,37 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>cygwin and python development environment</title>
+        <link>/cygwin and python development environment.html</link>
+        <pubDate>Fri, 16 Oct 2015 09:44:44 EDT</pubDate>
+        <description>This might be a good one for windows hist3907 folks: http://www.davidbaumgold.com/tutorials/set-up-python-windows/ (but I'd re-write to use python 2.7) Indeed, keeping a notebook about working through this process would be a good exercise....</description>
+    </item>    
+    
+    <item>
+        <title>Sonification of John Adams' diaries</title>
+        <link>/sonification of john adams.html</link>
+        <pubDate>Thu, 15 Oct 2015 22:43:17 EDT</pubDate>
+        <description>`from miditime.MIDITime import MIDITime from datetime import datetime topic: local mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1) my_data = [ {'event_date': datetime(1753,6,8), 'magnitude': 1.8}, {'event_date': datetime(1753,6,9), 'magnitude': 0.3}, {'event_date': datetime(1753,6,10), 'magnitude': 3.1}, {'event_date': datetime(1753,6,11), 'magnitude': 6.6}, {'event_date': datetime(1753,6,12), 'magnitude': 0.4}, {'event_date': datetime(1753,6,13), 'magnitude': 0.5}, {'event_date': datetime(1753,6,14), 'magnitude': 5.3}, {'event_date': datetime(1753,6,17),...</description>
+    </item>    
+    
+    <item>
         <title>06_speech-not-optimal_-16-.md</title>
         <link>/speech-not-optimal_-16-.html</link>
-        <pubDate>Wed, 14 Oct 2015 13:39:36 EDT</pubDate>
+        <pubDate>Wed, 14 Oct 2015 14:32:12 EDT</pubDate>
         <description>P19:2 + Authors report that while speech as a design element is useful in certain circumstances (and typically is used in a sped-up fashion, by folks with low vision, etc) it fails in 'orientation, navigation, and manipulation tasks'; difficult to modify without loss of information + SG: Makes me think...</description>
     </item>    
     
     <item>
         <title>123_SG-_things_to_include_in_this_piece_deformation,_video_supercuts_-137-.md</title>
         <link>/SG-_things_to_include_in_this_piece_deformation,_video_supercuts_-137-.html</link>
-        <pubDate>Wed, 14 Oct 2015 13:39:15 EDT</pubDate>
+        <pubDate>Wed, 14 Oct 2015 14:32:03 EDT</pubDate>
         <description>SG - theme of this piece is 'seeing' history: but need to see with new eyes, focus on other senses; computational juxtaposition of elements not normally seen/experience together - Garvey piece on split brain human computer interface; Trevor Owens on 'deformation'; other things I've written on deformative digital archaeology; automated...</description>
     </item>    
     
     <item>
         <title>122_SG-_interconnections_of_memory_-136-.md</title>
         <link>/SG-_interconnections_of_memory_-136-.html</link>
-        <pubDate>Wed, 14 Oct 2015 13:38:56 EDT</pubDate>
+        <pubDate>Wed, 14 Oct 2015 14:31:44 EDT</pubDate>
         <description>+ if schiller (neuroscientist ) is right about how memories are formed & rewritten ("memory reconsolidation" ) cf [[49_bibx-_repairing_bad_memories_-63-.md]] + and we can reprogram the emotional content of those memories (see pstd research, as in http://newsoffice.mit.edu/2014/brain-circuit-links-emotion- memory-0827 and here, false memories http://newsoffice.mit.edu/2013/neuroscientists-plant-false-memories-in-the-brain-0725 ) + then aural AR could reprogram emotional/historical...</description>
     </item>    
     
@@ -689,20 +703,6 @@
         <link>/cognitive_life_of_objects_artefacts_-68-.html</link>
         <pubDate>Wed, 07 Oct 2015 22:13:33 EDT</pubDate>
         <description>p5 malafouris & renfrew '...the cognitive life of a thing can be that of an object \(via objectification\) or an artefact \(via intentional use and/or modification... it is amongst these fine distinctions between thing, object, and artefact that the meaning of the cognitive life of things can be found, that...</description>
-    </item>    
-    
-    <item>
-        <title>55_cognitive_life_of_things_-69-.md</title>
-        <link>/cognitive_life_of_things_-69-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:33 EDT</pubDate>
-        <description>p4 malafouris & renfrew 'things can be said to have a cognitive life insofar as things are constantly implicated in networks, or better 'meshworks' of material engagement. More simply, things have a cognitive life because minds have a material life. Thus, very often, what we call an 'object' is part...</description>
-    </item>    
-    
-    <item>
-        <title>58_further_use_of_REVEL_system_-72-.md</title>
-        <link>/further_use_of_REVEL_system_-72-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:31 EDT</pubDate>
-        <description>Bau and Poupryev 89:9 + authors suggest they could add this tactile technology to physical print objects \(through the pigments, presumably, making them capacitive\), suggesting that interaction with them could be altered for time of day, current weather, expiration date. + could allow for personalization of interaction with public displays;...</description>
     </item>    
     
 </channel>

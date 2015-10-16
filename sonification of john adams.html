@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 <meta name="description" content="Example Site Description">
-<meta name="keywords" content="SG,empathy,sonification">
+<meta name="keywords" content="sonification,topic modeling,method">
 
-    <title>06_speech-not-optimal_-16-.md | Shawn Graham's Open Notebook Experiment</title>
+    <title>Sonification of John Adams' diaries | Shawn Graham's Open Notebook Experiment</title>
     <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.css">
     <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap-theme.css">
     <link rel="stylesheet" href="/static/codehilite/manni.css">
@@ -150,49 +150,75 @@
 <p>
 
     <a class="label label-default"
-        href="/search.html?t=SG">SG <b class="glyphicon glyphicon-tag"></b></a>
-
-    <a class="label label-default"
-        href="/search.html?t=empathy">empathy <b class="glyphicon glyphicon-tag"></b></a>
-
-    <a class="label label-default"
         href="/search.html?t=sonification">sonification <b class="glyphicon glyphicon-tag"></b></a>
 
+    <a class="label label-default"
+        href="/search.html?t=topic modeling">topic modeling <b class="glyphicon glyphicon-tag"></b></a>
+
+    <a class="label label-default"
+        href="/search.html?t=method">method <b class="glyphicon glyphicon-tag"></b></a>
+
 </p>
-<p>P19:2</p>
-<ul>
-<li>
-<p>Authors report that while speech as a design element is useful in certain circumstances (and typically is used in a sped-up fashion, by folks with low vision, etc) it fails in 'orientation, navigation, and manipulation tasks'; difficult to modify without loss of information</p>
-</li>
-<li>
-<p>SG: Makes me think of Gleick, The Information, Claude Shannon, information theory, talking drums</p>
-</li>
-<li>
-<p>SG: Is speech optimal for history apps? If video games / history best for 'empathy' (me, <a href="http://epress.trincoll.edu/webwriting/chapter/graham/">http://epress.trincoll.edu/webwriting/chapter/graham/</a> web-writing essay), then sonification best for…?</p>
-</li>
-</ul>
-<p>~~~~~{.bib}</p>
-<p>@article{Csapo:2013:OAR:2543581.2543586,</p>
-<p>author = {Csap\'{o}, \'{A}d\'{a}m and Wers{\'e}nyi, Gy\"{o}rgy},</p>
-<p>title = {Overview of Auditory Representations in Human-machine Interfaces},</p>
-<p>journal = {ACM Comput. Surv.},</p>
-<p>issue_date = {November 2013},</p>
-<p>volume = {46},</p>
-<p>number = {2},</p>
-<p>month = dec,</p>
-<p>year = {2013},</p>
-<p>issn = {0360-0300},</p>
-<p>pages = {19:1--19:23},</p>
-<p>articleno = {19},</p>
-<p>numpages = {23},</p>
-<p>url = &lt;http://doi.acm.org/10.1145/2543581.2543586></p>
-<p>doi = {10.1145/2543581.2543586},</p>
-<p>acmid = {2543586},</p>
-<p>publisher = {ACM},</p>
-<p>address = {New York, NY, USA},</p>
-<p>keywords = {Auditory icon, earcon, sonification},</p>
-<p>}</p>
-<p>~~~~~</p>
+<p>`from miditime.MIDITime import MIDITime
+from datetime import datetime</p>
+<h1 id="topic-local">topic: local</h1>
+<p>mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1)
+my_data = [
+    {'event_date': datetime(1753,6,8), 'magnitude': 1.8},
+    {'event_date': datetime(1753,6,9), 'magnitude': 0.3},
+    {'event_date': datetime(1753,6,10), 'magnitude': 3.1},
+    {'event_date': datetime(1753,6,11), 'magnitude': 6.6},
+    {'event_date': datetime(1753,6,12), 'magnitude': 0.4},
+    {'event_date': datetime(1753,6,13), 'magnitude': 0.5},
+    {'event_date': datetime(1753,6,14), 'magnitude': 5.3},
+    {'event_date': datetime(1753,6,17), 'magnitude': 0.3},
+    {'event_date': datetime(1753,6,18), 'magnitude': 1.8},
+    {'event_date': datetime(1753,6,19), 'magnitude': 0},
+    {'event_date': datetime(1753,6,20), 'magnitude': 0.46},
+    {'event_date': datetime(1753,6,21), 'magnitude': 4},
+    {'event_date': datetime(1753,6,22), 'magnitude': 2},
+    {'event_date': datetime(1753,6,23), 'magnitude': 0},
+    {'event_date': datetime(1753,6,24), 'magnitude': 1.3}
+]</p>
+<p>my_data_epoched = [{'days_since_epoch': mymidi.days_since_epoch(d['event_date']), 'magnitude': d['magnitude']} for d in my_data]</p>
+<p>my_data_timed = [{'beat': mymidi.beat(d['days_since_epoch']), 'magnitude': d['magnitude']} for d in my_data_epoched]</p>
+<p>start_time = my_data_timed[0]['beat']</p>
+<p>def mag_to_pitch_tuned(magnitude):
+    # Where does this data point sit in the domain of your data? (I.E. the min magnitude is 3, the max in 5.6). In this case the optional 'True' means the scale is reversed, so the highest value will return the lowest percentage.
+    scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude)</p>
+<pre class="codehilite"><code># Another option: Linear scale, reverse order
+# scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude, True)
+
+# Another option: Logarithmic scale, reverse order
+# scale_pct = mymidi.log_scale_pct(3, 5.7, magnitude, True)
+
+# Pick a range of notes. This allows you to play in a key.
+c_major = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+
+#Find the note that matches your data point
+note = mymidi.scale_to_note(scale_pct, c_major)
+
+#Translate that note to a MIDI pitch
+midi_pitch = mymidi.note_to_midi_pitch(note)
+
+return midi_pitch</code></pre>
+
+
+<p>note_list = []</p>
+<p>for d in my_data_timed:
+    note_list.append([
+        d['beat'] - start_time,
+        mag_to_pitch_tuned(d['magnitude']),
+        100,  # attack
+        1  # duration, in beats
+    ])</p>
+<pre class="codehilite"><code># Add a track with those notes</code></pre>
+
+
+<p>mymidi.add_track(note_list)</p>
+<h1 id="output-the-mid-file">Output the .mid file</h1>
+<p>mymidi.save_midi()
+`</p>
 
 </div>
 </div><!-- End #wrap -->
