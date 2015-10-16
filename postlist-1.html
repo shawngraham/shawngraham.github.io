@@ -97,35 +97,19 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="/cygwin and python development environment.html">cygwin and python development environment</a> 
+        <a href="/sonification of john adams.html">Sonification of John Adams' diaries</a> 
         <span class="pull-right text-muted">2015-10-16</span>
     </div>
     <div class="panel-body">
         
             <div class="htmltruncate-md">
-                <p>This might be a good one for windows hist3907 folks:</p>
-<p>http://www.davidbaumgold.com/tutorials/set-up-python-windows/</p>
-<p>(but I'd re-write to use python 2.7)</p>
-<p>Indeed, keeping a notebook about working through this process would be a good exercise.</p>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/cygwin and python development environment.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
+                <pre>
+from miditime.MIDITime import MIDITime
+from datetime import datetime
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/sonification of john adams.html">Sonification of John Adams' diaries</a> 
-        <span class="pull-right text-muted">2015-10-15</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <p>`from miditime.MIDITime import MIDITime
-from datetime import datetime</p>
-<h1 id="topic-local">topic: local</h1>
-<p>mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1)
+#topic: local
+
+mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1)
 my_data = [
     {'event_date': datetime(1753,6,8), 'magnitude': 1.8},
     {'event_date': datetime(1753,6,9), 'magnitude': 0.3},
@@ -142,49 +126,73 @@ my_data = [
     {'event_date': datetime(1753,6,22), 'magnitude': 2},
     {'event_date': datetime(1753,6,23), 'magnitude': 0},
     {'event_date': datetime(1753,6,24), 'magnitude': 1.3}
-]</p>
-<p>my_data_epoched = [{'days_since_epoch': mymidi.days_since_epoch(d['event_date']), 'magnitude': d['magnitude']} for d in my_data]</p>
-<p>my_data_timed = [{'beat': mymidi.beat(d['days_since_epoch']), 'magnitude': d['magnitude']} for d in my_data_epoched]</p>
-<p>start_time = my_data_timed[0]['beat']</p>
-<p>def mag_to_pitch_tuned(magnitude):
+]
+
+my_data_epoched = [{'days_since_epoch': mymidi.days_since_epoch(d['event_date']), 'magnitude': d['magnitude']} for d in my_data]
+
+my_data_timed = [{'beat': mymidi.beat(d['days_since_epoch']), 'magnitude': d['magnitude']} for d in my_data_epoched]
+
+start_time = my_data_timed[0]['beat']
+
+def mag_to_pitch_tuned(magnitude):
     # Where does this data point sit in the domain of your data? (I.E. the min magnitude is 3, the max in 5.6). In this case the optional 'True' means the scale is reversed, so the highest value will return the lowest percentage.
-    scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude)</p>
-<pre class="codehilite"><code># Another option: Linear scale, reverse order
-# scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude, True)
+    scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude)
 
-# Another option: Logarithmic scale, reverse order
-# scale_pct = mymidi.log_scale_pct(3, 5.7, magnitude, True)
+    # Another option: Linear scale, reverse order
+    # scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude, True)
 
-# Pick a range of notes. This allows you to play in a key.
-c_major = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+    # Another option: Logarithmic scale, reverse order
+    # scale_pct = mymidi.log_scale_pct(3, 5.7, magnitude, True)
 
-#Find the note that matches your data point
-note = mymidi.scale_to_note(scale_pct, c_major)
+    # Pick a range of notes. This allows you to play in a key.
+    c_major = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 
-#Translate that note to a MIDI pitch
-midi_pitch = mymidi.note_to_midi_pitch(note)
+    #Find the note that matches your data point
+    note = mymidi.scale_to_note(scale_pct, c_major)
 
-return midi_pitch</code></pre>
+    #Translate that note to a MIDI pitch
+    midi_pitch = mymidi.note_to_midi_pitch(note)
 
+    return midi_pitch
 
-<p>note_list = []</p>
-<p>for d in my_data_timed:
+note_list = []
+
+for d in my_data_timed:
     note_list.append([
         d['beat'] - start_time,
         mag_to_pitch_tuned(d['magnitude']),
         100,  # attack
         1  # duration, in beats
-    ])</p>
-<pre class="codehilite"><code># Add a track with those notes</code></pre>
+    ])
 
+    # Add a track with those notes
+mymidi.add_track(note_list)
 
-<p>mymidi.add_track(note_list)</p>
-<h1 id="output-the-mid-file">Output the .mid file</h1>
-<p>mymidi.save_midi()
-`</p>
+# Output the .mid file
+mymidi.save_midi()
+</pre>
                 <div class="htmltruncate-bottom"></div>
             </div>
             <a href="/sonification of john adams.html" class="btn btn-default">...</a>
+        
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="/cygwin and python development environment.html">cygwin and python development environment</a> 
+        <span class="pull-right text-muted">2015-10-16</span>
+    </div>
+    <div class="panel-body">
+        
+            <div class="htmltruncate-md">
+                <p>This might be a good one for windows hist3907 folks:</p>
+<p>http://www.davidbaumgold.com/tutorials/set-up-python-windows/</p>
+<p>(but I'd re-write to use python 2.7)</p>
+<p>Indeed, keeping a notebook about working through this process would be a good exercise.</p>
+                <div class="htmltruncate-bottom"></div>
+            </div>
+            <a href="/cygwin and python development environment.html" class="btn btn-default">...</a>
         
     </div>
 </div>

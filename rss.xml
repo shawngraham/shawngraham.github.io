@@ -6,17 +6,17 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>Sonification of John Adams' diaries</title>
+        <link>/sonification of john adams.html</link>
+        <pubDate>Fri, 16 Oct 2015 09:46:46 EDT</pubDate>
+        <description>pre from miditime.MIDITime import MIDITime from datetime import datetime topic: local mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1) my_data = [ {'event_date': datetime(1753,6,8), 'magnitude': 1.8}, {'event_date': datetime(1753,6,9), 'magnitude': 0.3}, {'event_date': datetime(1753,6,10), 'magnitude': 3.1}, {'event_date': datetime(1753,6,11), 'magnitude': 6.6}, {'event_date': datetime(1753,6,12), 'magnitude': 0.4}, {'event_date': datetime(1753,6,13), 'magnitude': 0.5}, {'event_date': datetime(1753,6,14), 'magnitude': 5.3}, {'event_date':...</description>
+    </item>    
+    
+    <item>
         <title>cygwin and python development environment</title>
         <link>/cygwin and python development environment.html</link>
         <pubDate>Fri, 16 Oct 2015 09:44:44 EDT</pubDate>
         <description>This might be a good one for windows hist3907 folks: http://www.davidbaumgold.com/tutorials/set-up-python-windows/ (but I'd re-write to use python 2.7) Indeed, keeping a notebook about working through this process would be a good exercise....</description>
-    </item>    
-    
-    <item>
-        <title>Sonification of John Adams' diaries</title>
-        <link>/sonification of john adams.html</link>
-        <pubDate>Thu, 15 Oct 2015 22:43:17 EDT</pubDate>
-        <description>`from miditime.MIDITime import MIDITime from datetime import datetime topic: local mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1) my_data = [ {'event_date': datetime(1753,6,8), 'magnitude': 1.8}, {'event_date': datetime(1753,6,9), 'magnitude': 0.3}, {'event_date': datetime(1753,6,10), 'magnitude': 3.1}, {'event_date': datetime(1753,6,11), 'magnitude': 6.6}, {'event_date': datetime(1753,6,12), 'magnitude': 0.4}, {'event_date': datetime(1753,6,13), 'magnitude': 0.5}, {'event_date': datetime(1753,6,14), 'magnitude': 5.3}, {'event_date': datetime(1753,6,17),...</description>
     </item>    
     
     <item>

@@ -159,10 +159,13 @@
         href="/search.html?t=method">method <b class="glyphicon glyphicon-tag"></b></a>
 
 </p>
-<p>`from miditime.MIDITime import MIDITime
-from datetime import datetime</p>
-<h1 id="topic-local">topic: local</h1>
-<p>mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1)
+<pre>
+from miditime.MIDITime import MIDITime
+from datetime import datetime
+
+#topic: local
+
+mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1)
 my_data = [
     {'event_date': datetime(1753,6,8), 'magnitude': 1.8},
     {'event_date': datetime(1753,6,9), 'magnitude': 0.3},
@@ -179,46 +182,51 @@ my_data = [
     {'event_date': datetime(1753,6,22), 'magnitude': 2},
     {'event_date': datetime(1753,6,23), 'magnitude': 0},
     {'event_date': datetime(1753,6,24), 'magnitude': 1.3}
-]</p>
-<p>my_data_epoched = [{'days_since_epoch': mymidi.days_since_epoch(d['event_date']), 'magnitude': d['magnitude']} for d in my_data]</p>
-<p>my_data_timed = [{'beat': mymidi.beat(d['days_since_epoch']), 'magnitude': d['magnitude']} for d in my_data_epoched]</p>
-<p>start_time = my_data_timed[0]['beat']</p>
-<p>def mag_to_pitch_tuned(magnitude):
+]
+
+my_data_epoched = [{'days_since_epoch': mymidi.days_since_epoch(d['event_date']), 'magnitude': d['magnitude']} for d in my_data]
+
+my_data_timed = [{'beat': mymidi.beat(d['days_since_epoch']), 'magnitude': d['magnitude']} for d in my_data_epoched]
+
+start_time = my_data_timed[0]['beat']
+
+def mag_to_pitch_tuned(magnitude):
     # Where does this data point sit in the domain of your data? (I.E. the min magnitude is 3, the max in 5.6). In this case the optional 'True' means the scale is reversed, so the highest value will return the lowest percentage.
-    scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude)</p>
-<pre class="codehilite"><code># Another option: Linear scale, reverse order
-# scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude, True)
+    scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude)
 
-# Another option: Logarithmic scale, reverse order
-# scale_pct = mymidi.log_scale_pct(3, 5.7, magnitude, True)
+    # Another option: Linear scale, reverse order
+    # scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude, True)
 
-# Pick a range of notes. This allows you to play in a key.
-c_major = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+    # Another option: Logarithmic scale, reverse order
+    # scale_pct = mymidi.log_scale_pct(3, 5.7, magnitude, True)
 
-#Find the note that matches your data point
-note = mymidi.scale_to_note(scale_pct, c_major)
+    # Pick a range of notes. This allows you to play in a key.
+    c_major = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 
-#Translate that note to a MIDI pitch
-midi_pitch = mymidi.note_to_midi_pitch(note)
+    #Find the note that matches your data point
+    note = mymidi.scale_to_note(scale_pct, c_major)
 
-return midi_pitch</code></pre>
+    #Translate that note to a MIDI pitch
+    midi_pitch = mymidi.note_to_midi_pitch(note)
 
+    return midi_pitch
 
-<p>note_list = []</p>
-<p>for d in my_data_timed:
+note_list = []
+
+for d in my_data_timed:
     note_list.append([
         d['beat'] - start_time,
         mag_to_pitch_tuned(d['magnitude']),
         100,  # attack
         1  # duration, in beats
-    ])</p>
-<pre class="codehilite"><code># Add a track with those notes</code></pre>
+    ])
 
+    # Add a track with those notes
+mymidi.add_track(note_list)
 
-<p>mymidi.add_track(note_list)</p>
-<h1 id="output-the-mid-file">Output the .mid file</h1>
-<p>mymidi.save_midi()
-`</p>
+# Output the .mid file
+mymidi.save_midi()
+</pre>
 
 </div>
 </div><!-- End #wrap -->
@@ -232,24 +240,9 @@ return midi_pitch</code></pre>
         </div>
 
         
-        <div class="social-div">
-            <iframe src="http://ghbtns.com/github-btn.html?user=shawngraham&amp;repo=open-notebook-source-md&amp;type=watch"
-                style="border: 0px; width: 53px; height: 20px; overflow: hidden;"></iframe>
-            <iframe src="http://ghbtns.com/github-btn.html?user=shawngraham&amp;repo=open-notebook-source-md&amp;type=fork"
-                style="border: 0px; width: 53px; height: 20px; overflow: hidden;"></iframe>
-        </div>
-        
 
         
 
-        
-        <div class="social-div">
-        <a href="https://twitter.com/twitter.com/electricarchaeo" class="twitter-follow-button" data-show-count="false">Follow @twitter.com/electricarchaeo</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-                    if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
-                    fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-            </script>
-        </div>
         
 
 
