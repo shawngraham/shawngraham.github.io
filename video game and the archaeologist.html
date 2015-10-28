@@ -1,109 +1,165 @@
-<ul class="pagination">
-  
-  
-    <li class="active">
-        <a href="#" onclick="load_postlist(1); return false;">1</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(2); return false;">2</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(3); return false;">3</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(4); return false;">4</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(5); return false;">5</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(6); return false;">6</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(7); return false;">7</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(8); return false;">8</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(9); return false;">9</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(10); return false;">10</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(11); return false;">11</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(12); return false;">12</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(13); return false;">13</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(14); return false;">14</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(15); return false;">15</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(16); return false;">16</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(17); return false;">17</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(18); return false;">18</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(19); return false;">19</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(20); return false;">20</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(21); return false;">21</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(22); return false;">22</a>
-    </li>
-  
-  
-  <li><a href="#" onclick="load_postlist(2); return false;">&raquo;</a></li>
-  
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<meta name="description" content="Example Site Description">
+<meta name="keywords" content="essays,video games,archaeology">
+
+    <title>The Video Game and the Archaeologist | Shawn Graham's Open Notebook Experiment</title>
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/static/codehilite/manni.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+    html, body { height: 100%; }
+
+    h1:target, h2:target, h3:target { 
+        background-color: #dfd;
+    }
+
+    #wrap {
+        min-height: 100%;
+        height: auto;
+        /* Negative indent footer by its height */
+        margin: 0 auto -60px;
+        /* Pad bottom by footer height */
+        padding: 0 0 60px;
+    }
+
+    #footer {
+        height: 60px;
+        padding-top: 20px;
+        background: #eee;
+    }
+    #footer .social-div { 
+        float: left;
+        margin-left: 10px;
+    }
+
+    .link_section {
+        padding: 3px;
+        margin: 0px; 
+        font-weight: bold;
+    }
+
+    .toc { 
+        float: right;
+        border: 2px solid #efefef;
+        background: #f5f5f5;
+        padding: 5px;
+        border-radius: 3px;
+        color: #999;
+    }
+    .toc ul, .toc li, .toc ul li { 
+        margin-left: 10px;
+        padding-left: 0px;
+    }
+
+    .htmltruncate-lg, .htmltruncate-md, .htmltruncate-sm { 
+        overflow: hidden;
+        position: relative;
+        border-bottom: 2px dashed #eee;
+        margin-bottom: 5px;
+        min-height: 60px;
+    }
+    .htmltruncate-bottom { 
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background: none;
+        background-image: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, #fff 100%);
+        z-index: 100;
+        height: 60px;
+    }
+    .htmltruncate-lg {
+        max-height: 500px;
+    }
+    .htmltruncate-md { 
+        max-height: 300px;
+    }
+    .htmltruncate-sm { 
+        max-height: 150px;
+    }
+    </style> 
+    <script>
+    // Globals
+    var has_gaq = false;
+    </script>
+</head>
+<body>
 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/video game and the archaeologist.html">The Video Game and the Archaeologist</a> 
-        <span class="pull-right text-muted">2015-10-28</span>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" 
+                data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Home</a>
     </div>
-    <div class="panel-body">
+    <div class="navbar-collapse collapse" style="max-height: none;">
+    <ul class="nav navbar-nav">
+    
         
-            <div class="htmltruncate-md">
-                <div class="toc">
+            <li>
+            
+                <a href="/index.html" target="_self">Welcome</a>
+            
+            </li>
+        
+    
+        
+            <li>
+            
+                <a href="/posts.html" target="_self">Posts</a>
+            
+            </li>
+        
+    
+        
+            <li>
+            
+                <a href="/search.html" target="_self">Search</a>
+            
+            </li>
+        
+    
+    </ul>
+
+    <form class="navbar-form navbar-right" role="search" 
+        method="get"
+        action="/search.html">
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-primary" style="display: none;"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+    </div>
+    </div>
+</div>
+<div id="wrap">
+<div class="container" style="padding-top: 60px;">
+
+<p>
+
+    <a class="label label-default"
+        href="/search.html?t=essays">essays <b class="glyphicon glyphicon-tag"></b></a>
+
+    <a class="label label-default"
+        href="/search.html?t=video games">video games <b class="glyphicon glyphicon-tag"></b></a>
+
+    <a class="label label-default"
+        href="/search.html?t=archaeology">archaeology <b class="glyphicon glyphicon-tag"></b></a>
+
+</p>
+<div class="toc">
 <ul>
 <li><a href="#the-video-game-and-the-archaeologist">The Video Game and the Archaeologist</a></li>
 <li><a href="#a-potted-synopsis-of-game-studies">A potted synopsis of game studies</a></li>
@@ -155,275 +211,54 @@
 <p>Dennis, Meghan. nd. 'Archaeogaming' <em>gingerygamer.com</em> http://gingerygamer.com/index.php/archaeogaming/</p>
 <p>Eve, Stuart. 2014. <em>Dead Men's Eyes: Embodied GIS, Mixed Reality and Landscape Archaeology</em>. BAR 600. Oxford: Archaeopress.</p>
 <p>Elliott, Andrew and Mathew Kapell. 2013. <em>Playing with the past : digital games and the simulation of history</em>. New York: Bloomsbury.</p>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/video game and the archaeologist.html" class="btn btn-default">...</a>
+
+</div>
+</div><!-- End #wrap -->
+<div id="footer">
+    <div class="container">
+    
+        <div class="social-div">
+        <p class="text-muted credit">&copy; 2013, Shawn Graham's Open Notebook Experiment
+        &mdash; powered by <a href="http://pykwiki.nullism.com">PyKwiki</a>
+        </p>
+        </div>
+
         
+        <div class="social-div">
+            <iframe src="http://ghbtns.com/github-btn.html?user=shawngraham&amp;repo=open-notebook-source-md&amp;type=watch"
+                style="border: 0px; width: 53px; height: 20px; overflow: hidden;"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=shawngraham&amp;repo=open-notebook-source-md&amp;type=fork"
+                style="border: 0px; width: 53px; height: 20px; overflow: hidden;"></iframe>
+        </div>
+        
+
+        
+
+        
+        <div class="social-div">
+        <a href="https://twitter.com/twitter.com/electricarchaeo" class="twitter-follow-button" data-show-count="false">Follow @twitter.com/electricarchaeo</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                    if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+            </script>
+        </div>
+        
+
+
+        <div class="clearfix"></div>
     </div>
+
+    
+
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/fixing jupyter to run r.html">fixing jupyter to run r</a> 
-        <span class="pull-right text-muted">2015-10-25</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <p><code>bash
-install_name_tool -change /Users/shawngraham/miniconda3/lib/libzmq.4.dylib /Users/shawngraham/miniconda3/lib/libzmq.5.dylib /Users/shawngraham/miniconda3/lib/R/library/rzmq/libs/rzmq.so</code></p>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/fixing jupyter to run r.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
+<script src="/static/bootstrap3/js/bootstrap.min.js"></script>
+<script src="/static/mustachejs/mustache.js"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="/static/respond.min.js"></script>
+<![endif]-->   
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/sonification of john adams.html">Sonification of John Adams' diaries</a> 
-        <span class="pull-right text-muted">2015-10-16</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <pre>
-from miditime.MIDITime import MIDITime
-from datetime import datetime
-
-#topic: local
-
-mymidi = MIDITime(120, 'johnadams1.mid', 120, 5, 1)
-my_data = [
-    {'event_date': datetime(1753,6,8), 'magnitude': 1.8},
-    {'event_date': datetime(1753,6,9), 'magnitude': 0.3},
-    {'event_date': datetime(1753,6,10), 'magnitude': 3.1},
-    {'event_date': datetime(1753,6,11), 'magnitude': 6.6},
-    {'event_date': datetime(1753,6,12), 'magnitude': 0.4},
-    {'event_date': datetime(1753,6,13), 'magnitude': 0.5},
-    {'event_date': datetime(1753,6,14), 'magnitude': 5.3},
-    {'event_date': datetime(1753,6,17), 'magnitude': 0.3},
-    {'event_date': datetime(1753,6,18), 'magnitude': 1.8},
-    {'event_date': datetime(1753,6,19), 'magnitude': 0},
-    {'event_date': datetime(1753,6,20), 'magnitude': 0.46},
-    {'event_date': datetime(1753,6,21), 'magnitude': 4},
-    {'event_date': datetime(1753,6,22), 'magnitude': 2},
-    {'event_date': datetime(1753,6,23), 'magnitude': 0},
-    {'event_date': datetime(1753,6,24), 'magnitude': 1.3}
-]
-
-my_data_epoched = [{'days_since_epoch': mymidi.days_since_epoch(d['event_date']), 'magnitude': d['magnitude']} for d in my_data]
-
-my_data_timed = [{'beat': mymidi.beat(d['days_since_epoch']), 'magnitude': d['magnitude']} for d in my_data_epoched]
-
-start_time = my_data_timed[0]['beat']
-
-def mag_to_pitch_tuned(magnitude):
-    # Where does this data point sit in the domain of your data? (I.E. the min magnitude is 3, the max in 5.6). In this case the optional 'True' means the scale is reversed, so the highest value will return the lowest percentage.
-    scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude)
-
-    # Another option: Linear scale, reverse order
-    # scale_pct = mymidi.linear_scale_pct(3, 5.7, magnitude, True)
-
-    # Another option: Logarithmic scale, reverse order
-    # scale_pct = mymidi.log_scale_pct(3, 5.7, magnitude, True)
-
-    # Pick a range of notes. This allows you to play in a key.
-    c_major = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
-
-    #Find the note that matches your data point
-    note = mymidi.scale_to_note(scale_pct, c_major)
-
-    #Translate that note to a MIDI pitch
-    midi_pitch = mymidi.note_to_midi_pitch(note)
-
-    return midi_pitch
-
-note_list = []
-
-for d in my_data_timed:
-    note_list.append([
-        d['beat'] - start_time,
-        mag_to_pitch_tuned(d['magnitude']),
-        100,  # attack
-        1  # duration, in beats
-    ])
-
-    # Add a track with those notes
-mymidi.add_track(note_list)
-
-# Output the .mid file
-mymidi.save_midi()
-</pre>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/sonification of john adams.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/cygwin and python development environment.html">cygwin and python development environment</a> 
-        <span class="pull-right text-muted">2015-10-16</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <p>This might be a good one for windows hist3907 folks:</p>
-<p>http://www.davidbaumgold.com/tutorials/set-up-python-windows/</p>
-<p>(but I'd re-write to use python 2.7)</p>
-<p>Indeed, keeping a notebook about working through this process would be a good exercise.</p>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/cygwin and python development environment.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <a href="/speech-not-optimal_-16-.html">06_speech-not-optimal_-16-.md</a> 
-        <span class="pull-right text-muted">2015-10-14</span>
-    </div>
-    <div class="panel-body">
-        
-            <div class="htmltruncate-md">
-                <p>P19:2</p>
-<ul>
-<li>
-<p>Authors report that while speech as a design element is useful in certain circumstances (and typically is used in a sped-up fashion, by folks with low vision, etc) it fails in 'orientation, navigation, and manipulation tasks'; difficult to modify without loss of information</p>
-</li>
-<li>
-<p>SG: Makes me think of Gleick, The Information, Claude Shannon, information theory, talking drums</p>
-</li>
-<li>
-<p>SG: Is speech optimal for history apps? If video games / history best for 'empathy' (me, <a href="http://epress.trincoll.edu/webwriting/chapter/graham/">http://epress.trincoll.edu/webwriting/chapter/graham/</a> web-writing essay), then sonification best for…?</p>
-</li>
-</ul>
-<p>~~~~~{.bib}</p>
-<p>@article{Csapo:2013:OAR:2543581.2543586,</p>
-<p>author = {Csap\'{o}, \'{A}d\'{a}m and Wers{\'e}nyi, Gy\"{o}rgy},</p>
-<p>title = {Overview of Auditory Representations in Human-machine Interfaces},</p>
-<p>journal = {ACM Comput. Surv.},</p>
-<p>issue_date = {November 2013},</p>
-<p>volume = {46},</p>
-<p>number = {2},</p>
-<p>month = dec,</p>
-<p>year = {2013},</p>
-<p>issn = {0360-0300},</p>
-<p>pages = {19:1--19:23},</p>
-<p>articleno = {19},</p>
-<p>numpages = {23},</p>
-<p>url = &lt;http://doi.acm.org/10.1145/2543581.2543586></p>
-<p>doi = {10.1145/2543581.2543586},</p>
-<p>acmid = {2543586},</p>
-<p>publisher = {ACM},</p>
-<p>address = {New York, NY, USA},</p>
-<p>keywords = {Auditory icon, earcon, sonification},</p>
-<p>}</p>
-<p>~~~~~</p>
-                <div class="htmltruncate-bottom"></div>
-            </div>
-            <a href="/speech-not-optimal_-16-.html" class="btn btn-default">...</a>
-        
-    </div>
-</div>
-
-
-<ul class="pagination">
-  
-  
-    <li class="active">
-        <a href="#" onclick="load_postlist(1); return false;">1</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(2); return false;">2</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(3); return false;">3</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(4); return false;">4</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(5); return false;">5</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(6); return false;">6</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(7); return false;">7</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(8); return false;">8</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(9); return false;">9</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(10); return false;">10</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(11); return false;">11</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(12); return false;">12</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(13); return false;">13</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(14); return false;">14</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(15); return false;">15</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(16); return false;">16</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(17); return false;">17</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(18); return false;">18</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(19); return false;">19</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(20); return false;">20</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(21); return false;">21</a>
-    </li>
-  
-    <li >
-        <a href="#" onclick="load_postlist(22); return false;">22</a>
-    </li>
-  
-  
-  <li><a href="#" onclick="load_postlist(2); return false;">&raquo;</a></li>
-  
-</ul>
-
+</body>
+</html>

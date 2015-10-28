@@ -6,6 +6,20 @@
     <description>Example Site Description</description>
     
     <item>
+        <title>The Video Game and the Archaeologist</title>
+        <link>/video game and the archaeologist.html</link>
+        <pubDate>Wed, 28 Oct 2015 10:09:40 EDT</pubDate>
+        <description>[TOC]  The Video Game and the Archaeologist Tell the colleagues in your department, in your company, that you play video games, and you will be greeted with one of only two reactions: a polite murmur accompanied by the dying look of ‘this person is not serious’, or the enthusiastic...</description>
+    </item>    
+    
+    <item>
+        <title>fixing jupyter to run r</title>
+        <link>/fixing jupyter to run r.html</link>
+        <pubDate>Sun, 25 Oct 2015 21:34:08 EDT</pubDate>
+        <description>`bash install_name_tool -change /Users/shawngraham/miniconda3/lib/libzmq.4.dylib /Users/shawngraham/miniconda3/lib/libzmq.5.dylib /Users/shawngraham/miniconda3/lib/R/library/rzmq/libs/rzmq.so `...</description>
+    </item>    
+    
+    <item>
         <title>Sonification of John Adams' diaries</title>
         <link>/sonification of john adams.html</link>
         <pubDate>Fri, 16 Oct 2015 09:46:46 EDT</pubDate>
@@ -689,20 +703,6 @@
         <link>/senseshed_-44-.html</link>
         <pubDate>Wed, 07 Oct 2015 22:13:44 EDT</pubDate>
         <description>eve augmented phenomenology p586 + GIS rendering analogous to 'view sheds' but for other senses; not just that which can be seen but also that which could be heard / smelled / etc + thus amenable to computer modelling....</description>
-    </item>    
-    
-    <item>
-        <title>53_categories_of_haptic_AR_Displays_-67-.md</title>
-        <link>/categories_of_haptic_AR_Displays_-67-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:33 EDT</pubDate>
-        <description>Bau and Poupyrev p 89:3 + extrinsic haptic: built into the surface of the display or environment; all users feel the same thing -intrinsic: it is the user who is augmented by 'altering the user's tactical perception' \(through wearables or direct neurosensory stimulation\); thus provides individualized perspective -also differs in...</description>
-    </item>    
-    
-    <item>
-        <title>54_cognitive_life_of_objects_artefacts_-68-.md</title>
-        <link>/cognitive_life_of_objects_artefacts_-68-.html</link>
-        <pubDate>Wed, 07 Oct 2015 22:13:33 EDT</pubDate>
-        <description>p5 malafouris & renfrew '...the cognitive life of a thing can be that of an object \(via objectification\) or an artefact \(via intentional use and/or modification... it is amongst these fine distinctions between thing, object, and artefact that the meaning of the cognitive life of things can be found, that...</description>
     </item>    
     
 </channel>
