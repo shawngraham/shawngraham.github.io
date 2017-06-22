@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent &amp; Upcoming Talks on Shawn M Graham</title>
+    <link>https://example.com/talk/</link>
+    <description>Recent content in Recent &amp; Upcoming Talks on Shawn M Graham</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/talk/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A digital synesthesia: experiments in using and abusing sonification for hearing patterns in archaeological data</title>
+      <link>https://example.com/talk/lund/</link>
+      <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/talk/lund/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Big Data Gothic and Digital Archaeology</title>
+      <link>https://example.com/talk/ucl/</link>
+      <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/talk/ucl/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computational Creativity on Shawn M Graham</title>
+    <link>https://example.com/tags/computational-creativity/</link>
+    <description>Recent content in Computational Creativity on Shawn M Graham</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
+    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/computational-creativity/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Archaeogaming</title>
+      <link>https://example.com/project/archaeogaming/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/project/archaeogaming/</guid>
+      <description>&lt;p&gt;A series of experiments involving making games, studying games, and teaching with/about/in games. Primarily video, but not necessarily so.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Glitch</title>
+      <link>https://example.com/project/glitch/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/project/glitch/</guid>
+      <description>&lt;p&gt;The way things break is interesting. Consider – when I have students beginning DH work, the terminal or command line is a scary place. Type something wrong, and the screen fills with error messages. Parse those errors correctly, and you learn much.&lt;/p&gt;
+
+&lt;p&gt;Conversely, do things correct the first time, and you are rewarded with another blinking cursor. Nothing much appears to happen. Breaking things is where learning happens. Breaking things is very nearly the entirety of my academic schtick.&lt;/p&gt;
+
+&lt;p&gt;But there’s also a third, more liminal space between something that is broken, and something that works. This third space is what interests me today. You could call it GlitchSpace, or that zone where things break in weird yet still quasi-functioning ways. I’m new at this, so bear with me. But I think we can learn a lot from Glitch. Today, I want to take you through what the glitch aesthetic does to my thinking, as I switch from analog to digital back to analog. In particular, I’m interested in copies of things.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

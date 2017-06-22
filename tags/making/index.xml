@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Making on Shawn M Graham</title>
+    <link>https://example.com/tags/making/</link>
+    <description>Recent content in Making on Shawn M Graham</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
+    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/making/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Epoiesen: A journal for creative engagement in history and archaeology</title>
+      <link>https://example.com/project/epoiesen/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/project/epoiesen/</guid>
+      <description>&lt;p&gt;ἐποίησεν (epoiesen)- made – is a journal for exploring creative engagement with the past, especially through digital means. It publishes primarily what might be thought of as ‘paradata’ or artist’s statements that accompany playful and unfamiliar forms of singing the past into existence. These could be visualizations, art works, games, pop-up installations, poetry, hypertext fiction, procedurally generated works, or other forms yet to be devised. We seek to document and valorize the scholarly creativity that underpins our representations of the past. Epoiesen is therefore a kind of witness to the implied knowledge of archaeologists, historians, and other professionals, academics and artists as it intersects with the sources about the past. It encourages engagement with the past that reaches beyond our traditional audience (ourselves). We situate Epoiesen in dialogue with approaches to computational creativity or generative art:&lt;/p&gt;
+
+&lt;p&gt;I think that generative art should ideally retain two disparate levels of perception: the material and visual qualities of a piece of art, and then a creation story or script and the intellectual journey that led to the end result. It possibly should bear marks of that intense interaction with the spatial environment that the visible work manifests.
+Paavo Toivanen ‘On Generative Art‘
+Epoiesen accepts code artefacts, written submissions in text files (.md) written with the Markdown syntax, videos, 3d .obj files, html, or other formats (contact us if you are unsure: we encourage experimentation). Digital artefacts should be accompanied by the descriptive paradata or artist’s statement.&lt;/p&gt;
+
+&lt;p&gt;Submissions will be reviewed, and the reviews will be published at the same time as a Response, under the reviewers’ own names. Submissions and Responses will each have their own Digital Object Identifiers. Epoiesen eventually will be indexed; it is supported by Carleton University’s MacOdrum Library. Submissions are accepted at any time, and published as they become ready. Each year’s submissions will be organized retroactively into ‘annuals’. The entire journal will be archived and deposited in a dataverse-powered repository at Carleton University.&lt;/p&gt;
+
+&lt;p&gt;There are no article processing fees. We are generously supported by MacOdrum Library at Carleton University for at least five years.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://electricarchaeology.ca/?s=epoiesen&#34; target=&#34;_blank&#34;&gt;More information&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
