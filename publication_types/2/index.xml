@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2 on Shawn M Graham</title>
-    <link>https://example.com/publication_types/2/</link>
+    <link>https://shawngraham.github.io/publication_types/2/</link>
     <description>Recent content in 2 on Shawn M Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,10 +12,10 @@
     
     <item>
       <title>The Sound of Data (a gentle introduction to sonification for historians)</title>
-      <link>https://example.com/publication/sound-of-data/</link>
+      <link>https://shawngraham.github.io/publication/sound-of-data/</link>
       <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/publication/sound-of-data/</guid>
+      <guid>https://shawngraham.github.io/publication/sound-of-data/</guid>
       <description></description>
     </item>
     

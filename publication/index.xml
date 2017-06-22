@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Publications on Shawn M Graham</title>
-    <link>https://example.com/publication/</link>
+    <link>https://shawngraham.github.io/publication/</link>
     <description>Recent content in Publications on Shawn M Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,19 +12,19 @@
     
     <item>
       <title>The Sound of Data (a gentle introduction to sonification for historians)</title>
-      <link>https://example.com/publication/sound-of-data/</link>
+      <link>https://shawngraham.github.io/publication/sound-of-data/</link>
       <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/publication/sound-of-data/</guid>
+      <guid>https://shawngraham.github.io/publication/sound-of-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exploring Big Historical Data: The Historian&#39;s Macroscope</title>
-      <link>https://example.com/publication/macroscope/</link>
+      <link>https://shawngraham.github.io/publication/macroscope/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/publication/macroscope/</guid>
+      <guid>https://shawngraham.github.io/publication/macroscope/</guid>
       <description></description>
     </item>
     

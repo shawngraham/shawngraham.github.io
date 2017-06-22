@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Shawn M Graham</title>
-    <link>https://example.com/tags/</link>
+    <link>https://shawngraham.github.io/tags/</link>
     <description>Recent content in Tags on Shawn M Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,47 +12,47 @@
     
     <item>
       <title>Content tagged as &#39;Academic&#39;</title>
-      <link>https://example.com/tags/academic/</link>
+      <link>https://shawngraham.github.io/tags/academic/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/academic/</guid>
+      <guid>https://shawngraham.github.io/tags/academic/</guid>
       <description>&lt;p&gt;Here is a list of all the content that has been tagged as &lt;em&gt;academic&lt;/em&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Computational Creativity</title>
-      <link>https://example.com/tags/computational-creativity/</link>
+      <link>https://shawngraham.github.io/tags/computational-creativity/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/computational-creativity/</guid>
+      <guid>https://shawngraham.github.io/tags/computational-creativity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Making</title>
-      <link>https://example.com/tags/making/</link>
+      <link>https://shawngraham.github.io/tags/making/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/making/</guid>
+      <guid>https://shawngraham.github.io/tags/making/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Open Access</title>
-      <link>https://example.com/tags/open-access/</link>
+      <link>https://shawngraham.github.io/tags/open-access/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/open-access/</guid>
+      <guid>https://shawngraham.github.io/tags/open-access/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pedagogy</title>
-      <link>https://example.com/tags/pedagogy/</link>
+      <link>https://shawngraham.github.io/tags/pedagogy/</link>
       <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/pedagogy/</guid>
+      <guid>https://shawngraham.github.io/tags/pedagogy/</guid>
       <description></description>
     </item>
     

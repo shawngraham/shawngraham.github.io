@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shawn M Graham on Shawn M Graham</title>
-    <link>https://example.com/</link>
+    <link>https://shawngraham.github.io/</link>
     <description>Recent content in Shawn M Graham on Shawn M Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,10 +12,10 @@
     
     <item>
       <title>ODATE: Open Digital Archaeology Textbook Environment</title>
-      <link>https://example.com/project/odate/</link>
+      <link>https://shawngraham.github.io/project/odate/</link>
       <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/project/odate/</guid>
+      <guid>https://shawngraham.github.io/project/odate/</guid>
       <description>&lt;p&gt;Digital archaeology as a subfield rests upon the creative use of primarily open-source and/or open-access materials to archive, reuse, visualize, analyze and communicate archaeological data. Digital archaeology encourages innovative and critical use of open access data and the development of digital tools that facilitate linkages and analysis across varied digital sources.&lt;/p&gt;
 
 &lt;p&gt;To that end, the proposed ‘e-textbook’ is an integrated cloud-based digital exploratory laboratory of multiple cloud-computing tools with teaching materials that instructors will be able to use ‘out-of-the-box’ with a single click, or to remix as circumstances dictate.&lt;/p&gt;
@@ -30,47 +30,47 @@
     
     <item>
       <title>A digital synesthesia: experiments in using and abusing sonification for hearing patterns in archaeological data</title>
-      <link>https://example.com/talk/lund/</link>
+      <link>https://shawngraham.github.io/talk/lund/</link>
       <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/talk/lund/</guid>
+      <guid>https://shawngraham.github.io/talk/lund/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Big Data Gothic and Digital Archaeology</title>
-      <link>https://example.com/talk/ucl/</link>
+      <link>https://shawngraham.github.io/talk/ucl/</link>
       <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/talk/ucl/</guid>
+      <guid>https://shawngraham.github.io/talk/ucl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Sound of Data (a gentle introduction to sonification for historians)</title>
-      <link>https://example.com/publication/sound-of-data/</link>
+      <link>https://shawngraham.github.io/publication/sound-of-data/</link>
       <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/publication/sound-of-data/</guid>
+      <guid>https://shawngraham.github.io/publication/sound-of-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Archaeogaming</title>
-      <link>https://example.com/project/archaeogaming/</link>
+      <link>https://shawngraham.github.io/project/archaeogaming/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/project/archaeogaming/</guid>
+      <guid>https://shawngraham.github.io/project/archaeogaming/</guid>
       <description>&lt;p&gt;A series of experiments involving making games, studying games, and teaching with/about/in games. Primarily video, but not necessarily so.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Epoiesen: A journal for creative engagement in history and archaeology</title>
-      <link>https://example.com/project/epoiesen/</link>
+      <link>https://shawngraham.github.io/project/epoiesen/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/project/epoiesen/</guid>
+      <guid>https://shawngraham.github.io/project/epoiesen/</guid>
       <description>&lt;p&gt;ἐποίησεν (epoiesen)- made – is a journal for exploring creative engagement with the past, especially through digital means. It publishes primarily what might be thought of as ‘paradata’ or artist’s statements that accompany playful and unfamiliar forms of singing the past into existence. These could be visualizations, art works, games, pop-up installations, poetry, hypertext fiction, procedurally generated works, or other forms yet to be devised. We seek to document and valorize the scholarly creativity that underpins our representations of the past. Epoiesen is therefore a kind of witness to the implied knowledge of archaeologists, historians, and other professionals, academics and artists as it intersects with the sources about the past. It encourages engagement with the past that reaches beyond our traditional audience (ourselves). We situate Epoiesen in dialogue with approaches to computational creativity or generative art:&lt;/p&gt;
 
 &lt;p&gt;I think that generative art should ideally retain two disparate levels of perception: the material and visual qualities of a piece of art, and then a creation story or script and the intellectual journey that led to the end result. It possibly should bear marks of that intense interaction with the spatial environment that the visible work manifests.
@@ -87,10 +87,10 @@ Epoiesen accepts code artefacts, written submissions in text files (.md) written
     
     <item>
       <title>Glitch</title>
-      <link>https://example.com/project/glitch/</link>
+      <link>https://shawngraham.github.io/project/glitch/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/project/glitch/</guid>
+      <guid>https://shawngraham.github.io/project/glitch/</guid>
       <description>&lt;p&gt;The way things break is interesting. Consider – when I have students beginning DH work, the terminal or command line is a scary place. Type something wrong, and the screen fills with error messages. Parse those errors correctly, and you learn much.&lt;/p&gt;
 
 &lt;p&gt;Conversely, do things correct the first time, and you are rewarded with another blinking cursor. Nothing much appears to happen. Breaking things is where learning happens. Breaking things is very nearly the entirety of my academic schtick.&lt;/p&gt;
@@ -101,10 +101,10 @@ Epoiesen accepts code artefacts, written submissions in text files (.md) written
     
     <item>
       <title>Exploring Big Historical Data: The Historian&#39;s Macroscope</title>
-      <link>https://example.com/publication/macroscope/</link>
+      <link>https://shawngraham.github.io/publication/macroscope/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/publication/macroscope/</guid>
+      <guid>https://shawngraham.github.io/publication/macroscope/</guid>
       <description></description>
     </item>
     
