@@ -28,5 +28,78 @@
       <description></description>
     </item>
     
+    <item>
+      <title>#PATC Keynote: Bots of Archaeology</title>
+      <link>https://shawngraham.github.io/talk/bots-of-archaeology/</link>
+      <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/talk/bots-of-archaeology/</guid>
+      <description>&lt;p&gt;The following were tweeted out in the appointed time slot.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;For the longest time there was a theory current that I, Shawn, was not actually a real person but a bot &lt;a href=&#34;https://t.co/bwGvRmjsv1&#34; target=&#34;_blank&#34;&gt;https://t.co/bwGvRmjsv1&lt;/a&gt; #patc 1 of 25&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Bots have long been on the web. In 2005, Wired was telling us how to buy our own pokerbots for fun &amp;amp;profit &lt;a href=&#34;https://t.co/xaCECvXA2v&#34; target=&#34;_blank&#34;&gt;https://t.co/xaCECvXA2v&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;amp; let’s not even broach the bots tweet for political partisan purposes. Not as recent as you might think – &lt;a href=&#34;https://t.co/9xtffauxna&#34; target=&#34;_blank&#34;&gt;https://t.co/9xtffauxna&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;No, I want to know how you can tell if I’m a real human or not. Let’s run myself, &amp;amp; bots \@tinyarchae &amp;amp; \@glitcharchaeo through Bot or Not.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Or just click on these links &lt;a href=&#34;https://t.co/pQ5Hz5ehXQ&#34; target=&#34;_blank&#34;&gt;https://t.co/pQ5Hz5ehXQ&lt;/a&gt; &lt;a href=&#34;https://t.co/Es0RWpbBGh&#34; target=&#34;_blank&#34;&gt;https://t.co/Es0RWpbBGh&lt;/a&gt; &lt;a href=&#34;https://t.co/AUs58AgwUd&#34; target=&#34;_blank&#34;&gt;https://t.co/AUs58AgwUd&lt;/a&gt;
+I may well be a bot.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To a bot-detecting algorithm, my performance on twitter makes it 1 in 4 that I’m a bot. \@Tinyarchae has 1 in 3 chance of being a bot.Hmm. pic.twitter.com/wJjqgco1xP&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;And \@archaeoglitch has 1 in 5 chance. P’haps I am a bot after all. Or maybe, performing here means we take on algorithmic characteristics? pic.twitter.com/GibiLgmQvm&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;So what does this mean for public archae on twitter? We talk about twitter as 1 of many kinds of socnets, in digital platform sense.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Network’ describes a system of relationships; but a better word is ‘meshwork’ in Tim Ingold’s sense: lines that parallel, intertwine&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Meshworks are defined by knots; knots leave loose ends. Lines in this case are our own lives,each tweet p’haps a knot in larger meshworks&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;a knot tying us together through the digital aether, whether we react to it, view it, click on it, respond to it, reflect on it&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;in which case it doesn’t matter if the agency behind the tweet is human or algorithmic. We respond to the tweets, and they respond to us.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;We &lt;em&gt;correspond&lt;/em&gt;. Co – respond. We go along together.
+This isn’t ‘interactivity’. Consider Ingold’s kite flyer, the kite, and the air.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;‘It is not that you need air to interact with a kite; rather you need a kite to correspond with the air’.
+So,Tweeter – tweet – platform&amp;gt; pic.twitter.com/kL55UcZdJT&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;It’s not that you need the platform to interact with a tweet; you need the tweet to correspond with the platform
+(Ron &amp;amp; Harry: fail) &lt;a href=&#34;http://pic.twitter.com/1qAdWB36BK&#34; target=&#34;_blank&#34;&gt;http://pic.twitter.com/1qAdWB36BK&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;That is to say, we are changed in particular ways by our interactions with twitter.
+We are made bot like and algorithmic. pic.twitter.com/CyhUWyLOif&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;so let us use this idea to turn tweeps into archaes &amp;amp; put bots into human context. Here&amp;rsquo;s source for \@tinyarchae &lt;a href=&#34;https://t.co/v8CI3JV4ez&#34; target=&#34;_blank&#34;&gt;https://t.co/v8CI3JV4ez&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;It’s a jumble of json, keys &amp;amp; values. I use tracery.io. The code is a layering of intentions and knots, cuts &amp;amp; fills of semantic spaces&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;surface is what you see as a tweet, so natural soil, as it were, has to be the ‘origin’ point that specifies all which can be created.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;nice thing about the tracery.io editor, is that it takes the .json that drives everything, and lays it out &lt;em&gt;like a section drawing&lt;/em&gt; (ish) pic.twitter.com/sDdHzhGKsv&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;then it’s just a matter of figuring out what counts as a cut, and what counts as a fill, and where the natural is versus the top… pic.twitter.com/RQjvTfViHY&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;amp; its harris matrix looks like this. So if I can go from generative procedural grammar to some output mediated as section &amp;amp; matrix, &lt;a href=&#34;http://pic.twitter.com/YGGgxokM2H&#34; target=&#34;_blank&#34;&gt;http://pic.twitter.com/YGGgxokM2H&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;I can take a &lt;em&gt;real world&lt;/em&gt; site &amp;amp; reverse engineer to its procedural grammar. &amp;amp; I can get a bot to perform it &amp;amp; you will correspond to it. &lt;a href=&#34;http://pic.twitter.com/gukqNrjjDV&#34; target=&#34;_blank&#34;&gt;http://pic.twitter.com/gukqNrjjDV&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;twitter is fundamentally correspondences through time. It’s not just humans here. The act of corresponding changes us algorithmically&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;so final q to you: how does this human-bot meshwork change public archae? Is archae fundamentally algorithmic?
+Are we all archaeo-bots? pic.twitter.com/N8lHxbpD5G&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;….thank you; have a nice day. Right, @tinyarchae?
+Thanks also to @lornarichardson @clmorgan @ekansa &amp;amp; @adreinhard #patc #keynote2 #out!&lt;/p&gt;
+
+&lt;p&gt;…and if you’re wondering why the featured image (and final image) are shots from the tv adaptation of ‘Going Postal’, by Terry Pratchett, see this.&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

@@ -41,6 +41,15 @@
     
     <url>
     
+      <loc>https://shawngraham.github.io/talk/bots-of-archaeology/</loc>
+      <lastmod>2017-04-27T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://shawngraham.github.io/tags/academic/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     </url>
@@ -104,6 +113,22 @@
     
     <url>
     
+      <loc>https://shawngraham.github.io/content/talk/patc/</loc>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://shawngraham.github.io/patc/</loc>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://shawngraham.github.io/publication_types/2/</loc>
       <lastmod>2016-06-07T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -135,6 +160,15 @@
     
       <loc>https://shawngraham.github.io/tags/computational-creativity/</loc>
       <lastmod>2017-06-22T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://shawngraham.github.io/content/</loc>
       <priority>0</priority>
     </url>
     
