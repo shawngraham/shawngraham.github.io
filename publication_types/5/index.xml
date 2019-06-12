@@ -8,7 +8,9 @@
     <language>en-us</language>
     <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
     <lastBuildDate>Tue, 01 Sep 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/publication_types/5/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://shawngraham.github.io/publication_types/5/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Exploring Big Historical Data: The Historian&#39;s Macroscope</title>

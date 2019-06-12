@@ -8,7 +8,9 @@
     <language>en-us</language>
     <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
     <lastBuildDate>Tue, 20 Jun 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/pedagogy/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://shawngraham.github.io/tags/pedagogy/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>ODATE: Open Digital Archaeology Textbook Environment</title>
@@ -16,16 +18,9 @@
       <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>https://shawngraham.github.io/project/odate/</guid>
-      <description>&lt;p&gt;Digital archaeology as a subfield rests upon the creative use of primarily open-source and/or open-access materials to archive, reuse, visualize, analyze and communicate archaeological data. Digital archaeology encourages innovative and critical use of open access data and the development of digital tools that facilitate linkages and analysis across varied digital sources.&lt;/p&gt;
-
-&lt;p&gt;To that end, the proposed ‘e-textbook’ is an integrated cloud-based digital exploratory laboratory of multiple cloud-computing tools with teaching materials that instructors will be able to use ‘out-of-the-box’ with a single click, or to remix as circumstances dictate.&lt;/p&gt;
-
-&lt;p&gt;We are proposing to create in one package both the integrated digital exploratory laboratory and the written texts that engage the student with the laboratory. Institutions may install it on their own servers, or they may use our hosted version. By taking care of the digital infrastructure that supports learning, the e-textbook enables instructors and students to focus on core learning straight away. We employ a student-centred, experiential, and outcome-based pedagogy, where students develop their own personal learning environment (via remixing our tools and materials provided through the laboratory) networked with their peers, their course professors, and the wider digital community.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://electricarchaeology.ca/?s=odate&#34; target=&#34;_blank&#34;&gt;More information&lt;/a&gt;&lt;/p&gt;
-
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/hVUzJldm5lw&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-</description>
+      <description>NOW PUBLISHED IN PERPETUAL BETA - o-date.github.io
+Digital archaeology as a subfield rests upon the creative use of primarily open-source and/or open-access materials to archive, reuse, visualize, analyze and communicate archaeological data. Digital archaeology encourages innovative and critical use of open access data and the development of digital tools that facilitate linkages and analysis across varied digital sources.
+To that end, the proposed ‘e-textbook’ is an integrated cloud-based digital exploratory laboratory of multiple cloud-computing tools with teaching materials that instructors will be able to use ‘out-of-the-box’ with a single click, or to remix as circumstances dictate.</description>
     </item>
     
     <item>
@@ -34,8 +29,7 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>https://shawngraham.github.io/project/archaeogaming/</guid>
-      <description>&lt;p&gt;A series of experiments involving making games, studying games, and teaching with/about/in games. Primarily video, but not necessarily so.&lt;/p&gt;
-</description>
+      <description>A series of experiments involving making games, studying games, and teaching with/about/in games. Primarily video, but not necessarily so.</description>
     </item>
     
   </channel>

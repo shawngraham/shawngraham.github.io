@@ -8,7 +8,27 @@
     <language>en-us</language>
     <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
     <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/publication/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://shawngraham.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What the Machine Saw: some questions on the ethics of computer vision and machine learning to investigate human remains trafficking</title>
+      <link>https://shawngraham.github.io/publication/what-the-machine-saw/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/publication/what-the-machine-saw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fleshing Out the Bones: Studying the Human Remains Trade with Tensorflow and Inception</title>
+      <link>https://shawngraham.github.io/publication/fleshing/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/publication/fleshing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>The Insta-Dead: The rhetoric of the human remains trade on Instagram</title>

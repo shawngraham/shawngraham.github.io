@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archaeology on Shawn M Graham</title>
+    <link>https://shawngraham.github.io/tags/archaeology/</link>
+    <description>Recent content in Archaeology on Shawn M Graham</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
+    
+	<atom:link href="https://shawngraham.github.io/tags/archaeology/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Bone Trade</title>
+      <link>https://shawngraham.github.io/project/bone-trade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/project/bone-trade/</guid>
+      <description>There is a thriving online trade in anatomical, ethnographic and archaeological human remains that makes ready use of new social media such as Instagram, Facebook, Etsy, and until recently, eBay. The “fetishization” of the ‘exotic’ dead that underpins this trade by its very nature transforms pieces of the body into material culture: curios, commodities or objets d’art. This practice has deep Colonial-era roots, but today’s e-commerce and social media platforms have only expanded collectors’ reach and made participation open to anyone with interest and spare finances.</description>
+    </item>
+    
+  </channel>
+</rss>

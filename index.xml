@@ -11,6 +11,24 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>What the Machine Saw: some questions on the ethics of computer vision and machine learning to investigate human remains trafficking</title>
+      <link>https://shawngraham.github.io/publication/what-the-machine-saw/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/publication/what-the-machine-saw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fleshing Out the Bones: Studying the Human Remains Trade with Tensorflow and Inception</title>
+      <link>https://shawngraham.github.io/publication/fleshing/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/publication/fleshing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Glitch</title>
       <link>https://shawngraham.github.io/project/glitch/</link>
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
@@ -30,7 +48,9 @@
       <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>https://shawngraham.github.io/project/odate/</guid>
-      <description>&lt;p&gt;Digital archaeology as a subfield rests upon the creative use of primarily open-source and/or open-access materials to archive, reuse, visualize, analyze and communicate archaeological data. Digital archaeology encourages innovative and critical use of open access data and the development of digital tools that facilitate linkages and analysis across varied digital sources.&lt;/p&gt;
+      <description>&lt;p&gt;NOW PUBLISHED IN PERPETUAL BETA - &lt;a href=&#34;http://o-date.github.io&#34; target=&#34;_blank&#34;&gt;o-date.github.io&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Digital archaeology as a subfield rests upon the creative use of primarily open-source and/or open-access materials to archive, reuse, visualize, analyze and communicate archaeological data. Digital archaeology encourages innovative and critical use of open access data and the development of digital tools that facilitate linkages and analysis across varied digital sources.&lt;/p&gt;
 
 &lt;p&gt;To that end, the proposed ‘e-textbook’ is an integrated cloud-based digital exploratory laboratory of multiple cloud-computing tools with teaching materials that instructors will be able to use ‘out-of-the-box’ with a single click, or to remix as circumstances dictate.&lt;/p&gt;
 
@@ -197,6 +217,18 @@ Epoiesen accepts code artefacts, written submissions in text files (.md) written
       
       <guid>https://shawngraham.github.io/publication/macroscope/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>The Bone Trade</title>
+      <link>https://shawngraham.github.io/project/bone-trade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/project/bone-trade/</guid>
+      <description>&lt;p&gt;There is a thriving online trade in anatomical, ethnographic and archaeological human remains that makes ready use of new social media such as Instagram, Facebook, Etsy, and until recently, eBay. The “fetishization” of the ‘exotic’ dead that underpins this trade by its very nature transforms pieces of the body into material culture: curios, commodities or objets d’art. This practice has deep Colonial-era roots, but today’s e-commerce and social media platforms have only expanded collectors’ reach and made participation open to anyone with interest and spare finances. The sheer volume of materials being produced, shared, and sold can be overwhelming for a small team to study. The market moves so fast.&lt;/p&gt;
+
+&lt;p&gt;Can we teach machines to identify from photographs alone patterns in the ‘visual rhetoric’ that signal materials for sale? Can ‘licit’ materials be discerned from ‘illicit’? Are there geographical patterns? Can we trace materials back to a source?&lt;/p&gt;
+</description>
     </item>
     
   </channel>

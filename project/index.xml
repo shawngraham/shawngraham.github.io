@@ -8,7 +8,9 @@
     <language>en-us</language>
     <copyright>&amp;copy; 2016 Shawn M Graham</copyright>
     <lastBuildDate>Thu, 22 Jun 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/project/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://shawngraham.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Glitch</title>
@@ -16,12 +18,8 @@
       <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>https://shawngraham.github.io/project/glitch/</guid>
-      <description>&lt;p&gt;In my &lt;a href=&#34;https://smgprojects.github.io/soundbashing-history/&#34; target=&#34;_blank&#34;&gt;open notebook&lt;/a&gt; I&amp;rsquo;ve been thinking of much the same thing in terms of just sound, calling it &amp;lsquo;soundbashing history&amp;rsquo;. I think I&amp;rsquo;ll go with &amp;lsquo;Glitch&amp;rsquo; right now as a more comprehensive idea.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;The way things break is interesting. Consider – when I have students beginning DH work, the terminal or command line is a scary place. Type something wrong, and the screen fills with error messages. Parse those errors correctly, and you learn much. Conversely, do things correct the first time, and you are rewarded with another blinking cursor. Nothing much appears to happen. Breaking things is where learning happens. Breaking things is very nearly the entirety of my academic schtick. &lt;Br&gt; But there’s also a third, more liminal space between something that is broken, and something that works. This third space is what interests me today. You could call it GlitchSpace, or that zone where things break in weird yet still quasi-functioning ways. I think we can learn a lot from Glitch. This project explores the glitch aesthetic and what it does to my historical thinking, as I switch from analog to digital back to analog.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>In my open notebook I&amp;rsquo;ve been thinking of much the same thing in terms of just sound, calling it &amp;lsquo;soundbashing history&amp;rsquo;. I think I&amp;rsquo;ll go with &amp;lsquo;Glitch&amp;rsquo; right now as a more comprehensive idea.
+ The way things break is interesting. Consider – when I have students beginning DH work, the terminal or command line is a scary place. Type something wrong, and the screen fills with error messages. Parse those errors correctly, and you learn much.</description>
     </item>
     
     <item>
@@ -30,16 +28,9 @@
       <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>https://shawngraham.github.io/project/odate/</guid>
-      <description>&lt;p&gt;Digital archaeology as a subfield rests upon the creative use of primarily open-source and/or open-access materials to archive, reuse, visualize, analyze and communicate archaeological data. Digital archaeology encourages innovative and critical use of open access data and the development of digital tools that facilitate linkages and analysis across varied digital sources.&lt;/p&gt;
-
-&lt;p&gt;To that end, the proposed ‘e-textbook’ is an integrated cloud-based digital exploratory laboratory of multiple cloud-computing tools with teaching materials that instructors will be able to use ‘out-of-the-box’ with a single click, or to remix as circumstances dictate.&lt;/p&gt;
-
-&lt;p&gt;We are proposing to create in one package both the integrated digital exploratory laboratory and the written texts that engage the student with the laboratory. Institutions may install it on their own servers, or they may use our hosted version. By taking care of the digital infrastructure that supports learning, the e-textbook enables instructors and students to focus on core learning straight away. We employ a student-centred, experiential, and outcome-based pedagogy, where students develop their own personal learning environment (via remixing our tools and materials provided through the laboratory) networked with their peers, their course professors, and the wider digital community.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://electricarchaeology.ca/?s=odate&#34; target=&#34;_blank&#34;&gt;More information&lt;/a&gt;&lt;/p&gt;
-
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/hVUzJldm5lw&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-</description>
+      <description>NOW PUBLISHED IN PERPETUAL BETA - o-date.github.io
+Digital archaeology as a subfield rests upon the creative use of primarily open-source and/or open-access materials to archive, reuse, visualize, analyze and communicate archaeological data. Digital archaeology encourages innovative and critical use of open access data and the development of digital tools that facilitate linkages and analysis across varied digital sources.
+To that end, the proposed ‘e-textbook’ is an integrated cloud-based digital exploratory laboratory of multiple cloud-computing tools with teaching materials that instructors will be able to use ‘out-of-the-box’ with a single click, or to remix as circumstances dictate.</description>
     </item>
     
     <item>
@@ -48,8 +39,7 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>https://shawngraham.github.io/project/archaeogaming/</guid>
-      <description>&lt;p&gt;A series of experiments involving making games, studying games, and teaching with/about/in games. Primarily video, but not necessarily so.&lt;/p&gt;
-</description>
+      <description>A series of experiments involving making games, studying games, and teaching with/about/in games. Primarily video, but not necessarily so.</description>
     </item>
     
     <item>
@@ -58,18 +48,16 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>https://shawngraham.github.io/project/epoiesen/</guid>
-      <description>&lt;p&gt;ἐποίησεν (epoiesen)- made – is a journal for exploring creative engagement with the past, especially through digital means. It publishes primarily what might be thought of as ‘paradata’ or artist’s statements that accompany playful and unfamiliar forms of singing the past into existence. These could be visualizations, art works, games, pop-up installations, poetry, hypertext fiction, procedurally generated works, or other forms yet to be devised. We seek to document and valorize the scholarly creativity that underpins our representations of the past. Epoiesen is therefore a kind of witness to the implied knowledge of archaeologists, historians, and other professionals, academics and artists as it intersects with the sources about the past. It encourages engagement with the past that reaches beyond our traditional audience (ourselves). We situate Epoiesen in dialogue with approaches to computational creativity or generative art:&lt;/p&gt;
-
-&lt;p&gt;I think that generative art should ideally retain two disparate levels of perception: the material and visual qualities of a piece of art, and then a creation story or script and the intellectual journey that led to the end result. It possibly should bear marks of that intense interaction with the spatial environment that the visible work manifests.
-Paavo Toivanen ‘On Generative Art‘
-Epoiesen accepts code artefacts, written submissions in text files (.md) written with the Markdown syntax, videos, 3d .obj files, html, or other formats (contact us if you are unsure: we encourage experimentation). Digital artefacts should be accompanied by the descriptive paradata or artist’s statement.&lt;/p&gt;
-
-&lt;p&gt;Submissions will be reviewed, and the reviews will be published at the same time as a Response, under the reviewers’ own names. Submissions and Responses will each have their own Digital Object Identifiers. Epoiesen eventually will be indexed; it is supported by Carleton University’s MacOdrum Library. Submissions are accepted at any time, and published as they become ready. Each year’s submissions will be organized retroactively into ‘annuals’. The entire journal will be archived and deposited in a dataverse-powered repository at Carleton University.&lt;/p&gt;
-
-&lt;p&gt;There are no article processing fees. We are generously supported by MacOdrum Library at Carleton University for at least five years.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://electricarchaeology.ca/?s=epoiesen&#34; target=&#34;_blank&#34;&gt;More information&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>ἐποίησεν (epoiesen)- made – is a journal for exploring creative engagement with the past, especially through digital means. It publishes primarily what might be thought of as ‘paradata’ or artist’s statements that accompany playful and unfamiliar forms of singing the past into existence. These could be visualizations, art works, games, pop-up installations, poetry, hypertext fiction, procedurally generated works, or other forms yet to be devised. We seek to document and valorize the scholarly creativity that underpins our representations of the past.</description>
+    </item>
+    
+    <item>
+      <title>The Bone Trade</title>
+      <link>https://shawngraham.github.io/project/bone-trade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shawngraham.github.io/project/bone-trade/</guid>
+      <description>There is a thriving online trade in anatomical, ethnographic and archaeological human remains that makes ready use of new social media such as Instagram, Facebook, Etsy, and until recently, eBay. The “fetishization” of the ‘exotic’ dead that underpins this trade by its very nature transforms pieces of the body into material culture: curios, commodities or objets d’art. This practice has deep Colonial-era roots, but today’s e-commerce and social media platforms have only expanded collectors’ reach and made participation open to anyone with interest and spare finances.</description>
     </item>
     
   </channel>
