@@ -18,7 +18,7 @@ output:
  
 ## Bio
 
-Dr. Shawn Graham is a digital archaeologist in the [Department of History at Carleton University in Ottawa, Canada](https://carleton.ca/history). He is also the Programme Coordinator for the [MA specialization in Digital Humanities](https://carleton.ca/dighum). He edits the open access journal [Epoiesen: A Journal for Creative Engagement in History and Archaeology](https://epoiesen.library.carleton.ca/). 
+Dr. Shawn Graham is a digital archaeologist and Full Professor in the [Department of History at Carleton University in Ottawa, Canada](https://carleton.ca/history). He is also the Programme Coordinator for the [MA specialization in Digital Humanities](https://carleton.ca/dighum). He edits the open access journal [Epoiesen: A Journal for Creative Engagement in History and Archaeology](https://epoiesen.library.carleton.ca/). 
 
 His current major research project, together with his collaborator Damien Huffer, uses neural networks and computer vision to explore the [online trade in human remains](https://bonetrade.github.io). As part of the Computational Research in the Ancient Near East (CRANE) Project from the University of Toronto, he is exploring generative adversarial networks and archaeological photography. His most recent [book](https://www.berghahnbooks.com/title/GrahamEnchantment), 'An Enchantment of Digital Archaeology: Raising the Dead with Agent-Based Models, Archaeogaming and Artificial Intelligence', was published by Berghahn Books. For more on his research, see his [faculty page](https://carleton.ca/history/people/shawn-graham/) or his [publications](https://scholar.google.com/citations?user=IU6usq8AAAAJ&hl=en).
 
