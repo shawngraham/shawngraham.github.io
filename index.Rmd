@@ -5,7 +5,7 @@ links:
   - label: Carleton U
     url: "https://carleton.ca/history/people/shawn-graham/"
   - label: Twitter
-    url: "https://twitter.com/electircarchaeo"
+    url: "https://twitter.com/electricarchaeo"
   - label: GitHub
     url: "https://github.com/shawngraham"
   - label: Email
@@ -18,7 +18,10 @@ output:
  
 ## Bio
 
-Shawn Graham is a digital archaeologist in the [Department of History at Carleton University in Ottawa, Canada](https://carleton.ca/history). He is also the Programme Coordinator for the [MA specialization in Digital Humanities](https://carleton.ca/dighum). He edits the open access journal [Epoiesen: A Journal for Creative Engagement in History and Archaeology](https://epoiesen.library.carleton.ca/). His current research, with his collaborator Damien Huffer, uses neural networks and computer vision to explore the [online trade in human remains](https://bonetrade.github.io). He is part of the multi-institution SSHRC Partnership Grant funded project, ‘CRANE: Computational Research in the Ancient Near East’ led by Tim Harrison of the University of Toronto. Graham’s sub-project involves using neural networks to complete archival photographs for photogrammetric reconstructions. He is also part of the SSHRC Insight Development Grant funded project ‘Nanohistory‘, led by Dr. Matt Milner of Memorial University, exploring graph-theoretic representations of historical events; his subproject seeks to reconstruct museum collecting histories using the nanohistory method.
+Shawn Graham is a digital archaeologist in the [Department of History at Carleton University in Ottawa, Canada](https://carleton.ca/history). He is also the Programme Coordinator for the [MA specialization in Digital Humanities](https://carleton.ca/dighum). He edits the open access journal [Epoiesen: A Journal for Creative Engagement in History and Archaeology](https://epoiesen.library.carleton.ca/). 
+
+His current major research project, with his collaborator Damien Huffer, uses neural networks and computer vision to explore the [online trade in human remains](https://bonetrade.github.io). For more on his research, see his [faculty page](https://carleton.ca/history/people/shawn-graham/) or his [publications](https://scholar.google.com/citations?user=IU6usq8AAAAJ&hl=en).
+
 His work has been featured in the [Ottawa Citizen](https://ottawacitizen.com/news/local-news/carleton-prof-harnesses-machine-learning-to-explore-the-bone-trade-netherworld/), [WIRED](https://www.wired.co.uk/article/instagram-skull-trade), and [The New York Times](https://www.nytimes.com/2020/11/24/science/artificial-intelligence-archaeology-cnn.html#click=https://t.co/sxyEN0tJtu).
 
 In 2019, he won the [Archaeological Institute of America's Award for Outstanding Work in Digital Archaeology](https://www.archaeological.org/grant/digital-archaeology-award/) for leading the creation of the 'Open Digital Archaeology Textbook Environment', [O-DATE](https://o-date.github.io).
