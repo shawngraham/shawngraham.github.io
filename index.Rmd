@@ -6,6 +6,8 @@ links:
     url: "https://carleton.ca/history/people/shawn-graham/"
   - label: Twitter
     url: "https://twitter.com/electricarchaeo"
+  - label: Mastodon
+    url: "https://scholar.social/@electricarchaeo/"
   - label: GitHub
     url: "https://github.com/shawngraham"
   - label: Email
@@ -45,6 +47,8 @@ In 2019, he won the [Archaeological Institute of America's Award for Outstanding
 **Wilfrid Laurier University** | B.A. Hons Archaeology | 1997
 
 ## Current Courses
+
+**HIST3812**  | [Playful Engagement with History](https://hist3812.netlify.app)
 
 **HIST3814o** | [Crafting Digital History](https://craftingdh.netlify.app)  
 
