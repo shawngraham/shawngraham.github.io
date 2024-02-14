@@ -90,19 +90,22 @@ People buy and sell human remains online. Most of this trade these days is over 
 
 ## Articles
 
-Here are a few of his most recent articles; for more see his [Google Scholar profile](https://scholar.google.com/citations?user=IU6usq8AAAAJ&hl=en&authuser=1).
+Here are a few of his favourite articles; for more see his [Google Scholar profile](https://scholar.google.com/citations?user=IU6usq8AAAAJ&hl=en&authuser=1).
 
 
 ### From the Organigram Project
 
-Donna Yates & Shawn Graham (2024) Reputation laundering and museum
-collections: patterns, priorities, provenance, and hidden crime, _International Journal of
-Heritage Studies_, 30:2, 145-164, DOI: [10.1080/13527258.2023.2284740](https://doi.org/10.1080/13527258.2023.2284740)
+Donna Yates and Shawn Graham (2024) "Reputation laundering and museum
+collections: patterns, priorities, provenance, and hidden crime", _International Journal of
+Heritage Studies_, 30:2, 145-164. DOI: [10.1080/13527258.2023.2284740](https://doi.org/10.1080/13527258.2023.2284740)
+
+
+Shawn Graham, Donna Yates, Ahmed El-Roby, Chantal Brousseau, Jonah Ellens, and Callum McDermott (2023) "Relationship prediction in a knowledge graph embedding model of the illicit antiquities trade", _Advances in Archaeological Practice_, 11:2, 126-138. DOI: [10.1017/aap.2023.1](https://doi.org/10.1017/aap.2023.1).
 
 
 ### From the Bone Trade Project
 
-Shawn Graham, Damien Huffer, and Jaime Simons. "When TikTok Discovered the Human Remains Trade: A Case Study" _Open Archaeology_, vol. 8, no. 1, 2022, pp. 196-219. [DOI: 10.1515/opar-2022-0235](https://doi.org/10.1515/opar-2022-0235)
+Shawn Graham and Damien Huffer (2020) "Reproducibility, Replicability, and REvisiting the Insta-Dead and the Human Remains Trade", _Internet Archaeology_, 55. DOI: [10.11141/ia.55.11](https://doi.org/10.11141/ia.55.11).
 
 
 ### From the Computational Creativity Project
