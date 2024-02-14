@@ -3,7 +3,7 @@
 <img src='https://shawngraham.github.io/smg-med-upright.jpeg' align="left" style='height:6.75em'>Dr. Shawn Graham is a digital archaeologist and Full Professor in the [Department of History at Carleton University in Ottawa, Canada](https://carleton.ca/history). He is also the [Programme Coordinator for the MA specialization in Digital Humanities](https://carleton.ca/dighum). He founded and edits the open access journal [Epoiesen: A Journal for Creative Engagement in History and Archaeology](https://epoiesen.carleton.ca/).
 <hr>
 
-[Carleton U](https://carleton.ca/history/people/shawn-graham/) | [Scholar.Social](https://scholar.social/@electricarchaeo) | [Github](https://github.com/shawngraham) | [Research Blog](https://electricarchaeology)
+[Carleton U](https://carleton.ca/history/people/shawn-graham/) | [Scholar.Social](https://scholar.social/@electricarchaeo) | [Github](https://github.com/shawngraham) | [Research Blog](https://electricarchaeology.ca)
 
 
 Scroll along to find more about his:  
