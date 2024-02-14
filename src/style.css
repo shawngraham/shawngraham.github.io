@@ -1,0 +1,444 @@
+/* Global styles*/
+
+@font-face {
+    font-family: hkgrotesk;
+    src: url("./fonts/hkgrotesk-bold.woff") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: hkgrotesk;
+    src: url("./fonts/hkgrotesk-regular.woff") format("woff");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: hkgrotesk;
+    src: url("./fonts/hkgrotesk-italic.woff") format("woff");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: hkgrotesk;
+    src: url("./fonts/hkgrotesk-bolditalic.woff") format("woff");
+    font-style: italic;          
+    font-weight: bold;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: hkgrotesk, sans-serif;
+	touch-action: pan-x pan-y;
+    --background-menu: hsla(0, 0%, 100%, .8);
+    --background: color-mix(in srgb, var(--theme-color) 15%, hsla(0, 0%, 90%, 1));
+    --background-cursor: color-mix(in srgb, var(--theme-color) 10%, hsla(0, 0%, 95%, .9));
+    --background-content: color-mix(in srgb, var(--theme-color) 5%, hsla(0, 0%, 100%, .95));
+    --font: #000;
+    --font-inverted: #fff;
+    --link: color-mix(in srgb, var(--theme-color), var(--font));
+    --hover: var(--theme-color);
+    margin: 0;
+    overflow-x: hidden;
+    background-color: var(--background);
+    color: var(--font);
+}
+
+@media (prefers-color-scheme: dark) {
+    body, body.overlay{
+        --background-menu: hsla(0, 0%, 0%, .8);
+        --background: color-mix(in srgb, var(--theme-color) 5%, hsla(0, 0%, 5%, 1));
+        --background-cursor: color-mix(in srgb, var(--theme-color) 10%, hsla(0, 0%, 10%, .9));
+        --background-content: color-mix(in srgb, var(--theme-color) 15%, hsla(0, 0%, 15%, .95));
+        --font: #fff;
+        --font-inverted: #000;
+    }
+    footer img {
+        filter: invert(100%);
+    }
+}
+
+*::selection {
+    color: var(--font-inverted);
+    background-color: var(--theme-color);
+    opacity: 1;
+}
+
+.content, .content *, canvas, .cursor {
+	transition: opacity 0.25s ease, background-color 0.25s ease;
+}
+
+#app.overlay .content, #app.overlay canvas, #app.overlay .cursor {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.content > figure > img {
+    transition: transform 0.5s ease;
+    cursor: zoom-in; 
+}
+
+.content > a > img {
+    cursor: pointer; 
+}
+
+.content > figure > img.noresize {
+    cursor: unset;
+}
+
+#app.overlay .content.enlarged, #app.overlay .content.enlarged a {
+    opacity: 1;
+    color: var(--background);
+    background-color: var(--background);
+}
+
+#app.overlay .enlarged img {
+    z-index: 1000; 
+	pointer-events: auto;
+	cursor: zoom-out;
+}
+
+p,li {
+    margin: 0;
+    font-size: 1em;
+}
+
+li {
+    margin-bottom: 0.25em;
+}
+
+div.hasImg {
+    background: none;
+    max-width: 25em;
+    text-align: center;
+    padding: 0;
+}
+
+div.hasImg p {
+    margin-top: 0;
+}
+
+div.hasImg img {    
+    margin: auto;
+    padding: 0;
+}
+
+div.hasImg span {
+    background-color: var(--background);    
+}
+
+h1 {
+    margin: .25em 0;
+    font-size: 2em;
+}
+h2 {
+    margin: .25em 0;
+    font-size: 1.5em;
+}
+h3 {
+    margin: .5em 0;
+    font-size: 1.25em;    
+}
+ul {
+    padding: 0 0 0 1em;
+    list-style-type: none;
+    margin: 0.5em 0 0.5em 0;
+}
+ul li::before {
+    content: '·';
+    color: var(--font);
+    margin-right: .55em;
+    margin-left: -.9em;
+}
+blockquote {
+    font-style: italic;
+    margin-inline-start: 1.25em;
+    margin-inline-end: 1.25em;
+    padding: 0;
+}
+p {
+    margin: .5em 0 ;
+}
+
+ /* Specific styles */
+#wrapper {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+.cursor, .cursor--shadow {
+    position: absolute;
+    max-width: 25em;
+    background-color: var(--background-cursor);
+    padding: 1em 1.5em;
+    pointer-events: all;
+    z-index: 1;
+    will-change: top;
+    visibility: hidden;
+    border-radius: 1em;
+}
+.cursor.clone, .cursor--shadow.clone {
+    visibility: visible;
+}
+.cursor--shadow {
+    visibility:  hidden;
+}
+#cursor0, #cursor0_clone { max-width: 30em;}
+.cursor:has(h1) { max-width: 30em;}
+#links {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    z-index: -2;
+    transform: translate3d(0, 0, 0);
+}
+#content {
+    width: 100%;
+    position: relative;
+    pointer-events: all;
+}
+.content {
+    position: absolute;
+    padding: 0.25em .75em;
+    max-width: 25em;
+    background-color: var(--background-content);
+    visibility: hidden;
+    z-index:2;
+    border-radius: .5em;
+    font-size: 0.85em;
+}
+
+.content figure {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.content img, .cursor img {
+    max-width: 100%;
+    height: 25em;
+    max-height: 25em;
+    object-fit: contain;
+}
+
+a {
+    text-decoration:underline;
+    line-height: 0.1em;
+    color: var(--link);
+}
+a:hover {
+    color: var(--hover);
+}
+.anchor a[href^="#"], .anchor a[href^="#"]:hover {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+a[href^="#"] {
+    text-decoration: none;
+    border-bottom: .075em dashed var(--link);
+}
+a[href^="#"]:hover {
+    text-decoration: none;
+    border-bottom: .075em dashed var(--hover);
+}
+
+.left{
+    left: 5vw;
+}
+.right{
+    right: 5vw;
+}
+#menu{
+    z-index: 0;
+    position: fixed;
+    text-align: left;
+    pointer-events: all;
+    font-size: 1em;    
+}
+#menu.active {
+    z-index: 5;
+}
+#anchors{
+    position: relative;
+    left: -100%;
+    transition: all 0.3s ease-in-out;
+    padding: 3em 0.75em 0.75em 0.75em;
+}
+
+#anchors a {
+    cursor: pointer !important;
+}
+
+#anchors p {
+    margin: 0;
+    padding: 0.2em;
+    font-size: 1em;
+    color: var(--font);
+}
+#anchors p:hover, #burger:hover{
+    cursor: pointer;
+}
+#menu.active #anchors {
+   left: 0%;
+   background-color: var(--background-menu);
+}
+#anchors .active a {
+    font-weight: bold;
+    color: var(--font) !important;
+}
+footer{
+    visibility: hidden;
+    display:flex;
+    justify-content: space-between;    
+    padding: 2em 2em 1em 2em;
+    font-size: 1em;
+    background-color: var(--background);
+    color: var(--font);
+}
+footer img {
+    vertical-align: top;
+    margin-right: 1.5em;
+    opacity: .75;
+}
+
+footer a:hover img, footer a:active img {
+    opacity: 1;
+}
+#cursors{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    scroll-behavior: unset;
+    display: flex;
+    justify-content: center;
+}
+.cursor{
+    scroll-behavior: unset;
+}
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    body {
+        font-size: 15px !important;
+    }
+    h1 { font-size: 1.75em; }
+
+    .content, figure {
+        max-width: 20em !important;
+    }
+
+    .content img, #cursor img {
+        max-width: 17.5em;
+        max-height: 17.5em;
+        height: 17.5em;
+    }
+
+    .cursor{
+        max-width: 85%;
+        left: unset;
+        transform: unset;
+        margin: auto;
+    }
+
+    .cursor:has(h1){
+        max-width: 85%;
+        left: unset;
+        transform: unset;
+        margin: auto;        
+    }
+    #menu{
+        right: 0;
+        text-align: right;
+        font-size: 1.5em;
+    }
+    #anchors {
+        left: unset;
+        right: -100%;
+    }
+    #anchors p {
+        margin: 0;
+        padding: 0.2em;
+        font-size: .9em;
+    }
+    #menu.active #anchors{
+        left: unset;
+        right: 0;
+    }
+
+    footer {
+        display:unset;
+        justify-content: center;
+        margin: auto;
+    }
+
+    footer p {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 1em 0 0 0;
+    }
+    footer p a:last-child img {
+        margin-right: 0;
+    }
+}
+
+/* BURGER */
+
+.hamburger-icon {
+    pointer-events: all;
+    position: fixed;
+    height: 3em;
+    width: 3.5em;
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+   }
+   
+.icon-1, .icon-2, .icon-3 {
+  position: absolute;
+  left: .8em;
+  top: 1.5em;
+  width: 1.75em;
+  height: .1em;
+  background-color: var(--font);
+  transition: all 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.icon-1 {
+  transform: translateY(-8px);
+  animation-delay: 100ms;
+}
+
+.icon-3 {
+  transform: translateY(8px);
+  animation-delay: 250ms;
+}
+.icon-1.a {
+  transform: rotate(40deg);
+}
+
+.icon-3.b {
+  transform: rotate(-40deg);
+}
+
+.icon-2.c {
+  opacity: 0;
+}
+.clear {
+  clear: both;
+}
+@media screen and (orientation: portrait) and (max-width: 767px) {
+    .hamburger-icon{
+        left: unset;
+        right: 1%;
+    }
+}
