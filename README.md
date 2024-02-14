@@ -202,6 +202,8 @@ This website uses the *Syllabus Site* template put together by [Philipp Proff](h
 ---
 
 
+Shawn Graham, Department of History 
+
 [<img src='img/carleton-logo.webp' class='noresized'>](https://carleton.ca/history/) 
 
 [Source Code](https://github.com/uclab-potsdam/syllabus-site/)
