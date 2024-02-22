@@ -3,7 +3,7 @@
 <img src='https://shawngraham.github.io/smg-med-upright.jpeg' align="left" style='height:6.75em'>Dr. Shawn Graham is a digital archaeologist and Full Professor in the [Department of History at Carleton University in Ottawa, Canada](https://carleton.ca/history). He is also the [Programme Coordinator for the MA specialization in Digital Humanities](https://carleton.ca/dighum). He founded and edits the open access journal [Epoiesen: A Journal for Creative Engagement in History and Archaeology](https://epoiesen.carleton.ca/).
 <hr>
 
-[Carleton U](https://carleton.ca/history/people/shawn-graham/) | [Scholar.Social](https://scholar.social/@electricarchaeo) | [Github](https://github.com/shawngraham) | [Research Blog](https://electricarchaeology.ca)
+[Carleton U](https://carleton.ca/history/people/shawn-graham/) | [Scholar.Social](https://scholar.social/@electricarchaeo) | [Github](https://github.com/shawngraham) | [Research Blog](https://electricarchaeology)
 
 
 Scroll along to find more about his:  
@@ -122,6 +122,15 @@ Listen to Dura Europos: Man standing in doorway of block B2 at Dura Europos. Cou
 Your browser does not support the audio element.</audio>
 
 
+### International Space Station Archaeological Project
+
+Walsh, J., Graham, S., Gorman, A. C., Brousseau, C., & Abdullah, S. (2024, February 19). The Sampling Quadrangle Assemblages Research Experiment  (SQuARE) on the International Space Station, Report 1: Squares 03 and 05. https://doi.org/10.31235/osf.io/qmf73
+
+
+<img src='https://github.com/issarchaeologicalproject/SQuARE-notebooks/blob/main/square.png?raw=true'>
+
+[Code Notebooks & Data](https://github.com/issarchaeologicalproject/SQuARE-notebooks)
+
 ---
 
 
@@ -196,14 +205,13 @@ This website uses the *Syllabus Site* template put together by [Philipp Proff](h
 **Friendly feedback**: Myriel Milicevic, Lamin Manneh, Fidel Thomet, Mark-Jan Bludau, Sabine de Günther and Francesca Morini
 
 
-**Yes, you!**: Syllabus Site is [made available](https://github.com/uclab-potsdam/syllabus-site/) under the liberal MIT license. Feel free to reuse and revise it!
+**Fork away, fork away all**: Syllabus Site is [made available](https://github.com/uclab-potsdam/syllabus-site/) under the liberal MIT license. Feel free to reuse and revise it!
 
 
 ---
 
-
-Shawn Graham, Department of History 
-
-[<img src='img/carleton-logo.webp' class='noresized'>](https://carleton.ca/history/) 
-
 [Source Code](https://github.com/uclab-potsdam/syllabus-site/)
+
+shawn dot graham at carleton dot ca
+
+Background image [Joe Woods, via Unsplash.com](https://unsplash.com/photos/white-brick-wall-4Zaq5xY5M_c)
