@@ -561,6 +561,23 @@
         max-height: none;
       }
     }
+  #books .grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Adjust card max-width to ensure proper fit */
+#books .card {
+  max-width: 100%;
+}
+
+/* Ensure responsiveness on smaller screens */
+@media (max-width: 768px) {
+  #books .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
   </style>
 </head>
 <body>
