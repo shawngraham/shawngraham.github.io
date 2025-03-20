@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Dr. Shawn M. Graham | Digital Archaeologist</title>
+  <meta property="og:url" content="https://shawngraham.github.io/">
+  <meta property="og:title" content="Prof. Shawn M. Graham, Digital Archaeologist">
+  <meta property="og:description" content="Dr. Shawn Graham is a digital archaeologist and Full Professor in the Department of History at Carleton University in Ottawa, Canada.">
+  <meta property="og:image" content="img/XLab-Logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #2a628f;
+      --primary-light: #3a729f;
+      --secondary: #e63946;
+      --dark: #1d3557;
+      --light: #f8f9fa;
+      --background: #ffffff;
+      --text: #212529;
+      --border: #dee2e6;
+      --card-bg: #f8f9fa;
+      --card-border: rgba(0,0,0,0.08);
+      --success: #28a745;
+      --highlight: #ffdd57;
+      --muted: #6c757d;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--background);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Roboto Slab', serif;
+      margin-bottom: 1rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 1rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+      margin-top: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+      display: inline-block;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-top: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 1.2rem;
+    }
+    
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Layout */
+    .split-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      width: 400px;
+      padding: 2rem;
+      background-color: var(--light);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+    
+    .content {
+      flex: 1;
+      padding: 2rem 3rem;
+      overflow-y: auto;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    /* Profile Image Fix */
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center; /* Centers the visible portion of the image */
+      margin-bottom: 1.5rem;
+      border: 4px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .profile-name {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    .profile-title {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    /* Buttons and Links */
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 30px;
+      border: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      margin: 0.25rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .btn:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      text-decoration: none;
+      color: white;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.5rem 0;
+      gap: 0.5rem;
+    }
+    
+    .btn-icon {
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-icon i {
+      font-size: 1.1rem;
+    }
+    
+    /* Card Layout Updates */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Card Image Container */
+    .card-img-container {
+      height: 200px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      overflow: hidden;
+    }
+    
+    /* Card Image Styling */
+    .card-img {
+      max-width: 100%;
+      max-height: 200px;
+      width: auto;
+      height: auto;
+      object-fit: contain; /* Preserves aspect ratio without cropping */
+    }
+    
+    /* Card Content Styling */
+    .card-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-text {
+      color: var(--text);
+      margin-bottom: 1rem;
+      flex-grow: 1; /* Makes text take available space, pushing button to bottom */
+    }
+    
+    /* Course Item Images */
+    .course-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    /* Grid layouts */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Navigation */
+    .toc {
+      margin: 2rem 0;
+    }
+    
+    .toc-list {
+      list-style: none;
+    }
+    
+    .toc-item {
+      margin-bottom: 0.75rem;
+    }
+    
+    .toc-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .toc-link:hover {
+      background-color: rgba(0,0,0,0.05);
+      transform: translateX(5px);
+      text-decoration: none;
+    }
+    
+    .toc-link i {
+      margin-right: 0.5rem;
+      color: var(--primary);
+    }
+    
+    /* Utilities */
+    .text-center {
+      text-align: center;
+    }
+    
+    .mb-1 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .mb-2 {
+      margin-bottom: 1rem;
+    }
+    
+    .mb-3 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .mb-4 {
+      margin-bottom: 2rem;
+    }
+    
+    .section {
+      margin-bottom: 3rem;
+      scroll-margin-top: 20px;
+    }
+    
+    .highlight {
+      background-color: var(--highlight);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+    }
+    
+    .tag {
+      display: inline-block;
+      background-color: var(--light);
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      border: 1px solid var(--border);
+    }
+    
+    .article-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .article-item:last-child {
+      border-bottom: none;
+    }
+    
+    .course-item {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: var(--card-bg);
+      transition: all 0.3s ease;
+      border: 1px solid var(--card-border);
+    }
+    
+    .course-item:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .audio-player {
+      width: 100%;
+      margin: 1rem 0;
+    }
+    
+    .mobile-nav {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: none;
+    }
+    
+    /* Video Embed Responsive */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .split-layout {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+      }
+      
+      .profile-image {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .content {
+        padding: 1.5rem;
+      }
+      
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .card-img-container {
+        height: 180px;
+      }
+      
+      .card-img {
+        max-height: 180px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .social-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
+      
+      .social-links .btn {
+        width: 100%;
+        margin: 0.25rem;
+      }
+      
+      .mobile-nav {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--light);
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+      }
+      
+      .mobile-nav-list {
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        padding: 0.75rem 0;
+      }
+      
+      .mobile-nav-item {
+        text-align: center;
+      }
+      
+      .mobile-nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.8rem;
+        color: var(--dark);
+        text-decoration: none;
+      }
+      
+      .mobile-nav-link i {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+      }
+      
+      .content {
+        padding-bottom: 4rem;
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1001;
+        background-color: var(--primary);
+        color: white;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        cursor: pointer;
+      }
+      
+      .card-img-container {
+        height: 160px;
+      }
+      
+      .card-img {
+        max-height: 160px;
+      }
+    }
+    
+    /* For browsers that support it, add a consistent aspect ratio for image containers */
+    @supports (aspect-ratio: 16/9) {
+      .card-img-container {
+        height: auto;
+        aspect-ratio: 16/9;
+      }
+      
+      .card-img {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="split-layout">
+    <!-- Sidebar / Profile Section -->
+    <aside class="sidebar">
+      <img class="profile-image" src="https://camo.githubusercontent.com/49ec105ba4e370395da0b4eae59656b9e4c48c8cc1147a490e03a35f27bdf76c/68747470733a2f2f736861776e67726168616d2e6769746875622e696f2f736d672d6d65642d757072696768742e6a706567" alt="Dr. Shawn Graham">
+      <h1 class="profile-name">Dr. Shawn Graham</h1>
+      <p class="profile-title">Digital Archaeologist & Professor</p>
+      
+      <div class="social-links">
+        <a href="https://carleton.ca/history/people/shawn-graham/" class="btn btn-icon">
+          <i class="fas fa-university"></i> Carleton University
+        </a>
+        <a href="https://scholar.social/@electricarchaeo/" class="btn btn-icon">
+          <i class="fab fa-mastodon"></i> Mastodon
+        </a>
+        <a href="https://scholar.google.com/citations?user=IU6usq8AAAAJ&hl=en" class="btn btn-icon">
+          <i class="fas fa-graduation-cap"></i> Google Scholar
+        </a>
+        <a href="https://github.com/shawngraham" class="btn btn-icon">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="mailto:shawn.graham@carleton.ca" class="btn btn-icon">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+        <a href="https://electricarchaeology.ca" class="btn btn-icon">
+          <i class="fas fa-book"></i> Notebook
+        </a>
+        <a href="https://carleton.ca/xlab" class="btn btn-icon">
+          <i class="fas fa-flask"></i> XLab
+        </a>
+      </div>
+      
+      <nav class="toc">
+        <ul class="toc-list">
+          <li class="toc-item"><a href="#about" class="toc-link"><i class="fas fa-user"></i> About</a></li>
+          <li class="toc-item"><a href="#education" class="toc-link"><i class="fas fa-graduation-cap"></i> Education</a></li>
+          <li class="toc-item"><a href="#research" class="toc-link"><i class="fas fa-microscope"></i> Research</a></li>
+          <li class="toc-item"><a href="#books" class="toc-link"><i class="fas fa-book"></i> Books</a></li>
+          <li class="toc-item"><a href="#articles" class="toc-link"><i class="fas fa-newspaper"></i> Articles</a></li>
+          <li class="toc-item"><a href="#courses" class="toc-link"><i class="fas fa-chalkboard-teacher"></i> Courses</a></li>
+        </ul>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="content">
+      <section id="about" class="section">
+        <h2>Shawn M. Graham, PhD</h2>
+        <p>Dr. Shawn Graham is a digital archaeologist and Full Professor in the <a href="https://carleton.ca/history">Department of History at Carleton University in Ottawa, Canada</a>. He is also the <a href="https://carleton.ca/dighum">Programme Coordinator for the MA specialization in Digital Humanities</a>. He founded and edits the open access journal <a href="https://epoiesen.carleton.ca/">Epoiesen: A Journal for Creative Engagement in History and Archaeology</a>.</p>
+      </section>
+      
+      <section id="education" class="section">
+        <h2>Education</h2>
+        <div class="course-item">
+          <h3>University of Reading</h3>
+          <p>Ph.D. Archaeology | 2002</p>
+        </div>
+        <div class="course-item">
+          <h3>University of Reading</h3>
+          <p>M.A. City of Rome | 1998</p>
+        </div>
+        <div class="course-item">
+          <h3>Wilfrid Laurier University</h3>
+          <p>B.A. Hons Archaeology | 1997</p>
+        </div>
+      </section>
+      
+      <section id="research" class="section">
+        <h2>Research</h2>
+        <p>His current major research project, together with his collaborator Damien Huffer, uses neural networks and computer vision to explore the online trade in human remains (The Bone Trade Project). As part of the Computational Research in the Ancient Near East (CRANE) Project from the University of Toronto, he is exploring generative adversarial networks and archaeological photography. With Dr. Donna Yates of the University of Maastricht, he is exploring knowledge graph embedding models of the antiquities trade (The New Organigram Project).</p>
+        
+        <p>His work has been featured in <a href="https://www.wired.co.uk/article/instagram-skull-trade">WIRED Magazine</a>, <a href="https://www.washingtonpost.com/science/2021/10/09/tiktok-jonsbones-human-remains-wall-spines/">The Washington Post</a>, <a href="https://www.nytimes.com/2020/11/24/science/artificial-intelligence-archaeology-cnn.html#click=https://t.co/sxyEN0tJtu">The New York Times</a>, and the <a href="https://ottawacitizen.com/news/local-news/carleton-prof-harnesses-machine-learning-to-explore-the-bone-trade-netherworld/">Ottawa Citizen</a>. He has frequently been interviewed concerning the human remains trade as <a href="https://www.nbcboston.com/investigations/harvards-morgue-scandal-is-part-of-a-much-larger-story-in-trading-human-remains/3136374/">new criminal cases come to light</a>.</p>
+        
+        <p>In 2019, he won the <a href="https://www.archaeological.org/grant/digital-archaeology-award/">Archaeological Institute of America's Award for Outstanding Work in Digital Archaeology</a> for leading the creation of the 'Open Digital Archaeology Textbook Environment', <a href="https://o-date.github.io/">O-DATE</a>.</p>
+        
+        <h3>The X-Lab</h3>
+        <div class="course-item">
+          <img src="https://github.com/shawngraham/shawngraham.github.io/raw/master/img/XLab-Logo.png" alt="X-Lab Logo" style="max-width: 150px; margin-bottom: 1rem;">
+          <p><a href="https://carleton.ca/xlab">The XLab – The Cultural Heritage Informatics Collaboratory –</a> represents both a space and a series of relationships within and without the University. It is a kind of transdisciplinary 'skunkworks' for fostering encounters with and between cultural heritage and digital media and computation. As a skunkworks, or a space for trying non-traditional or imaginative new solutions, it aims to bring together tenacious tinkerers, who are willing to experiment, to wonder, to try, and to iterate – to try, try again. The XLab is led by Graham and <a href="https://carleton.ca/grs/people/laura-banducci/">Laura Banducci</a>.</p>
+          <p>The XLab is always interested in collaborators.</p>
+        </div>
+      </section>
+      
+      <section id="books" class="section">
+        <h2>Books</h2>
+        <p>Graham has published several works that range from archaeological investigations to more philosophical ruminations on what it means to 'fail gloriously' in the digital humanities.</p>
+        
+        <div class="grid">
+          <!-- Book 1 -->
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://github.com/shawngraham/shawngraham.github.io/raw/master/img/ex-figlinis.png" alt="Ex Figlinis" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Ex Figlinis</h3>
+              <p class="card-text">The growth of the city of Rome was dependent on its ability to exploit successfully the human and natural resources of its hinterland. This study examines the way the Tiber Valley functioned in terms of its economic and social geography, as evidenced by the organisation and dynamics of the brick industry.</p>
+              <a href="https://hcommons.org/deposits/item/hc:18909/" class="btn btn-outline">Read on Humanities Commons</a>
+            </div>
+          </div>
+          
+          <!-- Book 2 -->
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://github.com/shawngraham/shawngraham.github.io/raw/master/img/macro2.png" alt="Exploring Big Historical Data" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exploring Big Historical Data</h3>
+              <p class="card-text">Written with Ian Milligan and Scott Weingart (1st edition) and Kim Martin (2nd edition). This pioneering book describes and demonstrates the ways these data can be explored to construct cultural heritage knowledge.</p>
+              <a href="https://search.worldcat.org/title/898158974" class="btn btn-outline">Find on WorldCat</a>
+            </div>
+          </div>
+          
+          <!-- Book 3 -->
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://github.com/shawngraham/shawngraham.github.io/raw/master/img/failing-gloriously-single-page.webp" alt="Failing Gloriously" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Failing Gloriously</h3>
+              <p class="card-text"><strong>Please, you gotta help me. I've nuked the university.</strong> Failing Gloriously and Other Essays documents Shawn Graham's odyssey through the digital humanities and digital archaeology against the backdrop of the 21st-century university.</p>
+              <a href="https://digitalpressatund.files.wordpress.com/2019/12/failing_gloriously_final.pdf" class="btn btn-outline">Download PDF</a>
+            </div>
+          </div>
+          
+          <!-- Book 4 -->
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://github.com/shawngraham/shawngraham.github.io/raw/master/img/GrahamEnchantment.jpg" alt="An Enchantment of Digital Archaeology" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">An Enchantment of Digital Archaeology</h3>
+              <p class="card-text">The use of computation in archaeology is a kind of magic, a way of heightening the archaeological imagination. This volume explores this spectrum in the context of Roman archaeology.</p>
+              <a href="https://search.worldcat.org/title/1160958438" class="btn btn-outline">Find on WorldCat</a>
+            </div>
+          </div>
+          
+          <!-- Book 5 -->
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://github.com/shawngraham/shawngraham.github.io/raw/master/img/HufferThese.jpg" alt="These Were People Once" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">These Were People Once</h3>
+              <p class="card-text">Written with Damien Huffer. People buy and sell human remains online. Most of this trade these days is over social media. In a study of this 'bone trade', the authors review and use a variety of methods drawn from the digital humanities.</p>
+              <a href="https://search.worldcat.org/title/1394119169" class="btn btn-outline">Find on WorldCat</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="articles" class="section">
+        <h2>Articles</h2>
+        <p>Here are a few of his favorite articles; for more see his <a href="https://scholar.google.com/citations?user=IU6usq8AAAAJ&hl=en&authuser=1">Google Scholar profile</a>.</p>
+        
+        <h3>From the Organigram Project</h3>
+        <div class="article-item">
+          <h4>Reputation laundering and museum collections: patterns, priorities, provenance, and hidden crime</h4>
+          <p>Donna Yates and Shawn Graham (2024) <em>International Journal of Heritage Studies</em>, 30:2, 145-164.</p>
+          <p>DOI: <a href="https://doi.org/10.1080/13527258.2023.2284740">10.1080/13527258.2023.2284740</a></p>
+          <div class="tags">
+            <span class="tag">Antiquities Trade</span>
+            <span class="tag">Museums</span>
+            <span class="tag">Reputation Laundering</span>
+          </div>
+        </div>
+        
+        <div class="article-item">
+          <h4>Relationship prediction in a knowledge graph embedding model of the illicit antiquities trade</h4>
+          <p>Shawn Graham, Donna Yates, Ahmed El-Roby, Chantal Brousseau, Jonah Ellens, and Callum McDermott (2023) <em>Advances in Archaeological Practice</em>, 11:2, 126-138.</p>
+          <p>DOI: <a href="https://doi.org/10.1017/aap.2023.1">10.1017/aap.2023.1</a></p>
+          <div class="tags">
+            <span class="tag">Knowledge Graph</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Antiquities Trade</span>
+          </div>
+        </div>
+        
+        <h3>From the Bone Trade Project</h3>
+        <div class="article-item">
+          <h4>Reproducibility, Replicability, and REvisiting the Insta-Dead and the Human Remains Trade</h4>
+          <p>Shawn Graham and Damien Huffer (2020) <em>Internet Archaeology</em>, 55.</p>
+          <p>DOI: <a href="https://doi.org/10.11141/ia.55.11">10.11141/ia.55.11</a></p>
+          <div class="tags">
+            <span class="tag">Human Remains</span>
+            <span class="tag">Social Media</span>
+            <span class="tag">Reproducibility</span>
+          </div>
+        </div>
+        
+        <h3>From the Computational Creativity Project</h3>
+        <div class="article-item">
+          <h4>Listening to Dura Europos: An Experiment in Archaeological Image Sonification</h4>
+          <p>Shawn Graham and Jaime Simons. <em>Internet Archaeology</em> 56.</p>
+          <p>DOI: <a href="https://doi.org/10.11141/ia.56">10.11141/ia.56</a></p>
+          
+          <div class="course-item">
+            <img src="https://github.com/shawngraham/shawngraham.github.io/raw/master/img/dura.png" alt="Dura Europos" style="max-width: 300px; margin-bottom: 1rem;">
+            <p>Listen to Dura Europos: Man standing in doorway of block B2 at Dura Europos. Courtesy Yale University Art Gallery, Dura-Europos Collection.</p>
+            
+            <audio controls class="audio-player">
+              <source src="https://intarch.ac.uk/journal/issue56/8/mp3/dura-song5.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+            
+            <div class="tags">
+              <span class="tag">Sonification</span>
+              <span class="tag">Computational Creativity</span>
+              <span class="tag">Archaeological Photography</span>
+            </div>
+          </div>
+        </div>
+        
+        <h3>International Space Station Archaeological Project</h3>
+        <div class="article-item">
+          <h4>The Sampling Quadrangle Assemblages Research Experiment (SQuARE) on the International Space Station</h4>
+          <p>Walsh, J., Graham, S., Gorman, A. C., Brousseau, C., & Abdullah, S. (2024, February 19). <em>Report 1: Squares 03 and 05</em>.</p>
+          <p>DOI: <a href="https://doi.org/10.31235/osf.io/qmf73">10.31235/osf.io/qmf73</a></p>
+          
+          <div class="course-item">
+            <img src="https://github.com/issarchaeologicalproject/SQuARE-notebooks/raw/main/square.png?raw=true" alt="ISS SQuARE Project" style="max-width: 300px; margin-bottom: 1rem;">
+            <p><a href="https://github.com/issarchaeologicalproject/SQuARE-notebooks">Code Notebooks & Data</a></p>
+            
+            <div class="tags">
+              <span class="tag">Space Archaeology</span>
+              <span class="tag">ISS</span>
+              <span class="tag">Material Culture</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="courses" class="section">
+        <h2>Courses</h2>
+        <p>Graham's teaching cycles through the following courses, with two courses in particular being the anchors for what's on offer: HIST5706a is offered every other year; HIST3814o is offered in the early summer term. His teaching is anchored in his research, and in his committments to the public history and digital humanities programmes at Carleton University.</p>
+        
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-content">
+              <h3 class="card-title">HIST1900c</h3>
+              <p class="card-text"><a href="https://shawngraham.github.io/hist1900">The History of the Internet</a>. A broad survey that takes in a lot of the <em>prehistory</em> of the Internet as well.</p>
+              <div class="tags">
+                <span class="tag">Digital History</span>
+                <span class="tag">Internet History</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://camo.githubusercontent.com/b461f7d670356eff263831fdcd876a9ac9921d927c2b0ef54ea0fbb99e8532e8/68747470733a2f2f64696769617263682e6e65746c6966792e6170702f66617669636f6e2f616e64726f69642d69636f6e2d313932783139322e706e67" alt="Digital Archaeology" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">HIST3000a</h3>
+              <p class="card-text"><a href="https://digiarch.netlify.app/">Introduction to Digital Archaeology</a>. An asynchronous online course wherein students are exposed to the stages of digital archaeological research through the study of a local cemetery's gravestones.</p>
+              <div class="tags">
+                <span class="tag">Digital Archaeology</span>
+                <span class="tag">Online Course</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://camo.githubusercontent.com/967286a4886090f14454e8f31a20330bc3c9f625a7a527db2bfb7399c780cd4a/68747470733a2f2f68697374333831322e6e65746c6966792e6170702f696d616765732f696c6c757374726174696f6e732f6f6c642d7363686f6f6c2d67616d652d636f6e74726f6c6c65722d766563746f722e737667" alt="Playful Engagement" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">HIST3812</h3>
+              <p class="card-text"><a href="https://hist3812.netlify.app/">Playful Engagement with History</a>. What do videogames and theories of play teach us about <em>writing</em> history?</p>
+              <div class="tags">
+                <span class="tag">Videogames</span>
+                <span class="tag">Play Theory</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://craftingdh-old.netlify.app/favicon/android-icon-192x192.png" alt="Crafting Digital History" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">HIST3814o</h3>
+              <p class="card-text"><a href="https://craftingdh.netlify.app/">Crafting Digital History</a>. An asynchronous online course meant to equip the student with the necessary digital literacies to do digital research in history.</p>
+              <div class="tags">
+                <span class="tag">Digital Literacy</span>
+                <span class="tag">Research Methods</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://camo.githubusercontent.com/4cdacc08725efbd7f0444745d252945ba1bd153922e51e2e9194b6fb9f324df1/68747470733a2f2f68697374343830352e6e65746c6966792e6170702f6173736574732f696d616765732f736964656261725f70726f66696c652d30333332633562346166613939376461346435646564363839326430636135302d31303234772e77656270" alt="Senior Seminar" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">HIST4805a</h3>
+              <p class="card-text">Senior Seminar, connected to his latest research interests. In 2024/25 this is <a href="https://hist4805.netlify.app/">'History and/of Artificial Intelligence'</a>. The <a href="https://shawngraham.github.io/bad-archaeology/">2018-19 exploration of Bad Archaeology is here</a>.</p>
+              <div class="tags">
+                <span class="tag">Artificial Intelligence</span>
+                <span class="tag">Digital History</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://camo.githubusercontent.com/d514ac9adcee427784663cecba5349ec006fc21ef2d718287b118c758577a3c3/68747470733a2f2f64686d7573652e6e65746c6966792e6170702f66617669636f6e2f616e64726f69642d69636f6e2d313932783139322e706e67" alt="DH + Museums" class="card-img">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">HIST4916a</h3>
+              <p class="card-text"><a href="https://dhmuse.netlify.app/">DH + Museums</a>. An exploration of dh methods for small museums. Originally run <em>just</em> as the pandemic hit.</p>
+              <div class="tags">
+                <span class="tag">Digital Humanities</span>
+                <span class="tag">Museums</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-content">
+              <h3 class="card-title">HIST5706a</h3>
+              <p class="card-text"><a href="https://graddh.netlify.app/">Digital History for Public Historians, 2021</a> - a 'digital history choose your own adventure'. Asynchronous online, with a <a href="https://shawngraham.github.io/didactic-dollop/">choose your own adventure syllabus</a>.</p>
+              <div class="tags">
+                <span class="tag">Digital History</span>
+                <span class="tag">Public History</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <footer class="section">
+        <h2 id="colophon">Colophon</h2>
+        <p>This site was originally made with <a href="https://github.com/seankross/postcards">Postcards</a> in RStudio, and has been updated to improve aesthetics and user experience while maintaining a static site approach.</p>
+        
+        <p class="text-center mb-4">&copy; 2025 Dr. Shawn Graham | Last updated: March 2025</p>
+      </footer>
+    </main>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li class="mobile-nav-item">
+        <a href="#about" class="mobile-nav-link">
+          <i class="fas fa-user"></i>
+          <span>About</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#research" class="mobile-nav-link">
+          <i class="fas fa-microscope"></i>
+          <span>Research</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#books" class="mobile-nav-link">
+          <i class="fas fa-book"></i>
+          <span>Books</span>
+        </a>
+      </li>
+      <li class="mobile-nav-item">
+        <a href="#courses" class="mobile-nav-link">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <span>Courses</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  
+  <!-- Simple JavaScript for smooth scrolling -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Mobile menu functionality can be added here if needed
+    });
+  </script>
+</body>
+</html>
