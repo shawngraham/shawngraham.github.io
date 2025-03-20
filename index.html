@@ -253,13 +253,12 @@
     }
     
     /* Card Image Styling */
-    .card-img {
+        .card-img {
       max-width: 100%;
-      max-height: 200px;
       width: auto;
-      height: auto;
-      object-fit: contain; /* Preserves aspect ratio without cropping */
-    }
+      height: 100%; /* Make image height 100% of container */
+      object-fit: cover; /* Cover the container */
+      object-position: top center; /* Show the top portion, centered horizontally */
     
     /* Card Content Styling */
     .card-content {
