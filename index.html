@@ -64,7 +64,7 @@
     /* Typography */
     h1, h2, h3, h4 {
       font-family: 'Fraunces', serif;
-      font-weight: 600ƒ;
+      font-weight: 600;
       letter-spacing: -0.02em;
     }
 
@@ -336,31 +336,68 @@
       filter: brightness(0) invert(1);
     }
 
-    /* Featured Media */
+    /* Featured Media - UPDATED FOR PROMINENCE */
     .media-strip {
       display: flex;
       gap: 1rem;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       flex-wrap: wrap;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--obsidian) 0%, var(--earth) 100%);
+      border-left: 4px solid var(--digital-cyan);
+      position: relative;
+      align-items: center;
+    }
+
+    .media-strip::before {
+      content: 'HIS WORK HAS BEEN FEATURED IN';
+      position: absolute;
+      top: -0.7rem;
+      left: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--digital-cyan);
+      background: var(--bone);
+      padding: 0.25rem 0.75rem;
+    }
+
+    .media-strip p {
+      display: none;
     }
 
     .media-tag {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.4rem 0.8rem;
-      background: var(--bone);
+      gap: 0.5rem;
+      padding: 0.7rem 1.2rem;
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-secondary);
+      letter-spacing: 0.08em;
+      color: var(--bone);
       transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .media-tag i {
+      color: var(--digital-cyan);
+      transition: transform 0.3s ease;
     }
 
     .media-tag:hover {
-      background: var(--terracotta);
-      color: var(--bone);
+      background: var(--digital-cyan);
+      border-color: var(--digital-cyan);
+      color: var(--obsidian);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 212, 170, 0.3);
+    }
+
+    .media-tag:hover i {
+      color: var(--obsidian);
+      transform: rotate(-45deg);
     }
 
     /* Books Grid */
@@ -948,7 +985,7 @@
         <p>In 2019, he won the <a href="https://www.archaeological.org/grant/digital-archaeology-award/">Archaeological Institute of America's Award for Outstanding Work in Digital Archaeology</a> for leading the creation of <a href="https://o-date.github.io/">O-DATE</a>.</p>
 
         <div class="media-strip">
-          <p>His work has been featured in the wider media:</p> <Br><br>
+          <p>His work has been featured in the wider media:</p>
           <a href="https://www.wired.co.uk/article/instagram-skull-trade" class="media-tag">
             <i class="fas fa-external-link-alt"></i> WIRED
           </a>
@@ -1065,14 +1102,14 @@
     
     <div class="articles-container">
       <nav class="articles-nav">
-        <a href="#" class="articles-nav-item active">Organigram</a>
-        <a href="#" class="articles-nav-item">Bone Trade</a>
-        <a href="#" class="articles-nav-item">Creativity</a>
-        <a href="#" class="articles-nav-item">Space</a>
+<a href="#organigram" class="articles-nav-item active">Organigram</a>
+<a href="#bonetrade" class="articles-nav-item">Bone Trade</a>
+<a href="#creativity" class="articles-nav-item">Creativity</a>
+<a href="#space" class="articles-nav-item">Space</a>
       </nav>
       
       <div class="articles-list">
-        <article class="article-item">
+        <article class="article-item" id="organigram">
           <span class="article-category">Organigram Project</span>
           <h3 class="article-title">Reputation laundering and museum collections: patterns, priorities, provenance, and hidden crime</h3>
           <p class="article-meta">Donna Yates and Shawn Graham (2024) <em>International Journal of Heritage Studies</em>, 30:2, 145-164.</p>
@@ -1084,7 +1121,7 @@
           </div>
         </article>
         
-        <article class="article-item">
+        <article class="article-item" id="organigram">
           <span class="article-category">Organigram Project</span>
           <h3 class="article-title">Relationship prediction in a knowledge graph embedding model of the illicit antiquities trade</h3>
           <p class="article-meta">Shawn Graham et al. (2023) <em>Advances in Archaeological Practice</em>, 11:2, 126-138.</p>
@@ -1096,7 +1133,7 @@
           </div>
         </article>
         
-        <article class="article-item">
+        <article class="article-item" id="bonetrade">
           <span class="article-category">Bone Trade Project</span>
           <h3 class="article-title">Reproducibility, Replicability, and REvisiting the Insta-Dead and the Human Remains Trade</h3>
           <p class="article-meta">Shawn Graham and Damien Huffer (2020) <em>Internet Archaeology</em>, 55.</p>
@@ -1108,7 +1145,7 @@
           </div>
         </article>
         
-        <div class="audio-feature">
+        <div class="audio-feature" id="creativity">
           <img src="https://raw.githubusercontent.com/shawngraham/shawngraham.github.io/refs/heads/main/img/dura.png" alt="Dura Europos">
           <div>
             <span class="article-category" style="background: rgba(0,212,170,0.2);">Computational Creativity</span>
@@ -1120,7 +1157,7 @@
           </div>
         </div>
         
-        <article class="article-item">
+        <article class="article-item" id="space">
           <span class="article-category">Space Archaeology</span>
           <h3 class="article-title">The Sampling Quadrangle Assemblages Research Experiment (SQuARE) on the ISS</h3>
           <p class="article-meta">Walsh, J., Graham, S., Gorman, A. C., et al. (2024) <em>Report 1: Squares 03 and 05</em></p>
@@ -1276,7 +1313,3 @@
   </script>
 </body>
 </html>
-
-
-
-
