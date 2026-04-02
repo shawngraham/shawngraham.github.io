@@ -82,7 +82,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 
 .hdr-right{display:flex;gap:5px;margin-left:auto}
 
-/* ── LAYOUT ─────────────────────────────────────────────── */
+/* ── LAYOUT ────────────────────────────────────────────── */
 #app{display:flex;height:calc(100vh - 53px)}
 
 /* ── SIDEBAR ────────────────────────────────────────────── */
@@ -278,16 +278,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 </head>
 <body>
 
-<!-- ═══ HEADER ════════════════════════════════════════════ -->
 <div id="hdr">
   <a class="logo" href="#" onclick="return false">
-    <!-- Ouroboros mark -->
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-      <circle cx="17" cy="17" r="13" stroke="#c8872a" stroke-width="1.8"
-        fill="none" stroke-dasharray="66 14" stroke-dashoffset="0"/>
-      <path d="M30 17C30 14.5 27.5 12.5 25 13.5L20.5 16"
-        stroke="#c8872a" stroke-width="2.8" stroke-linecap="round"/>
-      <circle cx="29" cy="16" r="2.2" fill="#c8872a" opacity=".55"/>
+      <circle cx="17" cy="17" r="13" stroke="#c8872a" stroke-width="1.8" fill="none" stroke-dasharray="66 14"/>
+      <path d="M30 17C30 14.5 27.5 12.5 25 13.5L20.5 16" stroke="#c8872a" stroke-width="2.8" stroke-linecap="round"/>
       <circle cx="29" cy="16" r="1" fill="#c8872a"/>
     </svg>
     <div>
@@ -297,160 +292,114 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   </a>
 
   <div class="searchbar">
-    <input id="s-in" type="text"
-      placeholder="Search by title, author, DOI, or keywords…"
-      autocomplete="off" spellcheck="false">
+    <input id="s-in" type="text" placeholder="Title, Author, DOI, or arXiv ID…" autocomplete="off">
     <button class="btn btn-p" id="s-btn">Search</button>
   </div>
 
   <div class="hdr-right">
-    <button class="btn" id="dl-btn" disabled title="Download node & edge CSVs">↓ Export</button>
-    <button class="btn" id="rst-btn" title="Clear graph">Reset</button>
-    <button class="btn" id="leg-btn" title="Toggle legend">Legend</button>
+    <button class="btn" id="dl-btn" disabled>↓ Export</button>
+    <button class="btn" id="rst-btn">Reset</button>
+    <button class="btn" id="leg-btn">Legend</button>
   </div>
 </div>
 
-<!-- ═══ APP ═══════════════════════════════════════════════ -->
 <div id="app">
-
-  <!-- sidebar -->
   <div id="sidebar">
     <div id="sb-head">
       <span id="sb-lbl">Search Results</span>
       <span id="sb-cnt"></span>
     </div>
     <div id="results">
-      <div class="sb-placeholder">
-        <p>Search for a paper to trace its citation ancestry.</p>
-      </div>
+      <div class="sb-placeholder"><p>Search for a paper to trace its citation ancestry.</p></div>
     </div>
   </div>
 
-  <!-- graph -->
   <div id="graph">
     <svg id="gsvg"></svg>
-
-    <!-- empty state -->
     <div id="empty">
-      <svg width="110" height="110" viewBox="0 0 110 110" opacity=".18">
-        <circle cx="55" cy="55" r="40" stroke="#c8872a" stroke-width="2.2"
-          fill="none" stroke-dasharray="180 55"/>
-        <path d="M95 55C95 48 90 44 85 46L74 51"
-          stroke="#c8872a" stroke-width="4.5" stroke-linecap="round"/>
-        <circle cx="94" cy="53" r="5" fill="#c8872a" opacity=".5"/>
-        <circle cx="94" cy="53" r="2.2" fill="#c8872a"/>
-      </svg>
       <div class="e-title">Select a paper to trace its wyrm</div>
       <div class="e-sub">Search · Select · Expand</div>
     </div>
-
-    <!-- loading -->
     <div id="loading">
       <svg class="spin" width="46" height="46" viewBox="0 0 46 46">
-        <circle cx="23" cy="23" r="17" stroke="#c8872a" stroke-width="2"
-          fill="none" stroke-dasharray="72 26"/>
-        <path d="M40 23C40 20 37 18 34.5 19L29 21.5"
-          stroke="#c8872a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="23" cy="23" r="17" stroke="#c8872a" stroke-width="2" fill="none" stroke-dasharray="72 26"/>
       </svg>
       <div class="ltxt" id="ltxt">Querying sources…</div>
     </div>
-
-    <!-- detail panel -->
     <div id="detail">
-      <div id="d-bar">
-        <span>Paper Detail</span>
-        <button id="d-close">×</button>
-      </div>
+      <div id="d-bar"><span>Paper Detail</span><button id="d-close">×</button></div>
       <div id="d-body"></div>
     </div>
-
-    <!-- legend -->
     <div id="legend">
-      <div class="leg-row"><div class="leg-dot" style="background:#b83030"></div><span>Root (selected paper)</span></div>
-      <div class="leg-row"><div class="leg-dot" style="background:#c8872a"></div><span>Depth 1 — direct citers</span></div>
+      <div class="leg-row"><div class="leg-dot" style="background:#b83030"></div><span>Root Paper</span></div>
+      <div class="leg-row"><div class="leg-dot" style="background:#c8872a"></div><span>Depth 1</span></div>
       <div class="leg-row"><div class="leg-dot" style="background:#267a6e"></div><span>Depth 2</span></div>
       <div class="leg-row"><div class="leg-dot" style="background:#7a4ab0"></div><span>Depth 3+</span></div>
-      <div class="leg-row" style="margin-top:4px;font-size:9.5px;color:#6a7e8c">
-        Node size ∝ citation count
-      </div>
     </div>
-
-    <!-- stats -->
     <div id="stats">
       <span>Nodes: <span class="sv" id="st-n">0</span></span>
       <span>Edges: <span class="sv" id="st-e">0</span></span>
       <span>Max depth: <span class="sv" id="st-d">0</span></span>
     </div>
-
-    <!-- zoom -->
     <div id="zctrl">
       <button class="zbtn" id="z-in">+</button>
       <button class="zbtn" id="z-out">−</button>
-      <button class="zbtn" id="z-fit" title="Fit">⊡</button>
+      <button class="zbtn" id="z-fit">⊡</button>
     </div>
-
     <div id="tip"></div>
     <div id="toast"></div>
   </div>
 </div>
 
-<!-- ═══ SCRIPT ════════════════════════════════════════════ -->
 <script>
-// ══════════════════════════════════════════════════════════
-//  WYRM  —  Citation Network Explorer
-//  APIs : OpenAlex · Semantic Scholar · arXiv · CrossRef ·
-//           Humanities Commons
-//  No server required — deploy anywhere.
-// ══════════════════════════════════════════════════════════
-
+// ── CONFIG ──────────────────────────────────────────────
 const CFG = {
   OA:   'https://api.openalex.org',
   SS:   'https://api.semanticscholar.org/graph/v1',
   AX:   'https://export.arxiv.org/api',
   CR:   'https://api.crossref.org',
   HC:   'https://hcommons.org/wp-json/wp/v2',
-  MAIL: 'wyrm-explorer@example.com',   // polite pool
+  PROXY: 'https://corsproxy.io/?',
+  MAIL: 'wyrm-explorer@example.com',
   MAX_CITERS: 80,
 };
 
-// ── State ──────────────────────────────────────────────
 const S = {
-  nodes:    new Map(),   // id → nodeObj
-  edges:    [],          // [{source,target}]
-  rootId:   null,
-  sim:      null,
-  svg:      null,
-  zoom:     null,
-  g:        null,
-  selId:    null,
+  nodes: new Map(),
+  edges: [],
+  rootId: null,
+  sim: null,
+  svg: null,
+  zoom: null,
+  g: null,
+  selId: null,
   maxDepth: 0,
 };
 let _results = [];
 
-// ── API helpers ─────────────────────────────────────────
+// ── API HELPERS ──────────────────────────────────────────
 
-async function jfetch(url) {
-  const r = await fetch(url, {headers:{'Accept':'application/json'}});
+async function jfetch(url, useProxy = false) {
+  const finalUrl = useProxy ? CFG.PROXY + encodeURIComponent(url) : url;
+  const r = await fetch(finalUrl, { headers: { 'Accept': 'application/json' } });
+  if (r.status === 429) { toast("Rate limited by provider."); throw new Error(429); }
   if (!r.ok) throw new Error(r.status);
   return r.json();
 }
 
-// normalise an OA work record into our node shape
 function normalOA(w) {
   return {
     id:           'oa:' + w.id.replace('https://openalex.org/',''),
     openAlexId:   w.id.replace('https://openalex.org/',''),
     title:        w.title || '(Untitled)',
-    authors:      (w.authorships||[]).slice(0,4)
-                    .map(a=>a.author?.display_name).filter(Boolean).join(', '),
+    authors:      (w.authorships||[]).slice(0,4).map(a=>a.author?.display_name).filter(Boolean).join(', '),
     year:         w.publication_year || null,
     doi:          w.doi ? w.doi.replace('https://doi.org/','') : null,
     citationCount:w.cited_by_count || 0,
     source:       'openalex',
     sources:      ['openalex'],
     venue:        w.primary_location?.source?.display_name || null,
-    abstract:     w.abstract_inverted_index
-                    ? invertedToText(w.abstract_inverted_index) : null,
+    abstract:     w.abstract_inverted_index ? invertedToText(w.abstract_inverted_index) : null,
   };
 }
 
@@ -462,21 +411,18 @@ function invertedToText(inv) {
   return pairs.sort((a,b)=>a[0]-b[0]).map(p=>p[1]).join(' ');
 }
 
+// ── SEARCH LOGIC ──────────────────────────────────────────
+
 async function searchOA(q) {
   try {
-    const d = await jfetch(
-      `${CFG.OA}/works?search=${enc(q)}&per-page=12`
-      +`&select=id,title,authorships,publication_year,doi,cited_by_count,primary_location`
-      +`&mailto=${CFG.MAIL}`);
+    const d = await jfetch(`${CFG.OA}/works?search=${enc(q)}&per-page=12&mailto=${CFG.MAIL}`);
     return (d.results||[]).map(normalOA);
   } catch { return []; }
 }
 
 async function searchSS(q) {
   try {
-    const d = await jfetch(
-      `${CFG.SS}/paper/search?query=${enc(q)}&limit=10`
-      +`&fields=paperId,title,authors,year,citationCount,externalIds,venue`);
+    const d = await jfetch(`${CFG.SS}/paper/search?query=${enc(q)}&limit=10&fields=paperId,title,authors,year,citationCount,externalIds,venue`, true);
     return (d.data||[]).map(p=>({
       id:'ss:'+p.paperId, ssId:p.paperId,
       title:p.title||'(Untitled)',
@@ -492,9 +438,8 @@ async function searchSS(q) {
 
 async function searchAX(q) {
   try {
-    const txt = await fetch(
-      `${CFG.AX}/query?search_query=all:${enc(q)}&max_results=7&sortBy=relevance`
-    ).then(r=>r.text());
+    const url = `${CFG.AX}/query?search_query=all:${enc(q)}&max_results=7&sortBy=relevance`;
+    const txt = await fetch(CFG.PROXY + encodeURIComponent(url)).then(r=>r.text());
     const xml = new DOMParser().parseFromString(txt,'application/xml');
     return Array.from(xml.querySelectorAll('entry')).map(e=>{
       const rawId = e.querySelector('id')?.textContent||'';
@@ -502,12 +447,9 @@ async function searchAX(q) {
       return {
         id:'ax:'+arxivId, arxivId,
         title:e.querySelector('title')?.textContent?.trim()||'(Untitled)',
-        authors:Array.from(e.querySelectorAll('author name'))
-                  .slice(0,4).map(n=>n.textContent).join(', '),
+        authors:Array.from(e.querySelectorAll('author name')).slice(0,4).map(n=>n.textContent).join(', '),
         year:(e.querySelector('published')?.textContent||'').slice(0,4),
-        doi:null, citationCount:0,
-        source:'arxiv', sources:['arxiv'], venue:'arXiv',
-        abstract:e.querySelector('summary')?.textContent?.trim()||'',
+        source:'arxiv', sources:['arxiv'], venue:'arXiv'
       };
     });
   } catch { return []; }
@@ -515,67 +457,49 @@ async function searchAX(q) {
 
 async function searchCR(q) {
   try {
-    const d = await jfetch(
-      `${CFG.CR}/works?query=${enc(q)}&rows=7`
-      +`&select=DOI,title,author,published,is-referenced-by-count,container-title`);
+    const d = await jfetch(`${CFG.CR}/works?query=${enc(q)}&rows=7`);
     return (d.message?.items||[]).map(w=>({
       id:'cr:'+(w.DOI||Math.random()),
       doi:w.DOI||null,
       title:Array.isArray(w.title)?w.title[0]:(w.title||'(Untitled)'),
-      authors:(w.author||[]).slice(0,4)
-                .map(a=>[a.given,a.family].filter(Boolean).join(' ')).join(', '),
+      authors:(w.author||[]).slice(0,4).map(a=>[a.given,a.family].filter(Boolean).join(' ')).join(', '),
       year:w.published?.['date-parts']?.[0]?.[0]||null,
       citationCount:w['is-referenced-by-count']||0,
       source:'crossref', sources:['crossref'],
-      venue:Array.isArray(w['container-title'])?w['container-title'][0]:null,
     }));
   } catch { return []; }
 }
 
 async function searchHC(q) {
   try {
-    const d = await jfetch(
-      `${CFG.HC}/posts?search=${enc(q)}&per_page=5&_fields=id,title,link,date`);
+    const d = await jfetch(`${CFG.HC}/posts?search=${enc(q)}&per_page=5`, true);
     return (d||[]).map(p=>({
-      id:'hc:'+p.id,
-      title:p.title?.rendered||'(Untitled)',
+      id:'hc:'+p.id, title:p.title?.rendered||'(Untitled)',
       authors:'', year:p.date?new Date(p.date).getFullYear():null,
-      doi:null, citationCount:0,
-      source:'hcommons', sources:['hcommons'],
-      venue:'Humanities Commons', url:p.link,
+      source:'hcommons', sources:['hcommons'], venue:'Humanities Commons',
     }));
   } catch { return []; }
 }
 
-// Deduplicate results from multiple sources by DOI then normalised title
 function mergeResults(arrays) {
   const byDoi  = new Map();
   const byTitle= new Map();
   const out    = [];
-
-  function normTitle(t) {
-    return t.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,60);
-  }
+  const normTitle = t => t.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,60);
 
   for (const arr of arrays) {
     for (const item of arr) {
-      let existing = null;
-      if (item.doi)  existing = byDoi.get(item.doi);
-      if (!existing) existing = byTitle.get(normTitle(item.title||''));
-
+      let existing = (item.doi ? byDoi.get(item.doi) : null) || byTitle.get(normTitle(item.title||''));
       if (existing) {
-        for (const s of (item.sources||[item.source]))
-          if (!existing.sources.includes(s)) existing.sources.push(s);
-        if ((item.citationCount||0) > existing.citationCount)
-          existing.citationCount = item.citationCount;
+        (item.sources||[]).forEach(s => { if(!existing.sources.includes(s)) existing.sources.push(s); });
+        if ((item.citationCount||0) > existing.citationCount) existing.citationCount = item.citationCount;
         if (item.openAlexId && !existing.openAlexId) existing.openAlexId = item.openAlexId;
-        if (item.ssId      && !existing.ssId)       existing.ssId       = item.ssId;
-        if (item.arxivId   && !existing.arxivId)    existing.arxivId    = item.arxivId;
-        if (item.abstract  && !existing.abstract)   existing.abstract   = item.abstract;
+        if (item.ssId && !existing.ssId) existing.ssId = item.ssId;
+        if (item.arxivId && !existing.arxivId) existing.arxivId = item.arxivId;
       } else {
         item.sources = item.sources || [item.source];
         out.push(item);
-        if (item.doi)  byDoi.set(item.doi, item);
+        if (item.doi) byDoi.set(item.doi, item);
         byTitle.set(normTitle(item.title||''), item);
       }
     }
@@ -583,30 +507,22 @@ function mergeResults(arrays) {
   return out.sort((a,b)=>(b.citationCount||0)-(a.citationCount||0));
 }
 
-// Fetch papers that CITE a given node
-async function getCitedBy(node) {
-  let papers = [];
+// ── CITATION FETCHER (PARALLEL) ──────────────────────────
 
-  // 1. OpenAlex  (best cited-by coverage)
+async function getCitedBy(node) {
+  const tasks = [];
+
+  // 1. OpenAlex
   if (node.openAlexId) {
-    try {
-      const d = await jfetch(
-        `${CFG.OA}/works?filter=cites:${node.openAlexId}`
-        +`&per-page=${CFG.MAX_CITERS}`
-        +`&select=id,title,authorships,publication_year,doi,cited_by_count,primary_location`
-        +`&mailto=${CFG.MAIL}`);
-      papers = (d.results||[]).map(normalOA);
-    } catch {}
+    tasks.push(jfetch(`${CFG.OA}/works?filter=cites:${node.openAlexId}&per-page=${CFG.MAX_CITERS}&mailto=${CFG.MAIL}`)
+      .then(d => (d.results||[]).map(normalOA)).catch(()=>[]));
   }
 
-  // 2. Semantic Scholar  (if OA gave few results)
-  const ssTarget = node.ssId || (node.arxivId ? `arXiv:${node.arxivId}` : null);
-  if (papers.length < 15 && ssTarget) {
-    try {
-      const d = await jfetch(
-        `${CFG.SS}/paper/${enc(ssTarget)}/citations`
-        +`?fields=paperId,title,authors,year,citationCount,externalIds,venue&limit=80`);
-      const ss = (d.data||[]).map(({citingPaper:p})=>({
+  // 2. Semantic Scholar
+  const ssTarget = node.ssId || (node.doi ? `DOI:${node.doi}` : (node.arxivId ? `arXiv:${node.arxivId}` : null));
+  if (ssTarget) {
+    tasks.push(jfetch(`${CFG.SS}/paper/${enc(ssTarget)}/citations?fields=paperId,title,authors,year,citationCount,externalIds,venue&limit=80`, true)
+      .then(d => (d.data||[]).map(({citingPaper:p})=>({
         id:'ss:'+p.paperId, ssId:p.paperId,
         title:p.title||'(Untitled)',
         authors:(p.authors||[]).slice(0,4).map(a=>a.name).join(', '),
@@ -615,26 +531,23 @@ async function getCitedBy(node) {
         citationCount:p.citationCount||0,
         source:'semanticscholar', sources:['semanticscholar'],
         venue:p.venue||null,
-      }));
-      papers = mergeResults([papers, ss]);
-    } catch {}
+      }))).catch(()=>[]));
   }
 
-  return papers;
+  const results = await Promise.allSettled(tasks);
+  return mergeResults(results.map(r => r.status==='fulfilled' ? r.value : []));
 }
 
-// Resolve OA ID from DOI (enrichment step)
 async function resolveOAId(node) {
   if (node.openAlexId) return node.openAlexId;
   if (!node.doi) return null;
   try {
-    const d = await jfetch(
-      `${CFG.OA}/works/https://doi.org/${node.doi}?select=id&mailto=${CFG.MAIL}`);
+    const d = await jfetch(`${CFG.OA}/works/https://doi.org/${node.doi}?select=id&mailto=${CFG.MAIL}`);
     return d.id?.replace('https://openalex.org/','') || null;
   } catch { return null; }
 }
 
-// ── Graph state ─────────────────────────────────────────
+// ── GRAPH LOGIC ──────────────────────────────────────────
 
 function addNode(data, depth) {
   if (S.nodes.has(data.id)) return;
@@ -643,393 +556,150 @@ function addNode(data, depth) {
 }
 
 function addEdge(src, tgt) {
-  if (!S.edges.some(e=>e.source===src&&e.target===tgt))
-    S.edges.push({source:src, target:tgt});
+  if (!S.edges.some(e=>e.source===src&&e.target===tgt)) S.edges.push({source:src, target:tgt});
 }
 
-function clearGraph() {
-  S.nodes.clear(); S.edges.length=0;
-  S.rootId=null; S.maxDepth=0; S.selId=null;
-  renderGraph(); updateStats();
-  closeDetail();
-  document.getElementById('empty').style.opacity='1';
-  document.getElementById('dl-btn').disabled=true;
-}
-
-// ── D3 ──────────────────────────────────────────────────
-
-const DEPTH_COLORS = ['#b83030','#c8872a','#267a6e','#7a4ab0','#3a7a2a','#8a3a5a'];
-const getColor  = d => DEPTH_COLORS[Math.min(d, DEPTH_COLORS.length-1)];
-const getRadius = n => n.depth===0 ? 18
-  : 7 + Math.min(Math.sqrt(n.citationCount||0)*0.55, 10);
-
-function initD3() {
-  const svg = d3.select('#gsvg');
-  S.svg = svg;
-  S.zoom = d3.zoom().scaleExtent([0.08,5])
-    .on('zoom', e => S.g.attr('transform', e.transform));
-  svg.call(S.zoom);
-
-  // arrow marker
-  svg.append('defs').append('marker')
-    .attr('id','arr').attr('viewBox','-0 -5 10 10')
-    .attr('refX',20).attr('refY',0)
-    .attr('orient','auto').attr('markerWidth',5).attr('markerHeight',5)
-    .append('path').attr('d','M0,-5L10,0L0,5')
-    .attr('fill','#1c2730');
-
-  S.g = svg.append('g').attr('class','g-root');
-  svg.on('click', ()=>{ deselectNode(); closeDetail(); });
-}
+const DEPTH_COLORS = ['#b83030','#c8872a','#267a6e','#7a4ab0','#3a7a2a'];
+const getRadius = n => n.depth===0 ? 18 : 7 + Math.min(Math.sqrt(n.citationCount||0)*0.55, 10);
 
 function renderGraph() {
-  const g = S.g;
-  g.selectAll('*').remove();
-
+  const g = S.g; g.selectAll('*').remove();
   const nodes = Array.from(S.nodes.values());
-  const edges = S.edges.map(e=>({...e}));  // shallow copy so D3 mutates its own objects
-
-  if (nodes.length===0) {
-    updateStats(); return;
-  }
+  const edges = S.edges.map(e=>({...e}));
+  if (nodes.length===0) { updateStats(); return; }
   document.getElementById('empty').style.opacity='0';
 
-  const W = document.getElementById('gsvg').clientWidth  || 800;
-  const H = document.getElementById('gsvg').clientHeight || 600;
-
+  const W = document.getElementById('gsvg').clientWidth, H = document.getElementById('gsvg').clientHeight;
   if (S.sim) S.sim.stop();
   S.sim = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(edges).id(d=>d.id)
-      .distance(d=>{
-        const s = S.nodes.get(d.source.id||d.source);
-        return s?.depth===0 ? 130 : 75;
-      }).strength(0.45))
-    .force('charge', d3.forceManyBody().strength(-220).distanceMax(420))
-    .force('center',  d3.forceCenter(W/2, H/2))
-    .force('collide', d3.forceCollide(d=>getRadius(d)+9))
-    .alphaDecay(0.022);
+    .force('link', d3.forceLink(edges).id(d=>d.id).distance(d=>S.nodes.get(d.source.id||d.source)?.depth===0?130:75).strength(0.45))
+    .force('charge', d3.forceManyBody().strength(-220))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collide', d3.forceCollide(d=>getRadius(d)+9));
 
-  // links
-  const link = g.append('g').selectAll('line').data(edges).enter()
-    .append('line').attr('class','link').attr('marker-end','url(#arr)');
-
-  // nodes
-  const node = g.append('g').selectAll('g').data(nodes, d=>d.id).enter()
-    .append('g')
-    .attr('class','node')
-    .attr('data-id', d=>d.id)
-    .call(d3.drag()
-      .on('start',(e,d)=>{if(!e.active)S.sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y})
-      .on('drag', (e,d)=>{d.fx=e.x;d.fy=e.y})
-      .on('end',  (e,d)=>{if(!e.active)S.sim.alphaTarget(0);d.fx=null;d.fy=null}))
+  const link = g.append('g').selectAll('line').data(edges).enter().append('line').attr('class','link').attr('marker-end','url(#arr)');
+  const node = g.append('g').selectAll('g').data(nodes, d=>d.id).enter().append('g').attr('class','node')
+    .call(d3.drag().on('start',(e,d)=>{if(!e.active)S.sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y}).on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y}).on('end',(e,d)=>{if(!e.active)S.sim.alphaTarget(0);d.fx=null;d.fy=null}))
     .on('click', (e,d)=>{ e.stopPropagation(); selectNode(d.id); })
-    .on('mouseover',(e,d)=>showTip(e,d))
-    .on('mousemove', moveTip)
-    .on('mouseout', hideTip);
+    .on('mouseover', showTip).on('mousemove', moveTip).on('mouseout', hideTip);
 
-  node.append('circle')
-    .attr('r', d=>getRadius(d))
-    .attr('fill', d=>getColor(d.depth))
-    .attr('fill-opacity', .82)
-    .attr('stroke', d=>d.id===S.rootId?'#ffffff':getColor(d.depth))
-    .attr('stroke-width', d=>d.id===S.rootId?2:0.6)
-    .attr('stroke-opacity', .55);
-
-  // dashed ring for expanded nodes
-  node.filter(d=>d.expanded).append('circle')
-    .attr('r', d=>getRadius(d)+5)
-    .attr('fill','none')
-    .attr('stroke', d=>getColor(d.depth))
-    .attr('stroke-width',1)
-    .attr('stroke-opacity',.3)
-    .attr('stroke-dasharray','3 2');
-
-  // year label below node
-  node.append('text')
-    .attr('dy', d=>getRadius(d)+11)
-    .text(d=>d.title.slice(0, 20).concat(d.title.length>20?'…':''))
-    .attr('font-size','9px');
+  node.append('circle').attr('r', d=>getRadius(d)).attr('fill', d=>DEPTH_COLORS[Math.min(d.depth,4)]).attr('stroke', d=>d.id===S.rootId?'#fff':null).attr('stroke-width', 2);
+  node.append('text').attr('dy', d=>getRadius(d)+11).text(d=>d.title.slice(0,18)+'...').attr('font-size','9px');
 
   S.sim.on('tick', ()=>{
-    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
-        .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
     node.attr('transform',d=>`translate(${d.x},${d.y})`);
   });
-
   updateStats();
 }
 
-// ── Selection ───────────────────────────────────────────
-
-function selectNode(id) {
-  S.selId = id;
-  S.g.selectAll('.node').classed('selected', d=>d.id===id);
-  S.g.selectAll('.node circle:first-child')
-    .attr('stroke', d=>d.id===id?'#ffffff':d.id===S.rootId?'#ffffff':getColor(d.depth))
-    .attr('stroke-width', d=>d.id===id?2.5:d.id===S.rootId?2:0.6);
-  const nd = S.nodes.get(id);
-  if (nd) showDetail(nd);
-}
-
-function deselectNode() {
-  S.selId=null;
-  if (!S.g) return;
-  S.g.selectAll('.node').classed('selected',false);
-  S.g.selectAll('.node circle:first-child')
-    .attr('stroke', d=>d.id===S.rootId?'#ffffff':getColor(d.depth))
-    .attr('stroke-width', d=>d.id===S.rootId?2:0.6);
-}
-
-// ── Detail panel ────────────────────────────────────────
-
-function showDetail(nd) {
-  const doi   = nd.doi  ? `<a href="https://doi.org/${nd.doi}" target="_blank">${esc(nd.doi)}</a>` : '—';
-  const arxiv = nd.arxivId
-    ? `<a href="https://arxiv.org/abs/${nd.arxivId}" target="_blank">arXiv:${esc(nd.arxivId)}</a>` : '';
-  const openBtn = nd.doi
-    ? `<button class="btn" onclick="window.open('https://doi.org/${nd.doi}','_blank')">↗ Open paper</button>` : '';
-  const expBtn = nd.expanded
-    ? `<button class="btn" disabled>✓ Expanded</button>`
-    : `<button class="btn btn-p" onclick="expandNode('${nd.id}')">↳ Fetch citing papers</button>`;
-
-  document.getElementById('d-body').innerHTML = `
-    <div class="d-title">${esc(nd.title||'(Untitled)')}</div>
-    ${nd.authors?`<div class="d-field"><div class="d-lbl">Authors</div>
-      <div class="d-val">${esc(nd.authors)}</div></div>`:''}
-    <div class="d-field"><div class="d-lbl">Year</div>
-      <div class="d-val">${nd.year||'—'}</div></div>
-    ${nd.venue?`<div class="d-field"><div class="d-lbl">Venue</div>
-      <div class="d-val">${esc(nd.venue)}</div></div>`:''}
-    <div class="d-field"><div class="d-lbl">Times cited</div>
-      <div class="d-val">${nd.citationCount>0?nd.citationCount.toLocaleString():'—'}</div></div>
-    <div class="d-field"><div class="d-lbl">DOI</div>
-      <div class="d-val">${doi}</div></div>
-    ${arxiv?`<div class="d-field"><div class="d-lbl">arXiv</div>
-      <div class="d-val">${arxiv}</div></div>`:''}
-    <div class="d-field"><div class="d-lbl">Source</div>
-      <div class="d-val">${esc((nd.sources||[nd.source]).join(', '))}</div></div>
-    ${nd.abstract?`<div class="d-field"><div class="d-lbl">Abstract</div>
-      <div class="d-val" style="font-size:11px;opacity:.75;line-height:1.6">
-        ${esc(nd.abstract.slice(0,500))}${nd.abstract.length>500?'…':''}</div></div>`:''}
-    <div class="d-acts">${expBtn}${openBtn}</div>
-  `;
-  document.getElementById('detail').classList.add('open');
-}
-
-function closeDetail() {
-  document.getElementById('detail').classList.remove('open');
-}
-
-// ── Expand a node ────────────────────────────────────────
-
-async function expandNode(id) {
-  const nd = S.nodes.get(id);
-  if (!nd || nd.expanded) return;
-
-  showLoad('Fetching citing papers…');
-  try {
-    if (!nd.openAlexId) nd.openAlexId = await resolveOAId(nd);
-
-    const citers = await getCitedBy(nd);
-    nd.expanded = true;
-    S.nodes.set(id, nd);
-
-    let added = 0;
-    for (const c of citers) {
-      if (!S.nodes.has(c.id)) { addNode(c, nd.depth+1); added++; }
-      addEdge(c.id, id);
-    }
-
-    toast(`${added} new citing paper${added!==1?'s':''} added`);
-    renderGraph();
-    setTimeout(()=>{ selectNode(id); document.getElementById('dl-btn').disabled=false; }, 80);
-  } catch(e) {
-    toast('Could not fetch citations');
-  } finally { hideLoad(); }
-}
-
-// ── Search flow ──────────────────────────────────────────
+// ── UI FLOW ──────────────────────────────────────────────
 
 async function doSearch() {
   const q = document.getElementById('s-in').value.trim();
   if (!q) return;
-
-  showLoad('Querying 5 bibliometric sources…');
-  document.getElementById('results').innerHTML='';
-  document.getElementById('sb-cnt').textContent='';
-
+  showLoad('Searching all sources...');
   try {
-    const [oa,ss,ax,cr,hc] = await Promise.allSettled([
-      searchOA(q), searchSS(q), searchAX(q), searchCR(q), searchHC(q)
-    ]);
-    const all = mergeResults([
-      oa.status==='fulfilled'?oa.value:[],
-      ss.status==='fulfilled'?ss.value:[],
-      ax.status==='fulfilled'?ax.value:[],
-      cr.status==='fulfilled'?cr.value:[],
-      hc.status==='fulfilled'?hc.value:[],
-    ]);
+    const res = await Promise.allSettled([searchOA(q), searchSS(q), searchAX(q), searchCR(q), searchHC(q)]);
+    const all = mergeResults(res.map(r=>r.status==='fulfilled'?r.value:[]));
     showResults(all);
-  } catch(e) {
-    document.getElementById('results').innerHTML =
-      '<div class="sb-placeholder"><p>Search failed. Please try again.</p></div>';
   } finally { hideLoad(); }
 }
 
 function showResults(results) {
   _results = results;
-  document.getElementById('sb-cnt').textContent = results.length ? `${results.length}` : '';
-  if (!results.length) {
-    document.getElementById('results').innerHTML =
-      '<div class="sb-placeholder"><p>No results. Try different keywords.</p></div>';
-    return;
-  }
+  document.getElementById('sb-cnt').textContent = results.length;
   document.getElementById('results').innerHTML = results.map((r,i)=>`
-    <div class="r-item" data-i="${i}" onclick="pickResult(${i})">
-      <div class="r-title">${esc(r.title||'(Untitled)')}</div>
-      <div class="r-meta">${r.authors?esc(r.authors)+' · ':''}${r.year||'?'}${r.citationCount?` · ${r.citationCount.toLocaleString()} cit.`:''}</div>
-      <div class="r-badges">${(r.sources||[r.source]).map(s=>`<span class="badge ${s}">${SNAME[s]||s}</span>`).join('')}</div>
-    </div>
-  `).join('');
+    <div class="r-item" onclick="pickResult(${i})">
+      <div class="r-title">${esc(r.title)}</div>
+      <div class="r-meta">${r.year||'?'}${r.citationCount?` · ${r.citationCount} cit.`:''}</div>
+      <div class="r-badges">${(r.sources||[]).map(s=>`<span class="badge ${s}">${s}</span>`).join('')}</div>
+    </div>`).join('');
 }
-
-const SNAME = {
-  openalex:'OA', semanticscholar:'S2', arxiv:'arXiv', crossref:'CR', hcommons:'HC'
-};
 
 async function pickResult(i) {
   const paper = _results[i];
-  if (!paper) return;
-
-  document.querySelectorAll('.r-item').forEach(el=>el.classList.remove('sel'));
-  document.querySelector(`.r-item[data-i="${i}"]`)?.classList.add('sel');
-
-  // reset graph
-  S.nodes.clear(); S.edges.length=0; S.maxDepth=0; S.rootId=null; S.selId=null;
-  closeDetail();
-
-  showLoad('Building citation network…');
+  S.nodes.clear(); S.edges.length=0; S.maxDepth=0; S.rootId = paper.id;
+  showLoad('Building wyrm...');
   try {
-    if (!paper.openAlexId) paper.openAlexId = await resolveOAId(paper);
-
-    addNode(paper, 0);
-    S.rootId = paper.id;
-    paper.expanded = true;
-    S.nodes.set(paper.id, paper);
-
+    paper.openAlexId = await resolveOAId(paper);
+    addNode(paper, 0); paper.expanded = true;
     const citers = await getCitedBy(paper);
-    for (const c of citers) { addNode(c,1); addEdge(c.id, paper.id); }
-
+    citers.forEach(c => { addNode(c, 1); addEdge(c.id, paper.id); });
     renderGraph();
-    document.getElementById('dl-btn').disabled = false;
-    toast(`${citers.length} citing paper${citers.length!==1?'s':''} found`);
-    setTimeout(()=>selectNode(paper.id), 120);
-  } catch(e) {
-    toast('Error building network');
+    document.getElementById('dl-btn').disabled=false;
+    setTimeout(()=>selectNode(paper.id), 100);
   } finally { hideLoad(); }
 }
 
-// ── Tooltip ──────────────────────────────────────────────
+async function expandNode(id) {
+  const nd = S.nodes.get(id); if (!nd || nd.expanded) return;
+  showLoad('Expanding network...');
+  try {
+    nd.openAlexId = await resolveOAId(nd);
+    const citers = await getCitedBy(nd);
+    nd.expanded = true;
+    let added = 0;
+    citers.forEach(c => { if(!S.nodes.has(c.id)){ addNode(c, nd.depth+1); added++; } addEdge(c.id, id); });
+    toast(`Added ${added} papers`); renderGraph();
+    setTimeout(()=>selectNode(id), 100);
+  } finally { hideLoad(); }
+}
 
-function showTip(e, nd) {
+// ── UTILS ────────────────────────────────────────────────
+
+function selectNode(id) {
+  S.selId = id; const nd = S.nodes.get(id); if (nd) showDetail(nd);
+  S.g.selectAll('.node').classed('selected', d=>d.id===id);
+}
+
+function showDetail(nd) {
+  const expBtn = nd.expanded ? `<button class="btn" disabled>Expanded</button>` : `<button class="btn btn-p" onclick="expandNode('${nd.id}')">Fetch Citing Papers</button>`;
+  document.getElementById('d-body').innerHTML = `
+    <div class="d-title">${esc(nd.title)}</div>
+    <div class="d-field"><div class="d-lbl">Authors</div><div class="d-val">${esc(nd.authors)}</div></div>
+    <div class="d-field"><div class="d-lbl">Year</div><div class="d-val">${nd.year||'—'}</div></div>
+    <div class="d-field"><div class="d-lbl">Citations</div><div class="d-val">${nd.citationCount}</div></div>
+    <div class="d-field"><div class="d-lbl">DOI</div><div class="d-val">${nd.doi||'—'}</div></div>
+    <div class="d-acts">${expBtn}</div>`;
+  document.getElementById('detail').classList.add('open');
+}
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function enc(s){ return encodeURIComponent(s); }
+function showLoad(msg){ document.getElementById('ltxt').textContent=msg; document.getElementById('loading').classList.add('on'); }
+function hideLoad(){ document.getElementById('loading').classList.remove('on'); }
+function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('on'); setTimeout(()=>el.classList.remove('on'), 2500); }
+function updateStats() { document.getElementById('st-n').textContent = S.nodes.size; document.getElementById('st-e').textContent = S.edges.length; document.getElementById('st-d').textContent = S.maxDepth; }
+
+function init() {
+  S.svg = d3.select('#gsvg');
+  S.zoom = d3.zoom().scaleExtent([0.1, 4]).on('zoom', e => S.g.attr('transform', e.transform));
+  S.svg.call(S.zoom);
+  S.svg.append('defs').append('marker').attr('id','arr').attr('viewBox','0 -5 10 10').attr('refX',20).attr('orient','auto').attr('markerWidth',5).attr('markerHeight',5).append('path').attr('d','M0,-5L10,0L0,5').attr('fill','#1c2730');
+  S.g = S.svg.append('g');
+
+  document.getElementById('s-btn').onclick = doSearch;
+  document.getElementById('s-in').onkeydown = e => { if(e.key==='Enter') doSearch(); };
+  document.getElementById('rst-btn').onclick = () => location.reload();
+  document.getElementById('d-close').onclick = () => document.getElementById('detail').classList.remove('open');
+  document.getElementById('z-in').onclick = () => S.svg.transition().call(S.zoom.scaleBy, 1.5);
+  document.getElementById('z-out').onclick = () => S.svg.transition().call(S.zoom.scaleBy, 0.7);
+  document.getElementById('z-fit').onclick = () => S.svg.transition().call(S.zoom.transform, d3.zoomIdentity);
+  document.getElementById('leg-btn').onclick = () => { const l = document.getElementById('legend'); l.style.display = l.style.display==='flex'?'none':'flex'; };
+}
+
+function showTip(e, d) {
   const tip = document.getElementById('tip');
-  const t = nd.title||'(Untitled)';
-  tip.innerHTML =
-    `<strong style="font-family:var(--font-d);font-size:13px">
-      ${esc(t.length>85?t.slice(0,85)+'…':t)}
-    </strong><br>
-    <span style="color:var(--dim)">
-      ${nd.authors?esc(nd.authors.slice(0,65))+' · ':''}${nd.year||''}
-    </span>`;
-  tip.classList.add('on');
-  moveTip(e);
+  tip.innerHTML = `<strong>${esc(d.title)}</strong><br>${d.year || ''}`;
+  tip.classList.add('on'); moveTip(e);
 }
 function moveTip(e) {
   const tip = document.getElementById('tip');
-  const r   = document.getElementById('graph').getBoundingClientRect();
-  let x = e.clientX-r.left+14, y = e.clientY-r.top-8;
-  if (x+260>r.width) x = e.clientX-r.left-266;
-  tip.style.left=x+'px'; tip.style.top=y+'px';
+  tip.style.left = (e.clientX + 15) + 'px';
+  tip.style.top = (e.clientY + 15) + 'px';
 }
 function hideTip() { document.getElementById('tip').classList.remove('on'); }
-
-// ── Download ─────────────────────────────────────────────
-
-function doDownload() {
-  if (!S.nodes.size) return;
-
-  // nodes CSV
-  const nh = 'id,title,authors,year,doi,citationCount,depth,source,venue\n';
-  const nr = Array.from(S.nodes.values())
-    .map(n=>[n.id,n.title,n.authors,n.year,n.doi||'',n.citationCount,n.depth,n.source,n.venue||'']
-      .map(v=>`"${String(v??'').replace(/"/g,'""')}"`)
-      .join(',')
-    ).join('\n');
-  dl('wyrm_nodes.csv', nh+nr);
-
-  // edges CSV
-  setTimeout(()=>{
-    const eh = 'source,target\n';
-    const er = S.edges.map(e=>`"${e.source}","${e.target}"`).join('\n');
-    dl('wyrm_edges.csv', eh+er);
-  }, 250);
-
-  toast('Exported wyrm_nodes.csv + wyrm_edges.csv');
-}
-
-function dl(name, text) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([text],{type:'text/csv'}));
-  a.download = name; a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-// ── Zoom ─────────────────────────────────────────────────
-const zBy = f => S.svg?.transition().call(S.zoom.scaleBy, f);
-const zRst = () => S.svg?.transition().call(S.zoom.transform, d3.zoomIdentity);
-
-// ── Stats ────────────────────────────────────────────────
-function updateStats() {
-  document.getElementById('st-n').textContent = S.nodes.size;
-  document.getElementById('st-e').textContent = S.edges.length;
-  document.getElementById('st-d').textContent = S.maxDepth;
-}
-
-// ── UI helpers ───────────────────────────────────────────
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
-function enc(s){ return encodeURIComponent(s) }
-function showLoad(msg){ document.getElementById('ltxt').textContent=msg||'Loading…'; document.getElementById('loading').classList.add('on') }
-function hideLoad(){ document.getElementById('loading').classList.remove('on') }
-let _toastTimer;
-function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.classList.add('on');
-  clearTimeout(_toastTimer);
-  _toastTimer=setTimeout(()=>el.classList.remove('on'),2800);
-}
-
-// ── Init ─────────────────────────────────────────────────
-function init() {
-  initD3();
-
-  document.getElementById('s-btn').addEventListener('click', doSearch);
-  document.getElementById('s-in').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
-  document.getElementById('dl-btn').addEventListener('click', doDownload);
-  document.getElementById('rst-btn').addEventListener('click', ()=>{
-    clearGraph();
-    document.getElementById('results').innerHTML =
-      '<div class="sb-placeholder"><p>Search for a paper to trace its citation ancestry.</p></div>';
-    document.getElementById('sb-cnt').textContent='';
-    _results=[];
-  });
-  document.getElementById('leg-btn').addEventListener('click', ()=>{
-    document.getElementById('legend').classList.toggle('on');
-  });
-  document.getElementById('d-close').addEventListener('click', ()=>{ closeDetail(); deselectNode(); });
-  document.getElementById('z-in').addEventListener('click',  ()=>zBy(1.4));
-  document.getElementById('z-out').addEventListener('click', ()=>zBy(0.7));
-  document.getElementById('z-fit').addEventListener('click', zRst);
-}
 
 init();
 </script>
