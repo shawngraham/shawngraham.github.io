@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wyrm — Citation Network Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --bg:        #080b0e;
+  --bg2:       #0d1219;
+  --bg3:       #121a23;
+  --border:    #1c2730;
+  --text:      #d4cbbf;
+  --dim:       #6a7e8c;
+  --amber:     #c8872a;
+  --amber-hi:  #e8a840;
+  --teal:      #267a6e;
+  --teal-hi:   #38b09c;
+  --crimson:   #b83030;
+  --purple:    #7a4ab0;
+  --font-d:    'Cormorant Garamond', Georgia, serif;
+  --font-m:    'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* ── RESET ──────────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
+  font-family:var(--font-m);font-size:13px}
+
+/* ── SCROLLBARS ─────────────────────────────────────────── */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+#hdr{
+  display:flex;align-items:center;gap:14px;
+  padding:10px 18px;
+  border-bottom:1px solid var(--border);
+  background:var(--bg2);
+  position:relative;z-index:20;
+  flex-shrink:0;
+}
+
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-name{
+  font-family:var(--font-d);font-size:26px;font-weight:600;
+  letter-spacing:.1em;color:var(--amber);line-height:1
+}
+.logo-sub{
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin-top:1px
+}
+
+.searchbar{
+  flex:1;display:flex;gap:7px;max-width:580px
+}
+.searchbar input{
+  flex:1;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--text);font-family:var(--font-m);font-size:13px;
+  padding:7px 11px;outline:none;
+  transition:border-color .18s
+}
+.searchbar input:focus{border-color:var(--amber)}
+.searchbar input::placeholder{color:var(--dim)}
+
+.btn{
+  background:transparent;border:1px solid var(--border);
+  color:var(--dim);font-family:var(--font-m);font-size:11px;
+  padding:6px 12px;cursor:pointer;letter-spacing:.06em;
+  text-transform:uppercase;transition:all .15s;white-space:nowrap
+}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+.btn:disabled{opacity:.3;pointer-events:none}
+.btn-p{background:var(--amber);border-color:var(--amber);color:#000;font-weight:500}
+.btn-p:hover{background:var(--amber-hi);border-color:var(--amber-hi);color:#000}
+
+.hdr-right{display:flex;gap:5px;margin-left:auto}
+
+/* ── LAYOUT ─────────────────────────────────────────────── */
+#app{display:flex;height:calc(100vh - 53px)}
+
+/* ── SIDEBAR ────────────────────────────────────────────── */
+#sidebar{
+  width:300px;min-width:300px;
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  background:var(--bg2);overflow:hidden
+}
+#sb-head{
+  padding:10px 14px;border-bottom:1px solid var(--border);
+  font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--dim);display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0
+}
+#results{
+  flex:1;overflow-y:auto;padding:6px 0
+}
+
+.r-item{
+  padding:9px 14px;cursor:pointer;
+  border-bottom:1px solid var(--border);
+  border-left:3px solid transparent;
+  transition:background .14s,border-color .14s
+}
+.r-item:hover{background:var(--bg3);border-left-color:var(--amber)}
+.r-item.sel{background:var(--bg3);border-left-color:var(--amber)}
+
+.r-title{
+  font-family:var(--font-d);font-size:14px;
+  line-height:1.38;color:var(--text);margin-bottom:3px
+}
+.r-meta{font-size:10.5px;color:var(--dim);line-height:1.5}
+.r-badges{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
+
+.badge{
+  font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;
+  padding:1px 5px;border:1px solid;border-radius:2px
+}
+.badge.openalex       {border-color:var(--teal);    color:var(--teal-hi)}
+.badge.semanticscholar{border-color:#7040b0;         color:#a880e8}
+.badge.arxiv          {border-color:#9a401a;         color:#e87050}
+.badge.crossref       {border-color:#405090;         color:#8098d8}
+.badge.hcommons       {border-color:#408850;         color:#70c888}
+
+.sb-placeholder{
+  padding:28px 14px;text-align:center;color:var(--dim)
+}
+.sb-placeholder p{
+  font-family:var(--font-d);font-size:14.5px;
+  font-style:italic;line-height:1.65;opacity:.7
+}
+
+/* ── GRAPH AREA ─────────────────────────────────────────── */
+#graph{flex:1;position:relative;overflow:hidden}
+#gsvg{width:100%;height:100%}
+
+/* ── EMPTY STATE ────────────────────────────────────────── */
+#empty{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;pointer-events:none;
+  transition:opacity .3s
+}
+.e-title{
+  font-family:var(--font-d);font-size:19px;font-style:italic;
+  color:var(--dim);margin-top:14px;opacity:.6
+}
+.e-sub{
+  font-size:10px;color:var(--dim);opacity:.35;
+  margin-top:7px;letter-spacing:.12em;text-transform:uppercase
+}
+
+/* ── LOADING ────────────────────────────────────────────── */
+#loading{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  display:none;flex-direction:column;align-items:center;gap:12px;
+  z-index:30
+}
+#loading.on{display:flex}
+.spin{width:46px;height:46px;animation:spin 1.6s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.ltxt{
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--amber);animation:pulse 1.6s ease-in-out infinite
+}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ── DETAIL PANEL ───────────────────────────────────────── */
+#detail{
+  position:absolute;right:0;top:0;bottom:0;width:330px;
+  background:var(--bg2);border-left:1px solid var(--border);
+  transform:translateX(100%);transition:transform .22s ease;
+  overflow-y:auto;z-index:10
+}
+#detail.open{transform:translateX(0)}
+#d-bar{
+  position:sticky;top:0;display:flex;
+  justify-content:space-between;align-items:center;
+  padding:9px 14px;border-bottom:1px solid var(--border);
+  background:var(--bg2);z-index:1;
+  font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)
+}
+#d-close{
+  background:none;border:none;color:var(--dim);
+  cursor:pointer;font-size:19px;line-height:1;padding:0 2px
+}
+#d-close:hover{color:var(--text)}
+#d-body{padding:14px}
+.d-title{
+  font-family:var(--font-d);font-size:17px;font-weight:600;
+  line-height:1.42;color:var(--text);margin-bottom:13px
+}
+.d-field{margin-bottom:10px}
+.d-lbl{
+  font-size:8.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:3px
+}
+.d-val{font-size:12px;color:var(--text);line-height:1.5}
+.d-val a{color:var(--teal-hi);text-decoration:none}
+.d-val a:hover{text-decoration:underline}
+.d-acts{margin-top:14px;display:flex;flex-direction:column;gap:7px}
+
+/* ── STATS BAR ──────────────────────────────────────────── */
+#stats{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;align-items:center;gap:18px;
+  padding:6px 14px;
+  background:rgba(8,11,14,.85);backdrop-filter:blur(4px);
+  border-top:1px solid var(--border);
+  font-size:10.5px;color:var(--dim);pointer-events:none
+}
+.sv{color:var(--amber)}
+
+/* ── ZOOM CONTROLS ──────────────────────────────────────── */
+#zctrl{
+  position:absolute;bottom:36px;right:14px;
+  display:flex;flex-direction:column;gap:3px;z-index:10
+}
+.zbtn{
+  width:30px;height:30px;background:var(--bg2);
+  border:1px solid var(--border);color:var(--dim);
+  cursor:pointer;font-size:15px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .14s
+}
+.zbtn:hover{border-color:var(--amber);color:var(--amber)}
+
+/* ── TOOLTIP ────────────────────────────────────────────── */
+#tip{
+  position:absolute;
+  background:var(--bg2);border:1px solid var(--amber);
+  padding:7px 11px;font-size:11.5px;max-width:250px;
+  pointer-events:none;opacity:0;transition:opacity .14s;
+  z-index:50;line-height:1.45
+}
+#tip.on{opacity:1}
+
+/* ── TOAST ──────────────────────────────────────────────── */
+#toast{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  background:var(--bg2);border:1px solid var(--amber);
+  padding:7px 14px;font-size:11.5px;color:var(--amber);
+  opacity:0;transition:opacity .25s;z-index:100;pointer-events:none;
+  white-space:nowrap
+}
+#toast.on{opacity:1}
+
+/* ── D3 ELEMENTS ────────────────────────────────────────── */
+.link{stroke:#1c2730;stroke-opacity:.7;fill:none;stroke-width:1.2}
+.link.hl{stroke:var(--amber);stroke-opacity:.8;stroke-width:1.5}
+.node circle{cursor:pointer}
+.node text{
+  font-family:var(--font-m);font-size:9px;
+  fill:var(--dim);pointer-events:none;
+  text-anchor:middle
+}
+.node.selected circle{filter:drop-shadow(0 0 7px currentColor)}
+
+/* legend */
+#legend{
+  position:absolute;top:12px;left:12px;
+  background:rgba(13,18,25,.8);backdrop-filter:blur(4px);
+  border:1px solid var(--border);padding:8px 11px;
+  font-size:10px;color:var(--dim);
+  display:none;flex-direction:column;gap:5px;z-index:5
+}
+#legend.on{display:flex}
+.leg-row{display:flex;align-items:center;gap:7px}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ════════════════════════════════════════════ -->
+<div id="hdr">
+  <a class="logo" href="#" onclick="return false">
+    <!-- Ouroboros mark -->
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+      <circle cx="17" cy="17" r="13" stroke="#c8872a" stroke-width="1.8"
+        fill="none" stroke-dasharray="66 14" stroke-dashoffset="0"/>
+      <path d="M30 17C30 14.5 27.5 12.5 25 13.5L20.5 16"
+        stroke="#c8872a" stroke-width="2.8" stroke-linecap="round"/>
+      <circle cx="29" cy="16" r="2.2" fill="#c8872a" opacity=".55"/>
+      <circle cx="29" cy="16" r="1" fill="#c8872a"/>
+    </svg>
+    <div>
+      <div class="logo-name">WYRM</div>
+      <div class="logo-sub">Citation Network Explorer</div>
+    </div>
+  </a>
+
+  <div class="searchbar">
+    <input id="s-in" type="text"
+      placeholder="Search by title, author, DOI, or keywords…"
+      autocomplete="off" spellcheck="false">
+    <button class="btn btn-p" id="s-btn">Search</button>
+  </div>
+
+  <div class="hdr-right">
+    <button class="btn" id="dl-btn" disabled title="Download node & edge CSVs">↓ Export</button>
+    <button class="btn" id="rst-btn" title="Clear graph">Reset</button>
+    <button class="btn" id="leg-btn" title="Toggle legend">Legend</button>
+  </div>
+</div>
+
+<!-- ═══ APP ═══════════════════════════════════════════════ -->
+<div id="app">
+
+  <!-- sidebar -->
+  <div id="sidebar">
+    <div id="sb-head">
+      <span id="sb-lbl">Search Results</span>
+      <span id="sb-cnt"></span>
+    </div>
+    <div id="results">
+      <div class="sb-placeholder">
+        <p>Search for a paper to trace its citation ancestry.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- graph -->
+  <div id="graph">
+    <svg id="gsvg"></svg>
+
+    <!-- empty state -->
+    <div id="empty">
+      <svg width="110" height="110" viewBox="0 0 110 110" opacity=".18">
+        <circle cx="55" cy="55" r="40" stroke="#c8872a" stroke-width="2.2"
+          fill="none" stroke-dasharray="180 55"/>
+        <path d="M95 55C95 48 90 44 85 46L74 51"
+          stroke="#c8872a" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="94" cy="53" r="5" fill="#c8872a" opacity=".5"/>
+        <circle cx="94" cy="53" r="2.2" fill="#c8872a"/>
+      </svg>
+      <div class="e-title">Select a paper to trace its wyrm</div>
+      <div class="e-sub">Search · Select · Expand</div>
+    </div>
+
+    <!-- loading -->
+    <div id="loading">
+      <svg class="spin" width="46" height="46" viewBox="0 0 46 46">
+        <circle cx="23" cy="23" r="17" stroke="#c8872a" stroke-width="2"
+          fill="none" stroke-dasharray="72 26"/>
+        <path d="M40 23C40 20 37 18 34.5 19L29 21.5"
+          stroke="#c8872a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="ltxt" id="ltxt">Querying sources…</div>
+    </div>
+
+    <!-- detail panel -->
+    <div id="detail">
+      <div id="d-bar">
+        <span>Paper Detail</span>
+        <button id="d-close">×</button>
+      </div>
+      <div id="d-body"></div>
+    </div>
+
+    <!-- legend -->
+    <div id="legend">
+      <div class="leg-row"><div class="leg-dot" style="background:#b83030"></div><span>Root (selected paper)</span></div>
+      <div class="leg-row"><div class="leg-dot" style="background:#c8872a"></div><span>Depth 1 — direct citers</span></div>
+      <div class="leg-row"><div class="leg-dot" style="background:#267a6e"></div><span>Depth 2</span></div>
+      <div class="leg-row"><div class="leg-dot" style="background:#7a4ab0"></div><span>Depth 3+</span></div>
+      <div class="leg-row" style="margin-top:4px;font-size:9.5px;color:#6a7e8c">
+        Node size ∝ citation count
+      </div>
+    </div>
+
+    <!-- stats -->
+    <div id="stats">
+      <span>Nodes: <span class="sv" id="st-n">0</span></span>
+      <span>Edges: <span class="sv" id="st-e">0</span></span>
+      <span>Max depth: <span class="sv" id="st-d">0</span></span>
+    </div>
+
+    <!-- zoom -->
+    <div id="zctrl">
+      <button class="zbtn" id="z-in">+</button>
+      <button class="zbtn" id="z-out">−</button>
+      <button class="zbtn" id="z-fit" title="Fit">⊡</button>
+    </div>
+
+    <div id="tip"></div>
+    <div id="toast"></div>
+  </div>
+</div>
+
+<!-- ═══ SCRIPT ════════════════════════════════════════════ -->
+<script>
+// ══════════════════════════════════════════════════════════
+//  WYRM  —  Citation Network Explorer
+//  APIs : OpenAlex · Semantic Scholar · arXiv · CrossRef ·
+//           Humanities Commons
+//  No server required — deploy anywhere.
+// ══════════════════════════════════════════════════════════
+
+const CFG = {
+  OA:   'https://api.openalex.org',
+  SS:   'https://api.semanticscholar.org/graph/v1',
+  AX:   'https://export.arxiv.org/api',
+  CR:   'https://api.crossref.org',
+  HC:   'https://hcommons.org/wp-json/wp/v2',
+  MAIL: 'wyrm-explorer@example.com',   // polite pool
+  MAX_CITERS: 80,
+};
+
+// ── State ──────────────────────────────────────────────
+const S = {
+  nodes:    new Map(),   // id → nodeObj
+  edges:    [],          // [{source,target}]
+  rootId:   null,
+  sim:      null,
+  svg:      null,
+  zoom:     null,
+  g:        null,
+  selId:    null,
+  maxDepth: 0,
+};
+let _results = [];
+
+// ── API helpers ─────────────────────────────────────────
+
+async function jfetch(url) {
+  const r = await fetch(url, {headers:{'Accept':'application/json'}});
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+}
+
+// normalise an OA work record into our node shape
+function normalOA(w) {
+  return {
+    id:           'oa:' + w.id.replace('https://openalex.org/',''),
+    openAlexId:   w.id.replace('https://openalex.org/',''),
+    title:        w.title || '(Untitled)',
+    authors:      (w.authorships||[]).slice(0,4)
+                    .map(a=>a.author?.display_name).filter(Boolean).join(', '),
+    year:         w.publication_year || null,
+    doi:          w.doi ? w.doi.replace('https://doi.org/','') : null,
+    citationCount:w.cited_by_count || 0,
+    source:       'openalex',
+    sources:      ['openalex'],
+    venue:        w.primary_location?.source?.display_name || null,
+    abstract:     w.abstract_inverted_index
+                    ? invertedToText(w.abstract_inverted_index) : null,
+  };
+}
+
+function invertedToText(inv) {
+  if (!inv) return null;
+  const pairs = [];
+  for (const [word, positions] of Object.entries(inv))
+    for (const pos of positions) pairs.push([pos, word]);
+  return pairs.sort((a,b)=>a[0]-b[0]).map(p=>p[1]).join(' ');
+}
+
+async function searchOA(q) {
+  try {
+    const d = await jfetch(
+      `${CFG.OA}/works?search=${enc(q)}&per-page=12`
+      +`&select=id,title,authorships,publication_year,doi,cited_by_count,primary_location`
+      +`&mailto=${CFG.MAIL}`);
+    return (d.results||[]).map(normalOA);
+  } catch { return []; }
+}
+
+async function searchSS(q) {
+  try {
+    const d = await jfetch(
+      `${CFG.SS}/paper/search?query=${enc(q)}&limit=10`
+      +`&fields=paperId,title,authors,year,citationCount,externalIds,venue`);
+    return (d.data||[]).map(p=>({
+      id:'ss:'+p.paperId, ssId:p.paperId,
+      title:p.title||'(Untitled)',
+      authors:(p.authors||[]).slice(0,4).map(a=>a.name).join(', '),
+      year:p.year, doi:p.externalIds?.DOI||null,
+      arxivId:p.externalIds?.ArXiv||null,
+      citationCount:p.citationCount||0,
+      source:'semanticscholar', sources:['semanticscholar'],
+      venue:p.venue||null,
+    }));
+  } catch { return []; }
+}
+
+async function searchAX(q) {
+  try {
+    const txt = await fetch(
+      `${CFG.AX}/query?search_query=all:${enc(q)}&max_results=7&sortBy=relevance`
+    ).then(r=>r.text());
+    const xml = new DOMParser().parseFromString(txt,'application/xml');
+    return Array.from(xml.querySelectorAll('entry')).map(e=>{
+      const rawId = e.querySelector('id')?.textContent||'';
+      const arxivId = rawId.includes('/abs/') ? rawId.split('/abs/').pop() : rawId;
+      return {
+        id:'ax:'+arxivId, arxivId,
+        title:e.querySelector('title')?.textContent?.trim()||'(Untitled)',
+        authors:Array.from(e.querySelectorAll('author name'))
+                  .slice(0,4).map(n=>n.textContent).join(', '),
+        year:(e.querySelector('published')?.textContent||'').slice(0,4),
+        doi:null, citationCount:0,
+        source:'arxiv', sources:['arxiv'], venue:'arXiv',
+        abstract:e.querySelector('summary')?.textContent?.trim()||'',
+      };
+    });
+  } catch { return []; }
+}
+
+async function searchCR(q) {
+  try {
+    const d = await jfetch(
+      `${CFG.CR}/works?query=${enc(q)}&rows=7`
+      +`&select=DOI,title,author,published,is-referenced-by-count,container-title`);
+    return (d.message?.items||[]).map(w=>({
+      id:'cr:'+(w.DOI||Math.random()),
+      doi:w.DOI||null,
+      title:Array.isArray(w.title)?w.title[0]:(w.title||'(Untitled)'),
+      authors:(w.author||[]).slice(0,4)
+                .map(a=>[a.given,a.family].filter(Boolean).join(' ')).join(', '),
+      year:w.published?.['date-parts']?.[0]?.[0]||null,
+      citationCount:w['is-referenced-by-count']||0,
+      source:'crossref', sources:['crossref'],
+      venue:Array.isArray(w['container-title'])?w['container-title'][0]:null,
+    }));
+  } catch { return []; }
+}
+
+async function searchHC(q) {
+  try {
+    const d = await jfetch(
+      `${CFG.HC}/posts?search=${enc(q)}&per_page=5&_fields=id,title,link,date`);
+    return (d||[]).map(p=>({
+      id:'hc:'+p.id,
+      title:p.title?.rendered||'(Untitled)',
+      authors:'', year:p.date?new Date(p.date).getFullYear():null,
+      doi:null, citationCount:0,
+      source:'hcommons', sources:['hcommons'],
+      venue:'Humanities Commons', url:p.link,
+    }));
+  } catch { return []; }
+}
+
+// Deduplicate results from multiple sources by DOI then normalised title
+function mergeResults(arrays) {
+  const byDoi  = new Map();
+  const byTitle= new Map();
+  const out    = [];
+
+  function normTitle(t) {
+    return t.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,60);
+  }
+
+  for (const arr of arrays) {
+    for (const item of arr) {
+      let existing = null;
+      if (item.doi)  existing = byDoi.get(item.doi);
+      if (!existing) existing = byTitle.get(normTitle(item.title||''));
+
+      if (existing) {
+        for (const s of (item.sources||[item.source]))
+          if (!existing.sources.includes(s)) existing.sources.push(s);
+        if ((item.citationCount||0) > existing.citationCount)
+          existing.citationCount = item.citationCount;
+        if (item.openAlexId && !existing.openAlexId) existing.openAlexId = item.openAlexId;
+        if (item.ssId      && !existing.ssId)       existing.ssId       = item.ssId;
+        if (item.arxivId   && !existing.arxivId)    existing.arxivId    = item.arxivId;
+        if (item.abstract  && !existing.abstract)   existing.abstract   = item.abstract;
+      } else {
+        item.sources = item.sources || [item.source];
+        out.push(item);
+        if (item.doi)  byDoi.set(item.doi, item);
+        byTitle.set(normTitle(item.title||''), item);
+      }
+    }
+  }
+  return out.sort((a,b)=>(b.citationCount||0)-(a.citationCount||0));
+}
+
+// Fetch papers that CITE a given node
+async function getCitedBy(node) {
+  let papers = [];
+
+  // 1. OpenAlex  (best cited-by coverage)
+  if (node.openAlexId) {
+    try {
+      const d = await jfetch(
+        `${CFG.OA}/works?filter=cites:${node.openAlexId}`
+        +`&per-page=${CFG.MAX_CITERS}`
+        +`&select=id,title,authorships,publication_year,doi,cited_by_count,primary_location`
+        +`&mailto=${CFG.MAIL}`);
+      papers = (d.results||[]).map(normalOA);
+    } catch {}
+  }
+
+  // 2. Semantic Scholar  (if OA gave few results)
+  const ssTarget = node.ssId || (node.arxivId ? `arXiv:${node.arxivId}` : null);
+  if (papers.length < 15 && ssTarget) {
+    try {
+      const d = await jfetch(
+        `${CFG.SS}/paper/${enc(ssTarget)}/citations`
+        +`?fields=paperId,title,authors,year,citationCount,externalIds,venue&limit=80`);
+      const ss = (d.data||[]).map(({citingPaper:p})=>({
+        id:'ss:'+p.paperId, ssId:p.paperId,
+        title:p.title||'(Untitled)',
+        authors:(p.authors||[]).slice(0,4).map(a=>a.name).join(', '),
+        year:p.year, doi:p.externalIds?.DOI||null,
+        arxivId:p.externalIds?.ArXiv||null,
+        citationCount:p.citationCount||0,
+        source:'semanticscholar', sources:['semanticscholar'],
+        venue:p.venue||null,
+      }));
+      papers = mergeResults([papers, ss]);
+    } catch {}
+  }
+
+  return papers;
+}
+
+// Resolve OA ID from DOI (enrichment step)
+async function resolveOAId(node) {
+  if (node.openAlexId) return node.openAlexId;
+  if (!node.doi) return null;
+  try {
+    const d = await jfetch(
+      `${CFG.OA}/works/https://doi.org/${node.doi}?select=id&mailto=${CFG.MAIL}`);
+    return d.id?.replace('https://openalex.org/','') || null;
+  } catch { return null; }
+}
+
+// ── Graph state ─────────────────────────────────────────
+
+function addNode(data, depth) {
+  if (S.nodes.has(data.id)) return;
+  S.nodes.set(data.id, {...data, depth, expanded:false});
+  if (depth > S.maxDepth) S.maxDepth = depth;
+}
+
+function addEdge(src, tgt) {
+  if (!S.edges.some(e=>e.source===src&&e.target===tgt))
+    S.edges.push({source:src, target:tgt});
+}
+
+function clearGraph() {
+  S.nodes.clear(); S.edges.length=0;
+  S.rootId=null; S.maxDepth=0; S.selId=null;
+  renderGraph(); updateStats();
+  closeDetail();
+  document.getElementById('empty').style.opacity='1';
+  document.getElementById('dl-btn').disabled=true;
+}
+
+// ── D3 ──────────────────────────────────────────────────
+
+const DEPTH_COLORS = ['#b83030','#c8872a','#267a6e','#7a4ab0','#3a7a2a','#8a3a5a'];
+const getColor  = d => DEPTH_COLORS[Math.min(d, DEPTH_COLORS.length-1)];
+const getRadius = n => n.depth===0 ? 18
+  : 7 + Math.min(Math.sqrt(n.citationCount||0)*0.55, 10);
+
+function initD3() {
+  const svg = d3.select('#gsvg');
+  S.svg = svg;
+  S.zoom = d3.zoom().scaleExtent([0.08,5])
+    .on('zoom', e => S.g.attr('transform', e.transform));
+  svg.call(S.zoom);
+
+  // arrow marker
+  svg.append('defs').append('marker')
+    .attr('id','arr').attr('viewBox','-0 -5 10 10')
+    .attr('refX',20).attr('refY',0)
+    .attr('orient','auto').attr('markerWidth',5).attr('markerHeight',5)
+    .append('path').attr('d','M0,-5L10,0L0,5')
+    .attr('fill','#1c2730');
+
+  S.g = svg.append('g').attr('class','g-root');
+  svg.on('click', ()=>{ deselectNode(); closeDetail(); });
+}
+
+function renderGraph() {
+  const g = S.g;
+  g.selectAll('*').remove();
+
+  const nodes = Array.from(S.nodes.values());
+  const edges = S.edges.map(e=>({...e}));  // shallow copy so D3 mutates its own objects
+
+  if (nodes.length===0) {
+    updateStats(); return;
+  }
+  document.getElementById('empty').style.opacity='0';
+
+  const W = document.getElementById('gsvg').clientWidth  || 800;
+  const H = document.getElementById('gsvg').clientHeight || 600;
+
+  if (S.sim) S.sim.stop();
+  S.sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(edges).id(d=>d.id)
+      .distance(d=>{
+        const s = S.nodes.get(d.source.id||d.source);
+        return s?.depth===0 ? 130 : 75;
+      }).strength(0.45))
+    .force('charge', d3.forceManyBody().strength(-220).distanceMax(420))
+    .force('center',  d3.forceCenter(W/2, H/2))
+    .force('collide', d3.forceCollide(d=>getRadius(d)+9))
+    .alphaDecay(0.022);
+
+  // links
+  const link = g.append('g').selectAll('line').data(edges).enter()
+    .append('line').attr('class','link').attr('marker-end','url(#arr)');
+
+  // nodes
+  const node = g.append('g').selectAll('g').data(nodes, d=>d.id).enter()
+    .append('g')
+    .attr('class','node')
+    .attr('data-id', d=>d.id)
+    .call(d3.drag()
+      .on('start',(e,d)=>{if(!e.active)S.sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y})
+      .on('drag', (e,d)=>{d.fx=e.x;d.fy=e.y})
+      .on('end',  (e,d)=>{if(!e.active)S.sim.alphaTarget(0);d.fx=null;d.fy=null}))
+    .on('click', (e,d)=>{ e.stopPropagation(); selectNode(d.id); })
+    .on('mouseover',(e,d)=>showTip(e,d))
+    .on('mousemove', moveTip)
+    .on('mouseout', hideTip);
+
+  node.append('circle')
+    .attr('r', d=>getRadius(d))
+    .attr('fill', d=>getColor(d.depth))
+    .attr('fill-opacity', .82)
+    .attr('stroke', d=>d.id===S.rootId?'#ffffff':getColor(d.depth))
+    .attr('stroke-width', d=>d.id===S.rootId?2:0.6)
+    .attr('stroke-opacity', .55);
+
+  // dashed ring for expanded nodes
+  node.filter(d=>d.expanded).append('circle')
+    .attr('r', d=>getRadius(d)+5)
+    .attr('fill','none')
+    .attr('stroke', d=>getColor(d.depth))
+    .attr('stroke-width',1)
+    .attr('stroke-opacity',.3)
+    .attr('stroke-dasharray','3 2');
+
+  // year label below node
+  node.append('text')
+    .attr('dy', d=>getRadius(d)+11)
+    .text(d=>d.title.slice(0, 20).concat(d.title.length>20?'…':''))
+    .attr('font-size','9px');
+
+  S.sim.on('tick', ()=>{
+    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
+        .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+    node.attr('transform',d=>`translate(${d.x},${d.y})`);
+  });
+
+  updateStats();
+}
+
+// ── Selection ───────────────────────────────────────────
+
+function selectNode(id) {
+  S.selId = id;
+  S.g.selectAll('.node').classed('selected', d=>d.id===id);
+  S.g.selectAll('.node circle:first-child')
+    .attr('stroke', d=>d.id===id?'#ffffff':d.id===S.rootId?'#ffffff':getColor(d.depth))
+    .attr('stroke-width', d=>d.id===id?2.5:d.id===S.rootId?2:0.6);
+  const nd = S.nodes.get(id);
+  if (nd) showDetail(nd);
+}
+
+function deselectNode() {
+  S.selId=null;
+  if (!S.g) return;
+  S.g.selectAll('.node').classed('selected',false);
+  S.g.selectAll('.node circle:first-child')
+    .attr('stroke', d=>d.id===S.rootId?'#ffffff':getColor(d.depth))
+    .attr('stroke-width', d=>d.id===S.rootId?2:0.6);
+}
+
+// ── Detail panel ────────────────────────────────────────
+
+function showDetail(nd) {
+  const doi   = nd.doi  ? `<a href="https://doi.org/${nd.doi}" target="_blank">${esc(nd.doi)}</a>` : '—';
+  const arxiv = nd.arxivId
+    ? `<a href="https://arxiv.org/abs/${nd.arxivId}" target="_blank">arXiv:${esc(nd.arxivId)}</a>` : '';
+  const openBtn = nd.doi
+    ? `<button class="btn" onclick="window.open('https://doi.org/${nd.doi}','_blank')">↗ Open paper</button>` : '';
+  const expBtn = nd.expanded
+    ? `<button class="btn" disabled>✓ Expanded</button>`
+    : `<button class="btn btn-p" onclick="expandNode('${nd.id}')">↳ Fetch citing papers</button>`;
+
+  document.getElementById('d-body').innerHTML = `
+    <div class="d-title">${esc(nd.title||'(Untitled)')}</div>
+    ${nd.authors?`<div class="d-field"><div class="d-lbl">Authors</div>
+      <div class="d-val">${esc(nd.authors)}</div></div>`:''}
+    <div class="d-field"><div class="d-lbl">Year</div>
+      <div class="d-val">${nd.year||'—'}</div></div>
+    ${nd.venue?`<div class="d-field"><div class="d-lbl">Venue</div>
+      <div class="d-val">${esc(nd.venue)}</div></div>`:''}
+    <div class="d-field"><div class="d-lbl">Times cited</div>
+      <div class="d-val">${nd.citationCount>0?nd.citationCount.toLocaleString():'—'}</div></div>
+    <div class="d-field"><div class="d-lbl">DOI</div>
+      <div class="d-val">${doi}</div></div>
+    ${arxiv?`<div class="d-field"><div class="d-lbl">arXiv</div>
+      <div class="d-val">${arxiv}</div></div>`:''}
+    <div class="d-field"><div class="d-lbl">Source</div>
+      <div class="d-val">${esc((nd.sources||[nd.source]).join(', '))}</div></div>
+    ${nd.abstract?`<div class="d-field"><div class="d-lbl">Abstract</div>
+      <div class="d-val" style="font-size:11px;opacity:.75;line-height:1.6">
+        ${esc(nd.abstract.slice(0,500))}${nd.abstract.length>500?'…':''}</div></div>`:''}
+    <div class="d-acts">${expBtn}${openBtn}</div>
+  `;
+  document.getElementById('detail').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detail').classList.remove('open');
+}
+
+// ── Expand a node ────────────────────────────────────────
+
+async function expandNode(id) {
+  const nd = S.nodes.get(id);
+  if (!nd || nd.expanded) return;
+
+  showLoad('Fetching citing papers…');
+  try {
+    if (!nd.openAlexId) nd.openAlexId = await resolveOAId(nd);
+
+    const citers = await getCitedBy(nd);
+    nd.expanded = true;
+    S.nodes.set(id, nd);
+
+    let added = 0;
+    for (const c of citers) {
+      if (!S.nodes.has(c.id)) { addNode(c, nd.depth+1); added++; }
+      addEdge(c.id, id);
+    }
+
+    toast(`${added} new citing paper${added!==1?'s':''} added`);
+    renderGraph();
+    setTimeout(()=>{ selectNode(id); document.getElementById('dl-btn').disabled=false; }, 80);
+  } catch(e) {
+    toast('Could not fetch citations');
+  } finally { hideLoad(); }
+}
+
+// ── Search flow ──────────────────────────────────────────
+
+async function doSearch() {
+  const q = document.getElementById('s-in').value.trim();
+  if (!q) return;
+
+  showLoad('Querying 5 bibliometric sources…');
+  document.getElementById('results').innerHTML='';
+  document.getElementById('sb-cnt').textContent='';
+
+  try {
+    const [oa,ss,ax,cr,hc] = await Promise.allSettled([
+      searchOA(q), searchSS(q), searchAX(q), searchCR(q), searchHC(q)
+    ]);
+    const all = mergeResults([
+      oa.status==='fulfilled'?oa.value:[],
+      ss.status==='fulfilled'?ss.value:[],
+      ax.status==='fulfilled'?ax.value:[],
+      cr.status==='fulfilled'?cr.value:[],
+      hc.status==='fulfilled'?hc.value:[],
+    ]);
+    showResults(all);
+  } catch(e) {
+    document.getElementById('results').innerHTML =
+      '<div class="sb-placeholder"><p>Search failed. Please try again.</p></div>';
+  } finally { hideLoad(); }
+}
+
+function showResults(results) {
+  _results = results;
+  document.getElementById('sb-cnt').textContent = results.length ? `${results.length}` : '';
+  if (!results.length) {
+    document.getElementById('results').innerHTML =
+      '<div class="sb-placeholder"><p>No results. Try different keywords.</p></div>';
+    return;
+  }
+  document.getElementById('results').innerHTML = results.map((r,i)=>`
+    <div class="r-item" data-i="${i}" onclick="pickResult(${i})">
+      <div class="r-title">${esc(r.title||'(Untitled)')}</div>
+      <div class="r-meta">${r.authors?esc(r.authors)+' · ':''}${r.year||'?'}${r.citationCount?` · ${r.citationCount.toLocaleString()} cit.`:''}</div>
+      <div class="r-badges">${(r.sources||[r.source]).map(s=>`<span class="badge ${s}">${SNAME[s]||s}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+const SNAME = {
+  openalex:'OA', semanticscholar:'S2', arxiv:'arXiv', crossref:'CR', hcommons:'HC'
+};
+
+async function pickResult(i) {
+  const paper = _results[i];
+  if (!paper) return;
+
+  document.querySelectorAll('.r-item').forEach(el=>el.classList.remove('sel'));
+  document.querySelector(`.r-item[data-i="${i}"]`)?.classList.add('sel');
+
+  // reset graph
+  S.nodes.clear(); S.edges.length=0; S.maxDepth=0; S.rootId=null; S.selId=null;
+  closeDetail();
+
+  showLoad('Building citation network…');
+  try {
+    if (!paper.openAlexId) paper.openAlexId = await resolveOAId(paper);
+
+    addNode(paper, 0);
+    S.rootId = paper.id;
+    paper.expanded = true;
+    S.nodes.set(paper.id, paper);
+
+    const citers = await getCitedBy(paper);
+    for (const c of citers) { addNode(c,1); addEdge(c.id, paper.id); }
+
+    renderGraph();
+    document.getElementById('dl-btn').disabled = false;
+    toast(`${citers.length} citing paper${citers.length!==1?'s':''} found`);
+    setTimeout(()=>selectNode(paper.id), 120);
+  } catch(e) {
+    toast('Error building network');
+  } finally { hideLoad(); }
+}
+
+// ── Tooltip ──────────────────────────────────────────────
+
+function showTip(e, nd) {
+  const tip = document.getElementById('tip');
+  const t = nd.title||'(Untitled)';
+  tip.innerHTML =
+    `<strong style="font-family:var(--font-d);font-size:13px">
+      ${esc(t.length>85?t.slice(0,85)+'…':t)}
+    </strong><br>
+    <span style="color:var(--dim)">
+      ${nd.authors?esc(nd.authors.slice(0,65))+' · ':''}${nd.year||''}
+    </span>`;
+  tip.classList.add('on');
+  moveTip(e);
+}
+function moveTip(e) {
+  const tip = document.getElementById('tip');
+  const r   = document.getElementById('graph').getBoundingClientRect();
+  let x = e.clientX-r.left+14, y = e.clientY-r.top-8;
+  if (x+260>r.width) x = e.clientX-r.left-266;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+function hideTip() { document.getElementById('tip').classList.remove('on'); }
+
+// ── Download ─────────────────────────────────────────────
+
+function doDownload() {
+  if (!S.nodes.size) return;
+
+  // nodes CSV
+  const nh = 'id,title,authors,year,doi,citationCount,depth,source,venue\n';
+  const nr = Array.from(S.nodes.values())
+    .map(n=>[n.id,n.title,n.authors,n.year,n.doi||'',n.citationCount,n.depth,n.source,n.venue||'']
+      .map(v=>`"${String(v??'').replace(/"/g,'""')}"`)
+      .join(',')
+    ).join('\n');
+  dl('wyrm_nodes.csv', nh+nr);
+
+  // edges CSV
+  setTimeout(()=>{
+    const eh = 'source,target\n';
+    const er = S.edges.map(e=>`"${e.source}","${e.target}"`).join('\n');
+    dl('wyrm_edges.csv', eh+er);
+  }, 250);
+
+  toast('Exported wyrm_nodes.csv + wyrm_edges.csv');
+}
+
+function dl(name, text) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text],{type:'text/csv'}));
+  a.download = name; a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// ── Zoom ─────────────────────────────────────────────────
+const zBy = f => S.svg?.transition().call(S.zoom.scaleBy, f);
+const zRst = () => S.svg?.transition().call(S.zoom.transform, d3.zoomIdentity);
+
+// ── Stats ────────────────────────────────────────────────
+function updateStats() {
+  document.getElementById('st-n').textContent = S.nodes.size;
+  document.getElementById('st-e').textContent = S.edges.length;
+  document.getElementById('st-d').textContent = S.maxDepth;
+}
+
+// ── UI helpers ───────────────────────────────────────────
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
+function enc(s){ return encodeURIComponent(s) }
+function showLoad(msg){ document.getElementById('ltxt').textContent=msg||'Loading…'; document.getElementById('loading').classList.add('on') }
+function hideLoad(){ document.getElementById('loading').classList.remove('on') }
+let _toastTimer;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('on');
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>el.classList.remove('on'),2800);
+}
+
+// ── Init ─────────────────────────────────────────────────
+function init() {
+  initD3();
+
+  document.getElementById('s-btn').addEventListener('click', doSearch);
+  document.getElementById('s-in').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
+  document.getElementById('dl-btn').addEventListener('click', doDownload);
+  document.getElementById('rst-btn').addEventListener('click', ()=>{
+    clearGraph();
+    document.getElementById('results').innerHTML =
+      '<div class="sb-placeholder"><p>Search for a paper to trace its citation ancestry.</p></div>';
+    document.getElementById('sb-cnt').textContent='';
+    _results=[];
+  });
+  document.getElementById('leg-btn').addEventListener('click', ()=>{
+    document.getElementById('legend').classList.toggle('on');
+  });
+  document.getElementById('d-close').addEventListener('click', ()=>{ closeDetail(); deselectNode(); });
+  document.getElementById('z-in').addEventListener('click',  ()=>zBy(1.4));
+  document.getElementById('z-out').addEventListener('click', ()=>zBy(0.7));
+  document.getElementById('z-fit').addEventListener('click', zRst);
+}
+
+init();
+</script>
+</body>
+</html>
