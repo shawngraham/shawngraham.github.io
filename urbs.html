@@ -245,13 +245,14 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <li><b>Place:</b> pick a tile in the left menu, then click the map. Drag to lay Via, Aquaeductus and Cloaca in a line.</li>
 <li><b>Rotate</b> R. <b>Demolish</b> X (refunds 30%; a Via refunds 3). <b>Inspect</b> Esc, then click a building.</li>
 <li><b>Road frontage</b> is needed by everything except Aquaeductus, Cloaca, Caput Aquae, Castellum, Lacus, Tabernaculum and Ager.</li>
-<li><b>Terrain:</b> nothing can stand in the river. The Emporium must touch it. A Caput Aquae needs high ground.</li>
+<li><b>Terrain:</b> buildings cannot stand in the river. A Pons bridges it, and an Aquaeductus can stand in it. The Emporium must touch the bank. A Caput Aquae needs high ground.</li>
+<li><b>Layers:</b> a Cloaca runs underground beneath any tile, and anything can be built over it. An Aquaeductus can arch over a Via, and a Via can be laid under an existing arcade. Demolish removes the top layer first: building, then street or bridge, then sewer.</li>
 <li><b>Lens</b> cycles overlays for water, sewers, vigiles, castra, markets, temples, baths, games and patronage. Green is covered, red is not.</li>
 <li><b>Reach</b> is in tiles, given per tile below. The Walking range rule scales every one.</li>
 <li><b>Colonia mode:</b> gold dashes mark the planned grid. A Via on them costs half; other buildings over them cost 30% more.</li>
 </ul>
 <h3>Streets and pipes</h3>
-<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Via</td><td>1×1</td><td>6</td><td>Paved street. Drag to lay a line. Leave gaps between blocks so every building has frontage.</td></tr><tr><td>Aquaeductus</td><td>1×1</td><td>16</td><td>Raised arcade. Drag a continuous chain from the Caput Aquae to a Castellum. One gap breaks the supply.</td></tr><tr><td>Cloaca</td><td>1×1</td><td>18</td><td>Sewer. The chain must start beside the river and run inland. It cleans about 3 tiles either side. Lowers disease.</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Via</td><td>1×1</td><td>6</td><td>Paved street. Drag to lay a line. Leave gaps between blocks so every building has frontage. May pass under an aqueduct arcade.</td></tr><tr><td>Pons</td><td>1×1</td><td>60</td><td>Bridge. Drag across river tiles, starting from a street on the bank. It carries traffic and gives frontage like a Via.</td></tr><tr><td>Aquaeductus</td><td>1×1</td><td>16</td><td>Raised arcade. Drag a continuous chain from the Caput Aquae to a Castellum. One gap breaks the supply. It can arch over a street and stand in the river.</td></tr><tr><td>Cloaca</td><td>1×1</td><td>18</td><td>Underground sewer, laid beneath any tile, even streets and houses. The chain must start beside the river. Orange in the sewer view means not connected. It cleans about 3 tiles either side. Lowers disease.</td></tr></tbody></table></div>
 <h3>Homes</h3>
 <div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Tabernaculum</td><td>1×1</td><td>12</td><td>Leather tent for eight men. Needs no road. Burns easily, raises disease, rots away after five years. A stopgap only.</td></tr><tr><td>Insula</td><td>1×1</td><td>45</td><td>Tenement. Houses 7 people per storey, so 35 at the default limit of five. Taller blocks burn and spread disease more. Put Vigiles nearby.</td></tr><tr><td>Domus</td><td>2×2</td><td>190</td><td>Houses 6 elite. Its patron influence reaches 6 tiles and calms the poor around it. Elites dislike crowded neighbours when the neighbourhood rule is on Separated.</td></tr></tbody></table></div>
 <h3>Trade and toil</h3>
@@ -275,7 +276,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <ul>
 <li>A building with no adjacent Via sits idle. Inspect it to see.</li>
 <li>A gap in the Aquaeductus, or a Castellum that does not touch the arcade, leaves the town dry.</li>
-<li>A Cloaca that does not start at the river does nothing.</li>
+<li>A Cloaca that does not reach the river bank does nothing. It shows orange in the sewer view.</li>
 <li>Tall Insulae without Vigiles burn in chains.</li>
 <li>A lone Taberna earns less than three together in a bazaar economy.</li>
 <li>Grain above the storage cap spoils. Watch the monthly grain figure in the top bar.</li>
@@ -450,9 +451,10 @@ const Sp=(mat,r,x,y,z,sy=1)=>P(G.sph,mat,r,r*sy,r,x,y,z);
 /* ================= BUILDINGS: catalogue and models ================= */
 const CATS=['Streets & Pipes','Homes','Trade & Toil','Water & Health','Civic Life','Order & Safety'];
 const DEF={
-  via:{name:'Via',cat:0,w:1,d:1,cost:6,up:.1,drag:1,desc:'Paved street. Almost everything needs road frontage to function.'},
-  aqueduct:{name:'Aquaeductus',cat:0,w:1,d:1,cost:16,up:.2,drag:1,desc:'Arcade carrying water from a Caput Aquae to your Castella. Lay it in a continuous chain.'},
-  cloaca:{name:'Cloaca',cat:0,w:1,d:1,cost:18,up:.1,drag:1,r:3,desc:'Sewer line. Must run in a chain down to the Tiber. Drains disease from the blocks around it.'},
+  via:{name:'Via',cat:0,w:1,d:1,cost:6,up:.1,drag:1,desc:'Paved street. Almost everything needs road frontage to function. May run beneath an aqueduct arcade.'},
+  bridge:{name:'Pons',cat:0,w:1,d:1,cost:60,up:.4,drag:1,desc:'Stone bridge. Lay it on river tiles, starting from a street on the bank. It carries traffic and gives frontage like a Via.'},
+  aqueduct:{name:'Aquaeductus',cat:0,w:1,d:1,cost:16,up:.2,drag:1,desc:'Arcade carrying water from a Caput Aquae to your Castella. Lay it in a continuous chain. It can arch over a street and stand in the river.'},
+  cloaca:{name:'Cloaca',cat:0,w:1,d:1,cost:18,up:.1,drag:1,r:3,desc:'Underground sewer. Lay it beneath any tile, even streets and houses. The chain must reach the river bank. Drains disease from the blocks around it.'},
   tent:{name:'Tabernaculum',cat:1,w:1,d:1,cost:12,up:.02,desc:'Leather tent for one contubernium of eight men. Quick and cheap, but flammable and unhealthy, and the hides rot away after five years. Needs no road.'},
   insula:{name:'Insula',cat:1,w:1,d:1,cost:45,up:.4,desc:'Plebeian apartment block. Capacity grows with the storey limit you set in the rules, and so does the fire risk.'},
   domus:{name:'Domus',cat:1,w:2,d:2,cost:190,up:1.5,desc:'Courtyard house of a senator or knight. Patrons here support the poor nearby; their owners dislike crowded neighbours.'},
@@ -553,17 +555,19 @@ MODEL.source=(g,b)=>{
   g.add(Kn(M.stone,.28,.5,-.8,.06,.7),Kn(M.stone,.22,.4,.85,.06,.7),Kn(M.leaf,.12,.6,.9,.06,-.8));
 };
 const AQH=1.85;
-const aqSpan=(g,axis,h)=>{
+const aqSpan=(g,axis,h,open)=>{
   const s=new THREE.Group();
+  if(open){s.add(Bx(M.aq,.22,h+.5,.5,-.39,-.5,0),Bx(M.aq,.22,h+.5,.5,.39,-.5,0),Bx(M.aq,1,.3,.5,0,h-.3,0),Bx(M.dark,.56,.04,.52,0,h-.31,0))}
+  else{
   s.add(Bx(M.aq,1,h+.5,.5,0,-.5,0));
-  for(const x of [-.25,.25]){s.add(Bx(M.dark,.4,.55,.52,x,0,0),P(G.cyl,M.dark,.2,.52,.2,x,.55,0,PI/2));}
+  for(const x of [-.25,.25]){s.add(Bx(M.dark,.4,.55,.52,x,0,0),P(G.cyl,M.dark,.2,.52,.2,x,.55,0,PI/2));}}
   s.add(Bx(M.aq,1,.1,.62,0,h,0),Bx(M.wat,1,.05,.26,0,h+.1,0),Bx(M.aq,1,.1,.07,0,h+.1,.16),Bx(M.aq,1,.1,.07,0,h+.1,-.16));
   if(axis==='z')s.rotation.y=PI/2;g.add(s);
 };
 MODEL.aqueduct=(g,b)=>{
   const h=Math.max(.5,AQH-b.baseY),l=linkDirs(b,['aqueduct','castellum','source']);
-  const ax=l.e||l.w,az=l.n||l.s;
-  if(ax||!az)aqSpan(g,'x',h);if(az)aqSpan(g,'z',h);
+  const ax=l.e||l.w,az=l.n||l.s,op=rd(b.i,b.j);
+  if(ax||!az)aqSpan(g,'x',h,op);if(az)aqSpan(g,'z',h,op);
   if(ax&&az)g.add(Bx(M.aq,.62,.2,.62,0,h-.05,0));
 };
 MODEL.castellum=(g,b)=>{
@@ -574,6 +578,15 @@ MODEL.castellum=(g,b)=>{
 MODEL.lacus=(g,b)=>{
   found(g,1,1);
   g.add(Cy(M.stone,.42,.2,0,.06,0),Cy(M.wat,.35,.04,0,.24,0),Cy(M.marble,.07,.42,0,.24,0),Sp(M.bronze,.08,0,.72,0),Kn(M.wat,.04,.18,0,.74,0));
+};
+MODEL.bridge=(g,b)=>{
+  const e=rd(b.i+1,b.j),w=rd(b.i-1,b.j),n=rd(b.i,b.j-1),s=rd(b.i,b.j+1);
+  const az=(n||s)&&!(e||w),jn=(e||w)&&(n||s),inner=new THREE.Group();
+  inner.add(Bx(M.trav,1,.1,.96,0,.14,0),Bx(M.pave,.84,.03,.9,0,.24,0));
+  for(const x of [-.42,.42])inner.add(Bx(M.stone,.16,.58,.8,x,-.44,0));
+  if(!jn)inner.add(Bx(M.stone,1,.12,.08,0,.24,-.46),Bx(M.stone,1,.12,.08,0,.24,.46));
+  if(az)inner.rotation.y=PI/2;
+  g.add(inner);
 };
 MODEL.cloaca=(g,b)=>{
   const l=linkDirs(b,['cloaca']),d=M.char;
@@ -716,7 +729,7 @@ const RDEF=Object.assign({},R);
 const MONTHS=['Ian','Feb','Mar','Apr','Mai','Iun','Iul','Aug','Sep','Oct','Nov','Dec'];
 const S={month:2,den:3500,grain:3200,plebs:80,elite:8,slaves:0,order:72,eliteH:70,dign:20,price:1,disease:.2,hunger:0,unemp:0,prosp:.7,wr:1,
   inc:0,exp:0,fear:0,epi:0,scn:'sandbox',y0:754,griev:0,vets:0,phase:'play',grid:null,low:0,rank:0,speed:1,pops:[0,0],tick:0,seasea:1,flow:{},lastPop:88,over:false};
-const hooks={add(){},remove(){},rebuild(){},road(){},burn(){},log(){},toast(){},fire(){}};
+const hooks={sewer(){},add(){},remove(){},rebuild(){},road(){},burn(){},log(){},toast(){},fire(){}};
 const log=(t,k='')=>hooks.log(t,k);
 
 /* ---------- grid ---------- */
@@ -724,7 +737,8 @@ const occ=Array.from({length:N},()=>new Int32Array(N));
 const roadAt=Array.from({length:N},()=>new Uint8Array(N));
 const BLD=new Map();let nid=1;
 const typeAt=(i,j)=>inb(i,j)&&occ[i][j]?BLD.get(occ[i][j]).type:null;
-const rd=(i,j)=>inb(i,j)&&roadAt[i][j]===1;
+const rd=(i,j)=>inb(i,j)&&roadAt[i][j]>0;
+const sewerAt=Array.from({length:N},()=>new Uint8Array(N));
 function neighborsOf(b){const s=new Set();
   const add=(x,z)=>{if(inb(x,z)&&occ[x][z]&&occ[x][z]!==b.id)s.add(occ[x][z])};
   for(let a=0;a<b.w;a++){add(b.i+a,b.j-1);add(b.i+a,b.j+b.d)}
@@ -735,7 +749,7 @@ function roadAdj(b){
   for(let a=0;a<b.w;a++)if(rd(b.i+a,b.j-1)||rd(b.i+a,b.j+b.d))return true;
   for(let c=0;c<b.d;c++)if(rd(b.i-1,b.j+c)||rd(b.i+b.w,b.j+c))return true;
   return false}
-const LINKED=['aqueduct','cloaca','castellum'];
+const LINKED=['aqueduct','castellum'];
 
 const planned=Array.from({length:N},()=>new Uint8Array(N));
 function costOf(type,i,j,rot){
@@ -743,13 +757,40 @@ function costOf(type,i,j,rot){
   if(S.grid){
     let w=D.w,d=D.d;if(rot&1)[w,d]=[d,w];
     if(type==='via'){if(inb(i,j)&&planned[i][j])cost*=.5}
-    else if(!['ager','source','emporium','aqueduct','cloaca','tent'].includes(type)){
+    else if(!['ager','source','emporium','aqueduct','cloaca','tent','bridge'].includes(type)){
       let hit=false;for(let a=0;a<w;a++)for(let c=0;c<d;c++)if(inb(i+a,j+c)&&planned[i+a][j+c])hit=true;
       if(hit)cost*=1.3}}
   return Math.round(cost)}
+/* sewers lie underground: connected if a chain of sewer tiles reaches a tile beside the river */
+function sewerConnected(){
+  const c=new Uint8Array(N*N),q=[];
+  const beside=(i,j)=>inb(i+1,j)&&WATER[i+1][j]||inb(i-1,j)&&WATER[i-1][j]||inb(i,j+1)&&WATER[i][j+1]||inb(i,j-1)&&WATER[i][j-1];
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(sewerAt[i][j]&&beside(i,j)){c[i*N+j]=1;q.push([i,j])}
+  while(q.length){const [i,j]=q.pop();for(const d of [[1,0],[-1,0],[0,1],[0,-1]]){const x=i+d[0],z=j+d[1];if(inb(x,z)&&sewerAt[x][z]&&!c[x*N+z]){c[x*N+z]=1;q.push([x,z])}}}
+  return c}
+function placeSpecial(type,i,j){
+  if(type==='cloaca'){
+    if(WATER[i][j])return{ok:false,why:'Sewers cannot be laid in the river'};
+    if(sewerAt[i][j])return{ok:false,why:'There is already a sewer here'};
+    return{ok:true}}
+  if(type==='via'){
+    if(WATER[i][j])return{ok:false,why:'Use a Pons to cross the river'};
+    if(roadAt[i][j])return{ok:false,why:'Tile is occupied'};
+    if(occ[i][j]){const o=BLD.get(occ[i][j]);if(o&&o.type==='aqueduct')return{ok:true};return{ok:false,why:'Tile is occupied'}}
+    return{ok:true}}
+  if(type==='bridge'){
+    if(!WATER[i][j])return{ok:false,why:'A Pons spans the river. Use a Via on land'};
+    if(occ[i][j]||roadAt[i][j])return{ok:false,why:'Tile is occupied'};
+    if(!(rd(i+1,j)||rd(i-1,j)||rd(i,j+1)||rd(i,j-1)))return{ok:false,why:'A Pons must connect to a street or another Pons'};
+    return{ok:true}}
+  if(type==='aqueduct'){
+    if(occ[i][j]||roadAt[i][j]===2)return{ok:false,why:'Tile is occupied'};
+    return{ok:true}}
+  return null}
 function canPlace(type,i,j,rot){
   const D=DEF[type];let w=D.w,d=D.d;if(rot&1)[w,d]=[d,w];
   if(i<0||j<0||i+w>N||j+d>N)return{ok:false,why:'Outside the city',w,d};
+  const sp=placeSpecial(type,i,j);if(sp)return Object.assign({w,d},sp);
   let shore=false,hs=0;
   for(let a=0;a<w;a++)for(let c=0;c<d;c++){const x=i+a,z=j+c;
     if(WATER[x][z])return{ok:false,why:'Cannot build on the river',w,d};
@@ -774,7 +815,9 @@ function tryPlace(type,i,j,rot,free){
   const cost=costOf(type,i,j,rot);
   if(!free&&S.den<cost)return{ok:false,why:'Not enough denarii'};
   if(!free)S.den-=cost;
-  if(type==='via'){roadAt[i][j]=1;hooks.road();return{ok:true}}
+  if(type==='via'){roadAt[i][j]=1;const o=BLD.get(occ[i][j]);if(o&&o.type==='aqueduct')hooks.rebuild(o);hooks.road();return{ok:true}}
+  if(type==='bridge'){roadAt[i][j]=2;hooks.road();return{ok:true}}
+  if(type==='cloaca'){sewerAt[i][j]=1;hooks.sewer();return{ok:true}}
   const b=addBld(type,i,j,rot);hooks.add(b);if(LINKED.includes(type))refreshLinks(b);
   return{ok:true,b}}
 function removeBld(b){
@@ -782,8 +825,11 @@ function removeBld(b){
   BLD.delete(b.id);hooks.remove(b);if(LINKED.includes(b.type))refreshLinks(b)}
 function demolishAt(i,j){
   if(!inb(i,j))return{ok:false};
-  if(roadAt[i][j]){roadAt[i][j]=0;S.den+=3;hooks.road();return{ok:true,what:'Via'}}
-  const b=BLD.get(occ[i][j]);if(!b)return{ok:false};
+  const b=BLD.get(occ[i][j]);
+  if(!b){
+    if(roadAt[i][j]){const br=roadAt[i][j]===2;roadAt[i][j]=0;S.den+=br?18:3;hooks.road();return{ok:true,what:br?'Pons':'Via'}}
+    if(sewerAt[i][j]){sewerAt[i][j]=0;S.den+=5;hooks.sewer();return{ok:true,what:'Cloaca'}}
+    return{ok:false}}
   if(b.fixed)return{ok:false,why:'The founding spring cannot be removed'};
   const D=DEF[b.type];if(b.type!=='ruin')S.den+=Math.round(D.cost*.3);
   removeBld(b);return{ok:true,what:D.name}}
@@ -857,8 +903,9 @@ function simStep(){
   for(const b of cas)stamp(cov.water,b,8);
   for(const b of of('lacus')){if(cov.water[(b.j)*N+b.i]>.25)stamp(cov.water,b,4*walk,.95)}
   for(let k=0;k<N*N;k++)cov.water[k]=Math.max(riverNear[k],cov.water[k]*S.wr);
-  const sewSeeds=of('cloaca').filter(b=>touchesWater(b.i,b.j));
-  for(const id of floodSet(sewSeeds,'cloaca'))stamp(cov.sewer,BLD.get(id),3.2);
+  const sconn=sewerConnected();let sewN=0;
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++){if(sewerAt[i][j])sewN++;if(sconn[i*N+j])stamp(cov.sewer,{i,j,w:1,d:1},3.2)}
+  S.sewN=sewN;
 
   /* --- services --- */
   for(const b of active){
@@ -898,8 +945,8 @@ function simStep(){
   const av=arr=>{let s=0,w=0;for(const b of ins){s+=arr[b.j*N+b.i]*1;w++}return w?s/w:0};
   const avW=av(cov.water),avSew=av(cov.sewer),avM=av(cov.market),avT=av(cov.temple),avB=av(cov.bath),avG=av(cov.game),avO=av(cov.order),avP=av(cov.patron),avF=av(cov.fire),avFo=av(cov.forum);
   S.cv={water:avW,sewer:avSew,market:avM,temple:avT,bath:avB,game:avG,order:avO,patron:avP,fire:avF};
-  let roadN=0;for(let i=0;i<N;i++)for(let j=0;j<N;j++)roadN+=roadAt[i][j];
-  let upkeep=roadN*.1;for(const b of BLD.values())upkeep+=DEF[b.type].up||0;
+  let roadN=0,brN=0;for(let i=0;i<N;i++)for(let j=0;j<N;j++){if(roadAt[i][j]===1)roadN++;else if(roadAt[i][j]===2)brN++}
+  let upkeep=roadN*DEF.via.up+brN*DEF.bridge.up+sewN*DEF.cloaca.up;for(const b of BLD.values())upkeep+=DEF[b.type].up||0;
 
   /* --- grain --- */
   const sea=1-(1-R.winter/100*SEA_CLOSED[m]*1)*0-R.winter/100*SEA_CLOSED[m];
@@ -1068,15 +1115,32 @@ const roadEdge=new THREE.InstancedMesh(G.box,mk('#8d7b5a'),N*N),roadTop=new THRE
 roadEdge.receiveShadow=roadTop.receiveShadow=true;scene.add(roadEdge,roadTop);
 let roadList=[];
 const _m=new THREE.Matrix4(),_p=new THREE.Vector3(),_q=new THREE.Quaternion(),_s=new THREE.Vector3();
+const bridgeGroup=new THREE.Group();scene.add(bridgeGroup);
 function rebuildRoads(){
   roadList=[];let n=0;
+  while(bridgeGroup.children.length)bridgeGroup.remove(bridgeGroup.children[0]);
   for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(roadAt[i][j]){
-    roadList.push([i,j]);const y=TH[i][j];
+    roadList.push([i,j]);
+    if(roadAt[i][j]===2){const bg=new THREE.Group();MODEL.bridge(bg,{i,j});bg.position.set(tileX(i),.1,tileZ(j));bridgeGroup.add(bg);continue}
+    const y=TH[i][j];
     _m.compose(_p.set(tileX(i),y+.015,tileZ(j)),_q.identity(),_s.set(1.02,.1,1.02));roadEdge.setMatrixAt(n,_m);
     _m.compose(_p.set(tileX(i),y+.055,tileZ(j)),_q.identity(),_s.set(.84,.06,.84));roadTop.setMatrixAt(n,_m);n++}
   roadEdge.count=roadTop.count=n;roadEdge.instanceMatrix.needsUpdate=roadTop.instanceMatrix.needsUpdate=true;
   updateTrees();updatePlan();
 }
+
+/* sewers: grates on open tiles, x-ray view through everything while laying or in the lens */
+const xm=c=>new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.62,depthTest:false,depthWrite:false});
+const sewGrate=new THREE.InstancedMesh(G.cyl,mk('#2a2420',.9),N*N),sewXc=new THREE.InstancedMesh(G.box,xm('#3fc7d0'),N*N),sewXu=new THREE.InstancedMesh(G.box,xm('#e8913d'),N*N);
+sewGrate.count=sewXc.count=sewXu.count=0;sewXc.visible=sewXu.visible=false;sewXc.renderOrder=sewXu.renderOrder=6;sewGrate.frustumCulled=sewXc.frustumCulled=sewXu.frustumCulled=false;scene.add(sewGrate,sewXc,sewXu);
+function rebuildSewers(){
+  const conn=sewerConnected();let a=0,c1=0,c2=0;
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(sewerAt[i][j]){
+    if(!occ[i][j]){_m.compose(_p.set(tileX(i),TH[i][j]+(roadAt[i][j]?.1:.04),tileZ(j)),_q.identity(),_s.set(.15,.025,.15));sewGrate.setMatrixAt(a++,_m)}
+    _m.compose(_p.set(tileX(i),TH[i][j]+.3,tileZ(j)),_q.identity(),_s.set(.78,.04,.78));
+    if(conn[i*N+j])sewXc.setMatrixAt(c1++,_m);else sewXu.setMatrixAt(c2++,_m)}
+  sewGrate.count=a;sewXc.count=c1;sewXu.count=c2;sewGrate.instanceMatrix.needsUpdate=sewXc.instanceMatrix.needsUpdate=sewXu.instanceMatrix.needsUpdate=true}
+function updateSewVis(){sewXc.visible=sewXu.visible=tool==='cloaca'||LENS[lensI][1]==='sewer'}
 
 /* trees */
 const treeA=new THREE.InstancedMesh(G.cone,mk('#3f6b3a'),N*N),treeB=new THREE.InstancedMesh(G.sph,mk('#5d8a3e'),N*N),trunk=new THREE.InstancedMesh(G.cyl,M.wood,N*N);
@@ -1119,12 +1183,14 @@ function animWalkers(dt,speed){
     if(w.t>=1){if(!stepWalker(w)){continue}}
     w.t=Math.min(1,w.t+dt*speed*w.sp*1.3);
     const x=lerp(w.i,w.ti,w.t)+.5-HALF+((k*7)%5-2)*.05,z=lerp(w.j,w.tj,w.t)+.5-HALF+((k*3)%5-2)*.05;
-    _m.compose(_p.set(x,heightAt(x,z)+.2,z),_q.identity(),_s.set(.065,.3,.065));walkM.setMatrixAt(k,_m);c++}
+    const onB=roadAt[clamp(Math.floor(x+HALF),0,N-1)][clamp(Math.floor(z+HALF),0,N-1)]===2;
+    _m.compose(_p.set(x,(onB?.29:heightAt(x,z))+.2,z),_q.identity(),_s.set(.065,.3,.065));walkM.setMatrixAt(k,_m);c++}
   walkM.instanceMatrix.needsUpdate=true}
 
 /* hooks */
-hooks.add=b=>{rebuildMesh(b);updateTrees()};
-hooks.remove=b=>{const g=meshOf.get(b.id);if(g)bGroup.remove(g);meshOf.delete(b.id);flames.delete(b.id);updateTrees()};
+hooks.add=b=>{rebuildMesh(b);updateTrees();rebuildSewers()};
+hooks.sewer=()=>{rebuildSewers();updateSewVis()};
+hooks.remove=b=>{const g=meshOf.get(b.id);if(g)bGroup.remove(g);meshOf.delete(b.id);flames.delete(b.id);updateTrees();rebuildSewers()};
 hooks.rebuild=b=>{rebuildMesh(b)};
 hooks.road=rebuildRoads;
 hooks.fire=b=>addFlames(b);
@@ -1159,7 +1225,7 @@ function thumbs(){
 
 let tool=null,rot=0,thumbURL={};
 const buildEl=$('#build');
-function setTool(t){tool=t;rot=0;refreshMenu();makeGhost();updateCursorInfo()}
+function setTool(t){tool=t;rot=0;refreshMenu();makeGhost();updateCursorInfo();updateSewVis()}
 function refreshMenu(){
   buildEl.querySelectorAll('.bt').forEach(el=>{const k=el.dataset.k;el.classList.toggle('on',tool===k);
     if(DEF[k])el.classList.toggle('poor',S.den<DEF[k].cost)})}
@@ -1239,7 +1305,16 @@ const insp=$('#inspect');
 let inspected=null;
 function inspectAt(i,j){
   const b=BLD.get(occ[i][j]);inspected=b||null;
-  if(!b){insp.style.display='none';return}
+  if(!b){
+    const rr=roadAt[i][j],sw=sewerAt[i][j];
+    if(rr||sw){
+      const conn=sw&&sewerConnected()[i*N+j],rows=[];
+      if(sw)rows.push(['Sewer beneath',conn?'connected to the river':'<span class="neg">not connected, dry</span>']);
+      if(rr)rows.push(['Upkeep',(rr===2?DEF.bridge.up:DEF.via.up)+' / month']);
+      insp.innerHTML='<h4>'+(rr===2?'Pons':rr?'Via':'Cloaca')+'<button aria-label="Close">×</button></h4><dl>'+rows.map(r=>'<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>').join('')+'</dl>';
+      insp.querySelector('button').onclick=()=>{insp.style.display='none';inspected=null};insp.style.display='block'}
+    else insp.style.display='none';
+    return}
   const D=DEF[b.type]||DEF.ruin,k=b.j*N+b.i,rows=[];
   const pc=v=>Math.round(v*100)+'%';
   rows.push(['Road access',NEEDLESS.includes(b.type)||roadAdj(b)?'yes':'<span class="neg">none, idle</span>']);
@@ -1394,7 +1469,7 @@ function paintLens(){
     if(WATER[i][j]){lensData[o+3]=0;continue}
     lensData[o]=Math.round(lerp(210,90,v));lensData[o+1]=Math.round(lerp(60,200,v));lensData[o+2]=Math.round(lerp(50,110,v));lensData[o+3]=Math.round(lerp(120,70,v))}
   lensTex.needsUpdate=true}
-$('#b-lens').onclick=()=>{lensI=(lensI+1)%LENS.length;$('#b-lens').textContent='Lens: '+LENS[lensI][0];$('#b-lens').classList.toggle('on',lensI>0);paintLens()};
+$('#b-lens').onclick=()=>{lensI=(lensI+1)%LENS.length;updateSewVis();$('#b-lens').textContent='Lens: '+LENS[lensI][0];$('#b-lens').classList.toggle('on',lensI>0);paintLens()};
 $('#b-rules').onclick=()=>{const r=$('#rules');r.classList.toggle('closed');$('#b-rules').classList.toggle('on',!r.classList.contains('closed'))};
 
 const sliders={};
@@ -1536,7 +1611,7 @@ function boot(){
 $('#go').onclick=()=>{$('#cover').style.display='none';startColonia()};
 $('#go2').onclick=()=>{$('#cover').style.display='none';startSandbox()};
 boot();
-window.__game={S,R,BLD,tryPlace,canPlace,simStep,roadAt,occ,setTool,DEF,WATER,N,cov,foundColony,siteCheck,costOf,planned};
+window.__game={S,R,BLD,tryPlace,canPlace,simStep,roadAt,occ,setTool,DEF,WATER,N,cov,foundColony,siteCheck,costOf,planned,CAM,tileX,tileZ,sewerAt};
 </script>
 
 </body></html>
