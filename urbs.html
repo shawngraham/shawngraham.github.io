@@ -1,0 +1,1542 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Urbs Aeterna</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Marcellus&display=swap">
+<style>
+/* Layout: full-bleed 3D stage; HUD strip on top, build palette left, Lex (rules) panel right, event feed bottom. */
+:root{
+  --bg:#14111a; --panel:rgba(26,21,31,.93); --panel2:#2a222f; --line:#4d3d48;
+  --bronze:#c99b4b; --bronze-dim:#8c6d3a; --tyrian:#9a3269; --ink:#f0e6d0; --ink2:#b8a994;
+  --good:#86b86d; --warn:#e3a840; --bad:#dc5a43; --water:#62b6c4;
+  --display:'Marcellus','Trajan Pro',Georgia,serif; --body:'Alegreya Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.35 var(--body);overflow:hidden;
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px));user-select:none;-webkit-user-select:none}
+button{font:inherit;color:inherit;cursor:pointer}
+#app{position:relative;height:100%;overflow:hidden}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.meander{height:8px;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8'%3E%3Cpath d='M0 7.5H1.5V.5H13.5V6.5H5.5V3.2H9.5M13.5 7.5H16' fill='none' stroke='%238c6d3a' stroke-width='1'/%3E%3C/svg%3E") repeat-x}
+
+/* ---------- HUD ---------- */
+#hud{position:absolute;top:0;left:0;right:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--bronze-dim);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#hud .row{display:flex;align-items:center;gap:18px;padding:7px 0;flex-wrap:wrap;min-width:0}
+.brand{display:flex;flex-direction:column;line-height:1.05;min-width:150px}
+.brand b{font:400 21px var(--display);letter-spacing:.14em;color:var(--bronze)}
+.brand span{font-size:12px;color:var(--ink2);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.stats{display:flex;gap:6px;flex:1;flex-wrap:wrap;min-width:0}
+.stat{padding:3px 11px;border-left:1px solid var(--line);min-width:84px}
+.stat small{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.stat b{font:500 18px var(--body);font-variant-numeric:tabular-nums}
+.stat i{font-style:normal;font-size:12px;margin-left:5px;font-variant-numeric:tabular-nums}
+.pos{color:var(--good)}.neg{color:var(--bad)}.mid{color:var(--warn)}
+.bar{height:4px;background:#0e0b12;margin-top:3px;position:relative;width:96px}
+.bar>u{position:absolute;inset:0 auto 0 0;background:var(--good);display:block;transition:width .4s,background .4s}
+.ctl{display:flex;gap:4px;align-items:center}
+.ctl button,.chip{background:var(--panel2);border:1px solid var(--line);padding:5px 10px;font-size:13px;letter-spacing:.04em}
+.ctl button:hover,.chip:hover{border-color:var(--bronze)}
+.ctl button.on,.chip.on{background:var(--tyrian);border-color:var(--bronze);color:#fff}
+button:focus-visible,input:focus-visible{outline:2px solid var(--water);outline-offset:1px}
+
+/* ---------- Build palette ---------- */
+#build{position:absolute;left:max(10px,env(safe-area-inset-left,0px));top:84px;bottom:12px;width:218px;z-index:4;background:var(--panel);
+  border:1px solid var(--line);overflow-y:auto;padding:8px 8px 12px;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent}
+#build h3{font:400 12px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:12px 2px 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+#build h3:first-child{margin-top:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.bt{background:var(--panel2);border:1px solid transparent;padding:4px 4px 5px;text-align:center;position:relative;min-width:0}
+.bt:hover{border-color:var(--bronze-dim)}
+.bt.on{border-color:var(--bronze);background:#3a2636;box-shadow:inset 0 0 0 1px var(--tyrian)}
+.bt img,.bt .ph{display:block;width:56px;height:56px;margin:0 auto 1px;image-rendering:auto}
+.bt .ph{background:var(--line)}
+.bt span{display:block;font-size:12.5px;letter-spacing:-.02em;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bt em{font-style:normal;font-size:12px;color:var(--bronze);font-variant-numeric:tabular-nums}
+.bt.poor{opacity:.5}
+#tip{position:absolute;left:238px;top:96px;z-index:6;width:270px;background:var(--panel);border:1px solid var(--bronze-dim);padding:10px 12px;display:none;pointer-events:none}
+#tip h4{margin:0 0 3px;font:400 17px var(--display);color:var(--bronze);letter-spacing:.06em}
+#tip p{margin:0 0 6px;color:var(--ink);font-size:14px}
+#tip dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:1px 10px;font-size:13px;color:var(--ink2)}
+#tip dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ---------- Rules (Lex) panel ---------- */
+#rules{position:absolute;right:max(10px,env(safe-area-inset-right,0px));top:84px;bottom:12px;width:330px;z-index:4;background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .25s}
+#rules.closed{transform:translateX(calc(100% + 24px))}
+#rules header{padding:10px 14px 8px;border-bottom:1px solid var(--line)}
+#rules header h2{margin:0;font:400 19px var(--display);letter-spacing:.1em;color:var(--bronze)}
+#rules header p{margin:3px 0 8px;font-size:13px;color:var(--ink2)}
+.presets{display:flex;flex-wrap:wrap;gap:5px}
+.presets .chip{padding:3px 8px;font-size:12.5px}
+#rulebody{overflow-y:auto;padding:4px 14px 18px;flex:1;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent}
+#rulebody h3{font:400 12px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:16px 0 4px}
+.rule{padding:7px 0 8px;border-bottom:1px solid #2f2631}
+.rule .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.rule label{font-weight:700;font-size:14.5px}
+.rule output{font-variant-numeric:tabular-nums;color:var(--bronze);font-size:14px;white-space:nowrap}
+.rule .ends{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink2);margin-top:1px;gap:10px}
+.rule .ends span:last-child{text-align:right}
+.rule .why{background:none;border:0;color:var(--water);font-size:12px;padding:2px 0 0;text-decoration:underline;text-underline-offset:2px}
+.rule .note{display:none;font-size:13px;color:var(--ink);background:#211a26;border-left:2px solid var(--tyrian);padding:6px 9px;margin-top:4px}
+.rule.open .note{display:block}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;margin:2px 0 0;touch-action:pan-y}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:linear-gradient(90deg,var(--tyrian),var(--bronze))}
+input[type=range]::-moz-range-track{height:4px;background:linear-gradient(90deg,var(--tyrian),var(--bronze))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:18px;margin-top:-7px;background:var(--ink);border:2px solid var(--bronze-dim);border-radius:0}
+input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink);border:2px solid var(--bronze-dim);border-radius:0}
+
+/* ---------- Bottom: inspector + feed ---------- */
+#bottom{position:absolute;left:246px;bottom:12px;width:min(400px,calc(100% - 640px));z-index:3;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+#inspect{background:var(--panel);border:1px solid var(--bronze-dim);padding:9px 12px;display:none;pointer-events:auto}
+#inspect h4{margin:0;font:400 17px var(--display);color:var(--bronze);letter-spacing:.06em;display:flex;justify-content:space-between}
+#inspect h4 button{background:none;border:0;color:var(--ink2);font-size:16px;padding:0 2px}
+#inspect dl{margin:5px 0 0;display:grid;grid-template-columns:auto 1fr;gap:1px 12px;font-size:13.5px;color:var(--ink2)}
+#inspect dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums}
+#feed{display:flex;flex-direction:column;gap:3px}
+#feed div{background:rgba(20,16,25,.82);border-left:2px solid var(--bronze-dim);padding:3px 9px;font-size:13.5px;animation:in .35s}
+#feed div.bad{border-color:var(--bad)}#feed div.good{border-color:var(--good)}#feed div.warn{border-color:var(--warn)}
+#feed div small{color:var(--ink2);margin-right:7px;font-size:11.5px;letter-spacing:.06em}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+
+#help{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#help[hidden]{display:none!important}
+#help .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
+#help header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bronze-dim);background:var(--panel)}
+#help h2{margin:0;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
+#help header button{background:var(--panel2);border:1px solid var(--line);width:34px;height:34px;font-size:20px;line-height:1}
+#help header button:hover{border-color:var(--bronze)}
+#help .hbody{overflow-y:auto;padding:4px 18px 18px;min-width:0;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent;user-select:text;-webkit-user-select:text}
+#help h3{font:400 13px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:20px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+#help p,#help li{font-size:14.5px;line-height:1.4;margin:4px 0;max-width:72ch}
+#help ul,#help ol{margin:4px 0;padding-left:20px}
+#help .tw{overflow-x:auto;margin:6px 0}
+#help table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+#help th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--line)}
+#help td{padding:6px 8px;border-bottom:1px solid #2f2631;vertical-align:top;color:var(--ink)}
+#help td:first-child{font-weight:700;color:var(--bronze);white-space:nowrap}
+#help td:nth-child(2),#help td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
+#help .keys{margin-top:16px;color:var(--ink2);font-size:13.5px}
+#pm{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#pm[hidden]{display:none!important}
+#pm .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
+#pm header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bronze-dim);background:var(--panel)}
+#pm h2{margin:0;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
+#pm header button{background:var(--panel2);border:1px solid var(--line);width:34px;height:34px;font-size:20px;line-height:1}
+#pm header button:hover{border-color:var(--bronze)}
+#pm .hbody{overflow-y:auto;padding:4px 18px 18px;min-width:0;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent;user-select:text;-webkit-user-select:text}
+#pm h3{font:400 13px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:20px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+#pm p,#pm li{font-size:14.5px;line-height:1.4;margin:4px 0;max-width:72ch}
+#pm ul,#pm ol{margin:4px 0;padding-left:20px}
+#pm .tw{overflow-x:auto;margin:6px 0}
+#pm table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+#pm th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--line)}
+#pm td{padding:6px 8px;border-bottom:1px solid #2f2631;vertical-align:top;color:var(--ink)}
+#pm td:first-child{font-weight:700;color:var(--bronze);white-space:nowrap}
+#pm td:nth-child(2),#pm td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
+#pm .keys{margin-top:16px;color:var(--ink2);font-size:13.5px}
+#pm .pm-nav{display:flex;gap:5px;overflow-x:auto;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+#pm .pm-nav .chip{flex:0 0 auto;white-space:nowrap}
+#pm h4{margin:14px 0 2px;font:500 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+#pm h3{margin-top:14px;font-size:15px;color:var(--bronze)}
+#pm a{color:var(--water)}
+#pm .pm-act{margin-top:18px}
+#pm .pm-act button{background:var(--tyrian);border:1px solid var(--bronze);padding:9px 22px;font:400 16px var(--display);letter-spacing:.12em;color:#fff}
+#pm table{min-width:420px}
+#b-pinfo{background:none;border:0;color:var(--water);font-size:12.5px;padding:6px 0 0;text-decoration:underline;text-underline-offset:2px}
+#toast{position:absolute;top:96px;left:50%;transform:translateX(-50%);z-index:8;font:400 30px var(--display);letter-spacing:.2em;color:var(--bronze);text-shadow:0 2px 14px #000;
+  background:rgba(20,16,25,.78);padding:8px 28px;border-top:1px solid var(--bronze);border-bottom:1px solid var(--bronze);opacity:0;pointer-events:none;transition:opacity .5s;text-align:center;white-space:nowrap}
+#toast small{display:block;font:400 13px var(--body);letter-spacing:.08em;color:var(--ink);margin-top:2px}
+#toast.show{opacity:1}
+#hint{position:absolute;right:360px;bottom:14px;font-size:12px;color:var(--ink2);text-align:right;pointer-events:none;text-shadow:0 1px 3px #000;line-height:1.5}
+#hint b{color:var(--ink);font-weight:500}
+#cover{position:absolute;inset:0;z-index:20;background:radial-gradient(ellipse at 50% 40%,#2b1c2a,#100d15 70%);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+#cover div{max-width:560px}
+#cover h1{font:400 clamp(34px,8vw,64px) var(--display);letter-spacing:.2em;margin:0;color:var(--bronze);line-height:1.05}
+#cover p{margin:14px 0 22px;color:var(--ink2);font-size:17px}
+#cover button{background:var(--tyrian);border:1px solid var(--bronze);padding:10px 30px;font:400 18px var(--display);letter-spacing:.18em;color:#fff}
+#cover .meander{margin:0 auto 18px;width:220px}
+.cover-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#cover button.alt{background:var(--panel2);font-size:15px;padding:11px 20px;border-color:var(--line)}
+#cover button.alt:hover{border-color:var(--bronze)}
+#cover .sub{font-size:14px;margin:12px 0 0;color:var(--ink2)}
+#founding{position:absolute;top:92px;left:50%;transform:translateX(-50%);z-index:7;width:min(540px,calc(100% - 32px));background:var(--panel);border:1px solid var(--bronze);padding:12px 18px;text-align:center;display:none;pointer-events:none}
+#founding h4{margin:0 0 4px;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
+#founding p{margin:0;font-size:14.5px}
+#founding .bad{color:var(--bad);margin-top:6px;min-height:1.3em;font-size:14px}
+#goals{background:var(--panel);border:1px solid var(--line);padding:8px 12px;display:none;pointer-events:auto}
+#goals h4{margin:0 0 4px;font:400 12px var(--display);letter-spacing:.2em;color:var(--bronze);text-transform:uppercase}
+#goals ul{margin:0;padding:0}
+#goals li{list-style:none;font-size:13.5px;padding:1px 0 1px 20px;position:relative;color:var(--ink2)}
+#goals li::before{content:'\25CB';position:absolute;left:0;color:var(--bronze-dim)}
+#goals li.done{color:var(--ink)}
+#goals li.done::before{content:'\2713';color:var(--good)}
+.nogl{color:var(--bad)}
+
+@media (max-width:900px){
+  #hud .row{gap:8px}
+  .stat{min-width:70px;padding:2px 8px}.stat b{font-size:16px}
+  .brand b{font-size:17px}.brand{min-width:0}
+  #build{top:auto;left:0;right:0;bottom:0;width:auto;height:112px;display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;padding:6px;
+    padding-left:max(6px,env(safe-area-inset-left,0px));padding-right:max(6px,env(safe-area-inset-right,0px))}
+  #build h3{display:none}.grid{display:flex;gap:5px}.bt{flex:0 0 78px}
+  #rules{top:auto;left:0;right:0;bottom:112px;width:auto;height:55%;border-left:0;border-right:0}
+  #bottom{left:10px;bottom:122px;width:calc(100% - 20px)}
+  #hint,#tip,#goals{display:none!important}
+  #toast{font-size:20px;white-space:normal;width:86%}
+}
+@media (prefers-reduced-motion:reduce){#feed div{animation:none}#rules{transition:none}}
+</style>
+
+<div id="app">
+  <canvas id="stage" aria-label="Isometric view of the city"></canvas>
+
+  <header id="hud">
+    <div class="row">
+      <div class="brand"><b>URBS AETERNA</b><span id="rank">Vicus · AUC 754</span></div>
+      <div class="stats">
+        <div class="stat"><small>Denarii</small><b id="s-den">0</b><i id="s-den-d"></i></div>
+        <div class="stat"><small>Grain, modii</small><b id="s-grain">0</b><i id="s-grain-d"></i></div>
+        <div class="stat"><small>Populus</small><b id="s-pop">0</b><i id="s-pop-d"></i></div>
+        <div class="stat"><small>Concordia</small><b id="s-ord">0</b><div class="bar"><u id="s-ord-b"></u></div></div>
+        <div class="stat"><small>Dignitas</small><b id="s-dig">0</b><i id="s-next"></i></div>
+      </div>
+      <div class="ctl" id="speed">
+        <button data-s="0" title="Pause (Space)" aria-label="Pause">❚❚</button>
+        <button data-s="1" class="on" title="Normal speed">1×</button>
+        <button data-s="2" title="Fast">2×</button>
+        <button data-s="4" title="Fastest">4×</button>
+      </div>
+      <div class="ctl">
+        <button id="b-time" title="Change the light">Meridies</button>
+        <button id="b-lens" title="Service coverage overlay">Lens: off</button>
+        <button id="b-rules" class="on">Lex</button>
+        <button id="b-help" title="Tile guide (H)">Help</button>
+      </div>
+    </div>
+    <div class="meander"></div>
+  </header>
+
+  <nav id="build" aria-label="Build menu"></nav>
+  <div id="tip"></div>
+
+  <aside id="rules" aria-label="Rules of the city">
+    <header>
+      <h2>LEX ET MOS</h2>
+      <p>Set the laws that drive the simulation to match your reading of Roman urban life. Changes apply at once.</p>
+      <div class="presets" id="presets"></div>
+      <button id="b-pinfo" type="button">About these readings</button>
+    </header>
+    <div id="rulebody"></div>
+  </aside>
+
+  <div id="bottom">
+    <div id="goals"></div>
+    <div id="inspect"></div>
+    <div id="feed" aria-live="polite"></div>
+  </div>
+  <div id="hint"><b>Click</b> build · <b>Right-drag / WASD</b> pan · <b>Q E</b> turn · <b>Wheel</b> zoom<br><b>R</b> rotate piece · <b>X</b> demolish · <b>Esc</b> inspect · <b>Space</b> pause · <b>H</b> help</div>
+  <div id="founding"><h4>FOUND THE COLONY</h4><p>Click level ground to set the Umbilicus, the centre of your city. The gold stones show the pomerium, the sacred boundary. The only spring rises on the hill to the north-east; the river is nearer but fouls. Your veterans wait in their wagons.</p><div class="bad" id="found-why"></div></div>
+  <div id="help" hidden role="dialog" aria-modal="true" aria-labelledby="help-t"><div class="hbox"><header><h2 id="help-t">TABULA: TILE GUIDE</h2><button id="help-x" aria-label="Close guide">×</button></header><div class="hbody">
+<h3>Placement</h3>
+<p>Most tiles only work when a street touches them, so lay the Via first.</p>
+<ul>
+<li><b>Place:</b> pick a tile in the left menu, then click the map. Drag to lay Via, Aquaeductus and Cloaca in a line.</li>
+<li><b>Rotate</b> R. <b>Demolish</b> X (refunds 30%; a Via refunds 3). <b>Inspect</b> Esc, then click a building.</li>
+<li><b>Road frontage</b> is needed by everything except Aquaeductus, Cloaca, Caput Aquae, Castellum, Lacus, Tabernaculum and Ager.</li>
+<li><b>Terrain:</b> nothing can stand in the river. The Emporium must touch it. A Caput Aquae needs high ground.</li>
+<li><b>Lens</b> cycles overlays for water, sewers, vigiles, castra, markets, temples, baths, games and patronage. Green is covered, red is not.</li>
+<li><b>Reach</b> is in tiles, given per tile below. The Walking range rule scales every one.</li>
+<li><b>Colonia mode:</b> gold dashes mark the planned grid. A Via on them costs half; other buildings over them cost 30% more.</li>
+</ul>
+<h3>Streets and pipes</h3>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Via</td><td>1×1</td><td>6</td><td>Paved street. Drag to lay a line. Leave gaps between blocks so every building has frontage.</td></tr><tr><td>Aquaeductus</td><td>1×1</td><td>16</td><td>Raised arcade. Drag a continuous chain from the Caput Aquae to a Castellum. One gap breaks the supply.</td></tr><tr><td>Cloaca</td><td>1×1</td><td>18</td><td>Sewer. The chain must start beside the river and run inland. It cleans about 3 tiles either side. Lowers disease.</td></tr></tbody></table></div>
+<h3>Homes</h3>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Tabernaculum</td><td>1×1</td><td>12</td><td>Leather tent for eight men. Needs no road. Burns easily, raises disease, rots away after five years. A stopgap only.</td></tr><tr><td>Insula</td><td>1×1</td><td>45</td><td>Tenement. Houses 7 people per storey, so 35 at the default limit of five. Taller blocks burn and spread disease more. Put Vigiles nearby.</td></tr><tr><td>Domus</td><td>2×2</td><td>190</td><td>Houses 6 elite. Its patron influence reaches 6 tiles and calms the poor around it. Elites dislike crowded neighbours when the neighbourhood rule is on Separated.</td></tr></tbody></table></div>
+<h3>Trade and toil</h3>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>Jobs</th><th>How to use it</th></tr></thead><tbody><tr><td>Taberna</td><td>1×1</td><td>35</td><td>3</td><td>Shop, reach 5. In a bazaar economy it earns more in a cluster of traders within 4 tiles, and near a Domus.</td></tr><tr><td>Macellum</td><td>2×2</td><td>160</td><td>6</td><td>Market hall, reach 8. Anchor a trader cluster around it.</td></tr><tr><td>Officina</td><td>2×1</td><td>75</td><td>9</td><td>Workshop. Output depends on the Producer or consumer rule. The best source of jobs.</td></tr><tr><td>Ager</td><td>3×3</td><td>70</td><td>6</td><td>Fields. Needs no road. Best beside the river. Harvest peaks in July and August and halves in winter.</td></tr><tr><td>Horreum</td><td>2×2</td><td>170</td><td>3</td><td>Granary. Adds 14,000 modii of storage and slows spoilage. Without one, stock is capped at 5,000.</td></tr><tr><td>Emporium</td><td>2×2</td><td>340</td><td>14</td><td>River port. Must touch the water. Imports grain when stock runs short, but not while the winter sea is closed.</td></tr></tbody></table></div>
+<h3>Water and health</h3>
+<p>Water runs in one line: Caput Aquae, Aquaeductus, Castellum, then Lacus and Thermae. Each spring yields about 2,600 a month, minus leakage. The town draws about 1 per person, 400 per Thermae and 40 per Lacus.</p>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Caput Aquae</td><td>2×2</td><td>450</td><td>Spring-head on high ground. Needs an Aquaeductus touching it. The starting spring cannot be removed.</td></tr><tr><td>Castellum</td><td>1×1</td><td>140</td><td>Distribution tower, reach 8. Must touch the arcade. Place it among the houses it serves.</td></tr><tr><td>Lacus</td><td>1×1</td><td>70</td><td>Fountain, reach 4. Only extends water where a Castellum already reaches.</td></tr><tr><td>Thermae</td><td>3×3</td><td>540</td><td>Baths, reach 9, 8 jobs. Lower disease and keep the crowd calm, but need water to work.</td></tr></tbody></table></div>
+<h3>Civic life</h3>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Templum</td><td>2×3</td><td>360</td><td>Temple, reach 8. Calms the crowd and builds dignitas, in proportion to the civic religion rule.</td></tr><tr><td>Forum</td><td>4×3</td><td>720</td><td>Civic heart, reach 10, 8 jobs. Adds trade and about 1 dignitas a month. A charter condition in Colonia mode.</td></tr><tr><td>Amphitheatrum</td><td>4×4</td><td>1,600</td><td>Games, reach 14. Each show costs up to 90 a month. How much calm it buys depends on the bread and circuses rule.</td></tr><tr><td>Arcus</td><td>2×1</td><td>480</td><td>Triumphal arch. Pure prestige: 1.5 dignitas a month, and a small monthly chance of spoils (600 denarii).</td></tr></tbody></table></div>
+<h3>Order and safety</h3>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Vigiles</td><td>2×1</td><td>130</td><td>Fire watch, reach 8. Cuts the chance of a fire starting by up to 80% and slows its spread. Place one beside every cluster of Insulae.</td></tr><tr><td>Castra</td><td>2×2</td><td>320</td><td>Barracks, reach 10. Keeps order and helps put down riots in its district.</td></tr></tbody></table></div>
+<h3>Build order</h3>
+<ol>
+<li>Streets, then a few Insulae and Ager on the first blocks.</li>
+<li>Bring water: Aquaeductus from the spring, then a Castellum among the houses.</li>
+<li>Add a Cloaca from the river, and a Vigiles beside the first Insulae.</li>
+<li>Add Taberna and Officina in a cluster, then a Horreum before the first winter.</li>
+<li>Add Templum, then Forum, then Thermae as the town grows.</li>
+</ol>
+<h3>Common mistakes</h3>
+<ul>
+<li>A building with no adjacent Via sits idle. Inspect it to see.</li>
+<li>A gap in the Aquaeductus, or a Castellum that does not touch the arcade, leaves the town dry.</li>
+<li>A Cloaca that does not start at the river does nothing.</li>
+<li>Tall Insulae without Vigiles burn in chains.</li>
+<li>A lone Taberna earns less than three together in a bazaar economy.</li>
+<li>Grain above the storage cap spoils. Watch the monthly grain figure in the top bar.</li>
+</ul>
+<p class="keys"><b>Keys:</b> WASD or right-drag pan · Q E turn · wheel zoom · Space pause · 1 2 3 4 speed · H or ? this guide</p>
+</div></div></div>
+  <div id="pm" hidden role="dialog" aria-modal="true" aria-labelledby="pm-t"><div class="hbox"><header><h2 id="pm-t">LEX ET MOS: THE READINGS</h2><button id="pm-x" aria-label="Close">×</button></header><div class="pm-nav" id="pm-nav"></div><div class="hbody" id="pm-body"></div></div></div>
+  <div id="toast"></div>
+
+  <div id="cover">
+    <div>
+      <div class="meander"></div>
+      <h1>URBS AETERNA</h1>
+      <p>80 BC. Sulla has granted land to his demobbed soldiers. Found a colonia on empty ground, or tend a free city and decide for yourself what made Rome work.</p>
+      <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go2" class="alt">FREE CITY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
+      <p class="sub">Both modes share the same Lex panel of rules.</p>
+      <p id="glmsg" class="nogl" style="font-size:14px;margin-top:14px"></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+'use strict';
+/* ================= CORE: constants, terrain, scene ================= */
+const N=44, HALF=N/2;
+const $=s=>document.querySelector(s);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+const hash=(x,y)=>{const h=Math.sin(x*127.1+y*311.7)*43758.5453;return h-Math.floor(h)};
+function vnoise(x,y){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf);
+  return lerp(lerp(hash(xi,yi),hash(xi+1,yi),u),lerp(hash(xi,yi+1),hash(xi+1,yi+1),u),v)}
+const fbm=(x,y)=>vnoise(x,y)*.6+vnoise(x*2.1,y*2.1)*.3+vnoise(x*4.3,y*4.3)*.1;
+const riverX=z=>-5.5+6.5*Math.sin(z*.14+.5)+1.5*Math.sin(z*.37);
+const HILLS=[[6,-4,5,.55],[11,3,5.5,.5],[2,-9,4,.45],[14,-8,5,.5],[10,12,5,.45],[-12,6,5,.4],[-13,-8,5,.4],[17,-18,5,.9]];
+function heightAt(x,z){
+  let h=.32+.28*fbm(x*.07+11,z*.07+5);
+  for(const [hx,hz,r,hh] of HILLS){const d=Math.hypot(x-hx,z-hz);h+=hh*Math.exp(-(d*d)/(r*r*.8))}
+  const w=smooth(1,2.8,Math.abs(x-riverX(z)));
+  return lerp(-.3,h,w);
+}
+const TH=[],WATER=[];
+for(let i=0;i<N;i++){TH[i]=new Float32Array(N);WATER[i]=new Uint8Array(N);
+  for(let j=0;j<N;j++){const h=heightAt(i-HALF+.5,j-HALF+.5);TH[i][j]=Math.max(h,.1);WATER[i][j]=h<.07?1:0}}
+const tileX=i=>i-HALF+.5, tileZ=j=>j-HALF+.5;
+const inb=(i,j)=>i>=0&&j>=0&&i<N&&j<N;
+
+/* ---------- renderer / scene ---------- */
+const stage=$('#stage');
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas:stage,antialias:true,alpha:false});}catch(e){renderer=null}
+const scene=new THREE.Scene();
+scene.background=new THREE.Color('#a9c8d6');
+if(renderer){renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap}
+
+const CAM={x:4,z:2,yaw:Math.PI/4,yawT:Math.PI/4,pitch:.6,zoom:14};
+const cam=new THREE.OrthographicCamera(-1,1,1,-1,-300,500);
+function sizeStage(){
+  const w=stage.clientWidth||innerWidth,h=stage.clientHeight||innerHeight;
+  if(renderer)renderer.setSize(w,h,false);
+  const a=w/h;cam.left=-CAM.zoom*a;cam.right=CAM.zoom*a;cam.top=CAM.zoom;cam.bottom=-CAM.zoom;cam.updateProjectionMatrix();
+}
+function updateCam(){
+  CAM.yaw+=(CAM.yawT-CAM.yaw)*.18;
+  const d=90,cp=Math.cos(CAM.pitch);
+  cam.position.set(CAM.x+Math.sin(CAM.yaw)*cp*d,Math.sin(CAM.pitch)*d,CAM.z+Math.cos(CAM.yaw)*cp*d);
+  cam.lookAt(CAM.x,0,CAM.z);
+  sizeStage();
+}
+addEventListener('resize',sizeStage);
+
+/* ---------- lighting with time-of-day presets ---------- */
+const hemi=new THREE.HemisphereLight(0xe9f0ff,0x7a6a4e,.7);scene.add(hemi);
+const sun=new THREE.DirectionalLight(0xfff1d8,1);sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-38,right:38,top:38,bottom:-38,near:1,far:260});
+sun.shadow.bias=-.0006;sun.shadow.normalBias=.03;
+scene.add(sun,sun.target);
+const TIMES=[
+  {name:'Meridies',dir:[-.5,.9,.4],sun:'#fff1d8',si:1.0,sky:'#e9f0ff',gr:'#7a6a4e',hi:.72,bg:'#a9c8d6'},
+  {name:'Hora Aurea',dir:[-.95,.42,.5],sun:'#ffb468',si:1.15,sky:'#ffd9b0',gr:'#5b4660',hi:.58,bg:'#d9a77c'},
+  {name:'Vesper',dir:[.85,.26,-.6],sun:'#ff8a5a',si:.6,sky:'#7a7fc0',gr:'#2c2540',hi:.62,bg:'#3d3868'},
+  {name:'Nox',dir:[.4,.75,.3],sun:'#9db7ff',si:.38,sky:'#34447f',gr:'#161430',hi:.6,bg:'#0e1230'}
+];
+let timeIdx=0;
+const L={dir:new THREE.Vector3(...TIMES[0].dir),sun:new THREE.Color(TIMES[0].sun),si:1,sky:new THREE.Color(TIMES[0].sky),gr:new THREE.Color(TIMES[0].gr),hi:.72,bg:new THREE.Color(TIMES[0].bg)};
+function lightStep(){
+  const T=TIMES[timeIdx],k=.045;
+  L.dir.lerp(new THREE.Vector3(...T.dir),k);L.sun.lerp(new THREE.Color(T.sun),k);L.sky.lerp(new THREE.Color(T.sky),k);
+  L.gr.lerp(new THREE.Color(T.gr),k);L.bg.lerp(new THREE.Color(T.bg),k);L.si+=(T.si-L.si)*k;L.hi+=(T.hi-L.hi)*k;
+  const d=L.dir.clone().normalize();
+  sun.position.set(d.x*90,d.y*90,d.z*90);sun.color.copy(L.sun);sun.intensity=L.si;
+  hemi.color.copy(L.sky);hemi.groundColor.copy(L.gr);hemi.intensity=L.hi;scene.background.copy(L.bg);
+}
+
+/* ---------- terrain ---------- */
+const tgeo=new THREE.PlaneGeometry(N,N,N,N);tgeo.rotateX(-Math.PI/2);
+{
+  const p=tgeo.attributes.position,col=new Float32Array(p.count*3),c=new THREE.Color();
+  const grassA=new THREE.Color('#7f9a4f'),grassB=new THREE.Color('#a3ac5c'),dry=new THREE.Color('#bba966'),sand=new THREE.Color('#d6c391'),wet=new THREE.Color('#9c9a6a'),rock=new THREE.Color('#aa9c78');
+  for(let v=0;v<p.count;v++){
+    const x=p.getX(v),z=p.getZ(v),h=heightAt(x,z);p.setY(v,h);
+    const n=fbm(x*.35,z*.35);
+    c.copy(grassA).lerp(grassB,n);
+    c.lerp(dry,smooth(.45,1.0,h)*.8*n+smooth(.9,1.3,h)*.3);
+    c.lerp(rock,smooth(1.1,1.5,h)*.6);
+    c.lerp(sand,1-smooth(.02,.26,h));c.lerp(wet,1-smooth(-.2,.05,h));
+    col[v*3]=c.r;col[v*3+1]=c.g;col[v*3+2]=c.b;
+  }
+  tgeo.setAttribute('color',new THREE.BufferAttribute(col,3));tgeo.computeVertexNormals();
+}
+const terrain=new THREE.Mesh(tgeo,new THREE.MeshLambertMaterial({vertexColors:true}));
+terrain.receiveShadow=true;scene.add(terrain);
+
+// earth slab under the diorama
+{
+  const slab=new THREE.Mesh(new THREE.BoxGeometry(N,3,N),new THREE.MeshLambertMaterial({color:'#5e4a3a'}));
+  slab.position.y=-.3-1.5;scene.add(slab);
+  const rim=new THREE.Mesh(new THREE.BoxGeometry(N+.5,.14,N+.5),new THREE.MeshLambertMaterial({color:'#2e2430'}));
+  rim.position.y=-.3-.07;scene.add(rim);
+}
+
+// river surface
+const waterMat=new THREE.ShaderMaterial({transparent:true,uniforms:{t:{value:0},deep:{value:new THREE.Color('#2a6c88')},shallow:{value:new THREE.Color('#66b9bd')}},
+  vertexShader:'varying vec3 vW;void main(){vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;gl_Position=projectionMatrix*viewMatrix*w;}',
+  fragmentShader:'varying vec3 vW;uniform float t;uniform vec3 deep;uniform vec3 shallow;void main(){vec2 p=vW.xz;float a=sin(p.x*2.6+t*1.1+sin(p.y*1.7+t*.6))*.5+.5;float b=sin(p.y*4.2-t*1.5+p.x*1.3)*.5+.5;float w=a*.5+b*.5;vec3 c=mix(deep,shallow,w*.5+.22);c+=smoothstep(.9,1.,w)*.3;gl_FragColor=vec4(c,.9);}'});
+const water=new THREE.Mesh(new THREE.PlaneGeometry(N,N).rotateX(-Math.PI/2),waterMat);water.position.y=.035;scene.add(water);
+
+// coverage-lens overlay shares the terrain geometry
+const lensData=new Uint8Array(N*N*4),lensTex=new THREE.DataTexture(lensData,N,N,THREE.RGBAFormat);
+lensTex.magFilter=lensTex.minFilter=THREE.NearestFilter;lensTex.needsUpdate=true;
+const lensMesh=new THREE.Mesh(tgeo,new THREE.MeshBasicMaterial({map:lensTex,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));
+lensMesh.visible=false;lensMesh.renderOrder=2;scene.add(lensMesh);
+
+/* ---------- shared geometry, textures and materials ---------- */
+const G={
+  box:new THREE.BoxGeometry(1,1,1),cyl:new THREE.CylinderGeometry(1,1,1,12),cone:new THREE.ConeGeometry(1,1,12),
+  sph:new THREE.SphereGeometry(1,14,10),prism:new THREE.CylinderGeometry(1,1,1,3).rotateX(-Math.PI/2)
+};
+function canvasTex(w,h,draw,rx=1,ry=1){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);
+  const t=new THREE.CanvasTexture(c);t.anisotropy=4;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);return t}
+const T={
+  fac:canvasTex(64,64,(x,w,h)=>{x.fillStyle='#fff';x.fillRect(0,0,w,h);
+    for(const a of [11,39]){x.fillStyle='#6b5846';x.fillRect(a,20,14,22);x.fillStyle='#fff';x.fillRect(a+6,20,2,22);x.fillStyle='#5a4936';x.fillRect(a-1,42,16,3)}
+    x.fillStyle='rgba(0,0,0,.07)';x.fillRect(0,h-6,w,6)}),
+  arch:canvasTex(128,64,(x,w,h)=>{x.fillStyle='#fff';x.fillRect(0,0,w,h);x.fillStyle='#5b4c3e';
+    for(let k=0;k<4;k++){const cx=16+k*32;x.beginPath();x.arc(cx,30,9,Math.PI,0);x.lineTo(cx+9,56);x.lineTo(cx-9,56);x.closePath();x.fill()}
+    x.fillStyle='rgba(0,0,0,.1)';x.fillRect(0,0,w,5);x.fillRect(0,h*.47,w,3)},14,1),
+  crop:canvasTex(64,64,(x,w,h)=>{x.fillStyle='#fff';x.fillRect(0,0,w,h);x.fillStyle='rgba(60,50,20,.35)';for(let k=0;k<8;k++)x.fillRect(0,k*8+5,w,2)})
+};
+const mk=(c,r=.9,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:r,metalness:0},o));
+const M={
+  cream:mk('#ead8ae'),ochre:mk('#d9b279'),red:mk('#c0614a'),yellow:mk('#e4c473'),roof:mk('#b94a30'),roof2:mk('#9e3d2b'),
+  marble:mk('#f2ece0',.45),trav:mk('#dccda6'),stone:mk('#c3b38c'),dark:mk('#3c342d'),wood:mk('#7d5936'),bronze:mk('#bd8f40',.4,{emissive:'#3a2808'}),
+  gold:mk('#e0b240',.35,{emissive:'#5a4210'}),tyrian:mk('#7a2552'),lapis:mk('#35628f'),green:mk('#5f8140'),leaf:mk('#4c7a3a'),
+  sand:mk('#e2d2a0'),furrow:mk('#8c6b44'),aq:mk('#d2c19a'),wat:mk('#5db0c0',.2,{emissive:'#133a44'}),rubble:mk('#6a5f55'),char:mk('#2a2522'),
+  road:new THREE.MeshLambertMaterial({color:'#ffffff'}),
+  pave:mk('#c9bb98')
+};
+M.facs=['#ead8ae','#d9b279','#c9694d','#e4c473'].map(c=>mk(c,.9,{map:T.fac}));
+M.arch=mk('#dccda6',.9,{map:T.arch});
+M.crops=[mk('#9bb64e',.9,{map:T.crop}),mk('#cdb24a',.9,{map:T.crop}),mk('#7ea04a',.9,{map:T.crop})];
+
+/* mesh helpers: y is the BOTTOM of the piece */
+function P(g,mat,sx,sy,sz,x,y,z,rx=0,ry=0,rz=0){const m=new THREE.Mesh(g,mat);m.scale.set(sx,sy,sz);m.position.set(x,y,z);m.rotation.set(rx,ry,rz);m.castShadow=m.receiveShadow=true;return m}
+const Bx=(mat,w,h,d,x,y,z)=>P(G.box,mat,w,h,d,x,y+h/2,z);
+const Cy=(mat,r,h,x,y,z)=>P(G.cyl,mat,r,h,r,x,y+h/2,z);
+const Kn=(mat,r,h,x,y,z)=>P(G.cone,mat,r,h,r,x,y+h/2,z);
+const Rf=(mat,W,Ln,H,x,y,z,ry=0)=>P(G.prism,mat,W/1.732,H/1.5,Ln,x,y+H/3,z,0,ry);
+const Sp=(mat,r,x,y,z,sy=1)=>P(G.sph,mat,r,r*sy,r,x,y,z);
+/* ================= BUILDINGS: catalogue and models ================= */
+const CATS=['Streets & Pipes','Homes','Trade & Toil','Water & Health','Civic Life','Order & Safety'];
+const DEF={
+  via:{name:'Via',cat:0,w:1,d:1,cost:6,up:.1,drag:1,desc:'Paved street. Almost everything needs road frontage to function.'},
+  aqueduct:{name:'Aquaeductus',cat:0,w:1,d:1,cost:16,up:.2,drag:1,desc:'Arcade carrying water from a Caput Aquae to your Castella. Lay it in a continuous chain.'},
+  cloaca:{name:'Cloaca',cat:0,w:1,d:1,cost:18,up:.1,drag:1,r:3,desc:'Sewer line. Must run in a chain down to the Tiber. Drains disease from the blocks around it.'},
+  tent:{name:'Tabernaculum',cat:1,w:1,d:1,cost:12,up:.02,desc:'Leather tent for one contubernium of eight men. Quick and cheap, but flammable and unhealthy, and the hides rot away after five years. Needs no road.'},
+  insula:{name:'Insula',cat:1,w:1,d:1,cost:45,up:.4,desc:'Plebeian apartment block. Capacity grows with the storey limit you set in the rules, and so does the fire risk.'},
+  domus:{name:'Domus',cat:1,w:2,d:2,cost:190,up:1.5,desc:'Courtyard house of a senator or knight. Patrons here support the poor nearby; their owners dislike crowded neighbours.'},
+  taberna:{name:'Taberna',cat:2,w:1,d:1,cost:35,up:.5,jobs:3,r:5,desc:'Shop and street-counter. Local trade, and a little tax. In a bazaar economy, shops do best in clusters and within reach of a patron.'},
+  macellum:{name:'Macellum',cat:2,w:2,d:2,cost:160,up:2,jobs:6,r:8,desc:'Round market hall with stalls. Serves a wide district, and anchors a cluster of traders.'},
+  officina:{name:'Officina',cat:2,w:2,d:1,cost:75,up:1,jobs:9,desc:'Workshop: pottery, fulling, metal. Output depends on whether you believe Rome was a producer or a consumer.'},
+  ager:{name:'Ager',cat:2,w:3,d:3,cost:70,up:.5,jobs:6,desc:'Market-garden and grain fields. Best near the river. Harvest peaks in high summer.'},
+  horreum:{name:'Horreum',cat:2,w:2,d:2,cost:170,up:1.2,jobs:3,desc:'Public granary. Holds a large reserve and slows spoilage.'},
+  emporium:{name:'Emporium',cat:2,w:2,d:2,cost:340,up:3,jobs:14,desc:'River port on the bank. Imports grain by ship, but the sea closes in winter. Must touch the water.'},
+  source:{name:'Caput Aquae',cat:3,w:2,d:2,cost:450,up:2,desc:'Spring-head on high ground. Feeds the aqueduct. Each yields a fixed flow, minus what leaks and is stolen.'},
+  castellum:{name:'Castellum',cat:3,w:1,d:1,cost:140,up:1,r:8,desc:'Distribution tower. Place beside an aqueduct arcade to pipe water to nearby blocks.'},
+  lacus:{name:'Lacus',cat:3,w:1,d:1,cost:70,up:.5,r:4,desc:'Public fountain. Extends water to the streets around it, if a Castellum serves it.'},
+  thermae:{name:'Thermae',cat:3,w:3,d:3,cost:540,up:6,jobs:8,r:9,desc:'Public baths. Cleanliness, comfort and calm. Thirsty.'},
+  templum:{name:'Templum',cat:4,w:2,d:3,cost:360,up:2,jobs:2,r:8,desc:'Temple. Pax deorum: calms the nearby crowd and raises dignitas, to the degree you believe in it.'},
+  forum:{name:'Forum',cat:4,w:4,d:3,cost:720,up:5,jobs:8,r:10,desc:'Civic heart. Commerce, law and a steady flow of dignitas.'},
+  amph:{name:'Amphitheatrum',cat:4,w:4,d:4,cost:1600,up:14,jobs:10,r:14,desc:'Games. Each show costs treasure; how much calm it buys depends on your reading of bread and circuses.'},
+  arcus:{name:'Arcus',cat:4,w:2,d:1,cost:480,up:.5,r:8,desc:'Triumphal arch. Pure prestige.'},
+  vigiles:{name:'Vigiles',cat:5,w:2,d:1,cost:130,up:2,r:8,desc:'Firefighting watch-house. Slashes fire risk and fire spread around it.'},
+  castra:{name:'Castra',cat:5,w:2,d:2,cost:320,up:5,r:10,desc:'Urban cohort barracks. Keeps order and puts down riots in its district.'}
+};
+const ORDER=Object.keys(DEF);
+for(const k of ORDER)DEF[k].key=k;
+
+/* ---------- models (local space: origin = footprint centre, y 0 = ground) ---------- */
+const MODEL={};
+const found=(g,w,d,mat=M.stone)=>g.add(Bx(mat,w-.04,.86,d-.04,0,-.8,0));
+const PI=Math.PI;
+const mGlow=mk('#ff9a3d',.5,{emissive:'#ff6a1a'});
+const pole=(g,x,z,h=.8,m=M.tyrian)=>{g.add(Cy(M.wood,.018,h,x,.06,z));g.add(Bx(m,.2,.13,.02,x+.1,.06+h-.14,z))};
+
+const mCanvas=mk('#d9caa0',.95);
+MODEL.tent=(g,b)=>{
+  g.add(Rf(mCanvas,.88,.9,.5,0,0,0,b.seed%2?0:PI/2),Bx(M.dark,.2,.26,.03,0,0,b.seed%2?.45:0));
+  g.add(Cy(M.wood,.012,.85,.38,0,.38),Bx(b.seed%3?M.tyrian:M.lapis,.1,.07,.02,.43,.74,.38));
+};
+MODEL.insula=(g,b)=>{
+  const st=R.storeys,mat=M.facs[b.seed%4];found(g,1,1);
+  for(let f=0;f<st;f++){const s=.84-.01*f;g.add(Bx(mat,s,.33,s,0,.06+f*.33,0));
+    if(f>0&&f%2===1)g.add(Bx(M.wood,s*.7,.03,.1,0,.06+f*.33,s/2+.04))}
+  const top=.06+st*.33;
+  g.add(Rf(M.roof,.88,.9,.2,0,top,0,b.seed%2?0:PI/2));
+  if(b.seed%3===0)g.add(Bx(M.stone,.1,.2,.1,.25,top+.1,.2));
+};
+MODEL.domus=(g,b)=>{
+  found(g,2,2);const w=M.facs[(b.seed+1)%4];
+  g.add(Bx(w,1.84,.5,.6,0,.06,-.62),Bx(w,1.84,.5,.6,0,.06,.62),Bx(w,.6,.5,.64,-.62,.06,0),Bx(w,.6,.5,.64,.62,.06,0));
+  g.add(Rf(M.roof,.74,1.9,.2,0,.56,-.62,PI/2),Rf(M.roof,.74,1.9,.2,0,.56,.62,PI/2));
+  g.add(Rf(M.roof,.74,.7,.2,-.62,.56,0),Rf(M.roof,.74,.7,.2,.62,.56,0));
+  g.add(Bx(M.pave,.8,.03,.8,0,.06,0),Bx(M.wat,.34,.04,.34,0,.07,0));
+  g.add(Bx(M.dark,.28,.32,.04,0,.06,.93));
+  g.add(Kn(M.leaf,.1,.5,.34,.06,.34),Kn(M.leaf,.09,.42,-.32,.06,-.3));
+  for(const x of [-.14,.14])g.add(Cy(M.marble,.03,.3,x,.06,.95));
+};
+MODEL.taberna=(g,b)=>{
+  found(g,1,1);
+  g.add(Bx(M.facs[b.seed%4],.8,.46,.7,0,.06,-.1),Rf(M.roof2,.9,.86,.2,0,.52,-.1,PI/2));
+  g.add(P(G.box,b.seed%2?M.tyrian:M.lapis,.74,.03,.28,0,.42,.36,.35));
+  g.add(Bx(M.wood,.6,.14,.12,0,.06,.42),Cy(M.red,.05,.12,.3,.06,.38));
+};
+MODEL.macellum=(g,b)=>{
+  found(g,2,2);
+  for(let k=0;k<8;k++){const a=k*PI/4;g.add(Cy(M.marble,.05,.42,Math.cos(a)*.76,.06,Math.sin(a)*.76))}
+  g.add(Cy(M.trav,.86,.07,0,.48,0),Kn(M.roof,.9,.32,0,.55,0),Cy(M.gold,.05,.14,0,.86,0));
+  g.add(Cy(M.bronze,.12,.2,0,.06,0));
+  [[1,1,M.tyrian],[-1,1,M.lapis],[1,-1,M.lapis],[-1,-1,M.tyrian]].forEach(([sx,sz,m])=>{
+    g.add(Bx(M.wood,.3,.2,.3,sx*.76,.06,sz*.76),P(G.box,m,.38,.03,.38,sx*.76,.4,sz*.76,.2*sz,0))});
+};
+MODEL.officina=(g,b)=>{
+  found(g,2,1);
+  g.add(Bx(M.ochre,1.7,.45,.66,0,.06,.04),Rf(M.roof2,.76,1.8,.2,.1,.51,.04,PI/2));
+  g.add(Cy(M.red,.17,.8,-.62,.06,-.2),Cy(mGlow,.12,.03,-.62,.86,-.2));
+  g.add(Bx(M.wood,.2,.2,.2,.7,.06,.4),Bx(M.wood,.16,.16,.16,.5,.06,.42),Kn(M.red,.06,.14,.2,.06,.42),Kn(M.red,.06,.14,.05,.06,.42));
+};
+MODEL.ager=(g,b)=>{
+  found(g,3,3,M.furrow);
+  for(let k=0;k<4;k++)g.add(Bx(M.crops[(k+b.seed)%3],.56,.1,2.1,-1.0+k*.65,.06,-.3));
+  g.add(Bx(M.cream,.7,.38,.5,-.8,.06,1.1),Rf(M.roof,.6,.78,.18,-.8,.44,1.1,PI/2));
+  g.add(Cy(M.wood,.04,.3,.9,.06,1.15),Sp(M.leaf,.3,.9,.62,1.15),Kn(M.yellow,.2,.34,.2,.06,1.1));
+};
+MODEL.horreum=(g,b)=>{
+  found(g,2,2);
+  g.add(Bx(M.trav,1.76,.7,1.4,0,.06,0),Rf(M.roof,1.5,1.9,.32,0,.76,0,PI/2));
+  for(let k=0;k<5;k++)g.add(Bx(M.stone,.1,.6,.14,-.7+k*.35,.06,.74));
+  g.add(Bx(M.dark,.36,.4,.04,0,.06,.71),Bx(M.wood,.2,.16,.16,.7,.06,.84),Kn(M.yellow,.1,.2,-.7,.06,.88));
+};
+MODEL.emporium=(g,b)=>{
+  g.add(Bx(M.stone,1.2,.86,1.0,-.4,-.8,-.45));
+  g.add(Bx(M.cream,1.1,.5,.9,-.4,.06,-.45),Rf(M.roof,.96,1.15,.22,-.4,.56,-.45,PI/2));
+  g.add(Bx(M.wood,.7,.06,1.9,.65,.0,0));
+  for(const z of [-.8,0,.8])g.add(Cy(M.wood,.04,.4,.95,-.3,z));
+  g.add(Cy(M.wood,.04,.8,.6,.06,.62),Bx(M.wood,.7,.04,.04,.35,.84,.62),Bx(M.dark,.02,.34,.02,.02,.5,.62));
+  g.add(Bx(M.wood,.22,.2,.22,.6,.06,-.3),Bx(M.wood,.2,.16,.2,.85,.06,-.1),Kn(M.red,.07,.16,.7,.06,.2),Kn(M.red,.07,.16,.85,.06,.3));
+};
+MODEL.source=(g,b)=>{
+  found(g,2,2);
+  g.add(Bx(M.trav,1.8,1.0,.9,0,.06,-.5),Bx(M.dark,.5,.55,.2,0,.2,-.04),Bx(M.marble,1.9,.1,1.0,0,1.06,-.5));
+  g.add(Bx(M.trav,1.5,.16,.8,0,.06,.45),Bx(M.wat,1.3,.04,.62,0,.2,.45),Bx(M.wat,.3,.04,.2,0,.2,-.04));
+  g.add(Kn(M.stone,.28,.5,-.8,.06,.7),Kn(M.stone,.22,.4,.85,.06,.7),Kn(M.leaf,.12,.6,.9,.06,-.8));
+};
+const AQH=1.85;
+const aqSpan=(g,axis,h)=>{
+  const s=new THREE.Group();
+  s.add(Bx(M.aq,1,h+.5,.5,0,-.5,0));
+  for(const x of [-.25,.25]){s.add(Bx(M.dark,.4,.55,.52,x,0,0),P(G.cyl,M.dark,.2,.52,.2,x,.55,0,PI/2));}
+  s.add(Bx(M.aq,1,.1,.62,0,h,0),Bx(M.wat,1,.05,.26,0,h+.1,0),Bx(M.aq,1,.1,.07,0,h+.1,.16),Bx(M.aq,1,.1,.07,0,h+.1,-.16));
+  if(axis==='z')s.rotation.y=PI/2;g.add(s);
+};
+MODEL.aqueduct=(g,b)=>{
+  const h=Math.max(.5,AQH-b.baseY),l=linkDirs(b,['aqueduct','castellum','source']);
+  const ax=l.e||l.w,az=l.n||l.s;
+  if(ax||!az)aqSpan(g,'x',h);if(az)aqSpan(g,'z',h);
+  if(ax&&az)g.add(Bx(M.aq,.62,.2,.62,0,h-.05,0));
+};
+MODEL.castellum=(g,b)=>{
+  const h=Math.max(.6,AQH-b.baseY);found(g,1,1);
+  g.add(Bx(M.trav,.74,h,.74,0,.06,0),Bx(M.dark,.26,.34,.04,0,.06,.38),Bx(M.marble,.84,.08,.84,0,h+.06,0));
+  g.add(Bx(M.wat,.62,.05,.62,0,h+.14,0),Cy(M.bronze,.05,.18,.3,.2,.4),Cy(M.bronze,.05,.18,-.3,.2,.4));
+};
+MODEL.lacus=(g,b)=>{
+  found(g,1,1);
+  g.add(Cy(M.stone,.42,.2,0,.06,0),Cy(M.wat,.35,.04,0,.24,0),Cy(M.marble,.07,.42,0,.24,0),Sp(M.bronze,.08,0,.72,0),Kn(M.wat,.04,.18,0,.74,0));
+};
+MODEL.cloaca=(g,b)=>{
+  const l=linkDirs(b,['cloaca']),d=M.char;
+  if(l.e||l.w)g.add(Bx(d,1,.05,.2,0,.0,0));
+  if(l.n||l.s)g.add(Bx(d,.2,.05,1,0,.0,0));
+  g.add(Cy(M.stone,.22,.05,0,.04,0),Cy(M.dark,.15,.06,0,.045,0));
+};
+MODEL.thermae=(g,b)=>{
+  found(g,3,3);
+  g.add(Bx(M.marble,2.3,.9,1.1,0,.06,-.5),P(G.cyl,M.roof2,.55,2.3,.55,0,.96,-.5,0,0,PI/2));
+  g.add(Bx(M.cream,.45,.6,2.2,-1.25,.06,-.1),Bx(M.cream,.45,.6,2.2,1.25,.06,-.1));
+  g.add(Rf(M.roof,.5,2.2,.16,-1.25,.66,-.1),Rf(M.roof,.5,2.2,.16,1.25,.66,-.1));
+  g.add(Bx(M.marble,1.7,.06,1.0,0,.06,.9),Bx(M.wat,1.5,.04,.8,0,.12,.9));
+  for(let k=0;k<4;k++)g.add(Cy(M.marble,.05,.4,-.9+k*.6,.06,1.4));
+  g.add(Bx(M.stone,.16,.5,.16,.9,.96,-.7),Bx(M.stone,.16,.4,.16,-.7,.96,-.3),Sp(M.trav,.4,0,.96,-.5,.8));
+};
+MODEL.templum=(g,b)=>{
+  found(g,2,3);
+  g.add(Bx(M.trav,1.9,.34,2.9,0,.06,0),Bx(M.trav,1.0,.1,.3,0,.06,1.6));
+  g.add(Bx(M.marble,1.1,.8,1.5,0,.4,-.45),Rf(M.roof,1.5,2.5,.45,0,1.2,-.1));
+  for(const x of [-.6,-.2,.2,.6])g.add(Cy(M.marble,.055,.8,x,.4,.95));
+  for(const z of [-.2,-.9]){g.add(Cy(M.marble,.055,.8,-.7,.4,z),Cy(M.marble,.055,.8,.7,.4,z))}
+  g.add(Sp(M.gold,.07,0,1.7,1.0),Bx(M.tyrian,.5,.04,.04,0,1.2,1.12));
+};
+MODEL.forum=(g,b)=>{
+  found(g,4,3);
+  g.add(Bx(M.pave,3.9,.03,2.9,0,.06,0));
+  for(let k=0;k<8;k++)g.add(Cy(M.marble,.05,.5,-1.6+k*.46,.06,1.3));
+  g.add(Bx(M.marble,3.6,.08,.3,0,.56,1.3),Bx(M.marble,3.5,.62,.8,0,.06,-1.0),Rf(M.roof,.95,3.6,.28,0,.68,-1.0,PI/2));
+  g.add(Bx(M.trav,.9,.3,.5,-1.2,.06,.1),Cy(M.marble,.07,.9,.8,.06,.1),Sp(M.gold,.1,.8,1.05,.1));
+  pole(g,-1.7,.5);pole(g,1.7,.5,.8,M.lapis);
+};
+const lathe=new THREE.LatheGeometry([[1.0,.06],[1.75,1.12],[1.92,1.18],[1.92,0]].map(p=>new THREE.Vector2(p[0],p[1])),40);
+const travD=mk('#dccda6',.9,{side:THREE.DoubleSide}),cylOpen=new THREE.CylinderGeometry(1,1,1,48,1,true);
+MODEL.amph=(g,b)=>{
+  g.add(Cy(M.stone,1.95,.86,0,-.8,0));
+  g.add(P(lathe,travD,1,1,1,0,0,0),P(cylOpen,M.arch,1.93,1.12,1.93,0,.56,0));
+  g.add(Cy(M.sand,1.0,.04,0,.04,0));
+  for(let k=0;k<4;k++){const a=k*PI/2+PI/4;pole(g,Math.cos(a)*1.85,Math.sin(a)*1.85,1.4,k%2?M.lapis:M.tyrian)}
+};
+MODEL.castra=(g,b)=>{
+  found(g,2,2);
+  g.add(Bx(M.stone,1.9,.4,.1,0,.06,-.9),Bx(M.stone,1.9,.4,.1,0,.06,.9),Bx(M.stone,.1,.4,1.7,-.9,.06,0),Bx(M.stone,.1,.4,1.7,.9,.06,0));
+  for(const sx of [-1,1])for(const sz of [-1,1]){g.add(Bx(M.stone,.3,.6,.3,sx*.88,.06,sz*.88),Kn(M.roof,.24,.22,sx*.88,.66,sz*.88))}
+  g.add(Bx(M.cream,1.1,.4,.7,0,.06,-.1),Rf(M.roof2,.8,1.1,.2,0,.46,-.1,PI/2),Bx(M.dark,.4,.3,.12,0,.06,.9));
+  pole(g,0,.35,.9);g.add(Sp(M.gold,.06,0,1.0,.35));
+};
+MODEL.vigiles=(g,b)=>{
+  found(g,2,1);
+  g.add(Bx(M.stone,.4,.9,.4,-.65,.06,0),Kn(M.roof,.3,.25,-.65,.96,0),Sp(M.bronze,.06,-.65,.8,.22));
+  g.add(Bx(M.red,1.1,.4,.7,.35,.06,0),Rf(M.roof2,.8,1.1,.2,.35,.46,0,PI/2),Bx(M.dark,.4,.3,.04,.35,.06,.36));
+  g.add(Cy(M.wood,.08,.16,.1,.06,.4),Cy(M.wood,.08,.16,.85,.06,.4),Cy(M.lapis,.07,.04,.1,.22,.4));
+};
+MODEL.arcus=(g,b)=>{
+  found(g,2,1);
+  g.add(Bx(M.marble,.42,.95,.62,-.65,.06,0),Bx(M.marble,.42,.95,.62,.65,.06,0),Bx(M.marble,1.72,.3,.64,0,1.01,0),Bx(M.marble,1.5,.3,.5,0,1.31,0));
+  g.add(Bx(M.dark,.9,.08,.02,0,1.4,.26),Bx(M.gold,.5,.12,.2,0,1.61,0));
+  for(let k=0;k<4;k++)g.add(Kn(M.gold,.06,.2,-.2+k*.13,1.67,0));
+};
+MODEL.ruin=(g,b)=>{
+  const w=b.w,d=b.d;
+  for(let k=0;k<4+w*d;k++){const m=k%3?M.rubble:M.char;g.add(Bx(m,.2+Math.random()*.3,.1+Math.random()*.25,.2+Math.random()*.3,(Math.random()-.5)*(w-.3),.0,(Math.random()-.5)*(d-.3)))}
+  g.add(Bx(M.char,w-.2,.06,d-.2,0,-.0,0));
+};
+/* ================= WORLD: rules, state, grid, placement ================= */
+DEF.ruin={name:'Ruinae',cat:-1,w:1,d:1,cost:0,up:0};
+const RULES=[
+{g:'Economy',items:[
+ {k:'prod',name:'Producer or consumer city',min:0,max:100,def:35,lo:'Consumer',hi:'Producer',fmt:v=>v<30?'Consumer':v>70?'Producer':'Mixed',
+  note:'Finley pictured the ancient city as a consumer, living on rents and tribute. Others stress real manufacture and exchange. Low: workshops earn little but tribute is strong. High: workshops thrive and tribute matters less.'},
+ {k:'tribute',name:'Imperial tribute',min:0,max:200,def:100,lo:'Little',hi:'Torrent',fmt:v=>v+'%',
+  note:'Provincial revenue paid for much of the capital. How much of the city\'s budget came from the empire rather than its own streets? Scales the monthly inflow.'},
+ {k:'tax',name:'Direct tax on citizens',min:0,max:100,def:10,lo:'Exempt',hi:'Heavy',fmt:v=>v+'%',
+  note:'After the mid-2nd century BC, citizens in Italy paid no regular direct tax, since conquest paid the bills. Raise it for revenue, at the price of discontent.'},
+ {k:'slave',name:'Slave labour share',min:0,max:80,def:30,lo:'Free workers',hi:'Slave economy',fmt:v=>v+'% of jobs',
+  note:'Slaves were a large part of urban labour, but how large is argued. More slaves lift elite profit and cut wage bills, yet leave free plebs idle, and raise the risk of revolt.'},
+ {k:'vol',name:'Grain price volatility',min:0,max:100,def:30,lo:'Stable',hi:'Wild',fmt:v=>v+'%',
+  note:'Garnsey and others describe recurring shortages when harvests or shipping failed. Higher values mean larger swings in the price of grain, and the odd shock.'},
+ {k:'winter',name:'Winter sailing closure',min:0,max:100,def:50,lo:'Sails all year',hi:'Sea closed',fmt:v=>v+'%',
+  note:'Mediterranean shipping was largely suspended in winter. At 100 the sea is shut from November to February and grain imports stop. At 0, ships run all year.'}]},
+{g:'Bazaar',items:[
+ {k:'bazaar',name:'Market form',min:0,max:100,def:40,lo:'Integrated',hi:'Bazaar',fmt:v=>v<30?'Integrated':v>70?'Bazaar':'Hybrid',
+  note:'Peter Bang (The Roman Bazaar, 2008) takes Geertz\'s bazaar as the model: scattered buyers and sellers, scarce price information, and prices that differ from stall to stall. Low: markets reach far and location hardly matters. High: shoppers know only their own corner, so reach shortens, traders must cluster, and dear bread falls hardest on poor districts far from a market.'},
+ {k:'trust',name:'Personal ties and brokers',min:0,max:100,def:50,lo:'Impersonal',hi:'Personal',fmt:v=>v+'%',
+  note:'In Bang\'s account trade ran through trust, associations, households and patrons more than through courts and contracts. High: traders earn more where a patron\'s influence reaches them (a domus nearby), and less where it does not.'},
+ {k:'eliteDem',name:'Whose demand drives trade',min:0,max:100,def:30,lo:'Mass demand',hi:'Elite and tribute',fmt:v=>v<30?'Mass':v>70?'Elite':'Mixed',
+  note:'Bang argues that trade followed the state\'s need to move tribute and the elite who spent it, not merchants chasing mass markets. High: trade depends on tribute and elite numbers, and fades if tribute is cut or elites are few. Low: it depends on how many plebs there are to buy.'},
+ {k:'scale',name:'Scale of traders',min:0,max:100,def:50,lo:'Stalls and peddlers',hi:'Large firms',fmt:v=>v<30?'Household':v>70?'Firms':'Mixed',
+  note:'Bang finds household-scale enterprise and compartmentalised networks, not large firms. Low: shops and workshops employ more people, with smaller returns each. High: fewer jobs and bigger returns.'}]},
+{g:'Society',items:[
+ {k:'dole',name:'Grain dole (cura annonae)',min:0,max:100,def:20,lo:'None',hi:'Everyone',fmt:v=>v+'% fed free',
+  note:'Free grain for citizens: a cheap guarantee of calm, or a drain on the treasury? Draws migrants, lifts calm, and forgoes grain revenue.'},
+ {k:'patron',name:'Patronage (clientela)',min:0,max:100,def:50,lo:'Weak',hi:'Binding',fmt:v=>v+'%',
+  note:'Poor clients leaned on rich patrons for gifts and protection. If the bond is strong, a domus calms the insulae around it. Needs elites who are content.'},
+ {k:'seg',name:'Mixed or separated neighbourhoods',min:0,max:100,def:20,lo:'Mixed',hi:'Separated',fmt:v=>v<30?'Mixed':v>70?'Zoned':'Partly',
+  note:'Wallace-Hadrill, studying Pompeii and Herculaneum, found rich and poor housed on the same streets. Mixed: elites tolerate neighbours and patronage reaches far. Separated: elites sulk beside insulae, patronage weakens, but a quiet domus earns more prestige.'},
+ {k:'games',name:'Bread and circuses',min:0,max:100,def:50,lo:'Sceptic',hi:'Believer',fmt:v=>v+'%',
+  note:'Juvenal sneered that the people wanted only bread and games. Some modern scholars see spectacle chiefly as elite self-display with limited political effect. How much calm does the Amphitheatre buy? Higher also means costlier shows.'},
+ {k:'piety',name:'Weight of civic religion',min:0,max:100,def:50,lo:'Marginal',hi:'Central',fmt:v=>v+'%',
+  note:'Roman fortune was tied to correct ritual, the pax deorum. How much do temples calm the crowd and build dignitas?'}]},
+{g:'Urban fabric',items:[
+ {k:'storeys',name:'Insula height limit',min:2,max:8,def:5,lo:'Low',hi:'Towers',fmt:v=>v+' storeys',
+  note:'Writers describe tall, rickety tenements, and Augustus is said to have capped building height. Taller blocks house more people, but burn, spread flame and spread disease more readily.'},
+ {k:'fire',name:'Fire hazard',min:0,max:200,def:100,lo:'Rare',hi:'Constant',fmt:v=>v+'%',
+  note:'Fires were a chronic danger, and Augustus raised the vigiles in response. Scales how often blocks ignite and how quickly flames spread.'},
+ {k:'grave',name:'Urban graveyard effect',min:50,max:200,def:100,lo:'Healthy',hi:'Deadly',fmt:v=>v+'%',
+  note:'Scheidel and others argue that ancient cities buried more people than they bore and survived on migrants. Scales the death rate.'},
+ {k:'immig',name:'Immigration pull',min:0,max:200,def:100,lo:'Weak',hi:'Magnet',fmt:v=>v+'%',
+  note:'Rome drew people from Italy and the provinces, seeking work, grain and spectacle. Scales how fast newcomers arrive when conditions are good.'},
+ {k:'walk',name:'Walking range',min:50,max:150,def:100,lo:'Short',hi:'Far',fmt:v=>v+'%',
+  note:'Streets were thronged and most people went on foot. A first-century BC law kept wheeled traffic off Rome\'s streets by day. Scales how far every service reaches.'},
+ {k:'leak',name:'Aqueduct losses and theft',min:0,max:50,def:25,lo:'Tight',hi:'Leaky',fmt:v=>v+'% lost',
+  note:'Frontinus, the water commissioner, recorded leaks and illegal taps along Rome\'s aqueducts. Share of flow lost before it reaches users.'}]},
+{g:'Colonia',col:1,items:[
+ {k:'vloyal',name:'Veteran loyalty',min:0,max:100,def:70,lo:'Restless',hi:"Sulla's men",fmt:v=>v+'%',
+  note:'Sulla\'s veterans owed him land and little else. Sallust says many later drifted into debt and turned to Catiline. Low: the soldiers brood, and order suffers in proportion to how many veterans remain. High: they hold the colony for you.'},
+ {k:'landsale',name:'Plot sales',min:0,max:100,def:40,lo:'Hold their land',hi:'Sell up',fmt:v=>v+'%',
+  note:'Sallust describes veterans squandering their grants. Poor farmers sold to richer neighbours and drifted to Rome. Each year, veterans with weak plots may sell. The buyer farms the land better, but the colony loses people.'},
+ {k:'resent',name:'Local grievance',min:0,max:100,def:50,lo:'Resigned',hi:'Bitter',fmt:v=>v+'%',
+  note:'The old owners lost land to the colony, and in Campania and Etruria the Sullan settlements bred long resentment. High grievance means arson and raids on farms and camps, and a drag on public order.'},
+ {k:'cit',name:'Rights for locals',min:0,max:100,def:20,lo:'Tenants only',hi:'Citizens',fmt:v=>v<25?'Tenants':v>70?'Citizens':'Partial rights',
+  note:'At Pompeii the Oscan families were folded into the new colony over time. Granting rights soothes grievance and brings in more settlers, but the veterans resent sharing. Low: locals are kept as tenants, and grievance lingers.'}]}
+];
+const PRESETS={
+ 'Bang: bazaar':{bazaar:85,trust:80,eliteDem:75,scale:15,prod:25,tribute:130,vol:55},
+ 'Integrated markets':{bazaar:10,trust:20,eliteDem:20,scale:75,prod:70,vol:15},
+ 'Hard colonists':{vloyal:85,resent:75,cit:5,landsale:30,patron:60},
+ 'Open colony':{vloyal:55,resent:25,cit:80,landsale:55,immig:130},
+ 'Reset':{},
+ 'Finley':{prod:8,tribute:140,slave:35,tax:0,dole:30,games:65,vol:25,winter:70},
+ 'Hopkins':{prod:75,tribute:110,tax:25,slave:25,vol:20,winter:25,immig:110},
+ 'Mixed streets':{seg:0,patron:85,walk:90,storeys:4,piety:55},
+ 'Augustus':{storeys:4,fire:60,dole:25,games:75,piety:85,immig:90,tax:5},
+ 'Graveyard':{grave:170,immig:155,storeys:6,leak:35,fire:130,dole:35},
+ 'Slave city':{slave:70,prod:60,dole:15,patron:70,games:40,tribute:80}
+};
+const R={};RULES.forEach(g=>g.items.forEach(r=>R[r.k]=r.def));
+const RDEF=Object.assign({},R);
+
+const MONTHS=['Ian','Feb','Mar','Apr','Mai','Iun','Iul','Aug','Sep','Oct','Nov','Dec'];
+const S={month:2,den:3500,grain:3200,plebs:80,elite:8,slaves:0,order:72,eliteH:70,dign:20,price:1,disease:.2,hunger:0,unemp:0,prosp:.7,wr:1,
+  inc:0,exp:0,fear:0,epi:0,scn:'sandbox',y0:754,griev:0,vets:0,phase:'play',grid:null,low:0,rank:0,speed:1,pops:[0,0],tick:0,seasea:1,flow:{},lastPop:88,over:false};
+const hooks={add(){},remove(){},rebuild(){},road(){},burn(){},log(){},toast(){},fire(){}};
+const log=(t,k='')=>hooks.log(t,k);
+
+/* ---------- grid ---------- */
+const occ=Array.from({length:N},()=>new Int32Array(N));
+const roadAt=Array.from({length:N},()=>new Uint8Array(N));
+const BLD=new Map();let nid=1;
+const typeAt=(i,j)=>inb(i,j)&&occ[i][j]?BLD.get(occ[i][j]).type:null;
+const rd=(i,j)=>inb(i,j)&&roadAt[i][j]===1;
+function neighborsOf(b){const s=new Set();
+  const add=(x,z)=>{if(inb(x,z)&&occ[x][z]&&occ[x][z]!==b.id)s.add(occ[x][z])};
+  for(let a=0;a<b.w;a++){add(b.i+a,b.j-1);add(b.i+a,b.j+b.d)}
+  for(let c=0;c<b.d;c++){add(b.i-1,b.j+c);add(b.i+b.w,b.j+c)}
+  return s}
+function linkDirs(b,types){return{e:types.includes(typeAt(b.i+1,b.j)),w:types.includes(typeAt(b.i-1,b.j)),s:types.includes(typeAt(b.i,b.j+1)),n:types.includes(typeAt(b.i,b.j-1))}}
+function roadAdj(b){
+  for(let a=0;a<b.w;a++)if(rd(b.i+a,b.j-1)||rd(b.i+a,b.j+b.d))return true;
+  for(let c=0;c<b.d;c++)if(rd(b.i-1,b.j+c)||rd(b.i+b.w,b.j+c))return true;
+  return false}
+const LINKED=['aqueduct','cloaca','castellum'];
+
+const planned=Array.from({length:N},()=>new Uint8Array(N));
+function costOf(type,i,j,rot){
+  const D=DEF[type];let cost=D.cost;
+  if(S.grid){
+    let w=D.w,d=D.d;if(rot&1)[w,d]=[d,w];
+    if(type==='via'){if(inb(i,j)&&planned[i][j])cost*=.5}
+    else if(!['ager','source','emporium','aqueduct','cloaca','tent'].includes(type)){
+      let hit=false;for(let a=0;a<w;a++)for(let c=0;c<d;c++)if(inb(i+a,j+c)&&planned[i+a][j+c])hit=true;
+      if(hit)cost*=1.3}}
+  return Math.round(cost)}
+function canPlace(type,i,j,rot){
+  const D=DEF[type];let w=D.w,d=D.d;if(rot&1)[w,d]=[d,w];
+  if(i<0||j<0||i+w>N||j+d>N)return{ok:false,why:'Outside the city',w,d};
+  let shore=false,hs=0;
+  for(let a=0;a<w;a++)for(let c=0;c<d;c++){const x=i+a,z=j+c;
+    if(WATER[x][z])return{ok:false,why:'Cannot build on the river',w,d};
+    if(occ[x][z]||roadAt[x][z])return{ok:false,why:'Tile is occupied',w,d};
+    hs+=TH[x][z];
+    if(type==='emporium'&&(inb(x+1,z)&&WATER[x+1][z]||inb(x-1,z)&&WATER[x-1][z]||inb(x,z+1)&&WATER[x][z+1]||inb(x,z-1)&&WATER[x][z-1]))shore=true;
+  }
+  if(type==='emporium'&&!shore)return{ok:false,why:'Must touch the river',w,d};
+  if(type==='source'&&hs/(w*d)<.8)return{ok:false,why:'Needs high ground',w,d};
+  return{ok:true,w,d};
+}
+function addBld(type,i,j,rot,seed){
+  const D=DEF[type];let w=D.w,d=D.d;if(rot&1)[w,d]=[d,w];
+  let by=.1;for(let a=0;a<w;a++)for(let c=0;c<d;c++)by=Math.max(by,TH[i+a][j+c]);
+  const b={id:nid++,type,i,j,w,d,rot:rot&1,seed:seed!==undefined?seed:Math.floor(Math.random()*997),born:S.tick,burn:0,ruin:0,baseY:by,
+    fert:.75+.5*Math.exp(-Math.abs(tileX(i+w/2)-riverX(tileZ(j+d/2)))/8)};
+  for(let a=0;a<w;a++)for(let c=0;c<d;c++)occ[i+a][j+c]=b.id;
+  BLD.set(b.id,b);return b}
+function refreshLinks(b){for(const id of neighborsOf(b)){const n=BLD.get(id);if(n&&LINKED.includes(n.type))hooks.rebuild(n)}}
+function tryPlace(type,i,j,rot,free){
+  const D=DEF[type],c=canPlace(type,i,j,rot);if(!c.ok)return c;
+  const cost=costOf(type,i,j,rot);
+  if(!free&&S.den<cost)return{ok:false,why:'Not enough denarii'};
+  if(!free)S.den-=cost;
+  if(type==='via'){roadAt[i][j]=1;hooks.road();return{ok:true}}
+  const b=addBld(type,i,j,rot);hooks.add(b);if(LINKED.includes(type))refreshLinks(b);
+  return{ok:true,b}}
+function removeBld(b){
+  for(let a=0;a<b.w;a++)for(let c=0;c<b.d;c++)occ[b.i+a][b.j+c]=0;
+  BLD.delete(b.id);hooks.remove(b);if(LINKED.includes(b.type))refreshLinks(b)}
+function demolishAt(i,j){
+  if(!inb(i,j))return{ok:false};
+  if(roadAt[i][j]){roadAt[i][j]=0;S.den+=3;hooks.road();return{ok:true,what:'Via'}}
+  const b=BLD.get(occ[i][j]);if(!b)return{ok:false};
+  if(b.fixed)return{ok:false,why:'The founding spring cannot be removed'};
+  const D=DEF[b.type];if(b.type!=='ruin')S.den+=Math.round(D.cost*.3);
+  removeBld(b);return{ok:true,what:D.name}}
+
+function placeSpring(){const src=addBld('source',N-6,3,0,3);src.fixed=true;hooks.add(src)}
+function starter(){
+  let mx=-99;for(let j=17;j<=31;j++)mx=Math.max(mx,riverX(tileZ(j)));
+  const o=Math.round(mx+HALF)+4-27;
+  const P_=(t,i,j,r=0)=>tryPlace(t,i+o,j,r,true);
+  for(let i=26;i<=36;i++)P_('via',i,24);
+  for(let j=19;j<=29;j++)P_('via',31,j);
+  [[27,23],[28,23],[29,23],[30,23],[27,25],[28,25],[29,25],[30,25],[32,23],[33,23]].forEach(p=>P_('insula',p[0],p[1]));
+  P_('taberna',32,25);P_('taberna',33,25);P_('officina',34,25,0);
+  P_('domus',29,21);P_('domus',32,21);
+  P_('ager',32,27);P_('ager',28,27);
+  CAM.x=tileX(31+o);CAM.z=tileZ(24);
+  placeSpring();
+}
+/* ================= SIMULATION: one tick = one month ================= */
+const HARV=[.5,.5,.6,.7,.9,1.4,1.8,1.8,1.4,.9,.6,.5];
+const SEA_CLOSED=[1,1,.5,0,0,0,0,0,0,0,1,1];
+const NEEDLESS=['aqueduct','cloaca','source','castellum','lacus','ruin','tent','ager'];
+const FIRE_BASE={tent:.006,insula:.0025,domus:.0012,officina:.004,taberna:.0025,horreum:.002,macellum:.002,ager:.0015,emporium:.002,thermae:.003,templum:.0008,forum:.0008,amph:.001,castra:.0006,vigiles:.0008};
+const RANKS=[['Vicus',0],['Oppidum',200],['Civitas',600],['Colonia',1500],['Urbs',4000],['Caput Mundi',9000]];
+const COVK=['water','sewer','fire','order','market','temple','bath','game','patron','forum'];
+const cov={};COVK.forEach(k=>cov[k]=new Float32Array(N*N));
+const riverNear=new Float32Array(N*N);
+for(let i=0;i<N;i++)for(let j=0;j<N;j++){let md=9;
+  for(let a=-3;a<=3;a++)for(let c=-3;c<=3;c++){const x=i+a,z=j+c;if(inb(x,z)&&WATER[x][z])md=Math.min(md,Math.hypot(a,c))}
+  riverNear[j*N+i]=md<=3?.5*(1-md/4):0}
+const touchesWater=(i,j)=>inb(i+1,j)&&WATER[i+1][j]||inb(i-1,j)&&WATER[i-1][j]||inb(i,j+1)&&WATER[i][j+1]||inb(i,j-1)&&WATER[i][j-1];
+function stamp(arr,b,r,str=1){
+  const cx=b.i+b.w/2,cz=b.j+b.d/2,Rr=Math.ceil(r)+1;
+  for(let x=Math.max(0,Math.floor(cx-Rr));x<Math.min(N,Math.ceil(cx+Rr));x++)for(let z=Math.max(0,Math.floor(cz-Rr));z<Math.min(N,Math.ceil(cz+Rr));z++){
+    const d=Math.hypot(x+.5-cx,z+.5-cz);if(d<=r){const v=str*(1-.55*d/r),k=z*N+x;if(v>arr[k])arr[k]=v}}}
+function floodSet(seeds,type){const seen=new Set(),q=[];
+  for(const s of seeds){if(!seen.has(s.id)){seen.add(s.id);q.push(s)}}
+  while(q.length){const a=q.pop();for(const id of neighborsOf(a)){const n=BLD.get(id);if(n&&n.type===type&&!seen.has(id)){seen.add(id);q.push(n)}}}
+  return seen}
+function ignite(b,why){
+  if(!b||b.burn||b.type==='ruin'||!FIRE_BASE[b.type])return;
+  b.burn=2;hooks.fire(b);
+  if(b.type==='insula')S.plebs=Math.max(0,S.plebs-R.storeys*7*.18*Math.min(1,S.plebs/Math.max(1,S.cap||1)));
+  S.fear=Math.min(1,S.fear+.18);
+  log((why||'Fire takes')+' the '+DEF[b.type].name+'.','bad');
+}
+function rankOf(p){let r=0;RANKS.forEach((x,i)=>{if(p>=x[1])r=i});return r}
+
+function simStep(){
+  S.tick++;S.month++;const m=S.month%12,walk=R.walk/100,seg=R.seg/100,rnd=Math.random;
+  const walkM=walk*(1-.35*(R.bazaar/100-.4)),jobScale=1+(50-R.scale)/100*.8;
+  let worn=0;for(const b of [...BLD.values()])if(b.type==='tent'&&S.tick-b.born>=60){removeBld(b);worn++}
+  if(worn)log(worn+' worn-out tents are struck for good.','warn');
+  COVK.forEach(k=>cov[k].fill(0));
+  for(const b of BLD.values())b.road=roadAdj(b);
+  const live=[...BLD.values()].filter(b=>!b.burn&&b.type!=='ruin');
+  const active=live.filter(b=>NEEDLESS.includes(b.type)||b.road);
+  const of=t=>active.filter(b=>b.type===t);
+
+  /* --- water network --- */
+  const srcs=of('source'),seedA=[];
+  for(const s of srcs)for(const id of neighborsOf(s)){const n=BLD.get(id);if(n.type==='aqueduct')seedA.push(n)}
+  const aq=floodSet(seedA,'aqueduct');
+  const cas=of('castellum').filter(b=>[...neighborsOf(b)].some(id=>aq.has(id)||BLD.get(id).type==='source'));
+  const actSrc=srcs.filter(s=>[...neighborsOf(s)].some(id=>{const t=BLD.get(id).type;return t==='aqueduct'||t==='castellum'})).length;
+  const pop=S.plebs+S.elite;
+  const demandW=pop+of('thermae').length*400+of('lacus').length*40;
+  const supplyW=actSrc*2600*(1-R.leak/100);
+  S.wr=cas.length?Math.min(1,supplyW/Math.max(1,demandW)):0;
+  S.supply=supplyW;S.demandW=demandW;
+  for(const b of cas)stamp(cov.water,b,8);
+  for(const b of of('lacus')){if(cov.water[(b.j)*N+b.i]>.25)stamp(cov.water,b,4*walk,.95)}
+  for(let k=0;k<N*N;k++)cov.water[k]=Math.max(riverNear[k],cov.water[k]*S.wr);
+  const sewSeeds=of('cloaca').filter(b=>touchesWater(b.i,b.j));
+  for(const id of floodSet(sewSeeds,'cloaca'))stamp(cov.sewer,BLD.get(id),3.2);
+
+  /* --- services --- */
+  for(const b of active){
+    switch(b.type){
+      case'taberna':stamp(cov.market,b,5*walkM,.8);break;
+      case'macellum':stamp(cov.market,b,8*walkM,1);break;
+      case'thermae':stamp(cov.bath,b,9*walk,S.wr>.2?1:.3);break;
+      case'templum':stamp(cov.temple,b,8*walk);break;
+      case'amph':stamp(cov.game,b,14*walk);break;
+      case'forum':stamp(cov.forum,b,10*walk);break;
+      case'castra':stamp(cov.order,b,10*walk);break;
+      case'vigiles':stamp(cov.fire,b,8*walk);break;
+      case'domus':stamp(cov.patron,b,6*(1-.5*seg)*walk);break;
+    }}
+
+  /* --- aggregates --- */
+  const A={tents:0,capP:0,capE:0,J:0,farms:0,grainProd:0,horr:0,ports:0,tab:0,mac:0,off:0,forum:0,temple:0,amph:0,arcus:0,domus:0,ins:0,castra:0,vig:0,thermae:0};
+  const ins=[],dom=[];
+  for(const b of active){const D=DEF[b.type];A.J+=(D.jobs||0)*(b.type==='taberna'||b.type==='officina'||b.type==='macellum'?jobScale:1);
+    if(b.type==='insula'){A.capP+=R.storeys*7;A.ins++;ins.push(b)}
+    else if(b.type==='tent'){A.capP+=8;A.tents++;ins.push(b)}
+    else if(b.type==='domus'){A.capE+=6;A.domus++;dom.push(b)}
+    else if(b.type==='ager'){A.farms++;A.grainProd+=420*b.fert*HARV[m]*(b.skill||1)}
+    else if(b.type==='horreum')A.horr++;
+    else if(b.type==='emporium')A.ports++;
+    else if(b.type==='taberna')A.tab++;
+    else if(b.type==='macellum')A.mac++;
+    else if(b.type==='officina')A.off++;
+    else if(b.type==='forum')A.forum++;
+    else if(b.type==='templum')A.temple++;
+    else if(b.type==='amph')A.amph++;
+    else if(b.type==='arcus')A.arcus++;
+    else if(b.type==='castra')A.castra++;
+    else if(b.type==='vigiles')A.vig++;
+    else if(b.type==='thermae')A.thermae++}
+  S.cap=A.capP;S.capE=A.capE;S.A=A;
+  const av=arr=>{let s=0,w=0;for(const b of ins){s+=arr[b.j*N+b.i]*1;w++}return w?s/w:0};
+  const avW=av(cov.water),avSew=av(cov.sewer),avM=av(cov.market),avT=av(cov.temple),avB=av(cov.bath),avG=av(cov.game),avO=av(cov.order),avP=av(cov.patron),avF=av(cov.fire),avFo=av(cov.forum);
+  S.cv={water:avW,sewer:avSew,market:avM,temple:avT,bath:avB,game:avG,order:avO,patron:avP,fire:avF};
+  let roadN=0;for(let i=0;i<N;i++)for(let j=0;j<N;j++)roadN+=roadAt[i][j];
+  let upkeep=roadN*.1;for(const b of BLD.values())upkeep+=DEF[b.type].up||0;
+
+  /* --- grain --- */
+  const sea=1-(1-R.winter/100*SEA_CLOSED[m]*1)*0-R.winter/100*SEA_CLOSED[m];
+  S.seasea=sea;
+  const tvol=R.vol/100;
+  S.price=clamp(S.price+(1-S.price)*.18+(rnd()-.5)*tvol*.5,.6,3);
+  if(rnd()<.012*(.3+tvol*2)){S.price=Math.min(3,S.price*1.6);log('Annona crisis: grain prices spike.','warn')}
+  const demandG=(S.plebs+S.elite+S.slaves*.8)*4;
+  const target=2.2*demandG;
+  const cap=5000+A.horr*14000;
+  let imp=0;
+  if(A.ports){const need=Math.max(0,target-S.grain-A.grainProd);imp=Math.min(A.ports*3200*sea,need)}
+  const impCost=imp*.045*S.price;
+  S.grain+=A.grainProd+imp;
+  S.grain-=S.grain*(A.horr?.006:.014);
+  S.grain=Math.min(S.grain,cap);
+  const doleD=S.plebs*R.dole/100*4,paidD=Math.max(0,demandG-doleD);
+  let F=1;
+  if(demandG>0){if(S.grain>=demandG){S.grain-=demandG}else{F=S.grain/demandG;S.grain=0}}
+  S.hunger=1-F;if(S.hunger>.05)S.everHungry=1;S.F=F;S.grainProd=A.grainProd;S.imp=imp;
+  const grainRev=paidD*F*.05*S.price;
+
+  /* --- labour and prosperity --- */
+  const s=R.slave/100,workforce=S.plebs*.36,freeJobs=A.J*(1-s),employed=Math.min(workforce,freeJobs);
+  S.unemp=workforce>1?1-employed/workforce:0;
+  const fill=freeJobs>0?Math.min(1,workforce/freeJobs):1;
+  S.slaves=Math.round(A.J*s+S.elite*3.5);
+  const pm=.3+1.4*R.prod/100;
+  const dem=clamp(S.plebs/(A.tab*40+A.mac*140+40),.2,1.3);
+  /* --- the bazaar (Bang): clusters, personal ties, whose demand --- */
+  const trd=active.filter(b=>b.type==='taberna'||b.type==='macellum'||b.type==='forum'||b.type==='emporium');
+  let clS=0,ptS=0;
+  for(const b of trd){let n=0;for(const o of trd)if(o!==b&&Math.abs(o.i-b.i)<=4&&Math.abs(o.j-b.j)<=4)n++;b.nb=n;b.pc=cov.patron[b.j*N+b.i];clS+=Math.min(1,n/4);ptS+=b.pc}
+  const clu=trd.length?clS/trd.length:.4,avPm=trd.length?ptS/trd.length:.35,phi=R.bazaar/100,tr=R.trust/100,ek=R.eliteDem/100;
+  const mClu=1+phi*(clu-.4)*.9,mTrust=1+tr*.5*(avPm-.25),scaleV=1+(R.scale-50)/100*.4;
+  const tribNow=(120+S.plebs*.035)*R.tribute/100*(1.28-.5*R.prod/100);
+  const eld=clamp((tribNow*.8+S.elite*10)/(A.tab*7+A.mac*22+A.forum*18+A.ports*20+10),.3,1.5);
+  const demX=(1-ek)*dem+ek*eld,bzMult=mClu*mTrust*scaleV;
+  S.bz={mult:bzMult,clu,avPm,demX,eld,dem};
+  const V=(A.off*16*pm+A.tab*7*demX+A.mac*22*demX+A.ports*26*(.6+.4*R.prod/100)*(.35+.65*sea)+A.forum*18)*fill*bzMult;
+  const plebInc=V*(1-s)*.6+employed*2.6+doleD*.05;
+  S.prosp=clamp(plebInc/Math.max(1,S.plebs*3.2),0,1.3);
+
+  /* --- disease --- */
+  const occP=A.capP?clamp(S.plebs/A.capP,0,1.4):0;
+  S.disease=clamp(.08+.2*occP*Math.sqrt(R.storeys/5)+.18*(1-avSew)+.16*(1-avW)-.1*avB+.1*Math.min(1,A.tents*8/Math.max(1,A.capP)),.02,1);
+  if(S.epi>0)S.epi--;
+  else if(S.plebs>150&&rnd()<.06*Math.pow(S.disease,3)){S.epi=3;log('Pestilentia sweeps the crowded quarters.','bad')}
+
+  /* --- population --- */
+  const attr=clamp(.3*S.order/100+.25*S.F+.2*(1-S.unemp)+.15*Math.min(1,R.dole/50)+.1*avB+.05*(S.wr>0?1:0),0,1);
+  const vacancy=Math.max(0,A.capP-S.plebs);
+  let imm=R.immig/100*(2+S.plebs*.018)*smooth(.35,.85,attr)*(1+(S.scn==='colonia'?R.cit/100*.4:0));imm=Math.min(imm,vacancy);
+  const births=S.plebs*.0021,deaths=S.plebs*.0022*R.grave/100*(1+1.4*S.disease+3*S.hunger)+(S.epi?S.plebs*.012*S.disease:0);
+  const homeless=Math.max(0,S.plebs-A.capP);S.homeless=homeless;
+  const oldP=S.plebs;
+  S.plebs=Math.max(0,S.plebs+births-deaths+imm-homeless*.15);
+  S.dpop=S.plebs-oldP;
+  const vacE=Math.max(0,A.capE-S.elite);
+  const attE=clamp(.5*S.eliteH/100+.3*Math.min(1,S.dign/300)+.2*avW,0,1);
+  const immE=Math.min(vacE,(.25+S.dign*.003)*attE*R.immig/100);
+  S.elite=Math.max(0,S.elite+immE+S.elite*.001-(S.eliteH<35?S.elite*.03:0)-(S.elite>A.capE?(S.elite-A.capE)*.2:0));
+
+  /* --- elite mood --- */
+  let adj=0;
+  for(const b of dom){let c=0;for(let x=b.i-2;x<b.i+b.w+2;x++)for(let z=b.j-2;z<b.j+b.d+2;z++)if(typeAt(x,z)==='insula')c++;adj+=Math.min(1,c/5)}
+  adj=dom.length?adj/dom.length:0;S.adj=adj;
+  const eT=clamp(80-adj*seg*45-(1-avW)*14-(100-S.order)*.28+(A.temple?4:0)+(A.forum?4:0)+(S.dign>150?4:0),0,100);
+  S.eliteH+=(eT-S.eliteH)*.3;
+
+  /* --- colonia: veterans, plots, grievance --- */
+  let colX=0;
+  if(S.scn==='colonia'){
+    const cit=R.cit/100,plots=live.filter(b=>b.type==='ager'&&b.owner).length,taken=Math.min(1,(S.plotsTaken||plots)/10);
+    const gt=R.resent/100*(.3+.7*taken)*(1-.6*cit);
+    S.griev+=(gt-S.griev)*(gt>S.griev?.08:.04*(1+cit));
+    S.vets=Math.min(S.vets,S.plebs);
+    const share=S.vets/Math.max(1,S.plebs+S.elite),loy=clamp(R.vloyal-R.cit*.15,0,100)/100;
+    colX=(.5-loy)*.5*share+.35*S.griev*(1-.5*avO);
+    const rp=(S.griev-.4)*.12*(R.cit<20?1.5:1)*(1-.6*avO);
+    if(S.griev>.4&&rnd()<rp){const tg=live.filter(b=>b.type==='ager'||b.type==='tent');if(tg.length)ignite(tg[Math.floor(rnd()*tg.length)],'Dispossessed raiders burn')}
+    if(S.tick%12===0)for(const b of live)if(b.type==='ager'&&b.owner==='vet'){
+      const p=R.landsale/100*clamp(1.05-b.skill,0,1)*.9;
+      if(rnd()<p){b.owner='estate';b.skill=Math.min(1.3,b.skill*1.6);S.vets=Math.max(0,S.vets-5);S.plebs=Math.max(0,S.plebs-5);log('A veteran sells his plot and drifts to Rome. A wealthy neighbour absorbs it.','warn')}}
+  }
+  /* --- concordia (public order) --- */
+  S.fear*=.78;
+  const X=1.6*S.hunger+Math.min(1,homeless/Math.max(50,S.plebs))+.4*S.unemp*(.5+s)+.45*R.tax/100+.15*(1-avW)+.4*Math.max(0,S.disease-.35)+(S.epi?.25:0)+.3*S.fear+(S.den<0?.15:0)+(S.price>1.5?.08*(S.price-1.5):0)+colX+R.bazaar/100*.3*(1-avM)*Math.max(0,S.price-.8);
+  const gamesPower=1-Math.exp(-A.amph*1.0);
+  const Mi=.45*R.games/100*avG*gamesPower+.3*Math.pow(R.dole/100,.7)+R.patron/100*avP*S.eliteH/100*.4+.3*avO+R.piety/100*.25*avT+.12*avB+.05*avFo+.25*(S.prosp-.6);
+  const base=.95;
+  S.Xterm=X;S.Mterm=Mi;
+  const tgt=clamp(100*(base-X+Mi),0,100);
+  S.order+=(tgt-S.order)*.3;S.order=clamp(S.order,0,100);
+
+  /* --- treasury --- */
+  const tribute=(120+S.plebs*.035)*R.tribute/100*(1.28-.5*R.prod/100);
+  const tax=S.plebs*.0125*R.tax+S.elite*.12*R.tax;
+  const trade=V*.18;
+  const gamesCost=A.amph*(R.games/100)*90;
+  const inc=tribute+tax+trade+grainRev,exp=upkeep+impCost+gamesCost;
+  S.den+=inc-exp;S.inc=inc;S.exp=exp;
+  S.flow={tribute,tax,trade,grain:grainRev,upkeep,imports:impCost,games:gamesCost};
+
+  /* --- dignitas --- */
+  S.dign+=.4*A.temple*(R.piety/100)+A.forum*1+A.arcus*1.5+A.amph*.8*(R.games/100)+A.domus*.15*(1+seg*.6)+(S.plebs+S.elite)/3000+.1;
+
+  /* --- fire --- */
+  for(const b of BLD.values()){
+    if(b.burn>0){
+      for(const id of neighborsOf(b)){const n=BLD.get(id);
+        if(n&&!n.burn&&n.type!=='ruin'&&FIRE_BASE[n.type]){
+          const fc=cov.fire[n.j*N+n.i],p=.35*R.fire/100*(1-.75*fc)*(n.type==='insula'?.8+R.storeys*.06:1);
+          if(rnd()<p)ignite(n,'Flames spread to')}}}}
+  for(const b of [...BLD.values()]){
+    if(b.burn>0){b.burn--;if(b.burn===0){b.was=b.type;b.type='ruin';b.ruin=3;hooks.rebuild(b)}}
+    else if(b.type==='ruin'){b.ruin--;if(b.ruin<=0)removeBld(b)}}
+  for(const b of live){
+    if(b.burn)continue;const base_=FIRE_BASE[b.type];if(!base_)continue;
+    const st=b.type==='insula'?Math.pow(R.storeys/4,1.4):1;
+    const p=base_*R.fire/100*st*(1-.8*cov.fire[b.j*N+b.i]);
+    if(rnd()<p)ignite(b,'Fire takes')}
+
+  /* --- unrest events --- */
+  if(S.order<30&&rnd()<(30-S.order)/100*.5){
+    const tg=live.filter(b=>['taberna','macellum','insula'].includes(b.type));
+    if(tg.length){const b=tg[Math.floor(rnd()*tg.length)];ignite(b,'Rioters torch');S.den-=120;log('Tumultus! The mob is in the streets.','bad')}}
+  if(S.order<12){S.low++}else S.low=Math.max(0,S.low-1);
+  if(S.low>=3){S.low=0;S.den-=400;S.order=38;S.plebs*=.96;hooks.toast('SEDITIO','The legions restore order, at a price');log('Seditio! Troops crush the rising. 400 denarii spent.','bad')}
+  const sr=S.slaves/Math.max(1,S.plebs+S.slaves);
+  if(sr>.25&&S.order<45&&rnd()<.04*(sr-.15)*3){
+    const tg=live.filter(b=>['ager','officina'].includes(b.type));
+    for(let k=0;k<Math.min(2,tg.length);k++)ignite(tg[Math.floor(rnd()*tg.length)],'Slaves in revolt burn');
+    log('Bellum servile: the enslaved rise against their masters.','bad')}
+  if(A.arcus&&rnd()<.03*A.arcus){S.den+=600;S.dign+=10;log('A triumph! Spoils fill the treasury (+600 denarii, +10 dignitas).','good')}
+
+  /* --- ranks, report --- */
+  const total=S.plebs+S.elite,r=rankOf(total);
+  if(r>S.rank){S.rank=r;hooks.toast(RANKS[r][0].toUpperCase(),'The settlement has grown to '+RANKS[r][0]);log('Rank gained: '+RANKS[r][0]+'.','good')}
+  else if(r<S.rank-0&&total<RANKS[S.rank][1]*.8)S.rank=r;
+  S.pop=total;
+}
+/* ================= GAME LAYER: meshes, input, UI, loop ================= */
+MODEL.via=g=>g.add(Bx(M.pave,.96,.06,.96,0,0,0));
+const POM=9;
+const bGroup=new THREE.Group();scene.add(bGroup);
+const meshOf=new Map(),flames=new Map();
+
+function buildModel(type,b){const g=new THREE.Group();(MODEL[type]||MODEL.ruin)(g,b);return g}
+function rebuildMesh(b){
+  const old=meshOf.get(b.id);if(old){bGroup.remove(old);flames.delete(b.id)}
+  const g=buildModel(b.type,b);g.position.set(b.i+b.w/2-HALF,b.baseY,b.j+b.d/2-HALF);g.rotation.y=b.rot?PI/2:0;
+  bGroup.add(g);meshOf.set(b.id,g);g.userData.b=b;
+  if(b.burn>0)addFlames(b);
+}
+function addFlames(b){
+  const g=meshOf.get(b.id);if(!g||flames.has(b.id))return;
+  const f=new THREE.Group();
+  for(let k=0;k<4;k++){const c=new THREE.Mesh(G.cone,k%2?mGlow:M.gold);c.scale.set(.18,.5,.18);
+    c.position.set((Math.random()-.5)*b.w*.6*(b.rot?0:1)+(Math.random()-.5)*.2,.9+Math.random()*.4,(Math.random()-.5)*b.d*.6*(b.rot?0:1));c.userData.ph=Math.random()*6;f.add(c)}
+  g.add(f);flames.set(b.id,f);
+}
+
+/* roads: instanced edge + surface */
+const roadEdge=new THREE.InstancedMesh(G.box,mk('#8d7b5a'),N*N),roadTop=new THREE.InstancedMesh(G.box,mk('#cdbf9c',.95),N*N);
+roadEdge.receiveShadow=roadTop.receiveShadow=true;scene.add(roadEdge,roadTop);
+let roadList=[];
+const _m=new THREE.Matrix4(),_p=new THREE.Vector3(),_q=new THREE.Quaternion(),_s=new THREE.Vector3();
+function rebuildRoads(){
+  roadList=[];let n=0;
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(roadAt[i][j]){
+    roadList.push([i,j]);const y=TH[i][j];
+    _m.compose(_p.set(tileX(i),y+.015,tileZ(j)),_q.identity(),_s.set(1.02,.1,1.02));roadEdge.setMatrixAt(n,_m);
+    _m.compose(_p.set(tileX(i),y+.055,tileZ(j)),_q.identity(),_s.set(.84,.06,.84));roadTop.setMatrixAt(n,_m);n++}
+  roadEdge.count=roadTop.count=n;roadEdge.instanceMatrix.needsUpdate=roadTop.instanceMatrix.needsUpdate=true;
+  updateTrees();updatePlan();
+}
+
+/* trees */
+const treeA=new THREE.InstancedMesh(G.cone,mk('#3f6b3a'),N*N),treeB=new THREE.InstancedMesh(G.sph,mk('#5d8a3e'),N*N),trunk=new THREE.InstancedMesh(G.cyl,M.wood,N*N);
+[treeA,treeB,trunk].forEach(t=>{t.castShadow=true;scene.add(t)});
+const treeSpots=[];
+for(let i=0;i<N;i++)for(let j=0;j<N;j++){const h=hash(i*3.1,j*7.7);
+  if(!WATER[i][j]&&TH[i][j]>.22&&h<.26)treeSpots.push({i,j,x:tileX(i)+(hash(i,j*2)-.5)*.6,z:tileZ(j)+(hash(j,i*2)-.5)*.6,k:hash(i+9,j+4)>.5,s:.7+hash(i*5,j*3)*.7})}
+function updateTrees(){
+  let a=0,b2=0;
+  for(const t of treeSpots){
+    let ok=!occ[t.i][t.j]&&!roadAt[t.i][t.j];
+    if(S.grid&&Math.abs(t.i-S.grid.ci)<=POM+1&&Math.abs(t.j-S.grid.cj)<=POM+1)continue;
+    if(ok)for(let dx=-0;dx<=0;dx++)ok=ok&&!(inb(t.i+1,t.j)&&occ[t.i+1][t.j]&&Math.abs(t.x-tileX(t.i))>.2);
+    if(!ok)continue;
+    const y=heightAt(t.x,t.z);
+    if(t.k){_m.compose(_p.set(t.x,y+.4*t.s+.1,t.z),_q.identity(),_s.set(.2*t.s,.9*t.s,.2*t.s));treeA.setMatrixAt(a++,_m)}
+    else{_m.compose(_p.set(t.x,y+.4*t.s+.2,t.z),_q.identity(),_s.set(.26*t.s,.26*t.s,.26*t.s));treeB.setMatrixAt(b2++,_m);
+      _m.compose(_p.set(t.x,y+.15*t.s,t.z),_q.identity(),_s.set(.03,.3*t.s,.03));trunk.setMatrixAt(b2-1,_m)}
+  }
+  treeA.count=a;treeB.count=trunk.count=b2;treeA.instanceMatrix.needsUpdate=treeB.instanceMatrix.needsUpdate=trunk.instanceMatrix.needsUpdate=true;
+}
+
+/* citizens */
+const NW=140,walkM=new THREE.InstancedMesh(G.cyl,new THREE.MeshLambertMaterial({color:'#fff'}),NW);scene.add(walkM);
+const togas=['#f4efe2','#e5d3a6','#a8452f','#35628f','#d9b279','#f4efe2','#7a2552'].map(c=>new THREE.Color(c));
+const walkers=[];for(let k=0;k<NW;k++){walkM.setColorAt(k,togas[k%togas.length]);walkers.push({i:0,j:0,ti:0,tj:0,t:1,pi:-1,pj:-1,sp:.6+Math.random()*.6})}
+walkM.instanceColor.needsUpdate=true;
+function stepWalker(w){
+  const opts=[[1,0],[-1,0],[0,1],[0,-1]].filter(d=>rd(w.ti+d[0],w.tj+d[1]));
+  if(!rd(w.ti,w.tj)){if(!roadList.length)return false;const r=roadList[Math.floor(Math.random()*roadList.length)];w.i=w.ti=r[0];w.j=w.tj=r[1];w.t=1;return true}
+  w.i=w.ti;w.j=w.tj;
+  if(!opts.length){w.t=1;return true}
+  const fwd=opts.filter(d=>!(w.ti+d[0]===w.pi&&w.tj+d[1]===w.pj)),pick=(fwd.length?fwd:opts)[Math.floor(Math.random()*(fwd.length?fwd.length:opts.length))];
+  w.pi=w.i;w.pj=w.j;w.ti=w.i+pick[0];w.tj=w.j+pick[1];w.t=0;return true}
+function animWalkers(dt,speed){
+  const n=roadList.length?Math.min(NW,Math.floor((S.plebs+S.elite)/5)):0;let c=0;
+  for(let k=0;k<NW;k++){
+    if(k>=n){_m.compose(_p.set(0,-9,0),_q.identity(),_s.set(.0001,.0001,.0001));walkM.setMatrixAt(k,_m);continue}
+    const w=walkers[k];
+    if(w.t>=1){if(!stepWalker(w)){continue}}
+    w.t=Math.min(1,w.t+dt*speed*w.sp*1.3);
+    const x=lerp(w.i,w.ti,w.t)+.5-HALF+((k*7)%5-2)*.05,z=lerp(w.j,w.tj,w.t)+.5-HALF+((k*3)%5-2)*.05;
+    _m.compose(_p.set(x,heightAt(x,z)+.2,z),_q.identity(),_s.set(.065,.3,.065));walkM.setMatrixAt(k,_m);c++}
+  walkM.instanceMatrix.needsUpdate=true}
+
+/* hooks */
+hooks.add=b=>{rebuildMesh(b);updateTrees()};
+hooks.remove=b=>{const g=meshOf.get(b.id);if(g)bGroup.remove(g);meshOf.delete(b.id);flames.delete(b.id);updateTrees()};
+hooks.rebuild=b=>{rebuildMesh(b)};
+hooks.road=rebuildRoads;
+hooks.fire=b=>addFlames(b);
+const feed=$('#feed');
+const yrLabel=()=>{const a=S.y0+Math.floor(S.month/12);return a<754?(754-a)+' BC':(a-753)+' AD'};
+const stamp_=()=>MONTHS[S.month%12].toUpperCase()+' '+yrLabel();
+let lastWarn='',lastWarnT=0;
+hooks.log=(t,k)=>{
+  const d=document.createElement('div');if(k)d.className=k;d.innerHTML='<small>'+stamp_()+'</small>';d.appendChild(document.createTextNode(t));
+  feed.appendChild(d);while(feed.children.length>5)feed.firstChild.remove();
+  setTimeout(()=>{d.style.transition='opacity 1s';d.style.opacity='0';setTimeout(()=>d.remove(),1000)},15000)};
+let toastT=0;
+hooks.toast=(a,b)=>{const t=$('#toast');t.innerHTML=a+(b?'<small>'+b+'</small>':'');t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3200)};
+
+/* ---------- build menu with rendered thumbnails ---------- */
+function thumbs(){
+  const out={};if(!renderer)return out;
+  const sc=new THREE.Scene(),h=new THREE.HemisphereLight(0xffffff,0x9a8a6a,.85),dl=new THREE.DirectionalLight(0xfff0d8,1);dl.position.set(-3,5,2);sc.add(h,dl);
+  const rt=new THREE.WebGLRenderTarget(112,112),buf=new Uint8Array(112*112*4),cv=document.createElement('canvas');cv.width=cv.height=112;
+  const cx=cv.getContext('2d'),prevCol=new THREE.Color();renderer.getClearColor(prevCol);const prevA=renderer.getClearAlpha();
+  const prevSh=renderer.shadowMap.enabled;renderer.shadowMap.enabled=false;
+  const platform=new THREE.Mesh(new THREE.BoxGeometry(1,.1,1),new THREE.MeshLambertMaterial({color:'#8f9f58'}));
+  for(const k of ORDER){
+    const D=DEF[k],b={id:-1,type:k,i:-99,j:-99,w:D.w,d:D.d,seed:2,baseY:.3,rot:0};
+    const g=buildModel(k,b),pl=platform.clone();pl.scale.set(D.w+.3,1,D.d+.3);pl.position.y=-.05;sc.add(g,pl);
+    const e=Math.max(D.w,D.d)*.78+.55,c=new THREE.OrthographicCamera(-e,e,e,-e,-50,50);c.position.set(5,5.6,5);c.lookAt(0,k==='via'?0:.25,0);
+    renderer.setClearColor(0,0);renderer.setRenderTarget(rt);renderer.clear();renderer.render(sc,c);renderer.readRenderTargetPixels(rt,0,0,112,112,buf);
+    const id=cx.createImageData(112,112);
+    for(let y=0;y<112;y++)for(let x=0;x<112;x++){const s=((111-y)*112+x)*4,d=(y*112+x)*4;id.data[d]=buf[s];id.data[d+1]=buf[s+1];id.data[d+2]=buf[s+2];id.data[d+3]=buf[s+3]}
+    cx.putImageData(id,0,0);out[k]=cv.toDataURL();sc.remove(g,pl)}
+  renderer.setRenderTarget(null);renderer.setClearColor(prevCol,prevA);renderer.shadowMap.enabled=prevSh;rt.dispose();return out}
+
+let tool=null,rot=0,thumbURL={};
+const buildEl=$('#build');
+function setTool(t){tool=t;rot=0;refreshMenu();makeGhost();updateCursorInfo()}
+function refreshMenu(){
+  buildEl.querySelectorAll('.bt').forEach(el=>{const k=el.dataset.k;el.classList.toggle('on',tool===k);
+    if(DEF[k])el.classList.toggle('poor',S.den<DEF[k].cost)})}
+function buildMenu(){
+  thumbURL=thumbs();buildEl.innerHTML='';
+  const row=document.createElement('div');row.className='grid';
+  [['__pick','Inspect','—'],['demolish','Demolish','X']].forEach(([k,n,s])=>{const b=document.createElement('button');b.className='bt';b.dataset.k=k;b.innerHTML='<div class="ph" style="display:grid;place-items:center;font-size:26px">'+(k==='demolish'?'⛏':'☞')+'</div><span>'+n+'</span><em>'+s+'</em>';
+    b.onclick=()=>setTool(k==='__pick'?null:k);row.appendChild(b)});
+  buildEl.appendChild(row);
+  CATS.forEach((cn,ci)=>{
+    const h=document.createElement('h3');h.textContent=cn;buildEl.appendChild(h);
+    const gr=document.createElement('div');gr.className='grid';
+    ORDER.filter(k=>DEF[k].cat===ci).forEach(k=>{const D=DEF[k],b=document.createElement('button');b.className='bt';b.dataset.k=k;
+      b.innerHTML=(thumbURL[k]?'<img alt="" src="'+thumbURL[k]+'">':'<div class="ph"></div>')+'<span>'+D.name+'</span><em>'+D.cost+' ₯</em>';
+      b.onclick=()=>setTool(tool===k?null:k);
+      b.onmouseenter=()=>showTip(k,b);b.onmouseleave=()=>{$('#tip').style.display='none'};gr.appendChild(b)});
+    buildEl.appendChild(gr)});
+  refreshMenu()}
+function showTip(k,el){
+  const D=DEF[k],t=$('#tip');
+  const rows=[['Cost',D.cost+' denarii'],['Upkeep',D.up+' / month'],['Size',D.w+' × '+D.d]];
+  if(S.grid)rows.push(['City plan',k==='via'?'half price on gold lines':['ager','source','emporium','aqueduct','cloaca','tent'].includes(k)?'no effect':'+30% over gold lines']);
+  if(D.jobs)rows.push(['Jobs',D.jobs]);if(D.r)rows.push(['Reach',D.r+' tiles']);
+  t.innerHTML='<h4>'+D.name+'</h4><p>'+D.desc+'</p><dl>'+rows.map(r=>'<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>').join('')+'</dl>';
+  t.style.display='block';t.style.top=Math.max(90,Math.min(innerHeight-t.offsetHeight-10,el.getBoundingClientRect().top))+'px'}
+
+/* ---------- ghost / cursor ---------- */
+const gOk=new THREE.MeshBasicMaterial({color:'#9be07a',transparent:true,opacity:.55,depthWrite:false}),gBad=new THREE.MeshBasicMaterial({color:'#e8553f',transparent:true,opacity:.55,depthWrite:false});
+const ghostRoot=new THREE.Group();scene.add(ghostRoot);let ghost=null,hov={i:-1,j:-1,ok:false,w:1,d:1,ai:0,aj:0};
+const hl=new THREE.Mesh(G.box,new THREE.MeshBasicMaterial({color:'#ffe9a8',transparent:true,opacity:.35,depthWrite:false}));hl.visible=false;scene.add(hl);
+function makeGhost(){
+  if(ghost){ghostRoot.remove(ghost);ghost=null}
+  if(tool&&DEF[tool]){const D=DEF[tool],b={id:-1,type:tool,i:-99,j:-99,w:rot&1?D.d:D.w,d:rot&1?D.w:D.d,seed:2,baseY:.3,rot:rot&1};
+    ghost=buildModel(tool,b);ghost.rotation.y=rot&1?PI/2:0;const wrap=new THREE.Group();wrap.add(ghost);ghost=wrap;
+    ghost.traverse(o=>{if(o.isMesh){o.castShadow=false;o.userData.m=1}});ghostRoot.add(ghost)}
+  ghostRoot.visible=!!ghost}
+function setGhostMat(ok){ghost&&ghost.traverse(o=>{if(o.isMesh)o.material=ok?gOk:gBad})}
+function updateCursorInfo(){
+  if(S.phase==='found'){ghostRoot.visible=false;hl.visible=false;return}
+  ghostRoot.visible=!!ghost&&hov.i>=0;hl.visible=false;
+  if(hov.i<0)return;
+  if(ghost){
+    const D=DEF[tool],w=rot&1?D.d:D.w,d=rot&1?D.w:D.d;
+    const ai=clamp(Math.round(hov.fx-w/2),0,N-w),aj=clamp(Math.round(hov.fz-d/2),0,N-d);
+    const c=canPlace(tool,ai,aj,rot),ok=c.ok&&S.den>=costOf(tool,ai,aj,rot);setGhostMat(ok);hov.ok=ok;hov.ai=ai;hov.aj=aj;
+    let by=.1;for(let a=0;a<w;a++)for(let z=0;z<d;z++)if(inb(ai+a,aj+z))by=Math.max(by,TH[ai+a][aj+z]);
+    ghostRoot.position.set(ai+w/2-HALF,by,aj+d/2-HALF);
+    if(tool==='via'||tool==='aqueduct'||tool==='cloaca')ghostRoot.position.y=by;
+  }else if(tool==='demolish'||!tool){
+    const id=occ[hov.i][hov.j],b=id&&BLD.get(id);
+    if(b){hl.scale.set(b.w,.5,b.d);hl.position.set(b.i+b.w/2-HALF,b.baseY+.25,b.j+b.d/2-HALF)}
+    else{hl.scale.set(1,.15,1);hl.position.set(tileX(hov.i),TH[hov.i][hov.j]+.08,tileZ(hov.j))}
+    hl.material.color.set(tool==='demolish'?'#e8553f':'#ffe9a8');hl.visible=true}
+}
+
+/* ---------- input ---------- */
+const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
+let ptr={x:0,y:0,down:0,pan:false,sx:0,sy:0,moved:0,id:null};
+function pick(ev){
+  const r=stage.getBoundingClientRect();ndc.set((ev.clientX-r.left)/r.width*2-1,-((ev.clientY-r.top)/r.height)*2+1);
+  ray.setFromCamera(ndc,cam);const h=ray.intersectObject(terrain)[0];
+  if(!h){hov.i=-1;return}
+  hov.fx=h.point.x+HALF;hov.fz=h.point.z+HALF;hov.i=clamp(Math.floor(hov.fx),0,N-1);hov.j=clamp(Math.floor(hov.fz),0,N-1)}
+let lastPlaced='';
+function act(ev){
+  if(hov.i<0)return;
+  if(S.phase==='found'){foundColony(hov.i,hov.j);return}
+  if(tool==='demolish'){const r=demolishAt(hov.i,hov.j);if(r.ok){hooks.log('Demolished '+r.what+'.');if(!roadAt[hov.i][hov.j])updateTrees();updateHud()}else if(r.why)hooks.log(r.why,'warn');updateCursorInfo();return}
+  if(tool&&DEF[tool]){
+    const key=tool+hov.ai+','+hov.aj;if(key===lastPlaced)return;
+    const r=tryPlace(tool,hov.ai,hov.aj,rot);
+    if(r.ok){lastPlaced=key;updateHud();refreshMenu()}
+    else if(r.why&&performance.now()-lastWarnT>500){hooks.log(r.why+'.','warn');lastWarnT=performance.now()}
+    updateCursorInfo();return}
+  inspectAt(hov.i,hov.j)}
+const insp=$('#inspect');
+let inspected=null;
+function inspectAt(i,j){
+  const b=BLD.get(occ[i][j]);inspected=b||null;
+  if(!b){insp.style.display='none';return}
+  const D=DEF[b.type]||DEF.ruin,k=b.j*N+b.i,rows=[];
+  const pc=v=>Math.round(v*100)+'%';
+  rows.push(['Road access',NEEDLESS.includes(b.type)||roadAdj(b)?'yes':'<span class="neg">none, idle</span>']);
+  if(D.jobs)rows.push(['Jobs',D.jobs]);
+  if(b.type==='insula')rows.push(['Houses',R.storeys*7+' plebs ('+R.storeys+' storeys)']);
+  if(b.type==='domus')rows.push(['Houses','6 elites']);
+  if(b.type==='ager')rows.push(['Soil',b.fert>1?'rich, river-fed':'ordinary']);
+  if(['insula','domus','taberna','macellum','officina','thermae'].includes(b.type)){
+    rows.push(['Water',pc(cov.water[k])]);rows.push(['Sewer',pc(cov.sewer[k])]);rows.push(['Watch cover',pc(cov.fire[k])])}
+  if(b.burn)rows.push(['Status','<span class="neg">burning</span>']);
+  if(b.nb!==undefined&&['taberna','macellum','forum','emporium'].includes(b.type))rows.push(['Trade neighbours',b.nb+' within 4 tiles'],['Patron reach',Math.round((b.pc||0)*100)+'%']);
+  if(b.owner)rows.push(['Holder',b.owner==='vet'?'veteran, skill '+Math.round(b.skill*100)+'%':'estate of a wealthy neighbour']);
+  if(b.type==='tent')rows.push(['Hides last',Math.max(0,60-(S.tick-b.born))+' more months']);
+  rows.push(['Upkeep',(D.up||0)+' / month']);
+  insp.innerHTML='<h4>'+D.name+'<button aria-label="Close">×</button></h4><dl>'+rows.map(r=>'<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>').join('')+'</dl>';
+  insp.querySelector('button').onclick=()=>{insp.style.display='none';inspected=null};
+  insp.style.display='block'}
+stage.addEventListener('contextmenu',e=>e.preventDefault());
+stage.addEventListener('pointerdown',e=>{
+  stage.setPointerCapture(e.pointerId);pick(e);ptr={x:e.clientX,y:e.clientY,down:1,pan:e.button===2||e.button===1||(e.pointerType==='touch'&&(!tool||e.isPrimary&&false)),sx:e.clientX,sy:e.clientY,moved:0,id:e.pointerId};
+  if(e.button===0&&!ptr.pan){lastPlaced='';updateCursorInfo();if(!(e.pointerType==='touch'&&!tool))act(e)}});
+stage.addEventListener('pointermove',e=>{
+  if(ptr.down&&ptr.pan){
+    const dx=e.clientX-ptr.x,dy=e.clientY-ptr.y;ptr.x=e.clientX;ptr.y=e.clientY;ptr.moved+=Math.abs(dx)+Math.abs(dy);
+    const s=CAM.zoom*2/stage.clientHeight,sp=Math.sin(CAM.pitch),rx=Math.cos(CAM.yaw),rz=-Math.sin(CAM.yaw),fx=-Math.sin(CAM.yaw),fz=-Math.cos(CAM.yaw);
+    CAM.x+=-dx*s*rx+dy*s/sp*fx;CAM.z+=-dx*s*rz+dy*s/sp*fz;clampCam();return}
+  pick(e);if(S.phase==='found'){previewFound();return}updateCursorInfo();
+  if(ptr.down&&!ptr.pan&&tool&&DEF[tool]&&DEF[tool].drag)act(e)});
+stage.addEventListener('pointerup',e=>{
+  if(ptr.down&&e.pointerType==='touch'&&!tool&&ptr.moved<8){pick(e);act(e)}
+  ptr.down=0});
+stage.addEventListener('wheel',e=>{e.preventDefault();CAM.zoom=clamp(CAM.zoom*(e.deltaY>0?1.1:.9),5,30)},{passive:false});
+function clampCam(){CAM.x=clamp(CAM.x,-HALF,HALF);CAM.z=clamp(CAM.z,-HALF,HALF)}
+const keys={};
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;const k=e.key.toLowerCase();
+  if(!helpEl.hidden||!pmEl.hidden){if(k==='escape'||k==='h'||k==='?'){closeHelp();closePM()}return}
+  keys[k]=1;
+  if(k==='q')CAM.yawT-=PI/2;else if(k==='e')CAM.yawT+=PI/2;
+  else if(k==='r'&&tool&&DEF[tool]){rot++;makeGhost();updateCursorInfo()}
+  else if(k==='h'||k==='?')openHelp();
+  else if(k==='x')setTool(tool==='demolish'?null:'demolish');
+  else if(k==='escape'){setTool(null);insp.style.display='none'}
+  else if(k===' '){e.preventDefault();setSpeed(S.speed?0:S.last||1)}
+  else if(k==='1'||k==='2'||k==='3'||k==='4')setSpeed([1,2,4,4][+k-1]);
+  updateCursorInfo()});
+addEventListener('keyup',e=>{keys[e.key.toLowerCase()]=0});
+function keyPan(dt){
+  const sp=CAM.zoom*1.1*dt,rx=Math.cos(CAM.yaw),rz=-Math.sin(CAM.yaw),fx=-Math.sin(CAM.yaw),fz=-Math.cos(CAM.yaw);
+  let ax=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),az=(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0);
+  if(ax||az){CAM.x+=(ax*rx+az*fx)*sp;CAM.z+=(ax*rz+az*fz)*sp;clampCam()}}
+
+/* ---------- presets dialogue ---------- */
+const PINFO={
+'Reset':{tag:'Back to the baseline',
+ sim:'Restores every slider to the default for the current scenario. The defaults are a middle reading: a modest dole, partly mixed neighbourhoods, five-storey tenements, a mixed producer and consumer city. In the colonia scenario they also set tribute low and the dole to zero, because a new colony paid for itself.',
+ hist:'This is not a historical position. It is the point from which the other readings depart, so you can compare them.',
+ caveat:'Nothing is lost by pressing it: only the sliders change, not your buildings.',refs:[]},
+'Finley':{tag:'The consumer city',
+ sim:'Workshops earn little, because the city lives on tribute (140%) and not on what it makes. There is no direct tax on citizens, a larger dole (30%), and games are trusted to keep the peace (65%). The winter sea stays closed longest (70%), so grain imports are unreliable. Expect weak trade income, high unemployment and an order that rests on handouts and spectacle.',
+ hist:'Moses Finley, The Ancient Economy (1973), builds on Max Weber\'s "consumer city": cities lived off rents and tribute drawn from the land and the empire, not off production for export. Finley stressed that status values, more than market logic, shaped economic behaviour, and that trade and manufacture were marginal and often left to people of low status. Later work has revised this picture with evidence for large-scale production and shipping, but it remains the reference point that others argue against. Finley himself did not deny commercial exchange.',
+ caveat:'The preset caricatures Finley a little. He allowed real trade; the game sets it low so the contrast with other readings is plain.',
+ refs:['M. I. Finley, The Ancient Economy (1973)','Max Weber, The City (written 1911-13)']},
+'Hopkins':{tag:'Taxes and trade',
+ sim:'Workshops matter (producer 75), tribute is slightly above normal (110%), the sea is open most of the year (winter closure 25) and prices are stable (20%). A direct tax of 25% stands in for fiscal pressure, and immigration is a little stronger (110%). Money raised flows into trade, so income, trade and population rise together.',
+ hist:'Keith Hopkins, "Taxes and Trade in the Roman Empire (200 BC-AD 400)" (Journal of Roman Studies, 1980), argued that the empire took taxes in coin from the provinces, and that provincials had to sell goods to pay them. The state and the army then spent that money, so taxation drove trade, monetisation and urban growth. Hopkins also wrote on slavery in Italy (Conquerors and Slaves, 1978). His growth figures are estimates built on thin evidence, and critics question how large the effect was.',
+ caveat:'Hopkins\'s taxes fell on provincials. The game\'s direct tax falls on citizens, so the 25% setting is only a stand-in.',
+ refs:['K. Hopkins, "Taxes and Trade in the Roman Empire", JRS 70 (1980)','K. Hopkins, Conquerors and Slaves (1978)']},
+'Mixed streets':{tag:'Rich and poor next door',
+ sim:'Neighbourhoods are fully mixed (separation 0). Patronage binds strongly (85%), walking range is short (90%), and tenements are limited to four storeys. Elites tolerate insulae beside their domus, and a domus calms the poor around it. Cramming the rich into a quarter of their own no longer pays.',
+ hist:'Andrew Wallace-Hadrill, Houses and Society in Pompeii and Herculaneum (1994), found no zoning by class. Large houses had shops and workshops built into their street fronts, and the poor lodged in back rooms and upper floors of the same blocks. Dependence on patrons knit the rich and poor together in the same streets. Others, such as Laurence in Roman Pompeii: Space and Society, stress how streets and traffic shaped daily life.',
+ caveat:'Pompeii was a small town. Whether Rome itself was as mixed is debated, since its tenements and great houses may have been more differentiated.',
+ refs:['A. Wallace-Hadrill, Houses and Society in Pompeii and Herculaneum (1994)','R. Laurence, Roman Pompeii: Space and Society (1994)']},
+'Augustus':{tag:'The princeps tidies the city',
+ sim:'Tenements are capped at four storeys, fire hazard falls to 60%, civic religion is central (85%), games are trusted (75%), the dole is modest (25%) and direct tax is near zero (5%). Immigration is a little weaker (90%). The city burns less, the temples calm more, and growth is slower and steadier.',
+ hist:'Strabo (5.3.7) says Augustus limited the height of buildings on the streets to 70 feet. Cassius Dio (55.26) and Suetonius (Augustus 25) record the fire watch, the vigiles, which Dio dates to AD 6. In the Res Gestae (20) Augustus claims to have restored 82 temples in 28 BC. Paul Zanker (The Power of Images in the Age of Augustus, 1988) and Karl Galinsky (Augustan Culture, 1996) read these as one programme of renewal. Ronald Syme (The Roman Revolution, 1939) gives the political framework.',
+ caveat:'We do not know how well these measures worked. Large fires continued, notably in AD 64 under Nero.',
+ refs:['Strabo, Geography 5.3.7','Cassius Dio 55.26; Suetonius, Augustus 25','Res Gestae 20','P. Zanker, The Power of Images in the Age of Augustus (1988)','K. Galinsky, Augustan Culture (1996)','R. Syme, The Roman Revolution (1939)']},
+'Graveyard':{tag:'The city that ate people',
+ sim:'Death rates run at 170% and immigration at 155%. Tenements may reach six storeys, aqueducts lose 35% of their flow, and fire hazard is 130%. Births no longer keep pace with deaths, so the population grows only while migrants keep arriving. Water, sewers and baths decide whether you can hold the city together.',
+ hist:'Historical demographers argue that many pre-modern cities buried more people than they bred, and survived on migrants from the countryside. For Rome the case is made most fully by Walter Scheidel ("Germs for Rome", in Rome the Cosmopolis, 2003), and Neville Morley (Metropolis and Hinterland, 1996) studies how the capital drew on migration. The argument rests on comparison with later cities and on scraps of evidence, so the size of the effect is uncertain.',
+ caveat:'There are no Roman registers of births and deaths for the city. The 170% death rate is a game setting, not a measured figure.',
+ refs:['W. Scheidel, "Germs for Rome", in Rome the Cosmopolis (2003)','N. Morley, Metropolis and Hinterland (1996)']},
+'Slave city':{tag:'A slave society',
+ sim:'Slaves fill 70% of jobs, workshops are active (60), the dole is small (15%), patronage is strong (70%) and games are discounted (40%). Tribute is lower (80%). Elites profit and the free poor go idle. If order collapses, a slave revolt can burn farms and workshops.',
+ hist:'Keith Hopkins (Conquerors and Slaves, 1978) argued that conquest turned Italy into a slave society, and Keith Bradley (Slavery and Society at Rome, 1994) surveys how it worked and how the enslaved resisted. Estimates of the slave share of Rome\'s population are uncertain and commonly fall between about a fifth and a third. Tacitus (Annals 14.42-45) tells how, after a slave murdered the city prefect Pedanius Secundus in AD 61, all 400 slaves of his household were executed, which shows the elite\'s fear. The Sicilian slave wars and the rising of Spartacus (73-71 BC) are the great revolts.',
+ caveat:'The game\'s revolt rule is a rough stand-in. Most resistance was small: flight, sabotage and petition.',
+ refs:['K. Hopkins, Conquerors and Slaves (1978)','K. Bradley, Slavery and Society at Rome (1994)','Tacitus, Annals 14.42-45']},
+'Bang: bazaar':{tag:'The Roman bazaar',
+ sim:'Markets are bazaar-like (85), trade rests on personal ties (80), on elite and tribute demand (75), and on small traders (scale 15). Tribute is 130%, workshops are weak (producer 25) and prices swing (55%). Traders pay off when clustered near patrons, and trade fades if tribute falls or elites are few. See the Bazaar group in the rules panel for the live multiplier.',
+ hist:'Peter Bang, The Roman Bazaar (2008), draws on Clifford Geertz\'s bazaar economy and compares Rome with the Mughal Empire. He argues that trade was driven by the state\'s need to move tribute and by elite consumption, that price series (such as Egypt\'s) show little market integration, and that trade ran through personal networks and associations, not through impersonal contracts. He rejects both Finley\'s primitivism and modernising views, and does not treat trade as a sign of modernity.',
+ caveat:'A reviewer notes Bang does not make price dispersion a separate theme. The game\'s effect of dear bread on poor districts is an extension.',
+ refs:['P. F. Bang, The Roman Bazaar (2008)','C. Geertz, "Suq: the bazaar economy in Sefrou" (1979)'],
+ link:['https://bmcr.brynmawr.edu/2009/2009.06.51/','Review of The Roman Bazaar (Bryn Mawr Classical Review)']},
+'Integrated markets':{tag:'The market-integration view',
+ sim:'Markets are well integrated (bazaar 10), trade depends little on patrons (trust 20) or on elite demand (20), and larger firms dominate (scale 75). Workshops are strong (producer 70) and prices are stable (15%). Location matters little, but firms employ fewer people, so unemployment is higher and income steadier.',
+ hist:'Peter Temin (The Roman Market Economy, 2013) and Kessler and Temin ("The Organization of the Grain Trade in the Early Roman Empire", Economic History Review, 2007) argue that grain prices moved together across the Mediterranean and that trade responded to price signals, much as in a market economy. The volume Quantifying the Roman Economy (Bowman and Wilson, 2009) collects attempts to measure output and trade. This is the position Bang argues against.',
+ caveat:'"Integrated markets" is this game\'s label for a family of views, not the name of one author\'s theory.',
+ refs:['P. Temin, The Roman Market Economy (2013)','D. Kessler and P. Temin, Economic History Review 60 (2007)','A. Bowman and A. Wilson (eds), Quantifying the Roman Economy (2009)']},
+'Hard colonists':{tag:'A garrison on hostile ground',
+ sim:'Colonia only. Veterans are devoted (loyalty 85) but locals are bitter (grievance 75) and held as tenants (rights 5). Few veterans sell their plots (30). The colony is orderly and defended, and the arson of the dispossessed is the long-term danger.',
+ hist:'Sulla settled large numbers of veterans on confiscated land, among them at Pompeii (80 BC). Sallust (Catiline 11, 16) says the Sullan soldiers grew used to luxury and greed, and Cicero (Catilinarian 2.20) paints the colonists as living beyond their means and longing for another proscription. Peter Brunt (Italian Manpower, 1971) discusses the settlements, and Federico Santangelo (Sulla, the Elites and the Empire, 2007) the wider politics.',
+ caveat:'The sources are hostile to the colonists and written long afterwards. The values here are a modelling choice, not a measured policy.',
+ refs:['Sallust, Catiline 11, 16','Cicero, Catilinarian 2.20','P. A. Brunt, Italian Manpower (1971)','F. Santangelo, Sulla, the Elites and the Empire (2007)']},
+'Open colony':{tag:'Folding in the locals',
+ sim:'Colonia only. Locals gain rights (80) and their grievance stays low (25), but veterans are less loyal (55) and more of them sell up (55). Immigration is strong (130%). The colony is less defended and more open: less arson, more drift, and a larger population over time.',
+ hist:'At Pompeii the old Oscan families were absorbed into the new colony over the following decades. Cicero\'s Pro Sulla (60-62) records a dispute there between the colonists and the old inhabitants, over voting rights and the use of the colonnades. Scholars debate how far the old elite lost out and how soon the two groups merged.',
+ refs:['Cicero, Pro Sulla 60-62']}
+};
+const RULEMAP={};RULES.forEach(g=>g.items.forEach(r=>RULEMAP[r.k]=r));
+function applyPreset(name){
+  Object.assign(R,RDEF,PRESETS[name]);Object.values(sliders).forEach(f=>f());
+  for(const b of BLD.values())if(b.type==='insula')rebuildMesh(b);
+  hooks.log(name==='Reset'?'Rules restored to the defaults.':'Rules set to the "'+name+'" reading.')}
+const pmEl=$('#pm'),esc_=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+let pmSel='Finley';
+function renderPM(){
+  const names=['Finley','Hopkins','Bang: bazaar','Integrated markets','Mixed streets','Augustus','Graveyard','Slave city','Hard colonists','Open colony','Reset'].filter(n=>PINFO[n]&&PRESETS[n]&&!(['Hard colonists','Open colony'].includes(n)&&S.scn!=='colonia'));
+  if(!names.includes(pmSel))pmSel=names[0];
+  const nav=$('#pm-nav');nav.innerHTML='';
+  names.forEach(n=>{const b=document.createElement('button');b.className='chip'+(n===pmSel?' on':'');b.textContent=n;b.onclick=()=>{pmSel=n;renderPM();$('#pm-body').scrollTop=0};nav.appendChild(b)});
+  const I=PINFO[pmSel],P=PRESETS[pmSel],keys=Object.keys(P);
+  let h='<h3>'+esc_(pmSel)+': '+esc_(I.tag)+'</h3><h4>What the simulation does</h4><p>'+esc_(I.sim)+'</p><h4>The scholarship</h4><p>'+esc_(I.hist)+'</p><h4>Caveat</h4><p>'+esc_(I.caveat)+'</p>';
+  h+='<h4>Settings it applies</h4>';
+  if(keys.length){h+='<div class="tw"><table><thead><tr><th>Rule</th><th>This reading</th><th>Default</th></tr></thead><tbody>'+keys.map(k=>{const r=RULEMAP[k];return r?'<tr><td>'+esc_(r.name)+'</td><td>'+esc_(r.fmt(P[k]))+'</td><td>'+esc_(r.fmt(RDEF[k]))+'</td></tr>':''}).join('')+'</tbody></table></div><p class="keys">Every other rule returns to its default.</p>'}
+  else h+='<p>Every rule returns to its default.</p>';
+  if(I.refs.length)h+='<h4>Further reading</h4><ul>'+I.refs.map(x=>'<li>'+esc_(x)+'</li>').join('')+'</ul>';
+  if(I.link)h+='<p><a href="'+I.link[0]+'" target="_blank" rel="noopener">'+esc_(I.link[1])+'</a></p>';
+  h+='<div class="pm-act"><button id="pm-apply" type="button">Apply this reading</button></div>';
+  $('#pm-body').innerHTML=h;
+  $('#pm-apply').onclick=()=>{applyPreset(pmSel);closePM();hooks.toast(pmSel.toUpperCase(),I.tag)}}
+function openPM(){renderPM();pmEl.hidden=false;$('#pm-x').focus()}
+function closePM(){pmEl.hidden=true}
+$('#b-pinfo').onclick=openPM;$('#pm-x').onclick=closePM;
+pmEl.addEventListener('pointerdown',e=>{if(e.target===pmEl)closePM()});
+
+/* ---------- help dialogue ---------- */
+const helpEl=$('#help');
+function openHelp(){helpEl.hidden=false;$('#help-x').focus();$('#help .hbody').scrollTop=0}
+function closeHelp(){helpEl.hidden=true;stage.focus&&0}
+$('#b-help').onclick=openHelp;$('#go3').onclick=openHelp;$('#help-x').onclick=closeHelp;
+helpEl.addEventListener('pointerdown',e=>{if(e.target===helpEl)closeHelp()});
+/* ---------- controls: speed, time, lens, rules ---------- */
+function setSpeed(s){if(S.phase==='found')return;if(s)S.last=s;S.speed=s;document.querySelectorAll('#speed button').forEach(b=>b.classList.toggle('on',+b.dataset.s===s))}
+document.querySelectorAll('#speed button').forEach(b=>b.onclick=()=>setSpeed(+b.dataset.s));
+$('#b-time').onclick=()=>{timeIdx=(timeIdx+1)%TIMES.length;$('#b-time').textContent=TIMES[timeIdx].name};
+const LENS=[['off',null],['Water','water'],['Sewers','sewer'],['Vigiles','fire'],['Castra','order'],['Markets','market'],['Temples','temple'],['Baths','bath'],['Games','game'],['Patronage','patron']];
+let lensI=0;
+function paintLens(){
+  const key=LENS[lensI][1];lensMesh.visible=!!key;if(!key)return;const a=cov[key];
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++){const v=a[j*N+i],o=((N-1-j)*N+i)*4;
+    if(WATER[i][j]){lensData[o+3]=0;continue}
+    lensData[o]=Math.round(lerp(210,90,v));lensData[o+1]=Math.round(lerp(60,200,v));lensData[o+2]=Math.round(lerp(50,110,v));lensData[o+3]=Math.round(lerp(120,70,v))}
+  lensTex.needsUpdate=true}
+$('#b-lens').onclick=()=>{lensI=(lensI+1)%LENS.length;$('#b-lens').textContent='Lens: '+LENS[lensI][0];$('#b-lens').classList.toggle('on',lensI>0);paintLens()};
+$('#b-rules').onclick=()=>{const r=$('#rules');r.classList.toggle('closed');$('#b-rules').classList.toggle('on',!r.classList.contains('closed'))};
+
+const sliders={};
+function buildRules(){
+  const body=$('#rulebody');body.innerHTML='';
+  for(const grp of RULES){if(grp.col&&S.scn!=='colonia')continue;
+    const h=document.createElement('h3');h.textContent=grp.g;body.appendChild(h);
+    if(grp.g==='Bazaar'){const rd_=document.createElement('div');rd_.className='rule';rd_.id='bz-read';rd_.style.cssText='font-size:13px;color:var(--ink2)';body.appendChild(rd_)}
+    for(const r of grp.items){
+      const el=document.createElement('div');el.className='rule';
+      el.innerHTML='<div class="top"><label for="r-'+r.k+'">'+r.name+'</label><output id="o-'+r.k+'"></output></div>'+
+        '<input type="range" id="r-'+r.k+'" min="'+r.min+'" max="'+r.max+'" step="1"><div class="ends"><span>'+r.lo+'</span><span>'+r.hi+'</span></div>'+
+        '<button class="why" type="button">Why it matters</button><div class="note">'+r.note+'</div>';
+      const inp=el.querySelector('input'),out=el.querySelector('output');
+      const sync=()=>{inp.value=R[r.k];out.textContent=r.fmt(R[r.k])};sliders[r.k]=sync;sync();
+      inp.addEventListener('input',()=>{R[r.k]=+inp.value;out.textContent=r.fmt(R[r.k]);
+        if(r.k==='storeys')for(const b of BLD.values())if(b.type==='insula')rebuildMesh(b)});
+      el.querySelector('.why').onclick=()=>el.classList.toggle('open');body.appendChild(el)}}
+  const pr=$('#presets');pr.innerHTML='';
+  for(const name of Object.keys(PRESETS)){if(['Hard colonists','Open colony'].includes(name)&&S.scn!=='colonia')continue;const c=document.createElement('button');c.className='chip';c.textContent=name;
+    c.onclick=()=>applyPreset(name);pr.appendChild(c)}}
+
+/* ---------- HUD ---------- */
+const fmtN=v=>Math.round(v).toLocaleString('en-US');
+const dlt=(el,v,unit='')=>{el.textContent=(v>=0?'+':'−')+fmtN(Math.abs(v))+unit;el.className=v>=0?'pos':'neg'};
+let prevPop=0;
+function updateHud(){
+  $('#s-den').textContent=fmtN(S.den);dlt($('#s-den-d'),S.inc-S.exp);
+  $('#s-grain').textContent=fmtN(S.grain);
+  const gd=S.A?(S.grainProd||0)+(S.imp||0)-((S.plebs+S.elite+S.slaves*.8)*4):0;dlt($('#s-grain-d'),gd);
+  const pop=S.plebs+S.elite;$('#s-pop').textContent=fmtN(pop);dlt($('#s-pop-d'),S.dpop||0);
+  const o=Math.round(S.order);$('#s-ord').textContent=o;
+  const ob=$('#s-ord-b');ob.style.width=o+'%';ob.style.background=o<30?'var(--bad)':o<55?'var(--warn)':'var(--good)';
+  $('#s-dig').textContent=fmtN(S.dign);
+  const nx=RANKS[S.rank+1];$('#s-next').textContent=nx?'→ '+fmtN(nx[1])+' pop':'';$('#s-next').className='';
+  $('#rank').textContent=RANKS[S.rank][0]+' · '+MONTHS[S.month%12]+' '+yrLabel();
+  refreshMenu();updateGoals();
+  const bzr=$('#bz-read');if(bzr&&S.bz)bzr.innerHTML='Trade now <b style="color:var(--bronze)">×'+S.bz.mult.toFixed(2)+'</b> · clustering '+Math.round(S.bz.clu*100)+'% · patron reach '+Math.round(S.bz.avPm*100)+'% · demand '+S.bz.demX.toFixed(2);
+  if(inspected&&BLD.has(inspected.id))inspectAt(inspected.i,inspected.j)}
+
+/* ---------- main loop ---------- */
+let acc=0,last=performance.now(),tAbs=0;
+function frame(now){
+  requestAnimationFrame(frame);
+  const dt=Math.min(.1,(now-last)/1000);last=now;tAbs+=dt;
+  keyPan(dt);
+  if(S.speed){acc+=dt*S.speed;let n=0;while(acc>=2.2&&n++<3){acc-=2.2;simStep();updateHud();if(LENS[lensI][1])paintLens()}}
+  waterMat.uniforms.t.value=tAbs;lightStep();updateCam();
+  for(const [id,f] of flames){f.children.forEach(c=>{const s=.8+.5*Math.sin(tAbs*9+c.userData.ph);c.scale.set(.18*s,.5*(1.4-s*.5),.18*s);c.position.y=.9+.15*s})}
+  animWalkers(dt,S.speed||0);
+  renderer.render(scene,cam)}
+
+/* ---------- colonia founding ---------- */
+const cippi=new THREE.InstancedMesh(G.box,new THREE.MeshBasicMaterial({color:'#e8c76a'}),120);cippi.count=0;cippi.frustumCulled=false;scene.add(cippi);
+const planMesh=new THREE.InstancedMesh(G.box,new THREE.MeshBasicMaterial({color:'#e8c76a',transparent:true,opacity:.3,depthWrite:false}),N*N);planMesh.count=0;planMesh.frustumCulled=false;scene.add(planMesh);
+function siteCheck(ci,cj){
+  if(ci-POM<2||cj-POM<2||ci+POM>N-3||cj+POM>N-3)return{ok:false,why:'Too close to the edge of the map.'};
+  if(WATER[ci][cj])return{ok:false,why:'The Umbilicus cannot stand in the river.'};
+  let wn=0;for(let i=ci-POM;i<=ci+POM;i++)for(let j=cj-POM;j<=cj+POM;j++)if(WATER[i][j])wn++;
+  if(wn>24)return{ok:false,why:'Too much of the boundary is river ('+wn+' tiles). Move to drier ground.'};
+  return{ok:true,why:''}}
+function setRing(ci,cj,ok){
+  let n=0;
+  for(let k=-POM;k<=POM;k++){
+    const pts=[[ci+k,cj-POM],[ci+k,cj+POM]];if(k>-POM&&k<POM)pts.push([ci-POM,cj+k],[ci+POM,cj+k]);
+    for(const [i,j] of pts){if(!inb(i,j))continue;_m.compose(_p.set(tileX(i),TH[i][j]+.22,tileZ(j)),_q.identity(),_s.set(.13,.5,.13));cippi.setMatrixAt(n++,_m)}}
+  cippi.count=n;cippi.instanceMatrix.needsUpdate=true;cippi.material.color.set(ok?'#e8c76a':'#e8553f')}
+function previewFound(){
+  if(hov.i<0){cippi.count=0;return}
+  const sc=siteCheck(hov.i,hov.j);setRing(hov.i,hov.j,sc.ok);$('#found-why').textContent=sc.why}
+function updatePlan(){
+  let n=0;
+  if(S.grid){const ci=S.grid.ci,cj=S.grid.cj;
+    for(let i=ci-POM;i<=ci+POM;i++)for(let j=cj-POM;j<=cj+POM;j++)if(planned[i][j]&&!roadAt[i][j]&&!WATER[i][j]){
+      _m.compose(_p.set(tileX(i),TH[i][j]+.03,tileZ(j)),_q.identity(),_s.set(.36,.04,.36));planMesh.setMatrixAt(n++,_m)}}
+  planMesh.count=n;planMesh.instanceMatrix.needsUpdate=true}
+function foundColony(ci,cj){
+  const sc=siteCheck(ci,cj);if(!sc.ok){hooks.log(sc.why,'warn');return}
+  S.grid={ci,cj,h:POM};S.phase='play';
+  for(let i=ci-POM;i<=ci+POM;i++)for(let j=cj-POM;j<=cj+POM;j++)planned[i][j]=((i-ci)%5===0||(j-cj)%5===0)?1:0;
+  setRing(ci,cj,true);
+  /* cardo and decumanus */
+  for(let k=-POM;k<=POM;k++){tryPlace('via',ci+k,cj,0,true);tryPlace('via',ci,cj+k,0,true)}
+  const mg=new THREE.Group();mg.add(Cy(M.marble,.3,.16,0,0,0),Cy(M.stone,.16,.4,0,.16,0),Sp(M.gold,.14,0,.72,0));
+  mg.position.set(tileX(ci),TH[ci][cj]+.1,tileZ(cj));scene.add(mg);
+  /* tent camp: 50 tents of eight in the south-west blocks */
+  const blk=[];for(let i=ci-POM;i<=ci+POM;i++)for(let j=cj-POM;j<=cj+POM;j++)if(!planned[i][j]&&!WATER[i][j])blk.push([i,j,Math.hypot(i-(ci-3),j-(cj+3))]);
+  blk.sort((a,b)=>a[2]-b[2]);let t=0;for(const [i,j] of blk){if(t>=50)break;if(tryPlace('tent',i,j,0,true).ok)t++}
+  /* allot the plots (sortitio): 3x3 fields on a lattice outside the pomerium, nearest and best-watered first */
+  const cand=[];
+  for(let a=-8;a<=8;a++)for(let c=-8;c<=8;c++){
+    const i=ci-1+4*a,j=cj-1+4*c;
+    if(i+2>=ci-POM-1&&i<=ci+POM+1&&j+2>=cj-POM-1&&j<=cj+POM+1)continue;
+    if(!canPlace('ager',i,j,0).ok)continue;
+    cand.push([i,j,Math.hypot(i+1-ci,j+1-cj)+.18*Math.abs(tileX(i+1)-riverX(tileZ(j+1)))])}
+  cand.sort((a,b)=>a[2]-b[2]);let plots=0;
+  for(const [i,j] of cand){if(plots>=10)break;const r=tryPlace('ager',i,j,0,true);if(r.ok){r.b.owner='vet';r.b.skill=.4+Math.random()*.6;plots++}}
+  S.plotsTaken=plots;S.vets=400;S.plebs=400;S.griev=R.resent/100*.3*(1-.6*R.cit/100);
+  /* the auspices */
+  const roll=Math.random(),pi=R.piety/50;
+  if(roll<.55){S.dign+=Math.round(15*pi);S.order=Math.min(100,S.order+6*pi);hooks.toast('FAUSTUM','The auspices are favourable');hooks.log('The auspices are favourable. The colonists take heart.','good')}
+  else if(roll<.85){hooks.toast('AUGURIUM','The birds give no clear sign');hooks.log('The augur reads no clear sign. The work begins regardless.')}
+  else{S.order=Math.max(0,S.order-8*pi);S.eliteH-=8*pi;hooks.toast('DIRAE','The birds fly wrongly');hooks.log('Ill omens. Some of the colonists mutter against the site.','warn')}
+  $('#founding').style.display='none';
+  CAM.x=tileX(ci);CAM.z=tileZ(cj);CAM.zoom=13;
+  updateTrees();updatePlan();setSpeed(0);updateHud();updateCursorInfo();
+  hooks.log(plots+' plots allotted by lot. Press Space or 1× when your first streets are planned.')}
+
+function updateGoals(){
+  const el=$('#goals');
+  if(S.scn!=='colonia'||S.phase==='found'){el.style.display='none';return}
+  const cnt=t=>{let n=0;for(const b of BLD.values())if(b.type===t)n++;return n};
+  let vp=0;for(const b of BLD.values())if(b.type==='ager'&&b.owner==='vet')vp++;
+  const g=[['Bring water into the town',S.tick>0&&S.wr>.3],['Last a winter without hunger',S.tick>=12&&!S.everHungry],['Raise a Forum and a Templum',cnt('forum')>0&&cnt('templum')>0],
+    ['Keep 6 veterans on their plots for two years ('+vp+' now)',vp>=6&&S.tick>=24],['Reach Colonia status (1,500 souls)',S.rank>=3]];
+  el.innerHTML='<h4>Charter conditions</h4><ul>'+g.map(x=>'<li class="'+(x[1]?'done':'')+'">'+x[0]+'</li>').join('')+'</ul>';el.style.display='block';
+  if(g.every(x=>x[1])&&!S.won){S.won=1;hooks.toast('COLONIA CONFIRMED','The Senate ratifies your charter');hooks.log('The charter is confirmed. Your colony may stand as long as you can hold it.','good')}}
+
+/* ---------- scenarios ---------- */
+function startSandbox(){
+  S.scn='sandbox';buildRules();
+  const pl=hooks.log;hooks.log=()=>{};
+  starter();rebuildRoads();simStep();S.month=2;S.tick=0;S.plebs=Math.max(S.plebs,80);hooks.log=pl;
+  hooks.log('Founding of the settlement. Your first task: bring water from the spring.');
+  updateHud();setSpeed(1)}
+function startColonia(){
+  S.scn='colonia';S.y0=674;S.month=2;S.den=1800;S.grain=2200;S.plebs=400;S.vets=400;S.elite=0;S.phase='found';
+  RDEF.tribute=R.tribute=35;RDEF.dole=R.dole=0;RDEF.slave=R.slave=20;
+  buildRules();placeSpring();CAM.x=2;CAM.z=-2;CAM.zoom=22;S.speed=0;
+  $('#founding').style.display='block';updateHud();
+  hooks.log('80 BC. Sulla has granted your veterans land. Choose where the colony will stand.')}
+
+/* ---------- boot ---------- */
+function boot(){
+  if(!renderer){$('#glmsg').textContent='WebGL is unavailable in this browser, so the city cannot be drawn.';$('#go').disabled=true;$('#go2').disabled=true;return}
+  try{buildMenu();buildRules();S.speed=0;updateHud();makeGhost();frame(performance.now())}
+  catch(e){$('#glmsg').textContent='Start-up error: '+e.message;console.error(e)}
+}
+$('#go').onclick=()=>{$('#cover').style.display='none';startColonia()};
+$('#go2').onclick=()=>{$('#cover').style.display='none';startSandbox()};
+boot();
+window.__game={S,R,BLD,tryPlace,canPlace,simStep,roadAt,occ,setTool,DEF,WATER,N,cov,foundColony,siteCheck,costOf,planned};
+</script>
+
+</body></html>
