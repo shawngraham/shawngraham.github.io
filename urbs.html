@@ -282,9 +282,9 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Templum</td><td>2×3</td><td>360</td><td>Temple, reach 8. Calms the crowd and builds dignitas, in proportion to the civic religion rule.</td></tr><tr><td>Forum</td><td>4×3</td><td>720</td><td>Civic heart, reach 10, 8 jobs. Adds trade and about 1 dignitas a month. A charter condition in Colonia mode.</td></tr><tr><td>Amphitheatrum</td><td>4×4</td><td>1,600</td><td>Games, reach 14. Each show costs up to 90 a month. How much calm it buys depends on the bread and circuses rule.</td></tr><tr><td>Arcus</td><td>2×1</td><td>480</td><td>Triumphal arch. Pure prestige: 1.5 dignitas a month, and a small monthly chance of spoils (600 denarii).</td></tr><tr><td>Theatrum</td><td>3×3</td><td>780</td><td>Roman theatre, reach 12. Plays and mime: a cheaper, smaller source of calm and dignitas than the Amphitheatrum. Needs road frontage.</td></tr></tbody></table></div>
 <h3>Order and safety</h3>
 <div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Vigiles</td><td>2×1</td><td>130</td><td>Fire watch, reach 8. Cuts the chance of a fire starting by up to 80% and slows its spread. Place one beside every cluster of Insulae.</td></tr><tr><td>Castra</td><td>2×2</td><td>320</td><td>Barracks, reach 10. Keeps order and helps put down riots in its district.</td></tr><tr><td>Murus</td><td>1×1</td><td>22</td><td>City wall. Drag to lay a circuit. Blocks building; Pompeii kept its old walls with towers and gates.</td></tr><tr><td>Porta</td><td>1×1</td><td>120</td><td>City gate set in a wall, reach 6. Streets pass through it. In an emergency, gates with a road leading away are the ways out.</td></tr></tbody></table></div>
-<h3>Pompeii, AD 79</h3>
-<p>The Pompeii map starts in January AD 79 with the city as it stood: walls and seven gates, the forum and temples, two baths and a theatre, the amphitheatre in the south-east corner, water from the Aqua Augusta arriving at the castellum by the Porta Vesuvio, and lead pipes carrying it to street fountains. Several sites are still rubble from the earthquake of AD 62. One tile is about 35 metres, and a building tile stands for several houses, so the game shows about a quarter of the real population.</p>
-<ul><li>Run the city as you like. The Lex panel has a Vesuvius group: the month of the eruption (or never) and how much heed people pay to tremors.</li>
+<h3>Pompeii</h3>
+<p>The Pompeii map starts in January 70 BC, but draws the city as it stood in AD 79: walls and seven gates, the forum and temples, two baths and a theatre, the amphitheatre in the south-east corner, water from the Aqua Augusta arriving at the castellum by the Porta Vesuvio, and lead pipes carrying it to street fountains. Several sites are still rubble from the earthquake of AD 62. One tile is about 35 metres, and a building tile stands for several houses, so the game shows about a quarter of the real population.</p>
+<ul><li>Run the city as you like. The Lex panel has a Vesuvius group: a switch for whether the mountain erupts in AD 79 (no preset touches it), the month of the eruption, and how much heed people pay to tremors. The eruption is about 148 years of play away, so use 4× speed.</li>
 <li>In the three months before the eruption there are tremors. They damage buildings and cut the water pressure.</li>
 <li>When the mountain erupts, the share who escape depends on the heed paid to tremors, the gates that have a road leading away, and the harbours on the Sarno. Pompeii had no vigiles, no sewers beyond a few drains and no way of knowing what the mountain was.</li></ul>
 <h3>Build order</h3>
@@ -315,7 +315,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
       <div class="meander"></div>
       <h1>URBS AETERNA</h1>
       <p>80 BC. Sulla has granted land to his demobbed soldiers. Found a colonia on empty ground, walk the streets of Pompeii in its last year, or tend a free city and decide for yourself what made Rome work.</p>
-      <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go4">POMPEII, AD 79</button><button id="go2" class="alt">FREE CITY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
+      <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go4">POMPEII, 70 BC</button><button id="go2" class="alt">FREE CITY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
       <p class="sub">Both modes share the same Lex panel of rules.</p>
       <p id="glmsg" class="nogl" style="font-size:14px;margin-top:14px"></p>
     </div>
@@ -777,8 +777,8 @@ const RULES=[
  {k:'leak',name:'Aqueduct losses and theft',min:0,max:50,def:25,lo:'Tight',hi:'Leaky',fmt:v=>v+'% lost',
   note:'Frontinus, the water commissioner, recorded leaks and illegal taps along Rome\'s aqueducts. Share of flow lost before it reaches users.'}]},
 {g:'Vesuvius',pom:1,items:[
- {k:'vdate',name:'Month of the eruption',min:0,max:12,def:10,lo:'Never',hi:'Dec',fmt:v=>v?MONTHS_[v-1]+' (the year of the game)':'Vesuvius sleeps',
-  note:'Pliny the Younger (Letters 6.16 and 6.20) gives the day as 24 August in the manuscripts. A charcoal inscription found at Pompeii in 2018, dated about 17 October, and autumn fruit and heating braziers among the finds, have led some to argue for 24 October. Choose Never to play on in a city that was not buried.'},
+ {k:'vdate',name:'Month of the eruption',min:1,max:12,def:10,lo:'Jan',hi:'Dec',fmt:v=>MONTHS_[v-1]+' AD 79',
+  note:'Pliny the Younger (Letters 6.16 and 6.20) gives the day as 24 August in the manuscripts. A charcoal inscription found at Pompeii in 2018, dated about 17 October, and autumn fruit and heating braziers among the finds, have led some to argue for 24 October. The clock starts in 70 BC, so the eruption is about 148 years of play away: use 4x speed.'},
  {k:'vheed',name:'Heed paid to the tremors',min:0,max:100,def:25,lo:'Ignored',hi:'Evacuate',fmt:v=>v+'%',
   note:'Seneca (Natural Questions 6) says earthquakes were common in Campania and not much feared, and a great quake struck Pompeii in AD 62. Few knew Vesuvius was a volcano. High: tremors in the months before the eruption send families away early. Low: people stay, and more are caught when it comes.'}]},
 {g:'Colonia',col:1,items:[
@@ -1548,7 +1548,8 @@ const PINFO={
 };
 const RULEMAP={};RULES.forEach(g=>g.items.forEach(r=>RULEMAP[r.k]=r));
 function applyPreset(name){
-  Object.assign(R,RDEF,PRESETS[name]);Object.values(sliders).forEach(f=>f());
+  const keep={vdate:R.vdate,vheed:R.vheed};
+  Object.assign(R,RDEF,PRESETS[name],keep);Object.values(sliders).forEach(f=>f());
   for(const b of BLD.values())if(b.type==='insula')rebuildMesh(b);
   hooks.log(name==='Reset'?'Rules restored to the defaults.':'Rules set to the "'+name+'" reading.')}
 const pmEl=$('#pm'),esc_=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -1599,6 +1600,10 @@ function buildRules(){
   const body=$('#rulebody');body.innerHTML='';
   for(const grp of RULES){if(grp.col&&S.scn!=='colonia')continue;if(grp.pom&&S.scn!=='pompeii')continue;
     const h=document.createElement('h3');h.textContent=grp.g;body.appendChild(h);
+    if(grp.pom){const t=document.createElement('div');t.className='rule';
+      t.innerHTML='<div class="top"><label for="v-on">Vesuvius erupts in AD 79</label><input type="checkbox" id="v-on"></div><div class="ends"><span>If off, Pompeii is never buried</span></div><button class="why" type="button">Why it matters</button><div class="note">This switch is separate from the readings: no preset changes it. Whatever the date of the eruption, the city is spared if you turn it off.</div>';
+      const cb=t.querySelector('input');cb.checked=!!S.vOn;cb.onchange=()=>{S.vOn=cb.checked};
+      t.querySelector('.why').onclick=()=>t.classList.toggle('open');body.appendChild(t)}
     if(grp.g==='Bazaar'){const rd_=document.createElement('div');rd_.className='rule';rd_.id='bz-read';rd_.style.cssText='font-size:13px;color:var(--ink2)';body.appendChild(rd_)}
     for(const r of grp.items){
       const el=document.createElement('div');el.className='rule';
@@ -1885,7 +1890,7 @@ function layoutPompeii(){
 const POMPR={tribute:20,tax:0,dole:0,slave:30,seg:10,storeys:4,fire:70,leak:35,games:70,piety:70,prod:60,bazaar:55,trust:65,eliteDem:45,scale:30,immig:80,vdate:10,vheed:25};
 function startPompeii(){
   setTerrain('pompeii');
-  S.scn='pompeii';S.y0=832;S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.plebs=40;S.elite=4;S.dign=140;S.order=70;S.eliteH=72;
+  S.scn='pompeii';S.y0=684;S.vOn=true;S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.plebs=40;S.elite=4;S.dign=140;S.order=70;S.eliteH=72;
   Object.assign(R,POMPR);Object.assign(RDEF,POMPR);
   buildRules();
   const pl=hooks.log,pt=hooks.toast;hooks.log=()=>{};hooks.toast=()=>{};
@@ -1896,7 +1901,7 @@ function startPompeii(){
   simStep();S.plebs=Math.round(.9*S.cap);S.elite=Math.round(.85*S.capE);S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.hunger=0;S.everHungry=0;S.epi=0;S.fear=0;
   hooks.log=pl;hooks.toast=pt;
   CAM.x=tileX(26);CAM.z=tileZ(15);CAM.zoom=24;
-  hooks.log('January, AD 79. Pompeii, a prosperous colony of Sulla\'s veterans, seventeen years after the great earthquake. Some temples and the Central Baths are still under repair.');
+  hooks.log('January, 70 BC. Pompeii, the veteran colony Sulla founded ten years ago. The map shows the city as it will stand in AD 79; some temples and the Central Baths are still rubble.');
   hooks.log('Keep the water running, the people fed and the gates clear. Nobody here knows that the mountain is a volcano.','warn');
   updateTrees();updateHud();setSpeed(1)}
 $('#go4').onclick=()=>{$('#cover').style.display='none';startPompeii()};
@@ -1912,11 +1917,11 @@ function gateOpen(b){
     for(const [dx,dz] of [[1,0],[-1,0],[0,1],[0,-1]]){const u=x+dx,v=z+dz;if(rd(u,v)&&!INSIDE.has(u*64+v)&&!seen.has(u*64+v)){seen.add(u*64+v);q.push([u,v,n+1])}}}
   return false}
 function pompStep(){
-  if(S.erupted||!R.vdate)return;
-  const left=((R.vdate-1)-(S.month%12)+12)%12;
-  S.quakeWater=left<=3?.72:0;
+  if(S.erupted||!S.vOn)return;
+  const left=(832-S.y0)*12+(R.vdate-1)-S.month;
+  S.quakeWater=left>=0&&left<=3?.72:0;
   if(left===0){erupt();return}
-  if(left<=3&&Math.random()<[0,.9,.6,.35][left])tremor()}
+  if(left>0&&left<=3&&Math.random()<[0,.9,.6,.35][left])tremor()}
 function tremor(){
   S.tremors=(S.tremors||0)+1;shk=1.5;S.order=Math.max(0,S.order-4);S.fear=Math.min(1,S.fear+.12);
   const tg=[...BLD.values()].filter(b=>!b.burn&&['insula','domus','taberna','officina','templum','thermae','macellum'].includes(b.type));
@@ -1931,7 +1936,7 @@ function erupt(){
   const heed=R.vheed/100,T=Math.min(3,S.tremors||0),pop=Math.round(S.plebs+S.elite+S.slaves);
   const f=clamp(.36+.3*heed+.045*Math.min(exits,7)+.05*Math.min(ports,3)+.05*T/3,.25,.97);
   const dead=Math.round(pop*(1-f));
-  volc={t:0,shown:false,pop,dead,fled:pop-dead,f,exits,gates,ports,T,heed,month:R.vdate,yr:79+Math.floor(S.month/12)};
+  volc={t:0,shown:false,pop,dead,fled:pop-dead,f,exits,gates,ports,T,heed,month:R.vdate,yr:79};
   S.dead=dead;S.fled=pop-dead;S.popAtEruption=pop;
   plume.visible=true;
   hooks.toast('VESUVIUS','The mountain erupts');hooks.log('A great column of smoke rises from Vesuvius, shaped like an umbrella pine.','bad')}
@@ -1978,6 +1983,7 @@ function showEruption(){
    '<li>M. Flohr and A. Wilson (eds), The Economy of Pompeii (2017)</li>'+
    '<li>E. Poehler, The Traffic Systems of Pompeii (2017)</li>'+
    '<li>G. Luongo and others, "Impact of the AD 79 explosive eruption on Pompeii" (Journal of Volcanology and Geothermal Research, 2003)</li></ul>'+
+   '<p style="font-size:13px;color:var(--ink2)">References are cited from memory except the 2018 inscription, which was checked against a news report. Check them before you rely on them.</p>'+
    '<p style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px"><button class="chip" id="vm-ok" type="button">Walk the ash</button><button class="chip on" id="vm-again" type="button">Begin again</button></p>';
   $('#vm').hidden=false;
   $('#vm-ok').onclick=()=>{$('#vm').hidden=true};$('#vm-again').onclick=()=>location.reload()}
@@ -1989,12 +1995,12 @@ function pompGoals(el){
   let rub=0,lac=0,open=0,gates=0;
   for(const b of BLD.values()){if(b.type==='ruin'&&b.keep)rub++;if(b.type==='lacus'&&cov.water[b.j*N+b.i]>.25)lac++;if(b.type==='porta'){gates++;if(gateOpen(b))open++}}
   const post=!!S.erupted,g=[
-    ['Clear the rubble of the great earthquake of AD 62 ('+rub+' tiles left)',rub===0],
+    ['Clear the ruined sites ('+rub+' tiles left)',rub===0],
     ['Run water to 8 street fountains ('+lac+' now)',lac>=8&&S.wr>.5],
     ['Keep the people calm and fed through the spring',S.tick>=6&&!S.everHungry&&S.order>55],
     ['Leave a road open beyond every gate ('+open+' of '+gates+')',gates>0&&open===gates],
     ['See 85% of the people out when Vesuvius wakes'+(post?' ('+Math.round((volc?volc.f:S.fled/Math.max(1,S.popAtEruption))*100)+'%)':''),post&&S.fled/Math.max(1,S.popAtEruption)>=.85]];
-  el.innerHTML='<h4>Pompeii, AD 79</h4><ul>'+g.map(x=>'<li class="'+(x[1]?'done':'')+'">'+x[0]+'</li>').join('')+'</ul>';el.style.display='block'}
+  el.innerHTML='<h4>Pompeii</h4><ul>'+g.map(x=>'<li class="'+(x[1]?'done':'')+'">'+x[0]+'</li>').join('')+'</ul>';el.style.display='block'}
 
 window.__pomReady=true;
 Object.assign(window.__game,{volcanoFrame,startPompeii,PFL,erupt,INSIDE,gateOpen,pompStep,GATES,getVolc:()=>volc,setAsh});
