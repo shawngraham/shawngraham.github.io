@@ -101,23 +101,41 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 @keyframes in{from{opacity:0;transform:translateY(6px)}}
 
 #help{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#vm{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #help[hidden]{display:none!important}
+#vm[hidden]{display:none!important}
 #help .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
+#vm .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
 #help header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bronze-dim);background:var(--panel)}
+#vm header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bronze-dim);background:var(--panel)}
 #help h2{margin:0;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
+#vm h2{margin:0;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
 #help header button{background:var(--panel2);border:1px solid var(--line);width:34px;height:34px;font-size:20px;line-height:1}
+#vm header button{background:var(--panel2);border:1px solid var(--line);width:34px;height:34px;font-size:20px;line-height:1}
 #help header button:hover{border-color:var(--bronze)}
+#vm header button:hover{border-color:var(--bronze)}
 #help .hbody{overflow-y:auto;padding:4px 18px 18px;min-width:0;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent;user-select:text;-webkit-user-select:text}
+#vm .hbody{overflow-y:auto;padding:4px 18px 18px;min-width:0;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent;user-select:text;-webkit-user-select:text}
 #help h3{font:400 13px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:20px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+#vm h3{font:400 13px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:20px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
 #help p,#help li{font-size:14.5px;line-height:1.4;margin:4px 0;max-width:72ch}
+#vm p,#vm li{font-size:14.5px;line-height:1.4;margin:4px 0;max-width:72ch}
 #help ul,#help ol{margin:4px 0;padding-left:20px}
+#vm ul,#vm ol{margin:4px 0;padding-left:20px}
 #help .tw{overflow-x:auto;margin:6px 0}
+#vm .tw{overflow-x:auto;margin:6px 0}
 #help table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+#vm table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
 #help th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--line)}
+#vm th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--line)}
 #help td{padding:6px 8px;border-bottom:1px solid #2f2631;vertical-align:top;color:var(--ink)}
+#vm td{padding:6px 8px;border-bottom:1px solid #2f2631;vertical-align:top;color:var(--ink)}
 #help td:first-child{font-weight:700;color:var(--bronze);white-space:nowrap}
+#vm td:first-child{font-weight:700;color:var(--bronze);white-space:nowrap}
 #help td:nth-child(2),#help td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
+#vm td:nth-child(2),#vm td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
 #help .keys{margin-top:16px;color:var(--ink2);font-size:13.5px}
+#vm .keys{margin-top:16px;color:var(--ink2);font-size:13.5px}
 #pm{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #pm[hidden]{display:none!important}
 #pm .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
@@ -252,7 +270,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <li><b>Colonia mode:</b> gold dashes mark the planned grid. A Via on them costs half; other buildings over them cost 30% more.</li>
 </ul>
 <h3>Streets and pipes</h3>
-<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Via</td><td>1×1</td><td>6</td><td>Paved street. Drag to lay a line. Leave gaps between blocks so every building has frontage. May pass under an aqueduct arcade.</td></tr><tr><td>Pons</td><td>1×1</td><td>60</td><td>Bridge. Drag across river tiles, starting from a street on the bank. It carries traffic and gives frontage like a Via.</td></tr><tr><td>Aquaeductus</td><td>1×1</td><td>16</td><td>Raised arcade. Drag a continuous chain from the Caput Aquae to a Castellum. One gap breaks the supply. It can arch over a street and stand in the river.</td></tr><tr><td>Cloaca</td><td>1×1</td><td>18</td><td>Underground sewer, laid beneath any tile, even streets and houses. The chain must start beside the river. Orange in the sewer view means not connected. It cleans about 3 tiles either side. Lowers disease.</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Via</td><td>1×1</td><td>6</td><td>Paved street. Drag to lay a line. Leave gaps between blocks so every building has frontage. May pass under an aqueduct arcade.</td></tr><tr><td>Pons</td><td>1×1</td><td>60</td><td>Bridge. Drag across river tiles, starting from a street on the bank. It carries traffic and gives frontage like a Via.</td></tr><tr><td>Aquaeductus</td><td>1×1</td><td>16</td><td>Raised arcade. Drag a continuous chain from the Caput Aquae to a Castellum. One gap breaks the supply. It can arch over a street and stand in the river.</td></tr><tr><td>Cloaca</td><td>1×1</td><td>18</td><td>Underground sewer, laid beneath any tile, even streets and houses. The chain must start beside the river. Orange in the sewer view means not connected. It cleans about 3 tiles either side. Lowers disease.</td></tr><tr><td>Fistula</td><td>1×1</td><td>10</td><td>Underground lead pipe, laid beneath any tile. Water passes along it from a supplied Castellum to further Castella and Lacus, as in Pompeii. Drag to lay a line. Shows blue when it carries water, violet when dry.</td></tr></tbody></table></div>
 <h3>Homes</h3>
 <div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Tabernaculum</td><td>1×1</td><td>12</td><td>Leather tent for eight men. Needs no road. Burns easily, raises disease, rots away after five years. A stopgap only.</td></tr><tr><td>Insula</td><td>1×1</td><td>45</td><td>Tenement. Houses 7 people per storey, so 35 at the default limit of five. Taller blocks burn and spread disease more. Put Vigiles nearby.</td></tr><tr><td>Domus</td><td>2×2</td><td>190</td><td>Houses 6 elite. Its patron influence reaches 6 tiles and calms the poor around it. Elites dislike crowded neighbours when the neighbourhood rule is on Separated.</td></tr></tbody></table></div>
 <h3>Trade and toil</h3>
@@ -261,9 +279,14 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <p>Water runs in one line: Caput Aquae, Aquaeductus, Castellum, then Lacus and Thermae. Each spring yields about 2,600 a month, minus leakage. The town draws about 1 per person, 400 per Thermae and 40 per Lacus.</p>
 <div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Caput Aquae</td><td>2×2</td><td>450</td><td>Spring-head on high ground. Needs an Aquaeductus touching it. The starting spring cannot be removed.</td></tr><tr><td>Castellum</td><td>1×1</td><td>140</td><td>Distribution tower, reach 8. Must touch the arcade. Place it among the houses it serves.</td></tr><tr><td>Lacus</td><td>1×1</td><td>70</td><td>Fountain, reach 4. Only extends water where a Castellum already reaches.</td></tr><tr><td>Thermae</td><td>3×3</td><td>540</td><td>Baths, reach 9, 8 jobs. Lower disease and keep the crowd calm, but need water to work.</td></tr></tbody></table></div>
 <h3>Civic life</h3>
-<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Templum</td><td>2×3</td><td>360</td><td>Temple, reach 8. Calms the crowd and builds dignitas, in proportion to the civic religion rule.</td></tr><tr><td>Forum</td><td>4×3</td><td>720</td><td>Civic heart, reach 10, 8 jobs. Adds trade and about 1 dignitas a month. A charter condition in Colonia mode.</td></tr><tr><td>Amphitheatrum</td><td>4×4</td><td>1,600</td><td>Games, reach 14. Each show costs up to 90 a month. How much calm it buys depends on the bread and circuses rule.</td></tr><tr><td>Arcus</td><td>2×1</td><td>480</td><td>Triumphal arch. Pure prestige: 1.5 dignitas a month, and a small monthly chance of spoils (600 denarii).</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Templum</td><td>2×3</td><td>360</td><td>Temple, reach 8. Calms the crowd and builds dignitas, in proportion to the civic religion rule.</td></tr><tr><td>Forum</td><td>4×3</td><td>720</td><td>Civic heart, reach 10, 8 jobs. Adds trade and about 1 dignitas a month. A charter condition in Colonia mode.</td></tr><tr><td>Amphitheatrum</td><td>4×4</td><td>1,600</td><td>Games, reach 14. Each show costs up to 90 a month. How much calm it buys depends on the bread and circuses rule.</td></tr><tr><td>Arcus</td><td>2×1</td><td>480</td><td>Triumphal arch. Pure prestige: 1.5 dignitas a month, and a small monthly chance of spoils (600 denarii).</td></tr><tr><td>Theatrum</td><td>3×3</td><td>780</td><td>Roman theatre, reach 12. Plays and mime: a cheaper, smaller source of calm and dignitas than the Amphitheatrum. Needs road frontage.</td></tr></tbody></table></div>
 <h3>Order and safety</h3>
-<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Vigiles</td><td>2×1</td><td>130</td><td>Fire watch, reach 8. Cuts the chance of a fire starting by up to 80% and slows its spread. Place one beside every cluster of Insulae.</td></tr><tr><td>Castra</td><td>2×2</td><td>320</td><td>Barracks, reach 10. Keeps order and helps put down riots in its district.</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Tile</th><th>Size</th><th>Cost</th><th>How to use it</th></tr></thead><tbody><tr><td>Vigiles</td><td>2×1</td><td>130</td><td>Fire watch, reach 8. Cuts the chance of a fire starting by up to 80% and slows its spread. Place one beside every cluster of Insulae.</td></tr><tr><td>Castra</td><td>2×2</td><td>320</td><td>Barracks, reach 10. Keeps order and helps put down riots in its district.</td></tr><tr><td>Murus</td><td>1×1</td><td>22</td><td>City wall. Drag to lay a circuit. Blocks building; Pompeii kept its old walls with towers and gates.</td></tr><tr><td>Porta</td><td>1×1</td><td>120</td><td>City gate set in a wall, reach 6. Streets pass through it. In an emergency, gates with a road leading away are the ways out.</td></tr></tbody></table></div>
+<h3>Pompeii, AD 79</h3>
+<p>The Pompeii map starts in January AD 79 with the city as it stood: walls and seven gates, the forum and temples, two baths and a theatre, the amphitheatre in the south-east corner, water from the Aqua Augusta arriving at the castellum by the Porta Vesuvio, and lead pipes carrying it to street fountains. Several sites are still rubble from the earthquake of AD 62. One tile is about 35 metres, and a building tile stands for several houses, so the game shows about a quarter of the real population.</p>
+<ul><li>Run the city as you like. The Lex panel has a Vesuvius group: the month of the eruption (or never) and how much heed people pay to tremors.</li>
+<li>In the three months before the eruption there are tremors. They damage buildings and cut the water pressure.</li>
+<li>When the mountain erupts, the share who escape depends on the heed paid to tremors, the gates that have a road leading away, and the harbours on the Sarno. Pompeii had no vigiles, no sewers beyond a few drains and no way of knowing what the mountain was.</li></ul>
 <h3>Build order</h3>
 <ol>
 <li>Streets, then a few Insulae and Ager on the first blocks.</li>
@@ -284,14 +307,15 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <p class="keys"><b>Keys:</b> WASD or right-drag pan · Q E turn · wheel zoom · Space pause · 1 2 3 4 speed · H or ? this guide</p>
 </div></div></div>
   <div id="pm" hidden role="dialog" aria-modal="true" aria-labelledby="pm-t"><div class="hbox"><header><h2 id="pm-t">LEX ET MOS: THE READINGS</h2><button id="pm-x" aria-label="Close">×</button></header><div class="pm-nav" id="pm-nav"></div><div class="hbody" id="pm-body"></div></div></div>
+  <div id="vm" hidden role="dialog" aria-modal="true" aria-labelledby="vm-t"><div class="hbox"><header><h2 id="vm-t">VESUVIUS</h2><button id="vm-x" aria-label="Close">×</button></header><div class="hbody" id="vm-b"></div></div></div>
   <div id="toast"></div>
 
   <div id="cover">
     <div>
       <div class="meander"></div>
       <h1>URBS AETERNA</h1>
-      <p>80 BC. Sulla has granted land to his demobbed soldiers. Found a colonia on empty ground, or tend a free city and decide for yourself what made Rome work.</p>
-      <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go2" class="alt">FREE CITY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
+      <p>80 BC. Sulla has granted land to his demobbed soldiers: found a colonia on empty ground. Walk the streets of Pompeii in its last year, or tend a free city and decide for yourself what made the Urbs work.</p>
+      <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go4">POMPEII, AD 79</button><button id="go2" class="alt">FREE CITY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
       <p class="sub">Both modes share the same Lex panel of rules.</p>
       <p id="glmsg" class="nogl" style="font-size:14px;margin-top:14px"></p>
     </div>
@@ -313,15 +337,29 @@ function vnoise(x,y){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,u=x
 const fbm=(x,y)=>vnoise(x,y)*.6+vnoise(x*2.1,y*2.1)*.3+vnoise(x*4.3,y*4.3)*.1;
 const riverX=z=>-5.5+6.5*Math.sin(z*.14+.5)+1.5*Math.sin(z*.37);
 const HILLS=[[6,-4,5,.55],[11,3,5.5,.5],[2,-9,4,.45],[14,-8,5,.5],[10,12,5,.45],[-12,6,5,.4],[-13,-8,5,.4],[17,-18,5,.9]];
-function heightAt(x,z){
+function baseH(x,z){
   let h=.32+.28*fbm(x*.07+11,z*.07+5);
   for(const [hx,hz,r,hh] of HILLS){const d=Math.hypot(x-hx,z-hz);h+=hh*Math.exp(-(d*d)/(r*r*.8))}
   const w=smooth(1,2.8,Math.abs(x-riverX(z)));
   return lerp(-.3,h,w);
 }
+/* ---- Pompeii: lava plateau sloping to the Bay on the west, the Sarno along the south, Vesuvius rising to the north ---- */
+const TERR={id:'tiber'};
+const coastX=z=>-18.6+1.1*Math.sin(z*.31)+.7*Math.sin(z*.9);
+const sarnoZ=x=>18.2+1.1*Math.sin(x*.23+1)+.5*Math.sin(x*.6);
+function pompH(x,z){
+  let h=.62+.1*fbm(x*.09+3,z*.09+8)+.012*(-z*.8+x*.3);
+  h+=.1*Math.exp(-((x+8)*(x+8)+(z-7)*(z-7))/60);
+  const wc=smooth(.2,2.2,x-coastX(z)),wr=smooth(.9,2.2,Math.abs(z-sarnoZ(x)));
+  return lerp(-.3,h,Math.min(wc,wr));
+}
+const heightAt=(x,z)=>TERR.id==='pompeii'?pompH(x,z):baseH(x,z);
+const fertAt=(x,z)=>TERR.id==='pompeii'?1.1+.15*fbm(x*.2,z*.2):.75+.5*Math.exp(-Math.abs(x-riverX(z))/8);
 const TH=[],WATER=[];
-for(let i=0;i<N;i++){TH[i]=new Float32Array(N);WATER[i]=new Uint8Array(N);
-  for(let j=0;j<N;j++){const h=heightAt(i-HALF+.5,j-HALF+.5);TH[i][j]=Math.max(h,.1);WATER[i][j]=h<.07?1:0}}
+for(let i=0;i<N;i++){TH[i]=new Float32Array(N);WATER[i]=new Uint8Array(N)}
+function computeTiles(){
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++){const h=heightAt(i-HALF+.5,j-HALF+.5);TH[i][j]=Math.max(h,.1);WATER[i][j]=h<.07?1:0}}
+computeTiles();
 const tileX=i=>i-HALF+.5, tileZ=j=>j-HALF+.5;
 const inb=(i,j)=>i>=0&&j>=0&&i<N&&j<N;
 
@@ -343,8 +381,9 @@ function sizeStage(){
 function updateCam(){
   CAM.yaw+=(CAM.yawT-CAM.yaw)*.18;
   const d=90,cp=Math.cos(CAM.pitch);
-  cam.position.set(CAM.x+Math.sin(CAM.yaw)*cp*d,Math.sin(CAM.pitch)*d,CAM.z+Math.cos(CAM.yaw)*cp*d);
+  cam.position.set(CAM.x+Math.sin(CAM.yaw)*cp*d+(shk?(Math.random()-.5)*shk:0),Math.sin(CAM.pitch)*d+(shk?(Math.random()-.5)*shk*.5:0),CAM.z+Math.cos(CAM.yaw)*cp*d);
   cam.lookAt(CAM.x,0,CAM.z);
+  if(shk)cam.lookAt(CAM.x+(Math.random()-.5)*shk,0,CAM.z);
   sizeStage();
 }
 addEventListener('resize',sizeStage);
@@ -362,7 +401,7 @@ const TIMES=[
   {name:'Vesper',dir:[.85,.26,-.6],sun:'#ff8a5a',si:.6,sky:'#7a7fc0',gr:'#2c2540',hi:.62,bg:'#3d3868'},
   {name:'Nox',dir:[.4,.75,.3],sun:'#9db7ff',si:.38,sky:'#34447f',gr:'#161430',hi:.6,bg:'#0e1230'}
 ];
-let timeIdx=0;
+let timeIdx=0,dim=0,shk=0;const ASH_BG=new THREE.Color('#4a423a');
 const L={dir:new THREE.Vector3(...TIMES[0].dir),sun:new THREE.Color(TIMES[0].sun),si:1,sky:new THREE.Color(TIMES[0].sky),gr:new THREE.Color(TIMES[0].gr),hi:.72,bg:new THREE.Color(TIMES[0].bg)};
 function lightStep(){
   const T=TIMES[timeIdx],k=.045;
@@ -371,11 +410,12 @@ function lightStep(){
   const d=L.dir.clone().normalize();
   sun.position.set(d.x*90,d.y*90,d.z*90);sun.color.copy(L.sun);sun.intensity=L.si;
   hemi.color.copy(L.sky);hemi.groundColor.copy(L.gr);hemi.intensity=L.hi;scene.background.copy(L.bg);
+  if(dim>0){sun.intensity*=1-.78*dim;hemi.intensity*=1-.3*dim;scene.background.lerp(ASH_BG,dim*.88)}
 }
 
 /* ---------- terrain ---------- */
 const tgeo=new THREE.PlaneGeometry(N,N,N,N);tgeo.rotateX(-Math.PI/2);
-{
+function paintTerrain(){
   const p=tgeo.attributes.position,col=new Float32Array(p.count*3),c=new THREE.Color();
   const grassA=new THREE.Color('#7f9a4f'),grassB=new THREE.Color('#a3ac5c'),dry=new THREE.Color('#bba966'),sand=new THREE.Color('#d6c391'),wet=new THREE.Color('#9c9a6a'),rock=new THREE.Color('#aa9c78');
   for(let v=0;v<p.count;v++){
@@ -384,11 +424,14 @@ const tgeo=new THREE.PlaneGeometry(N,N,N,N);tgeo.rotateX(-Math.PI/2);
     c.copy(grassA).lerp(grassB,n);
     c.lerp(dry,smooth(.45,1.0,h)*.8*n+smooth(.9,1.3,h)*.3);
     c.lerp(rock,smooth(1.1,1.5,h)*.6);
+    if(TERR.id==='pompeii'){c.copy(grassA).lerp(dry,.12+.3*n).lerp(new THREE.Color('#9c8a5a'),smooth(.4,.9,h)*.3)}
     c.lerp(sand,1-smooth(.02,.26,h));c.lerp(wet,1-smooth(-.2,.05,h));
     col[v*3]=c.r;col[v*3+1]=c.g;col[v*3+2]=c.b;
   }
   tgeo.setAttribute('color',new THREE.BufferAttribute(col,3));tgeo.computeVertexNormals();
+  p.needsUpdate=true;tgeo.attributes.color.needsUpdate=true;tgeo.computeBoundingSphere();tgeo.computeBoundingBox();
 }
+paintTerrain();
 const terrain=new THREE.Mesh(tgeo,new THREE.MeshLambertMaterial({vertexColors:true}));
 terrain.receiveShadow=true;scene.add(terrain);
 
@@ -455,6 +498,7 @@ const DEF={
   bridge:{name:'Pons',cat:0,w:1,d:1,cost:60,up:.4,drag:1,desc:'Stone bridge. Lay it on river tiles, starting from a street on the bank. It carries traffic and gives frontage like a Via.'},
   aqueduct:{name:'Aquaeductus',cat:0,w:1,d:1,cost:16,up:.2,drag:1,desc:'Arcade carrying water from a Caput Aquae to your Castella. Lay it in a continuous chain. It can arch over a street and stand in the river.'},
   cloaca:{name:'Cloaca',cat:0,w:1,d:1,cost:18,up:.1,drag:1,r:3,desc:'Underground sewer. Lay it beneath any tile, even streets and houses. The chain must reach the river bank. Drains disease from the blocks around it.'},
+  fistula:{name:'Fistula',cat:0,w:1,d:1,cost:10,up:.12,drag:1,desc:'Underground lead water-pipe. Lay it beneath any tile. It carries water from a supplied Castellum to further Castella and Lacus, as at Pompeii, where pipes fed street fountains from water-towers.'},
   tent:{name:'Tabernaculum',cat:1,w:1,d:1,cost:12,up:.02,desc:'Leather tent for one contubernium of eight men. Quick and cheap, but flammable and unhealthy, and the hides rot away after five years. Needs no road.'},
   insula:{name:'Insula',cat:1,w:1,d:1,cost:45,up:.4,desc:'Plebeian apartment block. Capacity grows with the storey limit you set in the rules, and so does the fire risk.'},
   domus:{name:'Domus',cat:1,w:2,d:2,cost:190,up:1.5,desc:'Courtyard house of a senator or knight. Patrons here support the poor nearby; their owners dislike crowded neighbours.'},
@@ -469,9 +513,12 @@ const DEF={
   lacus:{name:'Lacus',cat:3,w:1,d:1,cost:70,up:.5,r:4,desc:'Public fountain. Extends water to the streets around it, if a Castellum serves it.'},
   thermae:{name:'Thermae',cat:3,w:3,d:3,cost:540,up:6,jobs:8,r:9,desc:'Public baths. Cleanliness, comfort and calm. Thirsty.'},
   templum:{name:'Templum',cat:4,w:2,d:3,cost:360,up:2,jobs:2,r:8,desc:'Temple. Pax deorum: calms the nearby crowd and raises dignitas, to the degree you believe in it.'},
+  theatrum:{name:'Theatrum',cat:4,w:3,d:3,cost:780,up:7,jobs:8,r:12,desc:'Roman theatre: plays, mime and music. A smaller and cheaper source of calm and dignitas than the Amphitheatre.'},
   forum:{name:'Forum',cat:4,w:4,d:3,cost:720,up:5,jobs:8,r:10,desc:'Civic heart. Commerce, law and a steady flow of dignitas.'},
   amph:{name:'Amphitheatrum',cat:4,w:4,d:4,cost:1600,up:14,jobs:10,r:14,desc:'Games. Each show costs treasure; how much calm it buys depends on your reading of bread and circuses.'},
   arcus:{name:'Arcus',cat:4,w:2,d:1,cost:480,up:.5,r:8,desc:'Triumphal arch. Pure prestige.'},
+  murus:{name:'Murus',cat:5,w:1,d:1,cost:22,up:.05,drag:1,desc:'City wall. Pompeii kept its circuit of walls, long obsolete, with towers and gates. Blocks building and marks the boundary.'},
+  porta:{name:'Porta',cat:5,w:1,d:1,cost:120,up:.6,r:6,desc:'City gate set in a wall. Streets pass through it. Gates are the ways out in an emergency.'},
   vigiles:{name:'Vigiles',cat:5,w:2,d:1,cost:130,up:2,r:8,desc:'Firefighting watch-house. Slashes fire risk and fire spread around it.'},
   castra:{name:'Castra',cat:5,w:2,d:2,cost:320,up:5,r:10,desc:'Urban cohort barracks. Keeps order and puts down riots in its district.'}
 };
@@ -594,6 +641,35 @@ MODEL.cloaca=(g,b)=>{
   if(l.n||l.s)g.add(Bx(d,.2,.05,1,0,.0,0));
   g.add(Cy(M.stone,.22,.05,0,.04,0),Cy(M.dark,.15,.06,0,.045,0));
 };
+MODEL.fistula=(g,b)=>{
+  const d=M.bronze;g.add(Bx(d,1,.06,.12,0,0,0),Bx(d,.12,.06,1,0,0,0),Cy(M.bronze,.1,.1,0,.02,0));
+};
+MODEL.murus=(g,b)=>{
+  const l=linkDirs(b,['murus','porta']),m=M.stone,h=.7;
+  g.add(Bx(m,.46,h,.46,0,-.1,0),Bx(M.trav,.5,.07,.5,0,-.1+h,0));
+  if(l.e)g.add(Bx(m,.5,h,.4,.48,-.1,0),Bx(M.trav,.5,.07,.46,.48,-.1+h,0));
+  if(l.w)g.add(Bx(m,.5,h,.4,-.48,-.1,0),Bx(M.trav,.5,.07,.46,-.48,-.1+h,0));
+  if(l.s)g.add(Bx(m,.4,h,.5,0,-.1,.48),Bx(M.trav,.46,.07,.5,0,-.1+h,.48));
+  if(l.n)g.add(Bx(m,.4,h,.5,0,-.1,-.48),Bx(M.trav,.46,.07,.5,0,-.1+h,-.48));
+  if((b.i*7+b.j*3)%6===0){g.add(Bx(m,.62,.4,.62,0,-.1+h,0),Kn(M.roof,.42,.2,0,.0+h+.3,0))}
+};
+MODEL.porta=(g,b)=>{
+  const l=linkDirs(b,['murus','porta']),az=!(l.n||l.s),inner=new THREE.Group();
+  inner.add(Bx(M.stone,.9,.95,.36,0,-.1,-.32),Bx(M.stone,.9,.95,.36,0,-.1,.32),Bx(M.trav,.9,.3,.34,0,.85,0));
+  inner.add(Bx(M.dark,.6,.04,.3,0,-.08,0),Bx(M.trav,1,.07,.9,0,1.15,0),Kn(M.roof,.5,.22,0,1.18,0));
+  inner.add(Bx(M.tyrian,.04,.2,.34,.46,.55,0));
+  if(az)inner.rotation.y=PI/2;g.add(inner);
+};
+const latT=new THREE.LatheGeometry([[.42,.04],[.42,.12],[.58,.12],[.58,.22],[.74,.22],[.74,.32],[.9,.32],[.9,.42],[1.06,.42],[1.06,.52],[1.22,.52],[1.22,.62],[1.38,.62],[1.38,0]].map(p=>new THREE.Vector2(p[0],p[1])),28,0,PI).rotateY(PI/2);
+MODEL.theatrum=(g,b)=>{
+  found(g,3,3);
+  g.add(P(latT,M.trav,1,1,1,0,.06,.15));
+  g.add(Bx(M.cream,2.6,.7,.38,0,.06,.95),Bx(M.cream,.4,.55,.9,-1.25,.06,.55),Bx(M.cream,.4,.55,.9,1.25,.06,.55));
+  g.add(Rf(M.roof,.5,2.7,.14,0,.78,.95,PI/2));
+  for(let k=0;k<6;k++)g.add(Cy(M.marble,.04,.5,-.9+k*.36,.06,1.2));
+  g.add(Cy(M.sand,.4,.03,0,.07,.15));
+  pole(g,-1.3,-.9,1.1);pole(g,1.3,-.9,1.1,M.lapis);
+};
 MODEL.thermae=(g,b)=>{
   found(g,3,3);
   g.add(Bx(M.marble,2.3,.9,1.1,0,.06,-.5),P(G.cyl,M.roof2,.55,2.3,.55,0,.96,-.5,0,0,PI/2));
@@ -700,6 +776,11 @@ const RULES=[
   note:'Streets were thronged and most people went on foot. A first-century BC law kept wheeled traffic off Rome\'s streets by day. Scales how far every service reaches.'},
  {k:'leak',name:'Aqueduct losses and theft',min:0,max:50,def:25,lo:'Tight',hi:'Leaky',fmt:v=>v+'% lost',
   note:'Frontinus, the water commissioner, recorded leaks and illegal taps along Rome\'s aqueducts. Share of flow lost before it reaches users.'}]},
+{g:'Vesuvius',pom:1,items:[
+ {k:'vdate',name:'Month of the eruption',min:0,max:12,def:10,lo:'Never',hi:'Dec',fmt:v=>v?MONTHS_[v-1]+' (the year of the game)':'Vesuvius sleeps',
+  note:'Pliny the Younger (Letters 6.16 and 6.20) gives the day as 24 August in the manuscripts. A charcoal inscription found at Pompeii in 2018, dated about 17 October, and autumn fruit and heating braziers among the finds, have led some to argue for 24 October. Choose Never to play on in a city that was not buried.'},
+ {k:'vheed',name:'Heed paid to the tremors',min:0,max:100,def:25,lo:'Ignored',hi:'Evacuate',fmt:v=>v+'%',
+  note:'Seneca (Natural Questions 6) says earthquakes were common in Campania and not much feared, and a great quake struck Pompeii in AD 62. Few knew Vesuvius was a volcano. High: tremors in the months before the eruption send families away early. Low: people stay, and more are caught when it comes.'}]},
 {g:'Colonia',col:1,items:[
  {k:'vloyal',name:'Veteran loyalty',min:0,max:100,def:70,lo:'Restless',hi:"Sulla's men",fmt:v=>v+'%',
   note:'Sulla\'s veterans owed him land and little else. Sallust says many later drifted into debt and turned to Catiline. Low: the soldiers brood, and order suffers in proportion to how many veterans remain. High: they hold the colony for you.'},
@@ -723,6 +804,7 @@ const PRESETS={
  'Graveyard':{grave:170,immig:155,storeys:6,leak:35,fire:130,dole:35},
  'Slave city':{slave:70,prod:60,dole:15,patron:70,games:40,tribute:80}
 };
+const MONTHS_=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const R={};RULES.forEach(g=>g.items.forEach(r=>R[r.k]=r.def));
 const RDEF=Object.assign({},R);
 
@@ -739,6 +821,7 @@ const BLD=new Map();let nid=1;
 const typeAt=(i,j)=>inb(i,j)&&occ[i][j]?BLD.get(occ[i][j]).type:null;
 const rd=(i,j)=>inb(i,j)&&roadAt[i][j]>0;
 const sewerAt=Array.from({length:N},()=>new Uint8Array(N));
+const pipeAt=Array.from({length:N},()=>new Uint8Array(N));
 function neighborsOf(b){const s=new Set();
   const add=(x,z)=>{if(inb(x,z)&&occ[x][z]&&occ[x][z]!==b.id)s.add(occ[x][z])};
   for(let a=0;a<b.w;a++){add(b.i+a,b.j-1);add(b.i+a,b.j+b.d)}
@@ -757,7 +840,7 @@ function costOf(type,i,j,rot){
   if(S.grid){
     let w=D.w,d=D.d;if(rot&1)[w,d]=[d,w];
     if(type==='via'){if(inb(i,j)&&planned[i][j])cost*=.5}
-    else if(!['ager','source','emporium','aqueduct','cloaca','tent','bridge'].includes(type)){
+    else if(!['ager','source','emporium','aqueduct','cloaca','fistula','tent','bridge','murus','porta'].includes(type)){
       let hit=false;for(let a=0;a<w;a++)for(let c=0;c<d;c++)if(inb(i+a,j+c)&&planned[i+a][j+c])hit=true;
       if(hit)cost*=1.3}}
   return Math.round(cost)}
@@ -772,6 +855,10 @@ function placeSpecial(type,i,j){
   if(type==='cloaca'){
     if(WATER[i][j])return{ok:false,why:'Sewers cannot be laid in the river'};
     if(sewerAt[i][j])return{ok:false,why:'There is already a sewer here'};
+    return{ok:true}}
+  if(type==='fistula'){
+    if(WATER[i][j])return{ok:false,why:'Pipes cannot be laid in the river'};
+    if(pipeAt[i][j])return{ok:false,why:'There is already a pipe here'};
     return{ok:true}}
   if(type==='via'){
     if(WATER[i][j])return{ok:false,why:'Use a Pons to cross the river'};
@@ -806,7 +893,7 @@ function addBld(type,i,j,rot,seed){
   const D=DEF[type];let w=D.w,d=D.d;if(rot&1)[w,d]=[d,w];
   let by=.1;for(let a=0;a<w;a++)for(let c=0;c<d;c++)by=Math.max(by,TH[i+a][j+c]);
   const b={id:nid++,type,i,j,w,d,rot:rot&1,seed:seed!==undefined?seed:Math.floor(Math.random()*997),born:S.tick,burn:0,ruin:0,baseY:by,
-    fert:.75+.5*Math.exp(-Math.abs(tileX(i+w/2)-riverX(tileZ(j+d/2)))/8)};
+    fert:fertAt(tileX(i+w/2),tileZ(j+d/2))};
   for(let a=0;a<w;a++)for(let c=0;c<d;c++)occ[i+a][j+c]=b.id;
   BLD.set(b.id,b);return b}
 function refreshLinks(b){for(const id of neighborsOf(b)){const n=BLD.get(id);if(n&&LINKED.includes(n.type))hooks.rebuild(n)}}
@@ -818,6 +905,7 @@ function tryPlace(type,i,j,rot,free){
   if(type==='via'){roadAt[i][j]=1;const o=BLD.get(occ[i][j]);if(o&&o.type==='aqueduct')hooks.rebuild(o);hooks.road();return{ok:true}}
   if(type==='bridge'){roadAt[i][j]=2;hooks.road();return{ok:true}}
   if(type==='cloaca'){sewerAt[i][j]=1;hooks.sewer();return{ok:true}}
+  if(type==='fistula'){pipeAt[i][j]=1;hooks.sewer();return{ok:true}}
   const b=addBld(type,i,j,rot);hooks.add(b);if(LINKED.includes(type))refreshLinks(b);
   return{ok:true,b}}
 function removeBld(b){
@@ -829,6 +917,7 @@ function demolishAt(i,j){
   if(!b){
     if(roadAt[i][j]){const br=roadAt[i][j]===2;roadAt[i][j]=0;S.den+=br?18:3;hooks.road();return{ok:true,what:br?'Pons':'Via'}}
     if(sewerAt[i][j]){sewerAt[i][j]=0;S.den+=5;hooks.sewer();return{ok:true,what:'Cloaca'}}
+    if(pipeAt[i][j]){pipeAt[i][j]=0;S.den+=3;hooks.sewer();return{ok:true,what:'Fistula'}}
     return{ok:false}}
   if(b.fixed)return{ok:false,why:'The founding spring cannot be removed'};
   const D=DEF[b.type];if(b.type!=='ruin')S.den+=Math.round(D.cost*.3);
@@ -851,15 +940,17 @@ function starter(){
 /* ================= SIMULATION: one tick = one month ================= */
 const HARV=[.5,.5,.6,.7,.9,1.4,1.8,1.8,1.4,.9,.6,.5];
 const SEA_CLOSED=[1,1,.5,0,0,0,0,0,0,0,1,1];
-const NEEDLESS=['aqueduct','cloaca','source','castellum','lacus','ruin','tent','ager'];
-const FIRE_BASE={tent:.006,insula:.0025,domus:.0012,officina:.004,taberna:.0025,horreum:.002,macellum:.002,ager:.0015,emporium:.002,thermae:.003,templum:.0008,forum:.0008,amph:.001,castra:.0006,vigiles:.0008};
+const NEEDLESS=['murus','porta','aqueduct','cloaca','fistula','source','castellum','lacus','ruin','tent','ager'];
+const FIRE_BASE={tent:.006,insula:.0025,domus:.0012,officina:.004,taberna:.0025,horreum:.002,macellum:.002,ager:.0015,emporium:.002,thermae:.003,templum:.0008,forum:.0008,amph:.001,theatrum:.0008,castra:.0006,vigiles:.0008};
 const RANKS=[['Vicus',0],['Oppidum',200],['Civitas',600],['Colonia',1500],['Urbs',4000],['Caput Mundi',9000]];
 const COVK=['water','sewer','fire','order','market','temple','bath','game','patron','forum'];
 const cov={};COVK.forEach(k=>cov[k]=new Float32Array(N*N));
 const riverNear=new Float32Array(N*N);
+function computeRiverNear(){
 for(let i=0;i<N;i++)for(let j=0;j<N;j++){let md=9;
   for(let a=-3;a<=3;a++)for(let c=-3;c<=3;c++){const x=i+a,z=j+c;if(inb(x,z)&&WATER[x][z])md=Math.min(md,Math.hypot(a,c))}
-  riverNear[j*N+i]=md<=3?.5*(1-md/4):0}
+  riverNear[j*N+i]=md<=3?.5*(1-md/4):0}}
+computeRiverNear();
 const touchesWater=(i,j)=>inb(i+1,j)&&WATER[i+1][j]||inb(i-1,j)&&WATER[i-1][j]||inb(i,j+1)&&WATER[i][j+1]||inb(i,j-1)&&WATER[i][j-1];
 function stamp(arr,b,r,str=1){
   const cx=b.i+b.w/2,cz=b.j+b.d/2,Rr=Math.ceil(r)+1;
@@ -899,9 +990,23 @@ function simStep(){
   const demandW=pop+of('thermae').length*400+of('lacus').length*40;
   const supplyW=actSrc*2600*(1-R.leak/100);
   S.wr=cas.length?Math.min(1,supplyW/Math.max(1,demandW)):0;
+  if(S.quakeWater)S.wr*=S.quakeWater;
   S.supply=supplyW;S.demandW=demandW;
+  /* fistulae: lead pipes carry water on from supplied castella to secondary castella and fountains */
+  const touch=b=>{const r=[];for(let a=-1;a<=b.w;a++)for(let c=-1;c<=b.d;c++){const ins=a>=0&&a<b.w&&c>=0&&c<b.d,edge=(a>=0&&a<b.w)||(c>=0&&c<b.d);if(ins||edge)r.push([b.i+a,b.j+c])}return r};
+  const piped=new Uint8Array(N*N),pq=[];
+  const seedP=b=>{for(const [x,z] of touch(b))if(inb(x,z)&&pipeAt[x][z]&&!piped[x*N+z]){piped[x*N+z]=1;pq.push([x,z])}};
+  cas.forEach(seedP);
+  let cas2=[];
+  for(let pass=0;pass<4;pass++){
+    while(pq.length){const [x,z]=pq.pop();for(const d of [[1,0],[-1,0],[0,1],[0,-1]]){const u=x+d[0],v=z+d[1];if(inb(u,v)&&pipeAt[u][v]&&!piped[u*N+v]){piped[u*N+v]=1;pq.push([u,v])}}}
+    let grew=false;
+    for(const b of of('castellum'))if(!cas.includes(b)&&!cas2.includes(b)&&touch(b).some(([x,z])=>inb(x,z)&&piped[x*N+z])){cas2.push(b);seedP(b);grew=true}
+    if(!grew&&!pq.length)break}
+  S.piped=piped;let pipeN=0;for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(pipeAt[i][j])pipeN++;S.pipeN=pipeN;S.cas2=cas2.length;
   for(const b of cas)stamp(cov.water,b,8);
-  for(const b of of('lacus')){if(cov.water[(b.j)*N+b.i]>.25)stamp(cov.water,b,4*walk,.95)}
+  for(const b of cas2)stamp(cov.water,b,8);
+  for(const b of of('lacus')){if(cov.water[(b.j)*N+b.i]>.25||touch(b).some(([x,z])=>inb(x,z)&&piped[x*N+z]))stamp(cov.water,b,4*walk,.95)}
   for(let k=0;k<N*N;k++)cov.water[k]=Math.max(riverNear[k],cov.water[k]*S.wr);
   const sconn=sewerConnected();let sewN=0;
   for(let i=0;i<N;i++)for(let j=0;j<N;j++){if(sewerAt[i][j])sewN++;if(sconn[i*N+j])stamp(cov.sewer,{i,j,w:1,d:1},3.2)}
@@ -915,6 +1020,8 @@ function simStep(){
       case'thermae':stamp(cov.bath,b,9*walk,S.wr>.2?1:.3);break;
       case'templum':stamp(cov.temple,b,8*walk);break;
       case'amph':stamp(cov.game,b,14*walk);break;
+      case'theatrum':stamp(cov.game,b,12*walk,.85);break;
+      case'porta':stamp(cov.order,b,6*walk,.6);break;
       case'forum':stamp(cov.forum,b,10*walk);break;
       case'castra':stamp(cov.order,b,10*walk);break;
       case'vigiles':stamp(cov.fire,b,8*walk);break;
@@ -937,6 +1044,7 @@ function simStep(){
     else if(b.type==='forum')A.forum++;
     else if(b.type==='templum')A.temple++;
     else if(b.type==='amph')A.amph++;
+    else if(b.type==='theatrum')A.amph+=.6;
     else if(b.type==='arcus')A.arcus++;
     else if(b.type==='castra')A.castra++;
     else if(b.type==='vigiles')A.vig++;
@@ -946,7 +1054,7 @@ function simStep(){
   const avW=av(cov.water),avSew=av(cov.sewer),avM=av(cov.market),avT=av(cov.temple),avB=av(cov.bath),avG=av(cov.game),avO=av(cov.order),avP=av(cov.patron),avF=av(cov.fire),avFo=av(cov.forum);
   S.cv={water:avW,sewer:avSew,market:avM,temple:avT,bath:avB,game:avG,order:avO,patron:avP,fire:avF};
   let roadN=0,brN=0;for(let i=0;i<N;i++)for(let j=0;j<N;j++){if(roadAt[i][j]===1)roadN++;else if(roadAt[i][j]===2)brN++}
-  let upkeep=roadN*DEF.via.up+brN*DEF.bridge.up+sewN*DEF.cloaca.up;for(const b of BLD.values())upkeep+=DEF[b.type].up||0;
+  let upkeep=roadN*DEF.via.up+brN*DEF.bridge.up+sewN*DEF.cloaca.up+pipeN*DEF.fistula.up;for(const b of BLD.values())upkeep+=DEF[b.type].up||0;
 
   /* --- grain --- */
   const sea=1-(1-R.winter/100*SEA_CLOSED[m]*1)*0-R.winter/100*SEA_CLOSED[m];
@@ -1088,6 +1196,7 @@ function simStep(){
   if(r>S.rank){S.rank=r;hooks.toast(RANKS[r][0].toUpperCase(),'The settlement has grown to '+RANKS[r][0]);log('Rank gained: '+RANKS[r][0]+'.','good')}
   else if(r<S.rank-0&&total<RANKS[S.rank][1]*.8)S.rank=r;
   S.pop=total;
+  if(S.scn==='pompeii')pompStep();
 }
 /* ================= GAME LAYER: meshes, input, UI, loop ================= */
 MODEL.via=g=>g.add(Bx(M.pave,.96,.06,.96,0,0,0));
@@ -1140,14 +1249,25 @@ function rebuildSewers(){
     _m.compose(_p.set(tileX(i),TH[i][j]+.3,tileZ(j)),_q.identity(),_s.set(.78,.04,.78));
     if(conn[i*N+j])sewXc.setMatrixAt(c1++,_m);else sewXu.setMatrixAt(c2++,_m)}
   sewGrate.count=a;sewXc.count=c1;sewXu.count=c2;sewGrate.instanceMatrix.needsUpdate=sewXc.instanceMatrix.needsUpdate=sewXu.instanceMatrix.needsUpdate=true}
-function updateSewVis(){sewXc.visible=sewXu.visible=tool==='cloaca'||LENS[lensI][1]==='sewer'}
+const pipeXc=new THREE.InstancedMesh(G.box,xm('#4aa3ff'),N*N),pipeXu=new THREE.InstancedMesh(G.box,xm('#c9a0ff'),N*N);
+pipeXc.count=pipeXu.count=0;pipeXc.visible=pipeXu.visible=false;pipeXc.renderOrder=pipeXu.renderOrder=7;pipeXc.frustumCulled=pipeXu.frustumCulled=false;scene.add(pipeXc,pipeXu);
+function rebuildPipes(){
+  let c1=0,c2=0;
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(pipeAt[i][j]){
+    _m.compose(_p.set(tileX(i),TH[i][j]+.36,tileZ(j)),_q.identity(),_s.set(.5,.04,.5));
+    if(S.piped&&S.piped[i*N+j])pipeXc.setMatrixAt(c1++,_m);else pipeXu.setMatrixAt(c2++,_m)}
+  pipeXc.count=c1;pipeXu.count=c2;pipeXc.instanceMatrix.needsUpdate=pipeXu.instanceMatrix.needsUpdate=true}
+function updateSewVis(){sewXc.visible=sewXu.visible=tool==='cloaca'||LENS[lensI][1]==='sewer';
+  pipeXc.visible=pipeXu.visible=tool==='fistula'||LENS[lensI][1]==='water'}
 
 /* trees */
 const treeA=new THREE.InstancedMesh(G.cone,mk('#3f6b3a'),N*N),treeB=new THREE.InstancedMesh(G.sph,mk('#5d8a3e'),N*N),trunk=new THREE.InstancedMesh(G.cyl,M.wood,N*N);
 [treeA,treeB,trunk].forEach(t=>{t.castShadow=true;scene.add(t)});
 const treeSpots=[];
+function makeTreeSpots(){treeSpots.length=0;
 for(let i=0;i<N;i++)for(let j=0;j<N;j++){const h=hash(i*3.1,j*7.7);
-  if(!WATER[i][j]&&TH[i][j]>.22&&h<.26)treeSpots.push({i,j,x:tileX(i)+(hash(i,j*2)-.5)*.6,z:tileZ(j)+(hash(j,i*2)-.5)*.6,k:hash(i+9,j+4)>.5,s:.7+hash(i*5,j*3)*.7})}
+  if(!WATER[i][j]&&TH[i][j]>.22&&h<(TERR.id==='pompeii'?.2:.26))treeSpots.push({i,j,x:tileX(i)+(hash(i,j*2)-.5)*.6,z:tileZ(j)+(hash(j,i*2)-.5)*.6,k:hash(i+9,j+4)>.5,s:.7+hash(i*5,j*3)*.7})}}
+makeTreeSpots();
 function updateTrees(){
   let a=0,b2=0;
   for(const t of treeSpots){
@@ -1189,7 +1309,7 @@ function animWalkers(dt,speed){
 
 /* hooks */
 hooks.add=b=>{rebuildMesh(b);updateTrees();rebuildSewers()};
-hooks.sewer=()=>{rebuildSewers();updateSewVis()};
+hooks.sewer=()=>{rebuildSewers();rebuildPipes();updateSewVis()};
 hooks.remove=b=>{const g=meshOf.get(b.id);if(g)bGroup.remove(g);meshOf.delete(b.id);flames.delete(b.id);updateTrees();rebuildSewers()};
 hooks.rebuild=b=>{rebuildMesh(b)};
 hooks.road=rebuildRoads;
@@ -1247,7 +1367,7 @@ function buildMenu(){
 function showTip(k,el){
   const D=DEF[k],t=$('#tip');
   const rows=[['Cost',D.cost+' denarii'],['Upkeep',D.up+' / month'],['Size',D.w+' × '+D.d]];
-  if(S.grid)rows.push(['City plan',k==='via'?'half price on gold lines':['ager','source','emporium','aqueduct','cloaca','tent'].includes(k)?'no effect':'+30% over gold lines']);
+  if(S.grid)rows.push(['City plan',k==='via'?'half price on gold lines':['ager','source','emporium','aqueduct','cloaca','fistula','tent','murus','porta'].includes(k)?'no effect':'+30% over gold lines']);
   if(D.jobs)rows.push(['Jobs',D.jobs]);if(D.r)rows.push(['Reach',D.r+' tiles']);
   t.innerHTML='<h4>'+D.name+'</h4><p>'+D.desc+'</p><dl>'+rows.map(r=>'<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>').join('')+'</dl>';
   t.style.display='block';t.style.top=Math.max(90,Math.min(innerHeight-t.offsetHeight-10,el.getBoundingClientRect().top))+'px'}
@@ -1273,7 +1393,7 @@ function updateCursorInfo(){
     const c=canPlace(tool,ai,aj,rot),ok=c.ok&&S.den>=costOf(tool,ai,aj,rot);setGhostMat(ok);hov.ok=ok;hov.ai=ai;hov.aj=aj;
     let by=.1;for(let a=0;a<w;a++)for(let z=0;z<d;z++)if(inb(ai+a,aj+z))by=Math.max(by,TH[ai+a][aj+z]);
     ghostRoot.position.set(ai+w/2-HALF,by,aj+d/2-HALF);
-    if(tool==='via'||tool==='aqueduct'||tool==='cloaca')ghostRoot.position.y=by;
+    if(tool==='via'||tool==='aqueduct'||tool==='cloaca'||tool==='fistula')ghostRoot.position.y=by;
   }else if(tool==='demolish'||!tool){
     const id=occ[hov.i][hov.j],b=id&&BLD.get(id);
     if(b){hl.scale.set(b.w,.5,b.d);hl.position.set(b.i+b.w/2-HALF,b.baseY+.25,b.j+b.d/2-HALF)}
@@ -1306,12 +1426,13 @@ let inspected=null;
 function inspectAt(i,j){
   const b=BLD.get(occ[i][j]);inspected=b||null;
   if(!b){
-    const rr=roadAt[i][j],sw=sewerAt[i][j];
-    if(rr||sw){
+    const rr=roadAt[i][j],sw=sewerAt[i][j],pw=pipeAt[i][j];
+    if(rr||sw||pw){
       const conn=sw&&sewerConnected()[i*N+j],rows=[];
+      if(pw)rows.push(['Lead pipe beneath',S.piped&&S.piped[i*N+j]?'carrying water':'<span class="neg">dry, no castellum feeds it</span>']);
       if(sw)rows.push(['Sewer beneath',conn?'connected to the river':'<span class="neg">not connected, dry</span>']);
       if(rr)rows.push(['Upkeep',(rr===2?DEF.bridge.up:DEF.via.up)+' / month']);
-      insp.innerHTML='<h4>'+(rr===2?'Pons':rr?'Via':'Cloaca')+'<button aria-label="Close">×</button></h4><dl>'+rows.map(r=>'<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>').join('')+'</dl>';
+      insp.innerHTML='<h4>'+(rr===2?'Pons':rr?'Via':sw?'Cloaca':'Fistula')+'<button aria-label="Close">×</button></h4><dl>'+rows.map(r=>'<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>').join('')+'</dl>';
       insp.querySelector('button').onclick=()=>{insp.style.display='none';inspected=null};insp.style.display='block'}
     else insp.style.display='none';
     return}
@@ -1351,7 +1472,7 @@ function clampCam(){CAM.x=clamp(CAM.x,-HALF,HALF);CAM.z=clamp(CAM.z,-HALF,HALF)}
 const keys={};
 addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT')return;const k=e.key.toLowerCase();
-  if(!helpEl.hidden||!pmEl.hidden){if(k==='escape'||k==='h'||k==='?'){closeHelp();closePM()}return}
+  if(!helpEl.hidden||!pmEl.hidden||!$('#vm').hidden){if(k==='escape'||k==='h'||k==='?'){closeHelp();closePM()}return}
   keys[k]=1;
   if(k==='q')CAM.yawT-=PI/2;else if(k==='e')CAM.yawT+=PI/2;
   else if(k==='r'&&tool&&DEF[tool]){rot++;makeGhost();updateCursorInfo()}
@@ -1406,7 +1527,7 @@ const PINFO={
 'Bang: bazaar':{tag:'The Roman bazaar',
  sim:'Markets are bazaar-like (85), trade rests on personal ties (80), on elite and tribute demand (75), and on small traders (scale 15). Tribute is 130%, workshops are weak (producer 25) and prices swing (55%). Traders pay off when clustered near patrons, and trade fades if tribute falls or elites are few. See the Bazaar group in the rules panel for the live multiplier.',
  hist:'Peter Bang, The Roman Bazaar (2008), draws on Clifford Geertz\'s bazaar economy and compares Rome with the Mughal Empire. He argues that trade was driven by the state\'s need to move tribute and by elite consumption, that price series (such as Egypt\'s) show little market integration, and that trade ran through personal networks and associations, not through impersonal contracts. He rejects both Finley\'s primitivism and modernising views, and does not treat trade as a sign of modernity.',
- caveat:'A reviewer notes Bang does not make price dispersion a separate theme. The game\'s effect of dear bread on poor districts is an extension.',
+ caveat:'Bang does not make price dispersion a separate theme. The game\'s effect of dear bread on poor districts is an extension.',
  refs:['P. F. Bang, The Roman Bazaar (2008)','C. Geertz, "Suq: the bazaar economy in Sefrou" (1979)'],
  link:['https://bmcr.brynmawr.edu/2009/2009.06.51/','Review of The Roman Bazaar (Bryn Mawr Classical Review)']},
 'Integrated markets':{tag:'The market-integration view',
@@ -1475,7 +1596,7 @@ $('#b-rules').onclick=()=>{const r=$('#rules');r.classList.toggle('closed');$('#
 const sliders={};
 function buildRules(){
   const body=$('#rulebody');body.innerHTML='';
-  for(const grp of RULES){if(grp.col&&S.scn!=='colonia')continue;
+  for(const grp of RULES){if(grp.col&&S.scn!=='colonia')continue;if(grp.pom&&S.scn!=='pompeii')continue;
     const h=document.createElement('h3');h.textContent=grp.g;body.appendChild(h);
     if(grp.g==='Bazaar'){const rd_=document.createElement('div');rd_.className='rule';rd_.id='bz-read';rd_.style.cssText='font-size:13px;color:var(--ink2)';body.appendChild(rd_)}
     for(const r of grp.items){
@@ -1515,8 +1636,8 @@ let acc=0,last=performance.now(),tAbs=0;
 function frame(now){
   requestAnimationFrame(frame);
   const dt=Math.min(.1,(now-last)/1000);last=now;tAbs+=dt;
-  keyPan(dt);
-  if(S.speed){acc+=dt*S.speed;let n=0;while(acc>=2.2&&n++<3){acc-=2.2;simStep();updateHud();if(LENS[lensI][1])paintLens()}}
+  keyPan(dt);if(window.__pomReady)volcanoFrame(dt);
+  if(S.speed&&!S.over){acc+=dt*S.speed;let n=0;while(acc>=2.2&&n++<3){acc-=2.2;simStep();updateHud();rebuildPipes();if(LENS[lensI][1])paintLens()}}
   waterMat.uniforms.t.value=tAbs;lightStep();updateCam();
   for(const [id,f] of flames){f.children.forEach(c=>{const s=.8+.5*Math.sin(tAbs*9+c.userData.ph);c.scale.set(.18*s,.5*(1.4-s*.5),.18*s);c.position.y=.9+.15*s})}
   animWalkers(dt,S.speed||0);
@@ -1580,6 +1701,7 @@ function foundColony(ci,cj){
 
 function updateGoals(){
   const el=$('#goals');
+  if(S.scn==='pompeii'){pompGoals(el);return}
   if(S.scn!=='colonia'||S.phase==='found'){el.style.display='none';return}
   const cnt=t=>{let n=0;for(const b of BLD.values())if(b.type===t)n++;return n};
   let vp=0;for(const b of BLD.values())if(b.type==='ager'&&b.owner==='vet')vp++;
@@ -1611,7 +1733,271 @@ function boot(){
 $('#go').onclick=()=>{$('#cover').style.display='none';startColonia()};
 $('#go2').onclick=()=>{$('#cover').style.display='none';startSandbox()};
 boot();
-window.__game={S,R,BLD,tryPlace,canPlace,simStep,roadAt,occ,setTool,DEF,WATER,N,cov,foundColony,siteCheck,costOf,planned,CAM,tileX,tileZ,sewerAt};
+window.__game={pipeAt,S,R,BLD,tryPlace,canPlace,simStep,roadAt,occ,setTool,DEF,WATER,N,cov,foundColony,siteCheck,costOf,planned,CAM,tileX,tileZ,sewerAt};
+
+/* ================= POMPEII, AD 79 ================= */
+/* Scale: one tile is roughly 35 m. A building tile stands for a street-frontage of several narrow houses,
+   so the game counts about a quarter of the real ~11,000 inhabitants. */
+const PV=[[10,12],[18,10],[26,9],[34,10],[40,13],[42,19],[41,26],[38,31],[30,32],[24,33],[16,31],[10,28],[7,22]];
+const INSIDE=new Set();
+function wallPath(){
+  const out=[],seen=new Set();const add=(i,j)=>{const k=i*64+j;if(!seen.has(k)){seen.add(k);out.push([i,j])}};
+  for(let e=0;e<PV.length;e++){
+    const a=PV[e],b=PV[(e+1)%PV.length],n=Math.max(Math.abs(b[0]-a[0]),Math.abs(b[1]-a[1]));
+    let pi=a[0],pj=a[1];add(pi,pj);
+    for(let t=1;t<=n;t++){
+      const i=Math.round(a[0]+(b[0]-a[0])*t/n),j=Math.round(a[1]+(b[1]-a[1])*t/n);
+      if(i!==pi&&j!==pj)add(i,pj);
+      add(i,j);pi=i;pj=j}}
+  return out}
+
+/* ---------- Vesuvius, ash, plume, pumice ---------- */
+const vesGroup=new THREE.Group();vesGroup.visible=false;scene.add(vesGroup);
+{
+  const prof=[[21,.1],[17.5,2],[14,4.2],[10.5,6.4],[7.4,8.6],[5,10.4],[3.8,11.5],[2.8,10.7],[0,10.3]].map(p=>new THREE.Vector2(p[0],p[1]));
+  const g=new THREE.LatheGeometry(prof,44);
+  const pos=g.attributes.position,col=new Float32Array(pos.count*3),c=new THREE.Color();
+  const lo=new THREE.Color('#6d8248'),mid=new THREE.Color('#8f7d60'),hi=new THREE.Color('#5b5148');
+  for(let v=0;v<pos.count;v++){
+    const x=pos.getX(v),y=pos.getY(v),z=pos.getZ(v),r=Math.hypot(x,z),k=1+.09*(hash(x*1.7,z*2.3)-.5);
+    if(r>.5){pos.setX(v,x*k);pos.setZ(v,z*k)}
+    pos.setY(v,y*(1+.05*(hash(z*3.1,x*1.9)-.5)));
+    c.copy(lo).lerp(mid,smooth(1,7,y)).lerp(hi,smooth(7.5,10,y));
+    col[v*3]=c.r;col[v*3+1]=c.g;col[v*3+2]=c.b}
+  g.setAttribute('color',new THREE.BufferAttribute(col,3));g.computeVertexNormals();
+  const cone=new THREE.Mesh(g,new THREE.MeshLambertMaterial({vertexColors:true,flatShading:true}));
+  cone.position.set(5,-.3,-45);vesGroup.add(cone);
+}
+const plume=new THREE.Group();plume.position.set(5,10,-45);plume.visible=false;vesGroup.add(plume);
+const plumeBits=[];
+{
+  const mats=['#6a625a','#564e47','#7a7066'].map(c=>new THREE.MeshLambertMaterial({color:c}));
+  for(let k=0;k<16;k++){
+    const m=new THREE.Mesh(G.sph,mats[k%3]);plume.add(m);
+    const top=k>=12,r=top?2.2+(k-11)*1.7:1.4+k*.32;
+    plumeBits.push({m,y:k*2.15+(top?-1:0),r,flat:top?.42:1,sx:top?1.35:1})}
+  const glow=new THREE.Mesh(G.sph,new THREE.MeshBasicMaterial({color:'#ff8a3a'}));glow.scale.set(2,1,2);glow.position.y=.1;plume.add(glow);plume.userData.glow=glow}
+const pumN=900,pumPos=new Float32Array(pumN*3);
+for(let k=0;k<pumN;k++){pumPos[k*3]=(Math.random()-.5)*60;pumPos[k*3+1]=Math.random()*30;pumPos[k*3+2]=(Math.random()-.5)*60}
+const pumGeo=new THREE.BufferGeometry();pumGeo.setAttribute('position',new THREE.BufferAttribute(pumPos,3));
+const pumice=new THREE.Points(pumGeo,new THREE.PointsMaterial({color:'#d9d2c2',size:2,sizeAttenuation:false}));
+pumice.visible=false;pumice.frustumCulled=false;scene.add(pumice);
+const ashGeo=new THREE.PlaneGeometry(N,N,N,N);ashGeo.rotateX(-Math.PI/2);
+const ashBase=Float32Array.from(ashGeo.attributes.position.array);
+const ashMesh=new THREE.Mesh(ashGeo,new THREE.MeshLambertMaterial({color:'#a39d92'}));ashMesh.visible=false;ashMesh.receiveShadow=true;scene.add(ashMesh);
+function setAsh(a){
+  const p=ashGeo.attributes.position;
+  for(let v=0;v<p.count;v++){const h=heightAt(ashBase[v*3],ashBase[v*3+2]);p.setY(v,h>.1?h+a*(.78+.12*hash(ashBase[v*3]*2,ashBase[v*3+2]*2)):h)}
+  p.needsUpdate=true;ashGeo.computeVertexNormals();ashMesh.visible=a>.01}
+
+function setTerrain(id){
+  TERR.id=id;computeTiles();paintTerrain();computeRiverNear();makeTreeSpots();
+  vesGroup.visible=id==='pompeii';
+}
+
+/* ---------- layout builder ---------- */
+let PF=0;const PFL=[];
+const PL=(t,i,j,r=0)=>{const x=tryPlace(t,i,j,r,true);if(!x.ok){PF++;PFL.push(t+'@'+i+','+j+' '+x.why)}return x};
+function RL(i0,j0,i1,j1,what){
+  i0=clamp(i0,0,N-1);i1=clamp(i1,0,N-1);j0=clamp(j0,0,N-1);j1=clamp(j1,0,N-1);
+  const di=Math.sign(i1-i0),dj=Math.sign(j1-j0);let i=i0,j=j0;
+  for(;;){
+    if(WATER[i][j]){if(!roadAt[i][j]&&!occ[i][j])tryPlace('bridge',i,j,0,true)}
+    else if(what==='pipe'){if(roadAt[i][j]&&!pipeAt[i][j])tryPlace('fistula',i,j,0,true)}
+    else if(!roadAt[i][j]&&(!occ[i][j]||BLD.get(occ[i][j]).type==='aqueduct'))tryPlace('via',i,j,0,true);
+    if(i===i1&&j===j1)break;i+=di;j+=dj}}
+const GATES={};
+function gateRoad(name,i0,j0,dx,dz,out){
+  let x=i0,z=j0;
+  while(inb(x,z)&&!(occ[x][z]&&BLD.get(occ[x][z]).type==='murus')){x+=dx;z+=dz}
+  if(!inb(x,z)){PF++;PFL.push('gate '+name+' not found');return}
+  removeBld(BLD.get(occ[x][z]));PL('porta',x,z);GATES[name]={x,z,dx,dz};
+  for(let k=1;k<4;k++){const u=x+dx*k,v=z+dz*k;if(inb(u,v)&&occ[u][v]&&BLD.get(occ[u][v]).type==='murus')removeBld(BLD.get(occ[u][v]));else break}
+  RL(i0,j0,x-dx,z-dz);RL(x+dx,z+dz,x+dx*out,z+dz*out)}
+const adjR=(i,j,w,d)=>{for(let a=0;a<w;a++)if(rd(i+a,j-1)||rd(i+a,j+d))return true;for(let c=0;c<d;c++)if(rd(i-1,j+c)||rd(i+w,j+c))return true;return false};
+const freeAt=(i,j,w,d)=>{for(let a=0;a<w;a++)for(let c=0;c<d;c++){const x=i+a,z=j+c;if(!inb(x,z)||!INSIDE.has(x*64+z)||occ[x][z]||roadAt[x][z]||WATER[x][z])return false}return true};
+function ruinSite(label,i0,j0,w,d,was){
+  for(let a=0;a<w;a++)for(let c=0;c<d;c++){const r=PL('ruin',i0+a,j0+c);if(r.ok){r.b.ruin=1e9;r.b.keep=label;r.b.was=was;hooks.rebuild(r.b)}}}
+
+function layoutPompeii(){
+  PF=0;PFL.length=0;INSIDE.clear();
+  /* 1. walls (the circuit of about three kilometres) */
+  for(const [i,j] of wallPath())PL('murus',i,j);
+  { const q=[[24,21]];INSIDE.add(24*64+21);
+    while(q.length){const [i,j]=q.pop();for(const d of [[1,0],[-1,0],[0,1],[0,-1]]){const x=i+d[0],z=j+d[1];
+      if(inb(x,z)&&!INSIDE.has(x*64+z)&&!occ[x][z]){INSIDE.add(x*64+z);q.push([x,z])}}}}
+  /* 2. the aqueduct (Aqua Augusta) enters through the wall at the Porta Vesuvio, ending at the castellum */
+  let wt=99;for(let j=0;j<N;j++)if(occ[23][j]&&BLD.get(occ[23][j]).type==='murus'){wt=j;break}
+  let wk=wt;while(occ[23][wk]&&BLD.get(occ[23][wk]).type==='murus'){removeBld(BLD.get(occ[23][wk]));wk++}
+  const wEnd=wk-1;
+  const src=addBld('source',40,1,0,5);src.fixed=true;hooks.add(src);
+  for(let j=3;j<=7;j++)PL('aqueduct',40,j);
+  for(let i=39;i>=24;i--)PL('aqueduct',i,7);
+  for(let j=7;j<=wEnd;j++)PL('aqueduct',23,j);
+  /* 3. gates and streets */
+  gateRoad('Marina',13,23,-1,0,6);gateRoad('Sarno',30,23,1,0,6);
+  gateRoad('Vesuvio',22,16,0,-1,16);gateRoad('Ercolano',14,16,0,-1,16);gateRoad('Nola',38,16,0,-1,16);
+  gateRoad('Stabia',26,28,0,1,20);gateRoad('Nocera',30,29,1,0,6);
+  RL(14,23,30,23);RL(14,15,38,15);RL(14,29,38,29);RL(14,16,14,29);RL(22,16,22,29);RL(26,15,26,28);
+  RL(20,15,20,23);RL(33,15,33,29);RL(38,15,38,23);RL(27,19,38,19);RL(22,wEnd+1,22,16);
+  /* drains: Pompeii had few sewers, mainly under the forum and the main streets, running downhill to the sea */
+  for(let i=33;i>=3;i--)if(!WATER[i][23])tryPlace('cloaca',i,23,0,true);
+  for(let j=12;j<=29;j++)tryPlace('cloaca',14,j,0,true);
+  /* the harbour road on the Sarno bank */
+  RL(26,37,10,37);
+  /* 4. water: castellum aquae by the gate, lead pipes (fistulae) under the main streets, towers and fountains */
+  PL('castellum',23,wEnd+1);
+  RL(22,wEnd+1,22,29,'pipe');RL(14,23,33,23,'pipe');RL(14,15,33,15,'pipe');RL(14,12,14,29,'pipe');RL(26,15,26,29,'pipe');
+  for(const [x,z] of [[21,16],[21,24],[27,24],[15,24],[27,14],[15,14]])PL('castellum',x,z);
+  let lac=0;for(const [x,z] of [[21,18],[23,18],[21,26],[23,26],[13,14],[16,14],[16,24],[20,24],[25,24],[27,22],[24,14],[28,14],[34,22],[34,14],[34,28],[15,30],[27,30]])if(lac<12&&PL('lacus',x,z).ok)lac++;
+  /* 5. public buildings */
+  PL('forum',15,19,1);PL('templum',15,16,0);PL('templum',18,16,0);PL('macellum',18,19,0);PL('horreum',18,21,0);
+  PL('thermae',11,16,0);PL('templum',10,20,0);PL('templum',15,26,0);PL('theatrum',18,26,0);
+  PL('thermae',23,20,0);PL('amph',34,24,0);PL('ager',29,24,0);
+  ruinSite('Temple of Venus',11,24,2,3,'templum');
+  ruinSite('Central Baths',27,16,3,3,'thermae');
+  /* 6. houses and shops along the streets */
+  for(let j=10;j<=33;j++)for(let i=8;i<=42;i++){
+    const h=hash(i*1.3,j*2.9),nw=(i<=21&&j<=22)||(i>=23&&i<=32&&j<=14);
+    if((nw&&h<.5||h<.05)&&freeAt(i,j,2,2)&&adjR(i,j,2,2))PL('domus',i,j,0)}
+  for(let j=10;j<=33;j++)for(let i=8;i<=42;i++){
+    if(!freeAt(i,j,1,1)||!adjR(i,j,1,1))continue;
+    const h=hash(i*3.7,j*1.1),d=Math.hypot(i-16.5,j-21);let t;
+    if(d<7)t=h<.5?'taberna':h<.65?'officina':'insula';
+    else if(i>=29&&j>=24)t=h<.55?'insula':h<.75?'taberna':'officina';
+    else t=h<.3?'taberna':h<.42?'officina':'insula';
+    if(t==='officina'){
+      if(freeAt(i,j,2,1)&&adjR(i,j,2,1))PL('officina',i,j,0);
+      else if(freeAt(i,j,1,2)&&adjR(i,j,1,2))PL('officina',i,j,1);
+      else PL('taberna',i,j)}
+    else PL(t,i,j)}
+  /* 7. fields round the walls, tavernae at the gates, the harbour on the Sarno */
+  for(const j of [0,3])for(const i of [8,11,15,18,24,27,30,33])PL('ager',i,j);
+  for(const i of [9,12,15,18,21,29,32,35])PL('ager',i,34);
+  let ports=0,lastPort=-99;
+  for(let i=9;i<=36&&ports<3;i++)for(let j=35;j<=40&&ports<3;j++){
+    if(i>=lastPort+4&&canPlace('emporium',i,j,0).ok&&adjR(i,j,2,2)){PL('emporium',i,j,0);lastPort=i;ports++}}
+  for(const g of Object.values(GATES)){const x=g.x+g.dx*2+(g.dz?1:0),z=g.z+g.dz*2+(g.dx?1:0);if(canPlace('taberna',x,z,0).ok)PL('taberna',x,z)}
+}
+
+/* ---------- scenario ---------- */
+const POMPR={tribute:20,tax:0,dole:0,slave:30,seg:10,storeys:4,fire:70,leak:35,games:70,piety:70,prod:60,bazaar:55,trust:65,eliteDem:45,scale:30,immig:80,vdate:10,vheed:25};
+function startPompeii(){
+  setTerrain('pompeii');
+  S.scn='pompeii';S.y0=832;S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.plebs=40;S.elite=4;S.dign=140;S.order=70;S.eliteH=72;
+  Object.assign(R,POMPR);Object.assign(RDEF,POMPR);
+  buildRules();
+  const pl=hooks.log,pt=hooks.toast;hooks.log=()=>{};hooks.toast=()=>{};
+  layoutPompeii();rebuildRoads();rebuildPipes();
+  simStep();
+  S.plebs=Math.round(.9*S.cap);S.elite=Math.round(.85*S.capE);S.den=9000;S.grain=16000;S.price=1;S.hunger=0;S.everHungry=0;S.epi=0;
+  S.month=0;S.tick=0;S.tremors=0;S.erupted=0;S.over=false;S.quakeWater=0;S.fear=0;
+  simStep();S.plebs=Math.round(.9*S.cap);S.elite=Math.round(.85*S.capE);S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.hunger=0;S.everHungry=0;S.epi=0;S.fear=0;
+  hooks.log=pl;hooks.toast=pt;
+  CAM.x=tileX(26);CAM.z=tileZ(15);CAM.zoom=24;
+  hooks.log('January, AD 79. Pompeii, a prosperous colony of Sulla\'s veterans, seventeen years after the great earthquake. Some temples and the Central Baths are still under repair.');
+  hooks.log('Keep the water running, the people fed and the gates clear. Nobody here knows that the mountain is a volcano.','warn');
+  updateTrees();updateHud();setSpeed(1)}
+$('#go4').onclick=()=>{$('#cover').style.display='none';startPompeii()};
+
+/* ---------- Vesuvius: tremors, eruption, outcome ---------- */
+let volc=null;
+function gateOpen(b){
+  const out=[],inn=[];
+  for(const [dx,dz] of [[1,0],[-1,0],[0,1],[0,-1]]){const x=b.i+dx,z=b.j+dz;if(!rd(x,z))continue;(INSIDE.has(x*64+z)?inn:out).push([x,z])}
+  if(!inn.length||!out.length)return false;
+  const seen=new Set(),q=out.map(p=>[p[0],p[1],1]);out.forEach(p=>seen.add(p[0]*64+p[1]));
+  while(q.length){const [x,z,n]=q.shift();if(n>=5||x<=0||z<=0||x>=N-1||z>=N-1)return true;
+    for(const [dx,dz] of [[1,0],[-1,0],[0,1],[0,-1]]){const u=x+dx,v=z+dz;if(rd(u,v)&&!INSIDE.has(u*64+v)&&!seen.has(u*64+v)){seen.add(u*64+v);q.push([u,v,n+1])}}}
+  return false}
+function pompStep(){
+  if(S.erupted||!R.vdate)return;
+  const left=((R.vdate-1)-(S.month%12)+12)%12;
+  S.quakeWater=left<=3?.72:0;
+  if(left===0){erupt();return}
+  if(left<=3&&Math.random()<[0,.9,.6,.35][left])tremor()}
+function tremor(){
+  S.tremors=(S.tremors||0)+1;shk=1.5;S.order=Math.max(0,S.order-4);S.fear=Math.min(1,S.fear+.12);
+  const tg=[...BLD.values()].filter(b=>!b.burn&&['insula','domus','taberna','officina','templum','thermae','macellum'].includes(b.type));
+  const n=Math.min(tg.length,1+Math.floor(Math.random()*3));
+  for(let k=0;k<n;k++){const b=tg.splice(Math.floor(Math.random()*tg.length),1)[0];b.was=b.type;b.type='ruin';b.ruin=3;hooks.rebuild(b)}
+  hooks.toast('TERRAE MOTUS',S.tremors>1?'Another tremor. The fountains run low':'The earth shakes');
+  hooks.log(S.tremors>1?'Another tremor. Water pressure falls in the pipes, and some fountains run dry.':'The ground shudders. Old people recall the great earthquake of AD 62.','warn')}
+function erupt(){
+  S.erupted=1;S.over=true;setSpeed(0);
+  let exits=0,ports=0,gates=0;
+  for(const b of BLD.values()){if(b.type==='porta'){gates++;if(gateOpen(b))exits++}if(b.type==='emporium'&&!b.burn)ports++}
+  const heed=R.vheed/100,T=Math.min(3,S.tremors||0),pop=Math.round(S.plebs+S.elite+S.slaves);
+  const f=clamp(.36+.3*heed+.045*Math.min(exits,7)+.05*Math.min(ports,3)+.05*T/3,.25,.97);
+  const dead=Math.round(pop*(1-f));
+  volc={t:0,shown:false,pop,dead,fled:pop-dead,f,exits,gates,ports,T,heed,month:R.vdate,yr:79+Math.floor(S.month/12)};
+  S.dead=dead;S.fled=pop-dead;S.popAtEruption=pop;
+  plume.visible=true;
+  hooks.toast('VESUVIUS','The mountain erupts');hooks.log('A great column of smoke rises from Vesuvius, shaped like an umbrella pine.','bad')}
+function volcanoFrame(dt){
+  if(shk>0)shk=Math.max(0,shk-dt*1.1);
+  if(!volc)return;
+  const t=volc.t+=dt,pT=clamp(t/7,0,1);
+  plumeBits.forEach((o,k)=>{const s=smooth(k/16*.6,k/16*.6+.5,pT);o.m.position.set(Math.sin(k*1.7)*.5*s,o.y*s,Math.cos(k*2.3)*.5*s);
+    const r=o.r*s;o.m.scale.set(r*o.sx,r*o.flat,r*o.sx)});
+  plume.userData.glow.visible=true;
+  dim=smooth(2.5,11,t)*.95;
+  if(t>6&&t<18)setAsh(smooth(6,17,t));
+  pumice.visible=t>2.5;
+  if(pumice.visible){const a=pumGeo.attributes.position.array;for(let k=0;k<pumN;k++){a[k*3+1]-=dt*8;if(a[k*3+1]<0)a[k*3+1]=30}pumGeo.attributes.position.needsUpdate=true}
+  if(t<8){const k=Math.min(1,dt*1.2);CAM.x+=(9-CAM.x)*k;CAM.z+=(-16-CAM.z)*k;CAM.zoom+=(27-CAM.zoom)*k}
+  if(t>19&&!volc.shown){volc.shown=true;showEruption()}}
+const MONTHS_L=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function showEruption(){
+  const v=volc;
+  for(const b of [...BLD.values()])if(!['murus','porta','ruin'].includes(b.type)&&b.type!=='source'){b.was=b.type;b.type='ruin';b.ruin=1e9;hooks.rebuild(b)}
+  S.plebs=S.elite=S.slaves=0;updateHud();
+  const pc=Math.round(v.f*100),esc=n=>fmtN(n);
+  const good=v.f>=.85;
+  $('#vm-t').textContent='VESUVIUS, '+MONTHS_L[v.month-1].toUpperCase()+' AD '+v.yr;
+  $('#vm-b').innerHTML=
+   '<h3>The reckoning</h3>'+
+   '<p>Of about <b>'+esc(v.pop)+'</b> people in your Pompeii, <b>'+esc(v.fled)+'</b> got away ('+pc+'%) and <b>'+esc(v.dead)+'</b> died in the ash and the surges. '+(good?'It is a better outcome than the city knew.':'Most of the dead were those who sheltered in their houses and waited.')+'</p>'+
+   '<dl style="display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:14px;color:var(--ink2)">'+
+   '<dt>Gates with a road beyond</dt><dd style="margin:0;color:var(--ink)">'+v.exits+' of '+v.gates+'</dd>'+
+   '<dt>Harbours on the Sarno</dt><dd style="margin:0;color:var(--ink)">'+v.ports+'</dd>'+
+   '<dt>Tremors before the eruption</dt><dd style="margin:0;color:var(--ink)">'+v.T+'</dd>'+
+   '<dt>Heed paid to the tremors</dt><dd style="margin:0;color:var(--ink)">'+Math.round(v.heed*100)+'%</dd></dl>'+
+   '<p style="font-size:13px;color:var(--ink2)">Scale: the game counts about a quarter of the real population, since each building tile stands for a frontage of several houses.</p>'+
+   '<h3>What happened</h3>'+
+   '<p>Pliny the Younger watched from Misenum across the bay and described a cloud like an umbrella pine (Letters 6.16, 6.20). At Pompeii, pumice fell for many hours and piled up to a depth of about three metres, collapsing roofs. On the second morning, pyroclastic surges swept through the city and killed those who were still there. Cassius Dio (66.21-24) gives a more lurid account written long after.</p>'+
+   '<p>The date is disputed. The manuscripts of Pliny give 24 August. A charcoal inscription found in 2018 in a house under repair is dated to about 17 October, and autumn fruit and braziers among the finds point the same way, so some argue for 24 October. This game lets you choose.</p>'+
+   '<h3>Afterwards</h3>'+
+   '<p>Titus is said to have appointed a commission to help the stricken towns of Campania (Suetonius, Titus 8.3-4). Pompeii was not rebuilt. Some survivors are traced to Naples, Cumae and Nuceria, but most are lost to the record. The site was found again in the 1740s.</p>'+
+   '<h3>Reading</h3><ul style="font-size:14px">'+
+   '<li>Pliny the Younger, Letters 6.16 and 6.20; Cassius Dio 66.21-24</li>'+
+   '<li>A. Wallace-Hadrill, Houses and Society in Pompeii and Herculaneum (1994)</li>'+
+   '<li>R. Laurence, Roman Pompeii: Space and Society (1994)</li>'+
+   '<li>W. Jongman, The Economy and Society of Pompeii (1988)</li>'+
+   '<li>M. Flohr and A. Wilson (eds), The Economy of Pompeii (2017)</li>'+
+   '<li>E. Poehler, The Traffic Systems of Pompeii (2017)</li>'+
+   '<li>G. Luongo and others, "Impact of the AD 79 explosive eruption on Pompeii" (Journal of Volcanology and Geothermal Research, 2003)</li></ul>'+
+   '<p style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px"><button class="chip" id="vm-ok" type="button">Walk the ash</button><button class="chip on" id="vm-again" type="button">Begin again</button></p>';
+  $('#vm').hidden=false;
+  $('#vm-ok').onclick=()=>{$('#vm').hidden=true};$('#vm-again').onclick=()=>location.reload()}
+$('#vm-x').onclick=()=>{$('#vm').hidden=true};
+addEventListener('keydown',e=>{if(e.key==='Escape')$('#vm').hidden=true});
+
+/* ---------- goals ---------- */
+function pompGoals(el){
+  let rub=0,lac=0,open=0,gates=0;
+  for(const b of BLD.values()){if(b.type==='ruin'&&b.keep)rub++;if(b.type==='lacus'&&cov.water[b.j*N+b.i]>.25)lac++;if(b.type==='porta'){gates++;if(gateOpen(b))open++}}
+  const post=!!S.erupted,g=[
+    ['Clear the rubble of the great earthquake of AD 62 ('+rub+' tiles left)',rub===0],
+    ['Run water to 8 street fountains ('+lac+' now)',lac>=8&&S.wr>.5],
+    ['Keep the people calm and fed through the spring',S.tick>=6&&!S.everHungry&&S.order>55],
+    ['Leave a road open beyond every gate ('+open+' of '+gates+')',gates>0&&open===gates],
+    ['See 85% of the people out when Vesuvius wakes'+(post?' ('+Math.round((volc?volc.f:S.fled/Math.max(1,S.popAtEruption))*100)+'%)':''),post&&S.fled/Math.max(1,S.popAtEruption)>=.85]];
+  el.innerHTML='<h4>Pompeii, AD 79</h4><ul>'+g.map(x=>'<li class="'+(x[1]?'done':'')+'">'+x[0]+'</li>').join('')+'</ul>';el.style.display='block'}
+
+window.__pomReady=true;
+Object.assign(window.__game,{volcanoFrame,startPompeii,PFL,erupt,INSIDE,gateOpen,pompStep,GATES,getVolc:()=>volc,setAsh});
+
 </script>
 
 </body></html>
