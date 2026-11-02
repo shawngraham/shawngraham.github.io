@@ -254,7 +254,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
     <div id="inspect"></div>
     <div id="feed" aria-live="polite"></div>
   </div>
-  <div id="hint"><b>Click</b> build · <b>Right-drag / WASD</b> pan · <b>Q E</b> turn · <b>Wheel</b> zoom<br><b>R</b> rotate piece · <b>X</b> demolish · <b>Esc</b> inspect · <b>Space</b> pause · <b>H</b> help</div>
+  <div id="hint"><b>Click</b> build · <b>Right-drag / WASD</b> pan · <b>Q E</b> turn · <b>T</b> top-down · <b>Wheel</b> zoom<br><b>R</b> rotate piece · <b>X</b> demolish · <b>Esc</b> inspect · <b>Space</b> pause · <b>H</b> help</div>
   <div id="founding"><h4>FOUND THE COLONY</h4><p>Click level ground to set the Umbilicus, the centre of your city. The gold stones show the pomerium, the sacred boundary. The only spring rises on the hill to the north-east; the river is nearer but fouls. Your veterans wait in their wagons.</p><div class="bad" id="found-why"></div></div>
   <div id="help" hidden role="dialog" aria-modal="true" aria-labelledby="help-t"><div class="hbox"><header><h2 id="help-t">TABULA: TILE GUIDE</h2><button id="help-x" aria-label="Close guide">×</button></header><div class="hbody">
 <h3>Placement</h3>
@@ -304,7 +304,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <li>A lone Taberna earns less than three together in a bazaar economy.</li>
 <li>Grain above the storage cap spoils. Watch the monthly grain figure in the top bar.</li>
 </ul>
-<p class="keys"><b>Keys:</b> WASD or right-drag pan · Q E turn · wheel zoom · Space pause · 1 2 3 4 speed · H or ? this guide</p>
+<p class="keys"><b>Keys:</b> WASD or right-drag pan · Q E turn · T top-down view · wheel zoom · Space pause · 1 2 3 4 speed · H or ? this guide</p>
 </div></div></div>
   <div id="pm" hidden role="dialog" aria-modal="true" aria-labelledby="pm-t"><div class="hbox"><header><h2 id="pm-t">LEX ET MOS: THE READINGS</h2><button id="pm-x" aria-label="Close">×</button></header><div class="pm-nav" id="pm-nav"></div><div class="hbody" id="pm-body"></div></div></div>
   <div id="vm" hidden role="dialog" aria-modal="true" aria-labelledby="vm-t"><div class="hbox"><header><h2 id="vm-t">VESUVIUS</h2><button id="vm-x" aria-label="Close">×</button></header><div class="hbody" id="vm-b"></div></div></div>
@@ -314,7 +314,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
     <div>
       <div class="meander"></div>
       <h1>URBS AETERNA</h1>
-      <p>80 BC. Sulla has granted land to his demobbed soldiers: found a colonia on empty ground. Walk the streets of Pompeii in its last year, or tend a free city and decide for yourself what made the Urbs work.</p>
+      <p>80 BC. Sulla has granted land to his demobbed soldiers. Found a colonia on empty ground, walk the streets of Pompeii in its last year, or tend a free city and decide for yourself what made Rome work.</p>
       <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go4">POMPEII, AD 79</button><button id="go2" class="alt">FREE CITY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
       <p class="sub">Both modes share the same Lex panel of rules.</p>
       <p id="glmsg" class="nogl" style="font-size:14px;margin-top:14px"></p>
@@ -371,7 +371,7 @@ const scene=new THREE.Scene();
 scene.background=new THREE.Color('#a9c8d6');
 if(renderer){renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap}
 
-const CAM={x:4,z:2,yaw:Math.PI/4,yawT:Math.PI/4,pitch:.6,zoom:14};
+const CAM={x:4,z:2,yaw:Math.PI/4,yawT:Math.PI/4,pitch:.6,pitchT:.6,zoom:14};
 const cam=new THREE.OrthographicCamera(-1,1,1,-1,-300,500);
 function sizeStage(){
   const w=stage.clientWidth||innerWidth,h=stage.clientHeight||innerHeight;
@@ -379,7 +379,7 @@ function sizeStage(){
   const a=w/h;cam.left=-CAM.zoom*a;cam.right=CAM.zoom*a;cam.top=CAM.zoom;cam.bottom=-CAM.zoom;cam.updateProjectionMatrix();
 }
 function updateCam(){
-  CAM.yaw+=(CAM.yawT-CAM.yaw)*.18;
+  CAM.yaw+=(CAM.yawT-CAM.yaw)*.18;CAM.pitch+=(CAM.pitchT-CAM.pitch)*.18;
   const d=90,cp=Math.cos(CAM.pitch);
   cam.position.set(CAM.x+Math.sin(CAM.yaw)*cp*d+(shk?(Math.random()-.5)*shk:0),Math.sin(CAM.pitch)*d+(shk?(Math.random()-.5)*shk*.5:0),CAM.z+Math.cos(CAM.yaw)*cp*d);
   cam.lookAt(CAM.x,0,CAM.z);
@@ -1474,7 +1474,8 @@ addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT')return;const k=e.key.toLowerCase();
   if(!helpEl.hidden||!pmEl.hidden||!$('#vm').hidden){if(k==='escape'||k==='h'||k==='?'){closeHelp();closePM()}return}
   keys[k]=1;
-  if(k==='q')CAM.yawT-=PI/2;else if(k==='e')CAM.yawT+=PI/2;
+  if(k==='t')CAM.pitchT=CAM.pitchT>1?.6:1.5533;
+  else if(k==='q')CAM.yawT-=PI/2;else if(k==='e')CAM.yawT+=PI/2;
   else if(k==='r'&&tool&&DEF[tool]){rot++;makeGhost();updateCursorInfo()}
   else if(k==='h'||k==='?')openHelp();
   else if(k==='x')setTool(tool==='demolish'?null:'demolish');
