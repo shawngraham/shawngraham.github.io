@@ -319,7 +319,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
       <h1>URBS,URBIS</h1>
       <p>Scholars have many theories about how ancient Roman cities worked. This simulation lets you try them out for yourself..</p>
       <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go4">POMPEII</button><button id="go2" class="alt">FREE PLAY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
-      <p class="sub">All modes share the same Lex panel of rules.</p>
+      <p class="sub">Both modes share the same Lex panel of rules.</p>
       <p id="glmsg" class="nogl" style="font-size:14px;margin-top:14px"></p>
     </div>
   </div>
@@ -808,6 +808,7 @@ const RULES=[
 ];
 const PRESETS={
  'Bang: bazaar':{bazaar:85,trust:80,eliteDem:75,scale:15,prod:25,tribute:130,vol:55},
+ 'Pompeii: houses and markets':{seg:0,patron:85,walk:90,storeys:3,piety:60,fluid:60,lease:85,prod:20,scale:20,eliteDem:70,bazaar:60,trust:75,tribute:20,slave:30},
  'Integrated markets':{bazaar:10,trust:20,eliteDem:20,scale:75,prod:70,vol:15},
  'Hard colonists':{vloyal:85,resent:75,cit:5,landsale:30,patron:60},
  'Open colony':{vloyal:55,resent:25,cit:80,landsale:55,immig:130},
@@ -1562,6 +1563,11 @@ const PINFO={
  hist:'Keith Hopkins (Conquerors and Slaves, 1978) argued that conquest turned Italy into a slave society, and Keith Bradley (Slavery and Society at Rome, 1994) surveys how it worked and how the enslaved resisted. Estimates of the slave share of Rome\'s population are uncertain and commonly fall between about a fifth and a third. Tacitus (Annals 14.42-45) tells how, after a slave murdered the city prefect Pedanius Secundus in AD 61, all 400 slaves of his household were executed, which shows the elite\'s fear. The Sicilian slave wars and the rising of Spartacus (73-71 BC) are the great revolts.',
  caveat:'The game\'s revolt rule is a rough stand-in. Most resistance was small: flight, sabotage and petition.',
  refs:['K. Hopkins, Conquerors and Slaves (1978)','K. Bradley, Slavery and Society at Rome (1994)','Tacitus, Annals 14.42-45']},
+ 'Pompeii: houses and markets':{tag:'Shops in the great houses, a city of consumers',
+ sim:'Neighbourhoods are fully mixed (separation 0) and patronage binds strongly (85%). Land use is fluid (60%) and owners readily lease their frontage (85%), so atrium houses on busy streets are split into shops and workshops. Workshops earn little (producer 20) and traders are small (scale 20), and trade depends on elite demand (70%) and personal ties (75%) in a bazaar-like market (60). Insulae are limited to three storeys, as at Pompeii. Expect a lively street life of many small shops that depends on a few rich households, and weak export trade.',
+ hist:'Two readings are combined. Andrew Wallace-Hadrill (Houses and Society in Pompeii and Herculaneum, 1994) found no zoning by class: grand houses had shops built into their frontages and let rooms to tenants, and rich and poor lived on the same streets. He also argued that elites took part in trade through their households (in Rich and Wallace-Hadrill, eds, City and Country in the Ancient World, 1991). Willem Jongman (The Economy and Society of Pompeii, 1988) applied Finley\'s model of the consumer city: Pompeii lived on the surplus of its landowners, and its crafts and trade mostly served local needs. The two fit together if the shops in the great houses are read as the elite spending its rents locally.',
+ caveat:'Later work disputes Jongman. Flohr and Wilson (The Economy of Pompeii, 2017) stress how much cloth-making, fulling and food processing the town carried out, and some of it for wider markets. The citations are from memory, so check them before relying on them.',
+ refs:['A. Wallace-Hadrill, Houses and Society in Pompeii and Herculaneum (1994)','W. Jongman, The Economy and Society of Pompeii (1988)','A. Wallace-Hadrill, "Elites and trade in the Roman town", in J. Rich and A. Wallace-Hadrill (eds), City and Country in the Ancient World (1991)','M. Flohr and A. Wilson (eds), The Economy of Pompeii (2017)']},
 'Bang: bazaar':{tag:'The Roman bazaar',
  sim:'Markets are bazaar-like (85), trade rests on personal ties (80), on elite and tribute demand (75), and on small traders (scale 15). Tribute is 130%, workshops are weak (producer 25) and prices swing (55%). Traders pay off when clustered near patrons, and trade fades if tribute falls or elites are few. See the Bazaar group in the rules panel for the live multiplier.',
  hist:'Peter Bang, The Roman Bazaar (2008), draws on Clifford Geertz\'s bazaar economy and compares Rome with the Mughal Empire. He argues that trade was driven by the state\'s need to move tribute and by elite consumption, that price series (such as Egypt\'s) show little market integration, and that trade ran through personal networks and associations, not through impersonal contracts. He rejects both Finley\'s primitivism and modernising views, and does not treat trade as a sign of modernity.',
@@ -1592,7 +1598,7 @@ function applyPreset(name){
 const pmEl=$('#pm'),esc_=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 let pmSel='Finley';
 function renderPM(){
-  const names=['Finley','Hopkins','Bang: bazaar','Integrated markets','Mixed streets','Augustus','Graveyard','Slave city','Hard colonists','Open colony','Reset'].filter(n=>PINFO[n]&&PRESETS[n]&&!(['Hard colonists','Open colony'].includes(n)&&S.scn!=='colonia'));
+  const names=['Finley','Hopkins','Bang: bazaar','Integrated markets','Mixed streets','Pompeii: houses and markets','Augustus','Graveyard','Slave city','Hard colonists','Open colony','Reset'].filter(n=>PINFO[n]&&PRESETS[n]&&!(['Hard colonists','Open colony'].includes(n)&&S.scn!=='colonia')&&!(n.startsWith('Pompeii')&&S.scn!=='pompeii'));
   if(!names.includes(pmSel))pmSel=names[0];
   const nav=$('#pm-nav');nav.innerHTML='';
   names.forEach(n=>{const b=document.createElement('button');b.className='chip'+(n===pmSel?' on':'');b.textContent=n;b.onclick=()=>{pmSel=n;renderPM();$('#pm-body').scrollTop=0};nav.appendChild(b)});
@@ -1654,7 +1660,8 @@ function buildRules(){
         if(r.k==='storeys')for(const b of BLD.values())if(b.type==='insula')rebuildMesh(b)});
       el.querySelector('.why').onclick=()=>el.classList.toggle('open');body.appendChild(el)}}
   const pr=$('#presets');pr.innerHTML='';
-  for(const name of Object.keys(PRESETS)){if(['Hard colonists','Open colony'].includes(name)&&S.scn!=='colonia')continue;const c=document.createElement('button');c.className='chip';c.textContent=name;
+  for(const name of Object.keys(PRESETS)){if(['Hard colonists','Open colony'].includes(name)&&S.scn!=='colonia')continue;if(name.startsWith('Pompeii')&&S.scn!=='pompeii')continue;const c=document.createElement('button');c.className='chip';c.textContent=name;
+
     c.onclick=()=>applyPreset(name);pr.appendChild(c)}}
 
 /* ---------- HUD ---------- */
@@ -1925,7 +1932,7 @@ function layoutPompeii(){
 }
 
 /* ---------- scenario ---------- */
-const POMPR={tribute:20,tax:0,dole:0,slave:30,seg:10,storeys:4,fire:70,leak:35,games:70,piety:70,prod:60,bazaar:55,trust:65,eliteDem:45,scale:30,immig:80,vdate:10,vheed:25};
+const POMPR={tribute:20,tax:0,dole:0,slave:30,seg:10,storeys:4,fire:20,leak:35,games:70,piety:70,prod:60,bazaar:55,trust:65,eliteDem:45,scale:30,immig:80,vdate:10,vheed:25};
 function startPompeii(){
   setTerrain('pompeii');
   S.scn='pompeii';S.y0=815;S.vOn=true;S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.plebs=40;S.elite=4;S.dign=140;S.order=70;S.eliteH=72;
