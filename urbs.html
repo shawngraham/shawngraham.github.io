@@ -286,7 +286,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <p>Blocks change as the city lives. The Lex group "Urban change" has three sliders: land-use fluidity (zero freezes everything), how readily elites lease their frontage, and how fast designated sites are cleared. A domus on a busy street may be split into a workshop and shops, or into flats if housing is short. Tenements on busy corners may become shops, and shops where trade is thin may become tenements. Owners rebuild many burnt blocks, sometimes as something else, and a rich family may build a new domus on vacant ground. Each change is logged with its reason.</p>
 <p>Entertainment buildings are never cleared automatically. Choose Site: Theatre or Site: Arena, click the plot, and the homes on it are bought out for half their price and demolished. Displaced crowds raise unrest. When the plot is empty and you can pay, the building goes up. Click a site to cancel it for half the deposit.</p>
 <h3>Pompeii</h3>
-<p>The Pompeii map starts in January 70 BC, but draws the city as it stood in AD 79: walls and seven gates, the forum and temples, two baths and a theatre, the amphitheatre in the south-east corner, water from the Aqua Augusta arriving at the castellum by the Porta Vesuvio, and lead pipes carrying it to street fountains. Several sites are still rubble from the earthquake of AD 62. One tile is about 35 metres, and a building tile stands for several houses, so the game shows about a quarter of the real population.</p>
+<p>The Pompeii map starts in January AD 62, but draws the city as it stood in AD 79: walls and seven gates, the forum and temples, two baths and a theatre, the amphitheatre in the south-east corner, water from the Aqua Augusta arriving at the castellum by the Porta Vesuvio, and lead pipes carrying it to street fountains. Several sites are still rubble from the earthquake of AD 62. One tile is about 35 metres, and a building tile stands for several houses, so the game shows about a quarter of the real population.</p>
 <ul><li>Run the city as you like. The Lex panel has a Vesuvius group: a switch for whether the mountain erupts in AD 79 (no preset touches it), the month of the eruption, and how much heed people pay to tremors. The eruption is about 148 years of play away, so use 4× speed.</li>
 <li>In the three months before the eruption there are tremors. They damage buildings and cut the water pressure.</li>
 <li>When the mountain erupts, the share who escape depends on the heed paid to tremors, the gates that have a road leading away, and the harbours on the Sarno. Pompeii had no vigiles, no sewers beyond a few drains and no way of knowing what the mountain was.</li></ul>
@@ -316,9 +316,9 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
   <div id="cover">
     <div>
       <div class="meander"></div>
-      <h1>URBS, URBIS</h1>
-      <p>80 BC. Sulla has granted land to his demobbed soldiers. Found a colonia on empty ground, walk the streets of Pompeii in its last year, or tend a free city and decide for yourself what made Rome work.</p>
-      <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go4">POMPEII, 70 BC</button><button id="go2" class="alt">FREE CITY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
+      <h1>URBS,URBIS</h1>
+      <p>Scholars have many theories about how ancient Roman cities worked. This simulation lets you try them out for yourself..</p>
+      <div class="cover-btns"><button id="go">FOUND A COLONIA</button><button id="go4">POMPEII</button><button id="go2" class="alt">FREE PLAY</button><button id="go3" class="alt">HOW TO PLAY</button></div>
       <p class="sub">Both modes share the same Lex panel of rules.</p>
       <p id="glmsg" class="nogl" style="font-size:14px;margin-top:14px"></p>
     </div>
@@ -1928,7 +1928,7 @@ function layoutPompeii(){
 const POMPR={tribute:20,tax:0,dole:0,slave:30,seg:10,storeys:4,fire:70,leak:35,games:70,piety:70,prod:60,bazaar:55,trust:65,eliteDem:45,scale:30,immig:80,vdate:10,vheed:25};
 function startPompeii(){
   setTerrain('pompeii');
-  S.scn='pompeii';S.y0=684;S.vOn=true;S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.plebs=40;S.elite=4;S.dign=140;S.order=70;S.eliteH=72;
+  S.scn='pompeii';S.y0=810;S.vOn=true;S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.plebs=40;S.elite=4;S.dign=140;S.order=70;S.eliteH=72;
   Object.assign(R,POMPR);Object.assign(RDEF,POMPR);
   buildRules();
   const pl=hooks.log,pt=hooks.toast;hooks.log=()=>{};hooks.toast=()=>{};
@@ -1939,7 +1939,7 @@ function startPompeii(){
   simStep();S.plebs=Math.round(.9*S.cap);S.elite=Math.round(.85*S.capE);S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.hunger=0;S.everHungry=0;S.epi=0;S.fear=0;
   hooks.log=pl;hooks.toast=pt;
   CAM.x=tileX(26);CAM.z=tileZ(15);CAM.zoom=24;
-  hooks.log('January, 70 BC. Pompeii, the veteran colony Sulla founded ten years ago. The map shows the city as it will stand in AD 79; some temples and the Central Baths are still rubble.');
+  hooks.log('January, AD 62. Pompeii, the veteran colony founded by Sulla the previous century. The map shows the city as it stands after the earthquake; some temples and the Central Baths are still rubble.');
   hooks.log('Keep the water running, the people fed and the gates clear. Nobody here knows that the mountain is a volcano.','warn');
   updateTrees();updateHud();setSpeed(1)}
 $('#go4').onclick=()=>{$('#cover').style.display='none';startPompeii()};
@@ -2010,7 +2010,7 @@ function showEruption(){
    '<p style="font-size:13px;color:var(--ink2)">Scale: the game counts about a quarter of the real population, since each building tile stands for a frontage of several houses.</p>'+
    '<h3>What happened</h3>'+
    '<p>Pliny the Younger watched from Misenum across the bay and described a cloud like an umbrella pine (Letters 6.16, 6.20). At Pompeii, pumice fell for many hours and piled up to a depth of about three metres, collapsing roofs. On the second morning, pyroclastic surges swept through the city and killed those who were still there. Cassius Dio (66.21-24) gives a more lurid account written long after.</p>'+
-   '<p>The date is disputed. The manuscripts of Pliny give 24 August. A charcoal inscription found in 2018 in a house under repair is dated to about 17 October, and autumn fruit and braziers among the finds point the same way, so some argue for 24 October. This game lets you choose.</p>'+
+   '<p>The date is disputed. The manuscripts of Pliny give 24 August. A charcoal inscription found in 2018 in a house under repair is dated to about 17 October, and autumn fruit and braziers among the finds point the same way, so some argue for 24 October. Archaeology trumps literature.</p>'+
    '<h3>Afterwards</h3>'+
    '<p>Titus is said to have appointed a commission to help the stricken towns of Campania (Suetonius, Titus 8.3-4). Pompeii was not rebuilt. Some survivors are traced to Naples, Cumae and Nuceria, but most are lost to the record. The site was found again in the 1740s.</p>'+
    '<h3>Reading</h3><ul style="font-size:14px">'+
