@@ -102,40 +102,58 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 
 #help{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #vm{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#dm{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #help[hidden]{display:none!important}
 #vm[hidden]{display:none!important}
+#dm[hidden]{display:none!important}
 #help .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
 #vm .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
+#dm .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
 #help header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bronze-dim);background:var(--panel)}
 #vm header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bronze-dim);background:var(--panel)}
+#dm header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bronze-dim);background:var(--panel)}
 #help h2{margin:0;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
 #vm h2{margin:0;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
+#dm h2{margin:0;font:400 20px var(--display);letter-spacing:.14em;color:var(--bronze)}
 #help header button{background:var(--panel2);border:1px solid var(--line);width:34px;height:34px;font-size:20px;line-height:1}
 #vm header button{background:var(--panel2);border:1px solid var(--line);width:34px;height:34px;font-size:20px;line-height:1}
+#dm header button{background:var(--panel2);border:1px solid var(--line);width:34px;height:34px;font-size:20px;line-height:1}
 #help header button:hover{border-color:var(--bronze)}
 #vm header button:hover{border-color:var(--bronze)}
+#dm header button:hover{border-color:var(--bronze)}
 #help .hbody{overflow-y:auto;padding:4px 18px 18px;min-width:0;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent;user-select:text;-webkit-user-select:text}
 #vm .hbody{overflow-y:auto;padding:4px 18px 18px;min-width:0;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent;user-select:text;-webkit-user-select:text}
+#dm .hbody{overflow-y:auto;padding:4px 18px 18px;min-width:0;scrollbar-width:thin;scrollbar-color:var(--bronze-dim) transparent;user-select:text;-webkit-user-select:text}
 #help h3{font:400 13px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:20px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
 #vm h3{font:400 13px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:20px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+#dm h3{font:400 13px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:20px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
 #help p,#help li{font-size:14.5px;line-height:1.4;margin:4px 0;max-width:72ch}
 #vm p,#vm li{font-size:14.5px;line-height:1.4;margin:4px 0;max-width:72ch}
+#dm p,#vm li{font-size:14.5px;line-height:1.4;margin:4px 0;max-width:72ch}
 #help ul,#help ol{margin:4px 0;padding-left:20px}
 #vm ul,#vm ol{margin:4px 0;padding-left:20px}
+#dm ul,#vm ol{margin:4px 0;padding-left:20px}
 #help .tw{overflow-x:auto;margin:6px 0}
 #vm .tw{overflow-x:auto;margin:6px 0}
+#dm .tw{overflow-x:auto;margin:6px 0}
 #help table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
 #vm table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+#dm table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
 #help th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--line)}
 #vm th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--line)}
+#dm th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:500;padding:5px 8px;border-bottom:1px solid var(--line)}
 #help td{padding:6px 8px;border-bottom:1px solid #2f2631;vertical-align:top;color:var(--ink)}
 #vm td{padding:6px 8px;border-bottom:1px solid #2f2631;vertical-align:top;color:var(--ink)}
+#dm td{padding:6px 8px;border-bottom:1px solid #2f2631;vertical-align:top;color:var(--ink)}
 #help td:first-child{font-weight:700;color:var(--bronze);white-space:nowrap}
 #vm td:first-child{font-weight:700;color:var(--bronze);white-space:nowrap}
+#dm td:first-child{font-weight:700;color:var(--bronze);white-space:nowrap}
 #help td:nth-child(2),#help td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
 #vm td:nth-child(2),#vm td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
+#dm td:nth-child(2),#vm td:nth-child(3){white-space:nowrap;font-variant-numeric:tabular-nums}
 #help .keys{margin-top:16px;color:var(--ink2);font-size:13.5px}
 #vm .keys{margin-top:16px;color:var(--ink2);font-size:13.5px}
+#dm .keys{margin-top:16px;color:var(--ink2);font-size:13.5px}
 #pm{position:absolute;inset:0;z-index:30;background:rgba(10,8,14,.74);display:flex;align-items:center;justify-content:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #pm[hidden]{display:none!important}
 #pm .hbox{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bronze);box-shadow:0 12px 50px #000}
@@ -205,6 +223,22 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
   #toast{font-size:20px;white-space:normal;width:86%}
 }
 @media (prefers-reduced-motion:reduce){#feed div{animation:none}#rules{transition:none}}
+#dm .hbox{width:min(1120px,100%);height:min(94vh,100%)}
+#dm .hbody{flex:1}
+#dm .dbar{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:10px 0 6px}
+#dm .dbar input[type=text]{background:var(--panel2);border:1px solid var(--line);color:var(--ink);padding:5px 8px;font:inherit;font-size:13px;width:150px}
+#dm .dtabs{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+#dm .dnote{font-size:13px;color:var(--ink2);max-width:80ch;margin:4px 0}
+#dm .dchart{margin:10px 0 14px}
+#dm .dchart h4{margin:0 0 2px;font:400 14px var(--display);letter-spacing:.1em;color:var(--bronze);text-transform:uppercase}
+#dm .dleg{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:12.5px;color:var(--ink2);margin:2px 0 4px;min-height:18px}
+#dm .dleg i{display:inline-block;width:14px;height:3px;margin-right:5px;vertical-align:middle}
+#dm .dleg b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+#dm canvas.dc{display:block;width:100%;height:190px;background:#120f17;border:1px solid var(--line)}
+#dm table.dt{border-collapse:collapse;font-size:13.5px;min-width:60%}
+#dm table.dt th,#dm table.dt td{padding:3px 12px 3px 0;text-align:left;border-bottom:1px solid var(--line)}
+#dm table.dt td.n{text-align:right;font-variant-numeric:tabular-nums}
+#dm .evl{max-height:60vh;overflow-y:auto}
 </style>
 
 <div id="app">
@@ -230,6 +264,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
         <button id="b-time" title="Change the light">Meridies</button>
         <button id="b-lens" title="Service coverage overlay">Lens: off</button>
         <button id="b-rules" class="on">Lex</button>
+        <button id="b-data" title="Charts, run comparison and CSV (G)">Data</button>
         <button id="b-help" title="Tile guide (H)">Help</button>
       </div>
     </div>
@@ -285,6 +320,8 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <h3>Change of use</h3>
 <p>Blocks change as the city lives. The Lex group "Urban change" has three sliders: land-use fluidity (zero freezes everything), how readily elites lease their frontage, and how fast designated sites are cleared. A domus on a busy street may be split into a workshop and shops, or into flats if housing is short. Tenements on busy corners may become shops, and shops where trade is thin may become tenements. Owners rebuild many burnt blocks, sometimes as something else, and a rich family may build a new domus on vacant ground. Each change is logged with its reason.</p>
 <p>Entertainment buildings are never cleared automatically. Choose Site: Theatre or Site: Arena, click the plot, and the homes on it are bought out for half their price and demolished. Displaced crowds raise unrest. When the plot is empty and you can pay, the building goes up. Click a site to cancel it for half the deposit.</p>
+<h3>The Ledger (data panel)</h3>
+<p>Press <b>G</b> or the Ledger button. Every month the simulation records its state: people, money by source, order and its two terms, grain, service coverage, the bazaar multiplier and building counts. Hover a chart to read values at that month. Pink dashed lines mark changes of rule or reading; small ticks mark logged events. <b>Save this run as reference</b>, change the Lex rules or choose another reading, and play again: the reference appears as dashed lines, and the Summary tab tabulates the differences at the same month. <b>Copy CSV</b> (or Save CSV where offered) exports every series, the thirty rule values at each month, and the event notes, for a spreadsheet. The reference is kept in this browser only.</p>
 <h3>Pompeii</h3>
 <p>The Pompeii map starts in January AD 62, but draws the city as it stood in AD 79: walls and seven gates, the forum and temples, two baths and a theatre, the amphitheatre in the south-east corner, water from the Aqua Augusta arriving at the castellum by the Porta Vesuvio, and lead pipes carrying it to street fountains. Several sites are still rubble from the earthquake of AD 62. One tile is about 35 metres, and a building tile stands for several houses, so the game shows about a quarter of the real population.</p>
 <ul><li>Run the city as you like. The Lex panel has a Vesuvius group: a switch for whether the mountain erupts in AD 79 (no preset touches it), the month of the eruption, and how much heed people pay to tremors. The eruption is about 148 years of play away, so use 4× speed.</li>
@@ -307,9 +344,10 @@ input[type=range]::-moz-range-thumb{width:10px;height:14px;background:var(--ink)
 <li>A lone Taberna earns less than three together in a bazaar economy.</li>
 <li>Grain above the storage cap spoils. Watch the monthly grain figure in the top bar.</li>
 </ul>
-<p class="keys"><b>Keys:</b> WASD or right-drag pan · Q E turn · T top-down view · wheel zoom · Space pause · 1 2 3 4 speed · H or ? this guide</p>
+<p class="keys"><b>Keys:</b> WASD or right-drag pan · Q E turn · T top-down view · G data ledger · wheel zoom · Space pause · 1 2 3 4 speed · H or ? this guide</p>
 </div></div></div>
   <div id="pm" hidden role="dialog" aria-modal="true" aria-labelledby="pm-t"><div class="hbox"><header><h2 id="pm-t">LEX ET MOS: THE READINGS</h2><button id="pm-x" aria-label="Close">×</button></header><div class="pm-nav" id="pm-nav"></div><div class="hbody" id="pm-body"></div></div></div>
+  <div id="dm" hidden role="dialog" aria-modal="true" aria-labelledby="dm-t"><div class="hbox"><header><h2 id="dm-t">THE LEDGER</h2><button id="dm-x" aria-label="Close">×</button></header><div class="hbody" id="dm-b"></div></div></div>
   <div id="vm" hidden role="dialog" aria-modal="true" aria-labelledby="vm-t"><div class="hbox"><header><h2 id="vm-t">VESUVIUS</h2><button id="vm-x" aria-label="Close">×</button></header><div class="hbody" id="vm-b"></div></div></div>
   <div id="toast"></div>
 
@@ -1230,6 +1268,7 @@ function simStep(){
   S.pop=total;
   if(window.__evoReady)evolveStep();
   if(S.scn==='pompeii')pompStep();
+  if(window.__dataReady)recordRow();
 }
 /* ================= GAME LAYER: meshes, input, UI, loop ================= */
 MODEL.via=g=>g.add(Bx(M.pave,.96,.06,.96,0,0,0));
@@ -1510,7 +1549,7 @@ function clampCam(){CAM.x=clamp(CAM.x,-HALF,HALF);CAM.z=clamp(CAM.z,-HALF,HALF)}
 const keys={};
 addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT')return;const k=e.key.toLowerCase();
-  if(!helpEl.hidden||!pmEl.hidden||!$('#vm').hidden){if(k==='escape'||k==='h'||k==='?'){closeHelp();closePM()}return}
+  if(!helpEl.hidden||!pmEl.hidden||!$('#vm').hidden||!$('#dm').hidden){if(k==='escape'||k==='h'||k==='?'){closeHelp();closePM()}return}
   keys[k]=1;
   if(k==='t')CAM.pitchT=CAM.pitchT>1?.6:1.5533;
   else if(k==='q')CAM.yawT-=PI/2;else if(k==='e')CAM.yawT+=PI/2;
@@ -1594,6 +1633,7 @@ function applyPreset(name){
   const keep={vdate:R.vdate,vheed:R.vheed};
   Object.assign(R,RDEF,PRESETS[name],keep);Object.values(sliders).forEach(f=>f());
   for(const b of BLD.values())if(b.type==='insula')rebuildMesh(b);
+  if(window.__dataReady)notePreset(name);
   hooks.log(name==='Reset'?'Rules restored to the defaults.':'Rules set to the "'+name+'" reading.')}
 const pmEl=$('#pm'),esc_=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 let pmSel='Finley';
@@ -1658,7 +1698,8 @@ function buildRules(){
       const sync=()=>{inp.value=R[r.k];out.textContent=r.fmt(R[r.k])};sliders[r.k]=sync;sync();
       inp.addEventListener('input',()=>{R[r.k]=+inp.value;out.textContent=r.fmt(R[r.k]);
         if(r.k==='storeys')for(const b of BLD.values())if(b.type==='insula')rebuildMesh(b)});
-      el.querySelector('.why').onclick=()=>el.classList.toggle('open');body.appendChild(el)}}
+       inp.addEventListener('change',()=>{if(window.__dataReady)noteRule(r.name+': '+r.fmt(R[r.k]))});
+       el.querySelector('.why').onclick=()=>el.classList.toggle('open');body.appendChild(el)}}
   const pr=$('#presets');pr.innerHTML='';
   for(const name of Object.keys(PRESETS)){if(['Hard colonists','Open colony'].includes(name)&&S.scn!=='colonia')continue;if(name.startsWith('Pompeii')&&S.scn!=='pompeii')continue;const c=document.createElement('button');c.className='chip';c.textContent=name;
 
@@ -1765,7 +1806,7 @@ function updateGoals(){
 function startSandbox(){
   S.scn='sandbox';buildRules();
   const pl=hooks.log;hooks.log=()=>{};
-  starter();rebuildRoads();simStep();S.month=2;S.tick=0;S.plebs=Math.max(S.plebs,80);hooks.log=pl;
+  starter();rebuildRoads();simStep();S.month=2;S.tick=0;S.plebs=Math.max(S.plebs,80);hooks.log=pl;if(window.__dataReady)dataReset();
   hooks.log('Founding of the settlement. Your first task: bring water from the spring.');
   updateHud();setSpeed(1)}
 function startColonia(){
@@ -1773,6 +1814,7 @@ function startColonia(){
   RDEF.tribute=R.tribute=35;RDEF.dole=R.dole=0;RDEF.slave=R.slave=20;
   buildRules();placeSpring();CAM.x=2;CAM.z=-2;CAM.zoom=22;S.speed=0;
   $('#founding').style.display='block';updateHud();
+  if(window.__dataReady)dataReset();
   hooks.log('80 BC. Sulla has granted your veterans land. Choose where the colony will stand.')}
 
 /* ---------- boot ---------- */
@@ -1944,7 +1986,7 @@ function startPompeii(){
   S.plebs=Math.round(.9*S.cap);S.elite=Math.round(.85*S.capE);S.den=9000;S.grain=16000;S.price=1;S.hunger=0;S.everHungry=0;S.epi=0;
   S.month=0;S.tick=0;S.tremors=0;S.erupted=0;S.over=false;S.quakeWater=0;S.fear=0;
   simStep();S.plebs=Math.round(.9*S.cap);S.elite=Math.round(.85*S.capE);S.month=0;S.tick=0;S.den=9000;S.grain=16000;S.hunger=0;S.everHungry=0;S.epi=0;S.fear=0;
-  hooks.log=pl;hooks.toast=pt;
+    hooks.log=pl;hooks.toast=pt;if(window.__dataReady)dataReset();
   CAM.x=tileX(26);CAM.z=tileZ(15);CAM.zoom=24;
   hooks.log('January, AD 62. Pompeii, the veteran colony founded by Sulla the previous century. The map shows the city as it stands after the earthquake; some temples and the Central Baths are still rubble.');
   hooks.log('Keep the water running, the people fed and the gates clear. Nobody here knows that the mountain is a volcano.','warn');
@@ -2148,6 +2190,189 @@ function siteStep(){
     else if(!s.warned){s.warned=1;log('The '+DEF[s.type].name+' site stands empty, but the treasury cannot pay '+DEF[s.type].cost+' denarii.','warn')}}}
 window.__evoReady=true;
 Object.assign(window.__game,{evolveStep,siteStep,SITES,siteAt,convertDomus});
+
+/* ================= THE LEDGER: recorded series, charts, run comparison, CSV ================= */
+const DATA={rows:[],mark:[],ref:null,mAbs0:0,y0:0,preset:'default',scn:'sandbox'};
+const RKEYS=RULES.flatMap(g=>g.items.map(r=>r.k));
+const absYear=t=>{const a=DATA.y0+Math.floor((DATA.mAbs0+t)/12);return a<754?(754-a)+' BC':(a-753)+' AD'};
+const dateAt=t=>MONTHS[(DATA.mAbs0+t)%12]+' '+absYear(t);
+function dataReset(){DATA.rows=[];DATA.mark=[];DATA.mAbs0=S.month;DATA.y0=S.y0;DATA.scn=S.scn;DATA.preset='default';if(!$('#dm').hidden)renderDM()}
+function noteRule(text){DATA.mark.push({tick:S.tick,kind:'rule',text});if(DATA.preset!=='default'&&!DATA.preset.endsWith('*'))DATA.preset+='*'}
+function notePreset(name){DATA.mark.push({tick:S.tick,kind:'rule',text:'Reading: '+name});DATA.preset=name==='Reset'?'default':name}
+{const old=hooks.log;hooks.log=(t,k)=>{old(t,k);if(window.__dataReady&&(k==='bad'||k==='warn'||k==='good'))DATA.mark.push({tick:S.tick,kind:'event',cls:k,text:t})}}
+
+function recordRow(){
+  const A=S.A||{},fl=S.flow||{},cv=S.cv||{},bz=S.bz||{};let ruin=0,tot=0;
+  for(const b of BLD.values()){if(b.type==='murus')continue;tot++;if(b.type==='ruin')ruin++}
+  const r={tick:S.tick,plebs:S.plebs,elite:S.elite,slaves:S.slaves||0,pop:S.plebs+S.elite,cap:S.cap||0,capE:S.capE||0,homeless:S.homeless||0,
+    den:S.den,inc:S.inc||0,exp:S.exp||0,net:(S.inc||0)-(S.exp||0),f_tribute:fl.tribute||0,f_tax:fl.tax||0,f_trade:fl.trade||0,f_grain:fl.grain||0,f_upkeep:fl.upkeep||0,f_imports:fl.imports||0,f_games:fl.games||0,
+    grain:S.grain,gprod:S.grainProd||0,gimp:S.imp||0,price:S.price,hunger:S.hunger||0,
+    order:S.order,stress:S.Xterm||0,calm:S.Mterm||0,disease:S.disease,epi:S.epi?1:0,unemp:S.unemp||0,prosp:S.prosp||0,dign:S.dign,eliteH:S.eliteH,fear:S.fear||0,wr:S.wr,
+    c_water:cv.water||0,c_sewer:cv.sewer||0,c_market:cv.market||0,c_temple:cv.temple||0,c_bath:cv.bath||0,c_game:cv.game||0,c_patron:cv.patron||0,c_order:cv.order||0,c_fire:cv.fire||0,
+    bz_mult:bz.mult||0,bz_clu:bz.clu||0,bz_pm:bz.avPm||0,bz_dem:bz.demX||0,
+    n_tent:A.tents||0,n_insula:A.ins||0,n_domus:A.domus||0,n_taberna:A.tab||0,n_macellum:A.mac||0,n_officina:A.off||0,n_ager:A.farms||0,n_emporium:A.ports||0,n_thermae:A.thermae||0,n_vigiles:A.vig||0,n_ruin:ruin,n_all:tot,
+    preset:DATA.preset,R:RKEYS.map(k=>R[k])};
+  while(DATA.rows.length&&DATA.rows[DATA.rows.length-1].tick>=r.tick)DATA.rows.pop();
+  DATA.rows.push(r);
+  if(!$('#dm').hidden)schedDM()}
+let dmT=0;const schedDM=()=>{if(dmT)return;dmT=setTimeout(()=>{dmT=0;if(!$('#dm').hidden)renderDM(true)},400)};
+
+/* ---------- series definitions ---------- */
+const sr=(k,label,color,scale=1,dec=0)=>({k,label,color,scale,dec});
+const C={bronze:'#c99b4b',pink:'#d9639f',teal:'#62b6c4',green:'#86b86d',amber:'#e3a840',red:'#e5624b',blue:'#7aa7e0',violet:'#a995d9',gold:'#e8c76a',grey:'#a99f93'};
+const TABS=[
+ ['Summary',null],
+ ['People',[{t:'People',s:[sr('plebs','Plebs',C.bronze),sr('elite','Elites',C.pink),sr('slaves','Enslaved (estimate)',C.violet)]},
+   {t:'Housing and homelessness',s:[sr('cap','Housing capacity (plebs)',C.teal),sr('plebs','Plebs',C.bronze),sr('homeless','Homeless',C.red)]}]],
+ ['Money',[{t:'Treasury (denarii)',s:[sr('den','Treasury',C.gold)]},{t:'Net per month (denarii)',s:[sr('net','Income minus spending',C.green)]},
+   {t:'Income by source (denarii a month)',stack:1,s:[sr('f_tribute','Tribute',C.violet),sr('f_tax','Direct tax',C.red),sr('f_trade','Trade',C.bronze),sr('f_grain','Grain sales',C.green)]},
+   {t:'Spending (denarii a month)',stack:1,s:[sr('f_upkeep','Upkeep',C.grey),sr('f_imports','Grain imports',C.teal),sr('f_games','Games',C.pink)]}]],
+ ['Order and health',[{t:'Concordia: order and its two terms',n:'The target order is about 100 x (0.95 - stress + calming). Both terms are shown x100.',s:[sr('order','Order (0 to 100)',C.green),sr('stress','Stress term x100',C.red,100),sr('calm','Calming term x100',C.teal,100)]},
+   {t:'Health and work (per cent)',s:[sr('disease','Disease',C.red,100),sr('unemp','Unemployment',C.amber,100),sr('hunger','Hunger',C.pink,100),sr('prosp','Prosperity',C.green,100)]},
+   {t:'Standing',s:[sr('dign','Dignitas',C.gold),sr('eliteH','Elite mood (0 to 100)',C.pink),sr('fear','Fear x100',C.red,100)]}]],
+ ['Grain',[{t:'Grain stock (modii)',s:[sr('grain','Stock',C.gold)]},{t:'Grain flow (modii a month)',s:[sr('gprod','Grown in fields',C.green),sr('gimp','Imported by ship',C.teal)]},{t:'Grain price (1 = normal)',s:[sr('price','Price',C.amber,1,2)]}]],
+ ['Services',[{t:'Average coverage of the tenements (per cent)',n:'The share of each service reaching the average insula.',s:[sr('c_water','Water',C.teal,100),sr('c_sewer','Sewers',C.grey,100),sr('c_market','Markets',C.bronze,100),sr('c_temple','Temples',C.violet,100),sr('c_bath','Baths',C.blue,100),sr('c_game','Games',C.pink,100),sr('c_patron','Patrons',C.gold,100),sr('c_order','Watch and order',C.green,100),sr('c_fire','Fire watch',C.red,100)]},
+   {t:'Water supply ratio (per cent)',s:[sr('wr','Water supplied vs demanded',C.teal,100)]}]],
+ ['Bazaar',[{t:'Trade multiplier (Bang)',s:[sr('bz_mult','Multiplier',C.gold,1,2)]},{t:'Clustering and patron reach (per cent)',s:[sr('bz_clu','Clustering of traders',C.bronze,100),sr('bz_pm','Patron reach',C.pink,100)]},{t:'Demand index',s:[sr('bz_dem','Demand',C.teal,1,2)]}]],
+ ['Buildings',[{t:'Housing and trade',s:[sr('n_insula','Insulae',C.bronze),sr('n_domus','Domus',C.pink),sr('n_taberna','Tabernae',C.teal),sr('n_officina','Officinae',C.amber),sr('n_tent','Tents',C.grey)]},{t:'Land, ports and ruin',s:[sr('n_ager','Fields',C.green),sr('n_emporium','Ports',C.blue),sr('n_ruin','Ruins',C.red),sr('n_vigiles','Vigiles',C.violet)]}]],
+ ['Events',null]];
+let dmTab='Summary';
+const fmtV=(v,dec)=>dec?v.toFixed(dec):fmtN(v);
+
+/* ---------- chart drawing ---------- */
+function niceStep(span,n){const raw=span/n,p=Math.pow(10,Math.floor(Math.log10(raw||1))),m=raw/p;return(m<1.5?1:m<3?2:m<7?5:10)*p}
+function drawChart(cv,spec,hover){
+  const dpr=Math.min(devicePixelRatio||1,2),w=cv.clientWidth||600,h=cv.clientHeight||190;
+  cv.width=w*dpr;cv.height=h*dpr;const g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);
+  const L=52,Rr=10,T=10,B=24,pw=w-L-Rr,ph=h-T-B,rows=DATA.rows,ref=DATA.ref;
+  g.fillStyle='#120f17';g.fillRect(0,0,w,h);
+  if(!rows.length){g.fillStyle='#b8a994';g.font='13px sans-serif';g.fillText('No data yet. Let some months pass.',L,h/2);return}
+  const tMax=Math.max(12,rows[rows.length-1].tick,ref?ref.rows[ref.rows.length-1].tick:0);
+  const val=(row,s)=>(row[s.k]||0)*s.scale;
+  const stacked=!!spec.stack;let lo=Infinity,hi=-Infinity;
+  const scan=rs=>{for(const row of rs){if(stacked){let a=0;for(const s of spec.s)a+=val(row,s);hi=Math.max(hi,a);lo=Math.min(lo,0)}else for(const s of spec.s){const v=val(row,s);hi=Math.max(hi,v);lo=Math.min(lo,v)}}};
+  scan(rows);if(ref)scan(ref.rows);
+  if(lo>=0)lo=0;if(hi<=lo)hi=lo+1;const stp=niceStep(hi-lo,4);hi=Math.ceil(hi/stp)*stp;if(lo<0)lo=Math.floor(lo/stp)*stp;
+  const X=t=>L+t/tMax*pw,Y=v=>T+ph-(v-lo)/(hi-lo)*ph;
+  g.font='11px sans-serif';g.textBaseline='middle';
+  for(let v=lo;v<=hi+1e-9;v+=stp){const y=Y(v);g.strokeStyle='#2c2531';g.lineWidth=1;g.beginPath();g.moveTo(L,y);g.lineTo(L+pw,y);g.stroke();g.fillStyle='#9a8f84';g.textAlign='right';g.fillText(stp<1?v.toFixed(1):fmtN(v),L-6,y)}
+  const steps=[1,3,6,12,24,60,120,240,600,1200],tstep=steps.find(s=>tMax/s<=7)||1200;
+  g.textAlign='center';g.textBaseline='top';
+  for(let t=0;t<=tMax;t+=tstep){const x=X(t);g.strokeStyle='#2c2531';g.beginPath();g.moveTo(x,T);g.lineTo(x,T+ph);g.stroke();g.fillStyle='#9a8f84';g.fillText(tstep>=12?absYear(t):dateAt(t),Math.min(Math.max(x,L+26),w-30),T+ph+6)}
+  /* rule changes and events */
+  for(const m of DATA.mark){if(m.tick>tMax)continue;const x=X(m.tick);
+    if(m.kind==='rule'){g.strokeStyle='rgba(217,99,159,.8)';g.setLineDash([3,3]);g.beginPath();g.moveTo(x,T);g.lineTo(x,T+ph);g.stroke();g.setLineDash([]);g.fillStyle='#d9639f';g.beginPath();g.moveTo(x-4,T);g.lineTo(x+4,T);g.lineTo(x,T+6);g.fill()}
+    else{g.fillStyle=m.cls==='bad'?'#e5624b':m.cls==='warn'?'#e3a840':'#86b86d';g.fillRect(x-1,T+ph-5,2,5)}}
+  const line=(rs,s,dash,alpha)=>{g.strokeStyle=s.color;g.globalAlpha=alpha;g.lineWidth=dash?1.4:1.8;g.setLineDash(dash?[5,4]:[]);g.beginPath();
+    const n=rs.length,st=Math.max(1,Math.floor(n/pw));let first=true;
+    for(let i=0;i<n;i+=st){const row=rs[i],x=X(row.tick),y=Y(val(row,s));if(first){g.moveTo(x,y);first=false}else g.lineTo(x,y)}
+    const lr=rs[n-1];g.lineTo(X(lr.tick),Y(val(lr,s)));g.stroke();g.setLineDash([]);g.globalAlpha=1};
+  if(stacked){
+    const cum=rs=>rs.map(row=>{let a=0;return spec.s.map(s=>a+=val(row,s))});
+    const cu=cum(rows);
+    for(let si=spec.s.length-1;si>=0;si--){const s=spec.s[si];g.fillStyle=s.color;g.globalAlpha=.55;g.beginPath();
+      const n=rows.length,st=Math.max(1,Math.floor(n/pw));let idx=[];for(let i=0;i<n;i+=st)idx.push(i);if(idx[idx.length-1]!==n-1)idx.push(n-1);
+      idx.forEach((i,k)=>{const x=X(rows[i].tick),y=Y(cu[i][si]);k?g.lineTo(x,y):g.moveTo(x,y)});
+      for(let k=idx.length-1;k>=0;k--){const i=idx[k],x=X(rows[i].tick),y=Y(si?cu[i][si-1]:0);g.lineTo(x,y)}
+      g.closePath();g.fill();g.globalAlpha=1}
+    if(ref){const cr=cum(ref.rows);g.strokeStyle='#f0e6d0';g.globalAlpha=.8;g.setLineDash([5,4]);g.lineWidth=1.4;g.beginPath();
+      const n=ref.rows.length,st=Math.max(1,Math.floor(n/pw));let f=true;for(let i=0;i<n;i+=st){const x=X(ref.rows[i].tick),y=Y(cr[i][spec.s.length-1]);f?g.moveTo(x,y):g.lineTo(x,y);f=false}g.stroke();g.setLineDash([]);g.globalAlpha=1}}
+  else{if(ref)for(const s of spec.s)line(ref.rows,s,true,.7);for(const s of spec.s)line(rows,s,false,1)}
+  g.strokeStyle='#4d3d48';g.strokeRect(L,T,pw,ph);
+  if(hover!=null){const x=X(hover);g.strokeStyle='rgba(240,230,208,.55)';g.beginPath();g.moveTo(x,T);g.lineTo(x,T+ph);g.stroke()}
+  cv._geom={L,pw,tMax}}
+const rowAt=(rs,t)=>{if(!rs.length)return null;let lo=0,hi=rs.length-1;while(lo<hi){const m=(lo+hi+1)>>1;if(rs[m].tick<=t)lo=m;else hi=m-1}return rs[lo].tick<=t?rs[lo]:null};
+function chartBlock(spec){
+  const d=document.createElement('div');d.className='dchart';
+  d.innerHTML='<h4>'+spec.t+'</h4>'+(spec.n?'<div class="dnote">'+spec.n+'</div>':'')+'<div class="dleg"></div><canvas class="dc"></canvas>';
+  const cv=d.querySelector('canvas'),leg=d.querySelector('.dleg');
+  const setLeg=t=>{const cur=t==null?DATA.rows[DATA.rows.length-1]:rowAt(DATA.rows,t),rf=DATA.ref?(t==null?DATA.ref.rows[Math.min(DATA.ref.rows.length,DATA.rows.length||1)-1]||null:rowAt(DATA.ref.rows,t)):null;
+    leg.innerHTML=(t!=null?'<span>'+dateAt(t)+'</span>':'')+spec.s.map(s=>'<span><i style="background:'+s.color+'"></i>'+s.label+(cur?' <b>'+fmtV((cur[s.k]||0)*s.scale,s.dec)+'</b>':'')+(rf?' <span style="opacity:.7">(ref '+fmtV((rf[s.k]||0)*s.scale,s.dec)+')</span>':'')+'</span>').join('')};
+  setLeg(null);
+  cv.addEventListener('mousemove',e=>{const gm=cv._geom;if(!gm)return;const r=cv.getBoundingClientRect(),t=Math.round((e.clientX-r.left-gm.L)/gm.pw*gm.tMax);if(t<0||t>gm.tMax)return;drawChart(cv,spec,t);setLeg(t)});
+  cv.addEventListener('mouseleave',()=>{drawChart(cv,spec);setLeg(null)});
+  d._draw=()=>{drawChart(cv,spec);setLeg(null)};return d}
+
+/* ---------- summary and events ---------- */
+function summaryHtml(){
+  const rows=DATA.rows,ref=DATA.ref;if(!rows.length)return'<p class="dnote">No data yet. Let some months pass, then return here.</p>';
+  const T=ref?Math.min(rows[rows.length-1].tick,ref.rows[ref.rows.length-1].tick):rows[rows.length-1].tick;
+  const a=rowAt(rows,T),b=ref?rowAt(ref.rows,T):null;
+  const cnt=(rs,f)=>rs.filter(r=>r.tick<=T).filter(f).length;
+  const ev=(m,c)=>m.filter(x=>x.tick<=T&&x.kind==='event'&&c.test(x.text)).length;
+  const M=[['Population',r=>r.pop,0],['Treasury (denarii)',r=>r.den,0],['Order (0-100)',r=>r.order,0],['Disease (%)',r=>r.disease*100,0],['Unemployment (%)',r=>r.unemp*100,0],['Elite mood (0-100)',r=>r.eliteH,0],['Dignitas',r=>r.dign,0],['Water supplied (%)',r=>r.wr*100,0],['Trade multiplier',r=>r.bz_mult,2],['Buildings standing',r=>r.n_all-r.n_ruin,0]];
+  const ex=[['Months with hunger',(rs)=>cnt(rs,r=>r.hunger>.05)],['Months with epidemic',(rs)=>cnt(rs,r=>r.epi)],['Fires logged',(rs,m)=>ev(m,/fire|flames|burn|torch/i)]];
+  const fm=(v,d)=>d?v.toFixed(d):fmtN(v);
+  let h='<p class="dnote">'+(ref?'Comparison at '+dateAt(T)+' (month '+T+' of each run). Reference: <b>'+esc_(ref.label)+'</b>.':'Values at '+dateAt(T)+' (month '+T+'). Save this run as a reference, change the rules, and run again to compare.')+'</p>';
+  h+='<table class="dt"><thead><tr><th>Measure</th><th>This run</th>'+(ref?'<th>Reference</th><th>Difference</th>':'')+'</tr></thead><tbody>';
+  for(const [n,f,d] of M){const x=f(a),y=b?f(b):null;h+='<tr><td>'+n+'</td><td class="n">'+fm(x,d)+'</td>'+(ref?'<td class="n">'+fm(y,d)+'</td><td class="n">'+((x-y>=0?'+':'-')+fm(Math.abs(x-y),d))+'</td>':'')+'</tr>'}
+  for(const [n,f] of ex){const x=f(rows,DATA.mark),y=ref?f(ref.rows,ref.mark):null;h+='<tr><td>'+n+'</td><td class="n">'+x+'</td>'+(ref?'<td class="n">'+y+'</td><td class="n">'+((x-y>=0?'+':'-')+Math.abs(x-y))+'</td>':'')+'</tr>'}
+  h+='</tbody></table>';
+  h+='<p class="dnote">Rules in force now: preset <b>'+esc_(DATA.preset)+'</b>.'+(ref&&ref.rows.length?' The reference ran under <b>'+esc_(ref.rows[ref.rows.length-1].preset)+'</b>.':'')+' Pink dashed lines on the charts mark rule changes. Small ticks along the bottom mark events: red bad, amber warning, green good. Dashed lines show the reference run.</p>';
+  return h}
+function eventsHtml(){
+  const ms=DATA.mark.slice().reverse().slice(0,400);if(!ms.length)return'<p class="dnote">No events recorded yet.</p>';
+  return'<div class="evl"><table class="dt"><thead><tr><th>Date</th><th>Kind</th><th>What</th></tr></thead><tbody>'+ms.map(m=>'<tr><td>'+dateAt(m.tick)+'</td><td>'+(m.kind==='rule'?'Rule':m.cls==='bad'?'Bad':m.cls==='warn'?'Warning':'Good')+'</td><td>'+esc_(m.text)+'</td></tr>').join('')+'</tbody></table></div>'}
+
+/* ---------- CSV ---------- */
+const COLS=Object.keys({tick:0,plebs:0,elite:0,slaves:0,pop:0,cap:0,capE:0,homeless:0,den:0,inc:0,exp:0,net:0,f_tribute:0,f_tax:0,f_trade:0,f_grain:0,f_upkeep:0,f_imports:0,f_games:0,grain:0,gprod:0,gimp:0,price:0,hunger:0,order:0,stress:0,calm:0,disease:0,epi:0,unemp:0,prosp:0,dign:0,eliteH:0,fear:0,wr:0,c_water:0,c_sewer:0,c_market:0,c_temple:0,c_bath:0,c_game:0,c_patron:0,c_order:0,c_fire:0,bz_mult:0,bz_clu:0,bz_pm:0,bz_dem:0,n_tent:0,n_insula:0,n_domus:0,n_taberna:0,n_macellum:0,n_officina:0,n_ager:0,n_emporium:0,n_thermae:0,n_vigiles:0,n_ruin:0,n_all:0});
+const q=v=>{const s=String(v);return/[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s};
+function csvText(){
+  const out=[['run','scenario','preset','date',...COLS,...RKEYS.map(k=>'rule_'+k),'events'].join(',')];
+  const add=(label,run)=>{const mk=new Map();for(const m of run.mark){const a=mk.get(m.tick)||[];a.push((m.kind==='rule'?'[rule] ':'')+m.text);mk.set(m.tick,a)}
+    const m0=run.mAbs0,y0=run.y0;
+    for(const r of run.rows){const a=y0+Math.floor((m0+r.tick)/12),d=MONTHS[(m0+r.tick)%12]+' '+(a<754?(754-a)+' BC':(a-753)+' AD');
+      out.push([q(label),run.scn,q(r.preset),q(d),...COLS.map(c=>typeof r[c]==='number'?+r[c].toFixed(4):r[c]),...r.R,q((mk.get(r.tick)||[]).join('; '))].join(','))}};
+  add('current',DATA);if(DATA.ref)add('reference: '+DATA.ref.label,DATA.ref);
+  return out.join('\n')}
+let dlCap,dlTried=false;
+async function getDl(){if(dlTried)return dlCap;dlTried=true;try{dlCap=window.claude&&claude.use?await claude.use('downloads'):null}catch(e){dlCap=null}return dlCap}
+const note=t=>{const n=$('#dm-note');if(n)n.textContent=t};
+async function saveCsv(){
+  const dl=await getDl(),txt=csvText();if(!dl){note('Saving is not available in this view. Use Copy CSV.');return}
+  try{await dl.save({filename:'urbs-aeterna-run.csv',data:txt});note('Saved, if you accepted the prompt.')}catch(e){note(e&&e.code==='declined'?'Save declined.':'Saving failed. Use Copy CSV.')}}
+async function copyCsv(){
+  const txt=csvText();let ok=false;
+  try{await navigator.clipboard.writeText(txt);ok=true}catch(e){}
+  if(!ok){const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='width:100%;height:120px;background:#120f17;color:var(--ink)';$('#dm-b').appendChild(ta);ta.select();note('Clipboard blocked. The text is selected below: copy it by hand.');return}
+  note('CSV copied: '+DATA.rows.length+' rows'+(DATA.ref?' plus '+DATA.ref.rows.length+' reference rows':'')+'.')}
+
+/* ---------- reference run ---------- */
+const REFKEY='urbs_ref_v1';
+function saveRef(label){
+  if(!DATA.rows.length){note('Run some months first.');return}
+  DATA.ref={label:label||'Reference',rows:DATA.rows.map(r=>r),mark:DATA.mark.slice(),mAbs0:DATA.mAbs0,y0:DATA.y0,scn:DATA.scn};
+  try{const s=JSON.stringify(DATA.ref);if(s.length<3.5e6)localStorage.setItem(REFKEY,s);else note('Reference saved for this session only (too large to keep).')}catch(e){}
+  renderDM()}
+function clearRef(){DATA.ref=null;try{localStorage.removeItem(REFKEY)}catch(e){}renderDM()}
+try{const s=localStorage.getItem(REFKEY);if(s)DATA.ref=JSON.parse(s)}catch(e){}
+
+/* ---------- the modal ---------- */
+function renderDM(keepScroll){
+  const body=$('#dm-b'),sc=body.scrollTop,lbl=($('#dm-lbl')||{}).value;
+  const ref=DATA.ref,tabs=TABS.map(t=>'<button type="button" class="chip'+(t[0]===dmTab?' on':'')+'" data-tab="'+t[0]+'">'+t[0]+'</button>').join('');
+  body.innerHTML='<p class="dnote">Every month the simulation records its state here. Hover a chart for the values at that month. Use the reference run to compare two sets of rules: save this run, change the Lex settings or preset, and play again.</p>'+
+   '<div class="dbar"><input type="text" id="dm-lbl" maxlength="30" aria-label="Name for the reference run" value="'+esc_(lbl!=null?lbl:(DATA.preset==='default'?'Default rules':DATA.preset))+'"><button type="button" class="chip" id="dm-save">Save this run as reference</button>'+(ref?'<button type="button" class="chip" id="dm-clr">Clear reference</button><span class="dnote" style="margin:0">Reference: <b>'+esc_(ref.label)+'</b> ('+ref.rows.length+' months)</span>':'')+'</div>'+
+   '<div class="dbar"><button type="button" class="chip" id="dm-copy">Copy CSV</button><button type="button" class="chip" id="dm-csv">Save CSV</button><span class="dnote" id="dm-note" style="margin:0"></span></div>'+
+   '<div class="dtabs">'+tabs+'</div><div id="dm-pane"></div>';
+  body.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{dmTab=b.dataset.tab;renderDM()});
+  $('#dm-save').onclick=()=>saveRef($('#dm-lbl').value.trim());if($('#dm-clr'))$('#dm-clr').onclick=clearRef;
+  $('#dm-copy').onclick=copyCsv;$('#dm-csv').onclick=saveCsv;getDl().then(d=>{if(!d&&$('#dm-csv'))$('#dm-csv').hidden=true});
+  const pane=$('#dm-pane');
+  if(dmTab==='Summary')pane.innerHTML=summaryHtml();
+  else if(dmTab==='Events')pane.innerHTML=eventsHtml();
+  else{const specs=TABS.find(t=>t[0]===dmTab)[1];const blocks=specs.map(s=>chartBlock({t:s.t,n:s.n,stack:s.stack,s:s.s}));blocks.forEach(b=>pane.appendChild(b));blocks.forEach(b=>b._draw())}
+  if(keepScroll)body.scrollTop=sc}
+function openDM(){$('#dm').hidden=false;renderDM();$('#dm-x').focus()}
+function closeDM(){$('#dm').hidden=true}
+$('#b-data').onclick=openDM;$('#dm-x').onclick=closeDM;
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;const k=e.key.toLowerCase();
+  if(k==='escape'&&!$('#dm').hidden)closeDM();
+  else if(k==='g'&&$('#help').hidden&&$('#pm').hidden&&$('#vm').hidden){$('#dm').hidden?openDM():closeDM()}});
+addEventListener('resize',()=>{if(!$('#dm').hidden)renderDM(true)});
+window.__dataReady=true;
+Object.assign(window.__game,{DATA,csvText,renderDM,openDM,saveRef,dataReset,recordRow});
 
 </script>
 
