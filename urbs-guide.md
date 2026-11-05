@@ -245,7 +245,7 @@ The interesting things tend to appear as chains of cause and effect, and as the 
 | Elite mood falls beside tenements | Order and health tab | Separation is high or elites tolerate neighbours badly | Mixed or separated neighbourhoods; patronage reach |
 | People arrive, then leave | People tab | Immigration pull outruns housing or work, or the graveyard effect eats them | Graveyard, immigration, unemployment |
 
-### Chains that repay following
+### If this then that...
 
 - **A poor harvest year.** Harvest quality dips; stocks fall; the price rises; hunger or higher prices raise stress; order slips; the legions may be called. Watch how many months each step takes, and whether granaries and ports soften the blow.
 - **Clearing a site.** A designated plot is bought out and demolished; displaced crowds add fear; order falls for a while; then the theatre or arena rises and dignitas and calm may recover. Does the exchange pay?
